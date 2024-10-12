@@ -1,5 +1,5 @@
 import LibroCarritoList from '../components/LibroCarritoList';
-
+import './Carrito.css'; 
 
 const Carrito = () => {
     return (

@@ -1,18 +1,61 @@
 .lista-libros {
     display: flex;
-    flex-direction: column; /* Para que cada libro esté en una nueva línea */
-    align-items: flex-start; /* Alinear los elementos al principio (izquierda) */
-    width: 100%; /* Asegurarse de que ocupe todo el ancho disponible */
-    margin-left: 0; /* Para asegurarse de que no tenga margen a la izquierda */
-    padding: 0; /* Para eliminar cualquier relleno */
+    flex-direction: column; 
+    margin: 32px 0; 
+    text-align: left;
 }
 
+
 .encabezado-libro {
-    display: flex; /* Para mostrar encabezados uno al lado del otro */
-    justify-content: space-between; /* Espacio entre encabezados */
-    font-weight: bold; /* Hacer que los encabezados sean más destacados */
+    display: flex; 
+    justify-content: space-between; 
+    font-weight: bold; 
+    margin-bottom: 16px; 
+}
+
+.encabezado-libro p:first-child {
+    margin-right: 100px; /* Espacio de 10px a la derecha de cada título */
 }
 
 .encabezado-libro p {
-    margin: 0 15px; /* Espacio horizontal de 15px entre los elementos */
+    margin-right: 40px; /* Espacio de 10px a la derecha de cada título */
 }
+
+.encabezado-libro p:last-child {
+    margin-right: 0; /* Elimina el margen derecho del último elemento */
+}
+
+.contenido-libro {
+    display: flex; /* Coloca la imagen y los detalles uno al lado del otro */
+    align-items: center; /* Centra verticalmente los elementos */
+}
+
+.imagen-libro {
+    width: 100px; /* Ajustar el ancho de la imagen */
+    height: auto; /* Mantener la relación de aspecto */
+    margin-right: 16px; /* Espacio a la derecha de la imagen */
+}
+
+.detalles-libro {
+    flex: 1; /* Para ocupar el espacio restante */
+}
+
+.detalles-libro{
+    max-width: 150px; /* Ajusta según sea necesario */
+    word-wrap: break-word; /* Permitir que las palabras se dividan */
+}
+
+.informacion-libro {
+    display: flex; /* Esto coloca los elementos en una fila */
+    justify-content: space-between; /* Espacio entre los elementos */
+    margin-top: 8px; /* Espacio arriba del contenido */
+}
+
+
+.informacion-libro p {
+    margin: 0; /* Eliminar márgenes predeterminados */
+    padding: 20px; /* Espaciado horizontal entre elementos */
+}
+
+
+
