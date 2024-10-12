@@ -40,3 +40,36 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.subtitulo {
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #D1A246;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 60px;
+  font-size: 35px
+}
+
+/*
+.rayas-background {
+  margin: 0; 
+  background: 
+    blue 10px,
+    repeating-linear-gradient(
+      90deg, 
+      white 0px,  
+      white 30px,  
+      #ffcdd4 30px, 
+      #ffcdd4 60px  
+    );
+}
+*/
+
+
+
+
+
