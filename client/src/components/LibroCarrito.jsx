@@ -2,6 +2,7 @@ const LibroCarrito = ({ libro }) => {
     const subtotal = libro.price * libro.quantity; // Calcular el subtotal
 
     return (
+        <>
         <div className="libro">
             <div className="contenido-libro">
                 <img src={libro.imageUrl} className="imagen-libro" />
@@ -16,6 +17,7 @@ const LibroCarrito = ({ libro }) => {
                 </div>
             </div>
         </div>
+    </>
     );
 };
 

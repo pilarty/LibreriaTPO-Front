@@ -48,11 +48,10 @@
   font-weight: 500;
   font-style: normal;
   color: #D1A246;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  margin: 60px;
-  font-size: 35px
+  font-size: 35px;
+  margin-bottom: 20px;
+  text-align: left;
+  position: relative;
 }
 
 /*

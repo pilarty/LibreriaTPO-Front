@@ -3,15 +3,12 @@
     flex-direction: column;
     margin: 32px; 
     text-align: left;
-    position: absolute;
-    top: 50px;
-    left: 0px;
-    margin: 60px;
-
-    /*Recuadro*/
-    border: 2px solid #e49bd9; 
+    border: 2px solid #e49bd9; /* Borde rosa claro */
     border-radius: 8px; 
     padding: 20px; 
+    width: 100%; /* Ocupa todo el ancho disponible */
+    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho */
+    max-width: 800px; /* Limita el ancho máximo */
 }
 
 .encabezado-libro {
@@ -58,49 +55,45 @@
     align-items: center;
     padding: 10px; /* Espaciado interno para alinear con el encabezado */
     
+    
 }
 
-/* Alineación de los textos en cada campo */
+
 .informacion-libro h4 {
-    flex: 2; /* El título del libro ocupa más espacio */
+    flex: 2; 
     margin: 0;
     margin-right: 35px;
 }
 
 .informacion-libro p {
-    flex: 1; /* Los demás elementos ocupan un espacio equitativo */
-    margin: 0; /* Elimina márgenes internos */
-    text-align: center; /* Centra el texto dentro de cada columna */
+    flex: 1; 
+    margin: 0; 
+    text-align: center; 
     margin-right: 125px;
 }
 
 .carrito-contenedor {
-    display: flex; /* Coloca los elementos uno al lado del otro */
-    justify-content: space-between; /* Distribuye el espacio entre la lista y el recuadro */
-    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
-    margin-top: 20px; /* Espacio entre el título y el contenido */
-}
-
-/* Recuadro del total del carrito */
-.total-carrito {
-    border: 2px solid #4CAF50; /* Borde de 2px de color verde */
+    display: flex;
+    justify-content: space-between; /* Alinea ambos elementos en el espacio disponible */
+    align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+    margin-top: 20px;
+    border: 2px solid pink; /* Borde rosa */
     border-radius: 8px; /* Bordes redondeados */
-    background-color: #f9f9f9; /* Fondo claro */
-    padding: 20px; /* Espaciado interno */
-    width: 300px; /* Ancho fijo para el recuadro */
-    text-align: center; /* Centrar el texto */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    background-color: #ffe6f0; /* Fondo rosa claro */
+    padding: 20px;
+    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho */
+    width: 100%; /* Asegura que ocupe el ancho completo disponible */
+    max-width: 1200px; /* Limita el ancho máximo */
 }
 
-.total-carrito h3 {
-    margin-bottom: 20px; /* Espaciado debajo del título */
-    font-size: 20px; /* Tamaño de fuente ajustado */
-}
-
-.total-carrito p {
-    font-size: 18px; /* Tamaño del texto del total */
-    font-weight: bold; /* Negrita para resaltar el valor */
-    margin: 0; /* Elimina márgenes del párrafo */
+.recuadro-total {
+    border: 2px solid #4CAF50; /* Borde verde */
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    width: 300px; /* Ancho fijo */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 

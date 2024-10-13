@@ -1,17 +1,14 @@
 import LibroCarritoList from '../components/LibroCarritoList';
+import TotalCarrito from "../components/TotalCarrito"
 import './Carrito.css'; 
 
 const Carrito = () => {
     return (
     <>
         <h2 className="subtitulo">Tu Carrito</h2>
-        <hr />
         <div className="carrito-contenedor">
             <LibroCarritoList />
-            <div className="total-carrito">
-                <h3>Total del carrito</h3>
-                <p>$</p>
-            </div>
+            <TotalCarrito />
         </div>
     </>
 );

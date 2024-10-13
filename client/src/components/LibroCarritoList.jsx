@@ -26,6 +26,7 @@ const librosSimulados = [
 
 const LibroCarritoList = () => {
     return (
+        <>
     <div className="lista-libros">
         <div className="encabezado-libro">
                 <p>Producto/s</p>
@@ -40,6 +41,7 @@ const LibroCarritoList = () => {
                 </div>
             ))}
     </div>
+    </>
     );
 };
 

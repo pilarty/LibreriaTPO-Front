@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom"
+import { useLocation } from 'react-router-dom'; {/*SACAR */}
+
 
 const Navigation = () => {
+    const location = useLocation();
+    if (location.pathname === '/Carrito') { {/*SACAR */}
+        return null; // No renderiza nada en la página del carrito
+    }
     return(
         <nav>
             <ul>
