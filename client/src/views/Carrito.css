@@ -10,6 +10,8 @@
     display: flex;
     font-weight: bold; 
     margin-top: 0;
+    border-bottom: 2px solid #ddd; /* Agrega un borde inferior para separarlo visualmente */
+    padding-bottom: 5px; /* Espacio entre el encabezado y los productos */
 }
 
 .encabezado-libro p:first-child {
@@ -75,10 +77,12 @@
     align-items: center;
     width: 40%; 
     text-align: left;
+    
 }
 
 .separator {
     width: 2px; 
+    height: 500px;
     background-color: pink; 
     margin: 20px; 
 }

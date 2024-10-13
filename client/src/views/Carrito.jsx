@@ -18,7 +18,7 @@ const Carrito = () => {
             <div className="lista-boton">
                     <LibroCarritoList />
                     <button className="seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
-                </div>
+            </div>
             <div className="separator"></div>
             <TotalCarrito />
         </div>
