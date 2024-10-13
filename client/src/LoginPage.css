@@ -1,0 +1,85 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFF5E6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+/* Estilos para el logo */
+.logo {
+    width: 170px !important;
+    height: 170px !important;
+    margin: 0 auto 1rem;
+    display: block;
+}
+
+/* Estilos para el título */
+h1 {
+    text-align: center;
+    color: #4A3000;
+    font-size: 2.25rem !important;
+    margin-bottom: 2rem;
+}
+
+/* Estilos para el formulario */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #D4A763 !important;
+    border-radius: 4px;
+}
+
+button {
+    background-color: hwb(156 18% 51%) !important;
+    color: #F8E9C8;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold !important;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: hwb(156 32% 37%) !important;
+}
+
+.container {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    z-index: 1;
+    position: relative;
+}
+
+/* Fondo con rayas */
+.fondoRayado {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+    90deg, /* Cambia el ángulo aquí */
+    #F8E9C8 0px,
+    #f3ae7d 10px,
+    #F8E9C8 10px,
+    #f3ae7d 20px
+    )!important;
+    z-index: -1;
+    opacity: 0.5;
+}

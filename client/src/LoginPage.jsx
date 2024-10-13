@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import './LoginPage.css';
+import logo from './assets/logo.jpeg';
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +16,7 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
-    
+
     if (!validateEmail(email)) {
       setError('Por favor, introduce un email válido.');
       return;
@@ -24,33 +27,36 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h2>Iniciar Sesión</h2>
-      {error && <p style={{color: 'red'}}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
+    <>
+      <div className="fondoRayado"></div>
+      <div className="container">
+      <img src={logo} alt="Logo de The Golden Feather" className="logo" />
+      <h1>
+        Bienvenido de nuevo a <br />
+        <span className="tituloEspecial">"The Golden Feather"</span>
+      </h1>
+        {error && <p style={{color: 'red'}}>{error}</p>}
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
             required
           />
-        </div>
-        <div>
-          <label htmlFor="password">Contraseña:</label>
           <input
             type="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Contraseña"
             required
           />
-        </div>
-        <button type="submit">Iniciar Sesión</button>
-      </form>
-    </div>
+          <button type="submit">Iniciar Sesión</button>
+        </form>
+      </div>
+    </>
   );
 };
 
