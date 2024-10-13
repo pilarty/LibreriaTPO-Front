@@ -31,7 +31,7 @@
 }
 
 .imagen-libro {
-    width: 80px; 
+    width: 70px; 
     height: auto; 
     margin-right: 16px; 
 }
@@ -57,19 +57,22 @@
 
 .carrito-contenedor {
     display: flex;
-    justify-content: space-between; 
-    align-items: stretch; 
-    margin-top: 20px;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    margin: 20px 0 20px -20px;
     border: 2px solid pink; 
     border-radius: 8px; 
     background-color: white; 
     padding: 10px;
     box-sizing: border-box; 
-    width: 1600px;
+    width: 1200px;
     height: auto;
 }
 
 .recuadro-total {
+    display: flex;            
+    flex-direction: column;   
+    align-items: center;
     width: 40%; 
     text-align: left;
 }
@@ -80,3 +83,49 @@
     margin: 20px; 
 }
 
+.recuadro-total button {
+    margin-top: 10px;
+    background-color: #297272;
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 8px; 
+    cursor: pointer; 
+}
+
+.recuadro-total button:hover {
+    background-color: #1a4146; 
+}
+
+.lista-boton {
+    display: flex;                
+    flex-direction: column;       
+    align-items: flex-start;      
+    width: 100%;         
+}
+
+.seguir-comprando {
+    background-color: #297272;    
+    color: white;                
+    border: none;                 
+    padding: 10px 20px;          
+    border-radius: 8px;          
+    cursor: pointer;              
+    margin-top: 10px;            
+    width: auto;     
+}
+
+.seguir-comprando:hover {
+    background-color: #1e595b;   
+}
+
+.cantidad {
+    display: flex;
+    align-items: center; 
+}
+
+.cantidad button {
+    margin: 0 5px; 
+    padding: 5px 10px; 
+    cursor: pointer; 
+}

@@ -1,6 +1,14 @@
+import { useNavigate } from "react-router-dom";
 
 
 const TotalCarrito = () => {
+
+    const navigate = useNavigate();
+
+    const manejarFinalizarCompra = () => {
+        navigate("/Compra");
+    }
+
     return(
         <>
         <div className = "recuadro-total" > 
@@ -8,6 +16,7 @@ const TotalCarrito = () => {
             <hr></hr>
             <p>Subtotal: $11111111</p>  
             <hr></hr>
+            <button onClick={manejarFinalizarCompra}>Finalizar Compra</button>
         </div>
         </>
     );
