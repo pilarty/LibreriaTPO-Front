@@ -9,9 +9,9 @@ const LibroCarrito = ({ libro }) => {
                     
                     <div className="informacion-libro">
                         <h4>{libro.title}</h4>
-                        <p className="precio">${libro.price.toFixed(2)}</p>
-                        <p className="cantidad">{libro.quantity}</p>
-                        <p className="subtotal">${subtotal.toFixed(2)}</p>
+                        <p >${libro.price.toFixed(2)}</p>
+                        <p >{libro.quantity}</p>
+                        <p >${subtotal.toFixed(2)}</p>
                     </div>
                 </div>
             </div>

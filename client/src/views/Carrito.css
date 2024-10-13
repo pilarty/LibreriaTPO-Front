@@ -1,60 +1,106 @@
 .lista-libros {
     display: flex;
-    flex-direction: column; 
-    margin: 32px 0; 
+    flex-direction: column;
+    margin: 32px; 
     text-align: left;
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    margin: 60px;
+
+    /*Recuadro*/
+    border: 2px solid #e49bd9; 
+    border-radius: 8px; 
+    padding: 20px; 
 }
 
-
 .encabezado-libro {
-    display: flex; 
-    justify-content: space-between; 
+    display: flex;
     font-weight: bold; 
-    margin-bottom: 16px; 
+    margin-bottom: 0px; 
 }
 
 .encabezado-libro p:first-child {
-    margin-right: 100px; /* Espacio de 10px a la derecha de cada título */
+    margin-right: 140px; 
 }
 
 .encabezado-libro p {
-    margin-right: 40px; /* Espacio de 10px a la derecha de cada título */
+    margin-right: 90px; 
 }
 
 .encabezado-libro p:last-child {
-    margin-right: 0; /* Elimina el margen derecho del último elemento */
+    margin-right: 0; 
 }
 
 .contenido-libro {
-    display: flex; /* Coloca la imagen y los detalles uno al lado del otro */
-    align-items: center; /* Centra verticalmente los elementos */
+    display: flex; 
+    align-items: center; 
 }
 
 .imagen-libro {
-    width: 100px; /* Ajustar el ancho de la imagen */
-    height: auto; /* Mantener la relación de aspecto */
-    margin-right: 16px; /* Espacio a la derecha de la imagen */
+    width: 100px; 
+    height: auto; 
+    margin-right: 16px; 
 }
 
 .detalles-libro {
-    flex: 1; /* Para ocupar el espacio restante */
+    flex: 1; 
 }
 
 .detalles-libro{
-    max-width: 150px; /* Ajusta según sea necesario */
-    word-wrap: break-word; /* Permitir que las palabras se dividan */
+    max-width: 150px;
+    word-wrap: break-word; 
 }
 
 .informacion-libro {
-    display: flex; /* Esto coloca los elementos en una fila */
-    justify-content: space-between; /* Espacio entre los elementos */
-    margin-top: 8px; /* Espacio arriba del contenido */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px; /* Espaciado interno para alinear con el encabezado */
+    
 }
 
+/* Alineación de los textos en cada campo */
+.informacion-libro h4 {
+    flex: 2; /* El título del libro ocupa más espacio */
+    margin: 0;
+    margin-right: 35px;
+}
 
 .informacion-libro p {
-    margin: 0; /* Eliminar márgenes predeterminados */
-    padding: 20px; /* Espaciado horizontal entre elementos */
+    flex: 1; /* Los demás elementos ocupan un espacio equitativo */
+    margin: 0; /* Elimina márgenes internos */
+    text-align: center; /* Centra el texto dentro de cada columna */
+    margin-right: 125px;
+}
+
+.carrito-contenedor {
+    display: flex; /* Coloca los elementos uno al lado del otro */
+    justify-content: space-between; /* Distribuye el espacio entre la lista y el recuadro */
+    align-items: flex-start; /* Alinea el contenido al inicio verticalmente */
+    margin-top: 20px; /* Espacio entre el título y el contenido */
+}
+
+/* Recuadro del total del carrito */
+.total-carrito {
+    border: 2px solid #4CAF50; /* Borde de 2px de color verde */
+    border-radius: 8px; /* Bordes redondeados */
+    background-color: #f9f9f9; /* Fondo claro */
+    padding: 20px; /* Espaciado interno */
+    width: 300px; /* Ancho fijo para el recuadro */
+    text-align: center; /* Centrar el texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.total-carrito h3 {
+    margin-bottom: 20px; /* Espaciado debajo del título */
+    font-size: 20px; /* Tamaño de fuente ajustado */
+}
+
+.total-carrito p {
+    font-size: 18px; /* Tamaño del texto del total */
+    font-weight: bold; /* Negrita para resaltar el valor */
+    margin: 0; /* Elimina márgenes del párrafo */
 }
 
 
