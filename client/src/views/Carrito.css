@@ -1,100 +1,82 @@
 .lista-libros {
     display: flex;
     flex-direction: column;
-    margin: 32px; 
-    text-align: left;
-    border: 2px solid #e49bd9; /* Borde rosa claro */
-    border-radius: 8px; 
-    padding: 20px; 
-    width: 100%; /* Ocupa todo el ancho disponible */
-    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho */
-    max-width: 800px; /* Limita el ancho máximo */
+    margin: 15px; 
+    text-align: left; 
+    width: 60%; 
 }
 
 .encabezado-libro {
     display: flex;
     font-weight: bold; 
-    margin-bottom: 0px; 
+    margin-top: 0;
 }
 
 .encabezado-libro p:first-child {
-    margin-right: 140px; 
+    flex: 1.47;
+    text-align: left;
 }
 
 .encabezado-libro p {
-    margin-right: 90px; 
-}
-
-.encabezado-libro p:last-child {
-    margin-right: 0; 
+    flex: 1; 
+    text-align: center; 
+    margin: 0; 
 }
 
 .contenido-libro {
     display: flex; 
     align-items: center; 
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .imagen-libro {
-    width: 100px; 
+    width: 80px; 
     height: auto; 
     margin-right: 16px; 
-}
-
-.detalles-libro {
-    flex: 1; 
-}
-
-.detalles-libro{
-    max-width: 150px;
-    word-wrap: break-word; 
 }
 
 .informacion-libro {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px; /* Espaciado interno para alinear con el encabezado */
-    
+    width: 100%;
     
 }
 
-
 .informacion-libro h4 {
-    flex: 2; 
+    flex: 1; 
     margin: 0;
-    margin-right: 35px;
 }
 
 .informacion-libro p {
     flex: 1; 
-    margin: 0; 
     text-align: center; 
-    margin-right: 125px;
+    margin: 0;
 }
 
 .carrito-contenedor {
     display: flex;
-    justify-content: space-between; /* Alinea ambos elementos en el espacio disponible */
-    align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+    justify-content: space-between; 
+    align-items: stretch; 
     margin-top: 20px;
-    border: 2px solid pink; /* Borde rosa */
-    border-radius: 8px; /* Bordes redondeados */
-    background-color: #ffe6f0; /* Fondo rosa claro */
-    padding: 20px;
-    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho */
-    width: 100%; /* Asegura que ocupe el ancho completo disponible */
-    max-width: 1200px; /* Limita el ancho máximo */
+    border: 2px solid pink; 
+    border-radius: 8px; 
+    background-color: white; 
+    padding: 10px;
+    box-sizing: border-box; 
+    width: 1600px;
+    height: auto;
 }
 
 .recuadro-total {
-    border: 2px solid #4CAF50; /* Borde verde */
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    width: 300px; /* Ancho fijo */
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 40%; 
+    text-align: left;
 }
 
-
+.separator {
+    width: 2px; 
+    background-color: pink; 
+    margin: 20px; 
+}
 

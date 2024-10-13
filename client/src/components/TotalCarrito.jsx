@@ -3,10 +3,10 @@
 const TotalCarrito = () => {
     return(
         <>
-        <div classname = "recuadro-total" > 
+        <div className = "recuadro-total" > 
             <h3>Total del carrito</h3>
             <hr></hr>
-            <p>Subtotal</p>  
+            <p>Subtotal: $11111111</p>  
             <hr></hr>
         </div>
         </>

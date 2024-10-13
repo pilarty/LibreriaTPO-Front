@@ -37,7 +37,7 @@ const LibroCarritoList = () => {
             {librosSimulados.map((libro, index) => (
                 <div key={libro.id}>
                     <LibroCarrito libro={libro} />
-                    {index < librosSimulados.length - 1 && <hr />} {/* Agregar línea excepto después del último libro */}
+                    <hr></hr>
                 </div>
             ))}
     </div>
