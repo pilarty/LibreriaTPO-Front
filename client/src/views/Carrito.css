@@ -3,26 +3,31 @@
     flex-direction: column;
     margin: 15px; 
     text-align: left; 
-    width: 60%; 
+    width: 100%; 
+    border-bottom: 2px solid pink; 
+    padding-bottom: 0px; 
 }
 
 .encabezado-libro {
     display: flex;
     font-weight: bold; 
     margin-top: 0;
-    border-bottom: 2px solid #ddd; /* Agrega un borde inferior para separarlo visualmente */
-    padding-bottom: 5px; /* Espacio entre el encabezado y los productos */
+    border-bottom: 2px solid pink; 
+    padding-bottom: 5px; 
+    
 }
 
 .encabezado-libro p:first-child {
-    flex: 1.47;
+    flex: 2;
     text-align: left;
+    margin-right: 100px;
 }
 
 .encabezado-libro p {
     flex: 1; 
     text-align: center; 
     margin: 0; 
+    margin-right: 100px;
 }
 
 .contenido-libro {
@@ -30,6 +35,7 @@
     align-items: center; 
     margin-bottom: 20px;
     margin-top: 10px;
+    
 }
 
 .imagen-libro {
@@ -40,21 +46,23 @@
 
 .informacion-libro {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     
 }
 
 .informacion-libro h4 {
-    flex: 1; 
+    flex: 2; 
     margin: 0;
+    margin-right: 10px;
 }
 
 .informacion-libro p {
-    flex: 1; 
+    flex: 2; 
     text-align: center; 
     margin: 0;
+    margin-left: 0px;
 }
 
 .carrito-contenedor {
@@ -74,8 +82,8 @@
 .recuadro-total {
     display: flex;            
     flex-direction: column;   
-    align-items: center;
-    width: 40%; 
+    align-items: left;
+    width: 100%; 
     text-align: left;
     
 }
@@ -84,7 +92,7 @@
     width: 2px; 
     height: 500px;
     background-color: pink; 
-    margin: 20px; 
+    margin: 30px; 
 }
 
 .recuadro-total button {
@@ -115,8 +123,10 @@
     padding: 10px 20px;          
     border-radius: 8px;          
     cursor: pointer;              
-    margin-top: 10px;            
-    width: auto;     
+    margin-top: 0px;            
+    width: auto;   
+    margin-left: 15px;  
+    margin-bottom: 10px;
 }
 
 .seguir-comprando:hover {

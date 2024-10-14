@@ -13,9 +13,7 @@ const TotalCarrito = () => {
         <>
         <div className = "recuadro-total" > 
             <h3>Total del carrito</h3>
-            <hr></hr>
-            <p>Subtotal: $11111111</p>  
-            <hr></hr>
+            <p>Subtotal: $11111111</p> 
             <button onClick={manejarFinalizarCompra}>Finalizar Compra</button>
         </div>
         </>
