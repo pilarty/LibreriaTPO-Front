@@ -88,6 +88,17 @@
     
 }
 
+.recuadro-total h3{
+    display: flex;            
+    flex-direction: column;   
+    align-items: left;
+    width: 100%; 
+    text-align: left;
+    border-bottom: 2px solid pink; 
+    padding-bottom: 0px; 
+    padding-top: 0px;
+}
+
 .separator {
     width: 2px; 
     height: 500px;
@@ -143,3 +154,4 @@
     padding: 5px 10px; 
     cursor: pointer; 
 }
+
