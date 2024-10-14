@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, onCantidadCambio } from 'react';
 const LibroCarrito = ({ libro }) => {
     
 
@@ -7,14 +7,19 @@ const LibroCarrito = ({ libro }) => {
     const subtotal = libro.price * cantidad;
     
     const manejarIncrementar = () => {
-        setCantidad(cantidad+1);
-    }
+        const nuevaCantidad = cantidad + 1;
+        setCantidad(nuevaCantidad);
+        // Llamamos a la función de callback para notificar el cambio
+        onCantidadCambio(libro.id, nuevaCantidad);
+    };
 
     const manejarDecrementar = () => {
-        if (cantidad > 1){
-            setCantidad(cantidad -1);
+        if (cantidad > 1) {
+            const nuevaCantidad = cantidad - 1;
+            setCantidad(nuevaCantidad);
+            onCantidadCambio(libro.id, nuevaCantidad);
         }
-    }
+    };
 
     return (
         <>

@@ -1,4 +1,5 @@
 import LibroCarrito from './LibroCarrito';
+import { useState, useEffect } from 'react';
 const librosSimulados = [
     {
     id: 1,
@@ -26,7 +27,24 @@ const librosSimulados = [
 
 
 
-const LibroCarritoList = () => {
+const LibroCarritoList = ({ onCalcularTotal }) => {
+    const [totalSubtotal, setTotalSubtotal] = useState(0);
+
+    useEffect(() => {
+        // Calcular el total de subtotales de todos los libros
+        const total = librosSimulados.reduce((acumulado, libro) => {
+            return acumulado + libro.price * libro.quantity;
+        }, 0);
+
+        setTotalSubtotal(total);
+
+        // Pasar el total al componente Carrito a través de onCalcularTotal
+        if (onCalcularTotal) {
+            onCalcularTotal(total);
+        }
+    }, [librosSimulados, onCalcularTotal]);
+
+
     return (
         <>
     <div className="lista-libros">
