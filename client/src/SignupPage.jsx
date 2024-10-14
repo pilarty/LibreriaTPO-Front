@@ -59,6 +59,7 @@ const SignupPage = () => {
     } catch (err) {
       setError('Error al conectarse con el servidor.');
     }
+    navigate('/');
   };
 
   return (

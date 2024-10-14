@@ -83,3 +83,16 @@ button:hover {
     z-index: -1;
     opacity: 0.5;
 }
+.signup-link {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .signup-link a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  
+  .signup-link a:hover {
+    text-decoration: underline;
+  }
