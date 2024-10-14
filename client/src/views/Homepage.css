@@ -1,0 +1,35 @@
+
+  .image-1-4 {
+    position: absolute;
+    left: 32px;
+    top: 28px;
+    width: 59px;
+    height: 56px;
+    width: 55px;
+    height: auto;
+  }
+  
+  /* Estilos de la homepage */
+  .homepage-1 {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  .lista-libros {
+    display: flex;
+    flex-direction: column; /* Para que cada libro esté en una nueva línea */
+    align-items: flex-start; /* Alinear los elementos al principio (izquierda) */
+    width: 100%; /* Asegurarse de que ocupe todo el ancho disponible */
+    margin-left: 0; /* Para asegurarse de que no tenga margen a la izquierda */
+    padding: 0; /* Para eliminar cualquier relleno */
+}
+
+.header-2 {
+    display: flex;              /* Usamos flexbox para organizar los elementos */
+    align-items: center;        /* Alineamos verticalmente los elementos */
+    justify-content: flex-start; /* Alineamos los elementos horizontalmente al inicio */
+    background-color: #720000;     /* Color de fondo para probar (puedes ajustarlo) */
+    padding: 10px;              /* Espaciado interno para que no estén pegados al borde */
+  }
