@@ -1,8 +1,22 @@
 import './App.css'
-import SignupPage from './SignupPage'
-function App() {
+import Navigation from './Navigation'
+import { Routes, Route } from 'react-router-dom'
+import Homepage from './Homepage'
+import LoginPage from './LoginPage';
+import SignupPage from './SignupPage';
+
+const App = ()=>{
+
   return (
-    <SignupPage/>
+    <>
+      <Navigation />
+      <Routes>
+        <Route path='/' element={<Homepage/>}/>
+        <Route path='/LoginPage' element={<LoginPage/>}/>
+        <Route path='/SignupPage' element={<SignupPage/>}/>
+      </Routes>
+    
+    </>
   )
 }
 
