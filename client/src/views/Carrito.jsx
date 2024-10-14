@@ -19,7 +19,7 @@ const Carrito = () => {
     console.log(productosCarrito)
     const userId = 2; //CAMBIAR, USAR LOCALSTORAGE
 
-    const URL_USUARIO = "http://localhost:4002/usuarios/${userId}";
+    const URL_USUARIO = `http://localhost:4002/usuarios/${userId}`;
 
     useEffect( () => {
         //Obtengo el mail del usuario
@@ -29,8 +29,8 @@ const Carrito = () => {
                 console.log("Usuario obtenido:", usuario);
                 setEmailUsuario(usuario.mail);
         
-                const URL_CARRITO = "http://localhost:4002/carritos/${usuario.mail}";
-                const URL_PRODUCTOS = "http://localhost:4002/productosCarrito/${usuario.mail}/listaDeProductosCarritoByMail";
+                const URL_CARRITO = `http://localhost:4002/carritos/${usuario.mail}`;
+                const URL_PRODUCTOS = `http://localhost:4002/productosCarrito/${usuario.mail}/listaDeProductosCarritoByMail`;
 
                 return fetch(URL_CARRITO);
             })

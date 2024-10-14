@@ -6,7 +6,7 @@ const LibroCarrito = ({key, link_imagen, titulo, precio, cantidad, isbn, carrito
     
     // ESTE PUT VA A MODIFICAR LA CANTIDAD DEL PRODUCTO CARRITO Y TMB EL TOTAL EN CARRITO
     const actualizarCantidadEnServidor = (nuevaCantidad) => {
-        const url = 'http://localhost:4002/productosCarrito/ActualizarCantLibro';
+        const url = `http://localhost:4002/productosCarrito/ActualizarCantLibro`;
         const data = {
             cantidad: nuevaCantidad,
             isbn: isbn,
