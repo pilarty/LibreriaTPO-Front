@@ -4,26 +4,26 @@ import logo from './assets/logo.jpeg';
 
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [mail, setmail] = useState('');
+  const [contraseña, setContraseña] = useState('');
   const [error, setError] = useState('');
 
-  const validateEmail = (email) => {
+  const validateMail = (mail) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+    return re.test(String(mail).toLowerCase());
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
 
-    if (!validateEmail(email)) {
-      setError('Por favor, introduce un email válido.');
+    if (!validateMail(mail)) {
+      setError('Por favor, introduce un mail válido.');
       return;
     }
 
     // Aquí iría la lógica de autenticación
-    console.log('Intento de inicio de sesión con:', email, password);
+    console.log('Intento de inicio de sesión con:', mail, password);
   };
 
   return (
@@ -38,18 +38,18 @@ const LoginPage = () => {
         {error && <p style={{color: 'red'}}>{error}</p>}
         <form onSubmit={handleSubmit}>
           <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
+            type="mail"
+            id="mail"
+            value={mail}
+            onChange={(e) => setmail(e.target.value)}
+            placeholder="Mail"
             required
           />
           <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            type="contraseña"
+            id="contraseña"
+            value={contraseña}
+            onChange={(e) => setContraseña(e.target.value)}
             placeholder="Contraseña"
             required
           />
