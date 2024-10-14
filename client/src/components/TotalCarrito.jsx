@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-
-const TotalCarrito = ({ subtotal }) => {
-
+const TotalCarrito = ({subtotal}) => {
     const navigate = useNavigate();
 
     const manejarFinalizarCompra = () => {

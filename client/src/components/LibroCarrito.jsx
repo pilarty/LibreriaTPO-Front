@@ -1,39 +1,66 @@
-import React, { useState, onCantidadCambio } from 'react';
-const LibroCarrito = ({ libro }) => {
-    
+import React, { useState} from 'react';
+const LibroCarrito = ({key, link_imagen, titulo, precio, cantidad, isbn, carrito_mail}) => {
+    const [cantidadActual, setCantidad] = useState(cantidad);
 
-    const [cantidad, setCantidad] = useState(libro.quantity);
-
-    const subtotal = libro.price * cantidad;
+    const subtotal = precio * cantidadActual;
     
+    // ESTE PUT VA A MODIFICAR LA CANTIDAD DEL PRODUCTO CARRITO Y TMB EL TOTAL EN CARRITO
+    const actualizarCantidadEnServidor = (nuevaCantidad) => {
+        const url = 'http://localhost:4002/productosCarrito/ActualizarCantLibro';
+        const data = {
+            cantidad: nuevaCantidad,
+            isbn: isbn,
+            carrito_mail: carrito_mail,
+        };
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al actualizar la cantidad');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Cantidad actualizada:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    };
+
     const manejarIncrementar = () => {
-        const nuevaCantidad = cantidad + 1;
+        const nuevaCantidad = cantidadActual + 1;
         setCantidad(nuevaCantidad);
-        // Llamamos a la función de callback para notificar el cambio
-        onCantidadCambio(libro.id, nuevaCantidad);
+        actualizarCantidadEnServidor(nuevaCantidad);
     };
 
     const manejarDecrementar = () => {
-        if (cantidad > 1) {
-            const nuevaCantidad = cantidad - 1;
+        if (cantidadActual > 1) {
+            const nuevaCantidad = cantidadActual - 1;
             setCantidad(nuevaCantidad);
-            onCantidadCambio(libro.id, nuevaCantidad);
+            actualizarCantidadEnServidor(nuevaCantidad);
         }
     };
 
     return (
         <>
         <div className="contenido-libro">
-            <img src={libro.imageUrl} className="imagen-libro" />
+            <img src={link_imagen} className="imagen-libro" />
                 <div className="informacion-libro">
-                    <h4>{libro.title}</h4>
-                    <p >${libro.price.toFixed(2)}</p>
+                    <h4>{titulo}</h4>
+                    <p>${precio.toFixed(2)}</p>
                     <div className="cantidad">
                         <button onClick={manejarDecrementar}>-</button>
                         <span>{cantidad}</span>
                         <button onClick={manejarIncrementar}>+</button>
                     </div>
-                    <p >${subtotal.toFixed(2)}</p>
+                    <p>${subtotal.toFixed(2)}</p>
                 </div>
         </div>
     </>
