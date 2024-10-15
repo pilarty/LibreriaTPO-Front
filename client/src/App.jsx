@@ -1,23 +1,19 @@
-import './App.css'
-import Navigation from './Navigation'
-import { Routes, Route } from 'react-router-dom'
-import Homepage from './Homepage'
+import './App.css';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Homepage from './Homepage';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
 
-const App = ()=>{
-
+const App = () => {
   return (
-    <>
-      <Navigation />
+    <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Homepage/>}/>
-        <Route path='/LoginPage' element={<LoginPage/>}/>
-        <Route path='/SignupPage' element={<SignupPage/>}/>
+        <Route path='/' element={<Homepage />} />
+        <Route path='/LoginPage' element={<LoginPage />} />
+        <Route path='/SignupPage' element={<SignupPage />} />
       </Routes>
-    
-    </>
-  )
-}
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;

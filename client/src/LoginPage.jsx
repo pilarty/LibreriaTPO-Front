@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Asegúrate de importar Link si estás usando React Router
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import logo from './assets/logo.jpeg';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [mail, setMail] = useState('');
   const [contraseña, setContraseña] = useState('');
   const [error, setError] = useState('');
@@ -57,7 +58,7 @@ const LoginPage = () => {
           <button type="submit">Iniciar Sesión</button>
         </form>
         <p className="Signup-link">
-          ¿No estás registrado? <Link to="/Signup">Regístrate</Link>
+          ¿No estás registrado? <Link to="/SignupPage">Registrate</Link>
         </p>
       </div>
     </>
