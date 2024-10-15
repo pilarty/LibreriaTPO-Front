@@ -1,6 +1,7 @@
 import "../views/Homepage.css"
 import Alas from '../assets/Alas de sangre.png'
 
+
 const CardLibro = () => {
     return (
       <div className="libro">

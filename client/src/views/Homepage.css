@@ -1,5 +1,10 @@
-
-  .logo {
+#root {
+  width: 100%; /* O cualquier otro valor que necesites */
+  max-width: 100%; /* Asegúrate de que no haya limitación de ancho */
+  margin: 0 auto; /* Centrar en caso de que no ocupe todo el ancho */
+}
+ 
+ .logo {
     position: absolute;
     left: 32px;
     top: 58px;
@@ -18,25 +23,24 @@
 
   .lista-libros {
     display: flex;
-    flex-direction: row; /* Para que cada libro esté en una nueva línea */
-    align-items: flex-start; /* Alinear los elementos al principio (izquierda) */
-    width: 100%; /* Asegurarse de que ocupe todo el ancho disponible */
-    margin-left: 0; /* Para asegurarse de que no tenga margen a la izquierda */
-    padding: 0; /* Para eliminar cualquier relleno */
-    gap: 60px;
-    position: absolute;
-    top: 410px;
-    left: 150px;
+    flex-direction: row; 
+    align-items: flex-start; 
+    width: 100%; 
+    max-width: 100%;
+    margin-left: 0; 
+    padding: 0; 
+    position: relative;
+    top: 250px;
+    left: 0;
+    flex-wrap: wrap;
 }
 
-.lista-libros-altura {
-  position: absolute;
-  top: 750px;
+.lista-libros-2{
+  position: relative;
+  top: 250px;
   left: 0;
-  width: 100%; /* Asegurarse de que ocupe todo el ancho disponible */
-  margin-left: 0; /* Para asegurarse de que no tenga margen a la izquierda */
-  padding: 0; /* Para eliminar cualquier relleno */
 }
+
 
 .header-2 {
     display: flex;         
@@ -153,25 +157,70 @@
 }
 
 .img-usuario {
-  position: absolute;
-  left: 2191px;
-  top: 52px;
   width: 70px;
   height: auto;
 }
 
 .img-carrito {
-  position: absolute;
-  left: 2300px;
-  top: 60px;
   width: 40px;
   height: auto;
 }
 
 .img-hamburguesa {
-  position: absolute;
-  left: 2120px;
-  top: 58px;
   width: 32px;
   height: auto;
+}
+
+.boton-usuario{
+  background-color: #ffffff;
+  position: absolute;
+  left: 2210px;
+  top: 52px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.boton-carrito{
+  background-color: #ffffff;
+  position: absolute;
+  left: 2300px;
+  top: 52px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.boton-hamburguesa{
+  background-color: #ffffff;
+  position: absolute;
+  left: 2120px;
+  top: 52px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.boton-libros{
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  width: 320px;
+  height: 520px;
+
+}
+
+.carrusel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+  width: 100%;
 }
