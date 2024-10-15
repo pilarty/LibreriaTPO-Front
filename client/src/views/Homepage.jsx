@@ -2,6 +2,7 @@ import React from "react";
 import "./Homepage.css";
 import logo from '../assets/logo.png'
 import CardLibroList from "../components/CardLibroList";
+import { Link } from "react-router-dom"
 
 const Homepage = () => {
     return (
@@ -16,14 +17,14 @@ const Homepage = () => {
           <div className="subtitulo-2">Recomendados</div>
           <CardLibroList></CardLibroList>
           <div className="header-3">
-            <div className="text-vermas">Ver más</div>
+            <Link className="text-vermas" to="/Libros">Ver más</Link>
           </div>
           <div className="subtitulo-3">Novedades</div>
           <div className="lista-libros-altura">
             <CardLibroList></CardLibroList>
           </div>
           <div className="header-4">
-            <div className="text-vermas">Ver más</div>
+          <Link className="text-vermas" to="/Libros">Ver más</Link>
           </div>
         </div>
       );
