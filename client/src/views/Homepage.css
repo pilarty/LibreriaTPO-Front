@@ -1,10 +1,8 @@
 
-  .image-1-4 {
+  .logo {
     position: absolute;
     left: 32px;
     top: 58px;
-    width: 59px;
-    height: 56px;
     width: 55px;
     height: auto;
   }
@@ -60,7 +58,7 @@
 
   .buscador {
     width: 100%;
-    max-width: 850px;
+    max-width: 1000px;
     padding: 12px 20px;
     margin: 10px 0;
     font-size: 16px;
@@ -69,8 +67,8 @@
     background-color: #f9f9f9;
     color: #333;
     position: absolute;
-    top: 160px;
-    left: 300px;
+    top: 54px;
+    left: 700px;
   }
 
   .subtitulo-2 {
@@ -152,4 +150,28 @@
   top: 1040px;
   left: 40px;
   font-size: 35px
+}
+
+.img-usuario {
+  position: absolute;
+  left: 2191px;
+  top: 52px;
+  width: 70px;
+  height: auto;
+}
+
+.img-carrito {
+  position: absolute;
+  left: 2300px;
+  top: 60px;
+  width: 40px;
+  height: auto;
+}
+
+.img-hamburguesa {
+  position: absolute;
+  left: 2120px;
+  top: 58px;
+  width: 32px;
+  height: auto;
 }

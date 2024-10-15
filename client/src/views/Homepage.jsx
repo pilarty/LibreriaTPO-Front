@@ -1,6 +1,9 @@
 import React from "react";
 import "./Homepage.css";
 import logo from '../assets/logo.png'
+import Usuario from '../assets/Usuario.png'
+import Carrito from '../assets/Carrito.png'
+import Hamburguesa from '../assets/hamburguesa.png'
 import CardLibroList from "../components/CardLibroList";
 import { Link } from "react-router-dom"
 
@@ -8,12 +11,14 @@ const Homepage = () => {
     return (
         <div>
           <div className="header-2">
-            <img className="image-1-4" src={logo} alt="Logo" />
+            <img className="logo" src={logo} alt="Logo" />
             <span className="subtitulo">The Golden Feather</span>
-          </div>
-          <div>
             <input className="buscador" type="text" />
+            <img className="img-usuario" src={Usuario} alt="Usuario" />
+            <img className="img-carrito" src={Carrito} alt="Carrito" />
+            <img className="img-hamburguesa" src={Hamburguesa} alt="Hamburguesa" />
           </div>
+
           <div className="subtitulo-2">Recomendados</div>
           <CardLibroList></CardLibroList>
           <div className="header-3">
