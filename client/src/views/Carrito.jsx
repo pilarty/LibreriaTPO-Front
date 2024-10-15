@@ -25,10 +25,8 @@ const Carrito = () => {
         fetch(URL_USUARIO)
             .then((response) => response.json())
             .then((usuario) => {
-                console.log("Usuario obtenido:", usuario);
                 setEmailUsuario(usuario.mail);
         
-                // Definir las URLs usando el mail del usuario
                 const URL_CARRITO = `http://localhost:4002/carritos/${usuario.mail}`;
                 const URL_PRODUCTOS = `http://localhost:4002/productosCarrito/${usuario.mail}/listaDeProductosCarritoByMail`;
 
@@ -37,19 +35,15 @@ const Carrito = () => {
                     .then((response) => response.json())
                     .then((carrito) => {
                         setCarrito(carrito);
-                        setSubtotal(carrito?.total || 0); // Asegúrate de que total no sea undefined
+                        setSubtotal(carrito?.total || 0); 
                         
-                        // Hacer la solicitud a los productos
-                        console.log("Carrito obtenido:", carrito); 
                         return fetch(URL_PRODUCTOS);
                     })
                     .then((response) => response.json())
                     .then((productos) => {
                         setProductosCarrito(productos);
-                        console.log("Productos del carrito:", productos);
                     })
                     .catch((error) => {
-                        console.log("Error al obtener los datos del carrito", error);
                     });
             })
             .catch((error) => {
@@ -64,7 +58,7 @@ const Carrito = () => {
                 <div className="lista-boton">
                     <LibroCarritoList 
                         productosCarrito={productosCarrito}
-                        emailUsuario={emailUsuario} // Asegúrate de pasar el email correctamente
+                        emailUsuario={emailUsuario} 
                     />
                     <button className="seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
                 </div>

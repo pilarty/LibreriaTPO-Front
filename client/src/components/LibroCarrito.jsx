@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 const LibroCarrito = ({ link_imagen, titulo, precio, cantidad, isbn, carrito_mail }) => {
     const [cantidadActual, setCantidad] = useState(cantidad);
 
-    console.log("Datos recibidos en LibroCarrito:", { titulo, precio, cantidad, isbn, carrito_mail });
-
     const subtotal = precio * cantidadActual;
     
     // ESTE PUT VA A MODIFICAR LA CANTIDAD DEL PRODUCTO CARRITO Y TMB EL TOTAL EN CARRITO

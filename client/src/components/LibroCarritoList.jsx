@@ -10,7 +10,7 @@ const LibroCarritoList = ({ productosCarrito, emailUsuario }) => {
                 try {
                     const detalles = await Promise.all(
                         productosCarrito.map((producto) =>
-                            fetch(`http://localhost:4002/libros/${producto.libro.isbn}`) // Cambié aquí para que se use el isbn correcto
+                            fetch(`http://localhost:4002/libros/${producto.libro.isbn}`)
                                 .then((response) => response.json())
                         )
                     );
@@ -23,8 +23,6 @@ const LibroCarritoList = ({ productosCarrito, emailUsuario }) => {
         }
     }, [productosCarrito, emailUsuario]);
 
-    console.log("Productos recibidos en LibroCarritoList:", productosCarrito);  // <-- Aquí verificas si llegan los productos
-    console.log("Email del usuario:", emailUsuario);
     return (
         <>
         <div className="lista-libros">
