@@ -56,16 +56,16 @@ button:hover {
 }
 
 
-.signup-link {
+.Registrarse-link {
     margin-top: 20px;
     text-align: center;
   }
   
-  .signup-link a {
+  .Registrarse-link a {
     color: #4CAF50;
     text-decoration: none;
   }
   
-  .signup-link a:hover {
+  .Registrarse-link a:hover {
     text-decoration: underline;
   }

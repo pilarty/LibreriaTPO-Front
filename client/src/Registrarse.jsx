@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './SignupPage.css';
+import './Registrarse.css';
 import logo from './assets/logo.png';
 
-const SignupPage = () => {
+const Registrarse = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nombre: '',
@@ -103,4 +103,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default Registrarse;

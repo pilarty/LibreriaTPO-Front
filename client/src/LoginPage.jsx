@@ -55,8 +55,8 @@ const LoginPage = () => {
           />
           <button type="submit">Iniciar Sesión</button>
         </form>
-        <p className="Signup-link">
-          ¿No estás registrado? <Link to="/SignupPage">Registrate</Link>
+        <p className="Registrarse-link">
+          ¿No estás registrado? <Link to="/Registrarse">Registrate</Link>
         </p>
     </>
   );

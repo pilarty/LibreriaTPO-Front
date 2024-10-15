@@ -9,7 +9,7 @@ const HomePage = () => {
   };
 
   const handleSignupClick = () => {
-    navigate('/SignupPage'); // Navegar a la página de registro
+    navigate('/Registrarse'); // Navegar a la página de registro
   };
 
   return (
