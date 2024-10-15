@@ -1,6 +1,6 @@
 /* Estilos generales */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Newsreader", serif;
   background-color: #FFF5E6;
   display: flex;
   justify-content: center;
@@ -54,17 +54,6 @@ button {
 button:hover {
   background-color: hwb(156 32% 37%) !important;
 }
-
-/*.container {
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  padding: 2rem;
-  width: 100%;
-  max-width: 400px;
-  z-index: 1;
-  position: relative;
-}*/
 
 
 /* Estilos para el enlace de inicio de sesión */
