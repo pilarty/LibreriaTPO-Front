@@ -1,10 +1,13 @@
-const CardLibro = ({ titulo, autor, precio, imageUrl }) => {
+import "../views/Homepage.css"
+import Alas from '../assets/Alas de sangre.png'
+
+const CardLibro = () => {
     return (
-      <div className="card">
-        <img src={imageUrl} alt={title} className="card-image" />
-        <h3 className="card-titulo">{titulo}</h3>
-        <p className="card-autor">{autor}</p>
-        <p className="card-precio">${precio} / lb</p>
+      <div className="libro">
+        <img className="libro-img" src={Alas} alt="Imagen" />
+        <div className="libro-text">Alas de Sangre</div>
+        <div className="libro-precio">$12.99</div>
+        
       </div>
     );
   };

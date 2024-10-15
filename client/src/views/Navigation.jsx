@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
 
 const Navigation = () => {
+    if (location.pathname === '/') { {/*SACAR */}
+        return null; // No renderiza nada en la página del inicio
+}
     return(
         <nav>
             <ul>
