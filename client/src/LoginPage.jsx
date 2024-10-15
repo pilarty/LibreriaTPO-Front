@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-import logo from './assets/logo.jpeg';
+import logo from './assets/logo.png';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -30,12 +30,10 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="fondoRayado"></div>
-      <div className="container">
         <img src={logo} alt="Logo de The Golden Feather" className="logo" />
         <h1>
           Bienvenido de nuevo a <br />
-          <span className="tituloEspecial">"The Golden Feather"</span>
+          <span className="tituloEspecial">The Golden Feather</span>
         </h1>
         {error && <p style={{color: 'red'}}>{error}</p>}
         <form onSubmit={handleSubmit}>
@@ -60,7 +58,6 @@ const LoginPage = () => {
         <p className="Signup-link">
           ¿No estás registrado? <Link to="/SignupPage">Registrate</Link>
         </p>
-      </div>
     </>
   );
 };

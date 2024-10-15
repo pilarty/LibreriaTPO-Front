@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignupPage.css';
-import logo from './assets/logo.jpeg';
+import logo from './assets/logo.png';
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -58,8 +58,6 @@ const SignupPage = () => {
 
   return (
     <>
-      <div className="fondoRayado"></div>
-      <div className="container">
         <img src={logo} alt="Logo de The Golden Feather" className="logo" />
         <h1>Bienvenido a The Golden Feather</h1>
         {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -101,7 +99,6 @@ const SignupPage = () => {
         <p className="LoginPage-link">
           ¿Ya tienes una cuenta? <Link to="/LoginPage">Iniciar Sesión</Link>
         </p>
-      </div>
     </>
   );
 };
