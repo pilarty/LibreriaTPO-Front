@@ -7,30 +7,29 @@ import "../views/Homepage.css"
 
 import { useEffect, useState } from 'react';
 
-const manejarLibros = () => {
-   //ToDo
- }
-
 const CardLibroList = () => {
 
-    const [posts, setPost] = useState([]);
+  const manejarLibros = () => {
+    //ToDo
+  }
 
-    console.log(posts);
+    const [posts, setPost] = useState([]);
 
     useEffect(() => {
       fetch("http://localhost:4002/libros")
         .then((response) => response.json())
         .then((data) => {
-          setPost(data);
+          console.log(data)
+          setPost(data.content);
         })
         .catch((error) => {
           console.error("Error al obtener los datos: ", error)
         })
-    })
+    }, []);
 
     const settings = {
         dots: true,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 1,
@@ -67,37 +66,19 @@ const CardLibroList = () => {
 
     return (
        <Slider {...settings} className="lista-libros">
-         <div className="carrusel-item">
-           <button className="boton-libros" onClick={manejarLibros}>
               {posts.map((post) =>(
-                <CardLibro>
-                  key = {post.isbn}
-                  titulo = {post.titulo}
-                  precio = {post.precio}
-                </CardLibro>
+                <div className="carrusel-item">
+                <button className="boton-libros" onClick={manejarLibros}>
+                  <CardLibro
+                    key = {post.isbn}
+                    titulo = {post.titulo}
+                    precio = {post.precio}
+                    image = {post.image}
+                  ></CardLibro>
+                </button>
+                </div>
               ))}
-           </button>
-         </div>
-         <div className="carrusel-item">
-           <button className="boton-libros" onClick={manejarLibros}>
-              <CardLibro />
-           </button>
-         </div>
-         <div className="carrusel-item">
-           <button className="boton-libros" onClick={manejarLibros}>
-              <CardLibro />
-           </button>
-         </div>
-         <div className="carrusel-item">
-           <button className="boton-libros" onClick={manejarLibros}>
-              <CardLibro />
-           </button>
-         </div>
-         <div className="carrusel-item">
-           <button className="boton-libros" onClick={manejarLibros}>
-              <CardLibro />
-           </button>
-         </div>
+
        </Slider>
     );
 };
