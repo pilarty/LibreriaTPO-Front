@@ -60,6 +60,8 @@
     flex: 2; 
     margin: 0;
     margin-right: 10px;
+    color: #D1A246;
+    font-weight:bold;
 }
 
 .informacion-libro p {
