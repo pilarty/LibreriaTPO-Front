@@ -5,11 +5,29 @@ import "slick-carousel/slick/slick-theme.css";
 import CardLibro from "./CardLibro";
 import "../views/Homepage.css"
 
+import { useEffect, useState } from 'react';
+
 const manejarLibros = () => {
    //ToDo
  }
 
 const CardLibroList = () => {
+
+    const [posts, setPost] = useState([]);
+
+    console.log(posts);
+
+    useEffect(() => {
+      fetch("http://localhost:4002/libros")
+        .then((response) => response.json())
+        .then((data) => {
+          setPost(data);
+        })
+        .catch((error) => {
+          console.error("Error al obtener los datos: ", error)
+        })
+    })
+
     const settings = {
         dots: true,
         infinite: true,
@@ -51,7 +69,13 @@ const CardLibroList = () => {
        <Slider {...settings} className="lista-libros">
          <div className="carrusel-item">
            <button className="boton-libros" onClick={manejarLibros}>
-              <CardLibro />
+              {posts.map((post) =>(
+                <CardLibro>
+                  key = {post.isbn}
+                  titulo = {post.titulo}
+                  precio = {post.precio}
+                </CardLibro>
+              ))}
            </button>
          </div>
          <div className="carrusel-item">
