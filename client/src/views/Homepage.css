@@ -1,0 +1,285 @@
+#root {
+  width: 100%; /* O cualquier otro valor que necesites */
+  max-width: 100%; /* Asegúrate de que no haya limitación de ancho */
+  margin: 0 auto; /* Centrar en caso de que no ocupe todo el ancho */
+}
+ 
+  /* Estilos de la homepage */
+  .homepage-1 {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 1);
+  
+  }
+
+  /*Parte superiror*/
+
+  .header-2 {
+    display: flex;         
+    align-items: center;        
+    justify-content: flex-start; 
+    padding: 10px;              
+  }
+
+  .logo {
+    position: absolute;
+    left: 32px;
+    top: 68px;
+    width: 60px;
+    height: auto;
+  }
+
+  .subtitulo {
+    font-family: "Newsreader", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #D1A246;
+    position: absolute;
+    top: 0px;
+    left: 40px;
+    font-size: 50px
+  }
+
+  .buscador-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .buscador {
+    width: 100%;
+    max-width: 1000px;
+    padding: 12px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    position: absolute;
+    top: 64px;
+    left: 700px;
+  }
+  
+  .boton-lupa {
+    background-color: #e6e6e6;
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+    position: absolute;
+    top: 76px;
+    left: 1653px;
+    width: 80px;
+    height: 50x;
+  }
+  
+  .img-lupa {
+    width: 20px;
+    height: 20px;
+  }
+
+  .img-usuario {
+    width: 70px;
+    height: auto;
+  }
+  
+  .img-carrito {
+    width: 40px;
+    height: auto;
+  }
+  
+  .img-hamburguesa {
+    width: 32px;
+    height: auto;
+  }
+  
+  .boton-usuario{
+    background-color: #ffffff;
+    position: absolute;
+    left: 2210px;
+    top: 52px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .boton-carrito{
+    background-color: #ffffff;
+    position: absolute;
+    left: 2300px;
+    top: 52px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  .boton-hamburguesa{
+    background-color: #ffffff;
+    position: absolute;
+    left: 2120px;
+    top: 52px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
+
+  .menu-hamburguesa {
+    position: absolute;
+    top: 90px; 
+    right: 420px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 20px;
+  }
+
+  .menu-hamburguesa ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu-hamburguesa ul li {
+    margin: 10px 0;
+  }
+  
+  .menu-hamburguesa ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .menu-hamburguesa ul li a:hover {
+    color: #007bff;
+  }
+
+
+  .lista-libros {
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start; 
+    width: 100%; 
+    max-width: 100%;
+    margin-left: 0; 
+    padding: 0; 
+    position: relative;
+    top: 260px;
+    left: 0;
+    flex-wrap: wrap;
+}
+
+/*Parte de libros*/
+
+  .subtitulo-2 {
+    font-family: "Newsreader", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #D1A246;
+    position: absolute;
+    top: 280px;
+    left: 40px;
+    font-size: 45px
+  }
+
+  .lista-libros-2{
+    position: relative;
+    top: 210px;
+    left: 0;
+  }
+
+  .libro {
+    display: flex;
+    flex-direction: column; /* Alinear contenido dentro de la card en columna */
+    align-items: center; /* Centrar el contenido (imagen y texto) */
+    text-align: center;
+    width: 300px; /* Ancho de cada card */
+    padding: 10px;
+    border: 1px solid #ddd; /* Borde alrededor de la card */
+    border-radius: 5px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+  .libro-img {
+    width: 100%; /* Hacer que la imagen ocupe todo el ancho de la card */
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+
+  .libro-text {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .libro-precio {
+    color: #28a745; 
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 10px 0 0;
+  }
+
+  .text-vermas {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #5e83fa; 
+
+  }
+
+  .header-3 {
+    display: flex;         
+    align-items: center;        
+    justify-content: flex-start; 
+    padding: 10px; 
+    position: absolute;
+    top: 295px;
+    left: 325px;             
+  }
+
+  .header-4 {
+    display: flex;         
+    align-items: center;        
+    justify-content: flex-start; 
+    padding: 10px; 
+    position: absolute;
+    top: 1042px;
+    left: 250px;             
+  }
+
+  .subtitulo-3 {
+    font-family: "Newsreader", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #D1A246;
+    position: absolute;
+    top: 1026px;
+    left: 40px;
+    font-size: 45px
+  }
+
+  .boton-libros{
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 320px;
+    height: 520px;
+
+  }
+
+  .carrusel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+  }
+
+
