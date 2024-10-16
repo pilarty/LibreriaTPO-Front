@@ -4,7 +4,7 @@
     margin: 15px; 
     text-align: left; 
     width: 100%; 
-    border-bottom: 2px solid pink; 
+    border-bottom: 1px solid grey; 
     padding-bottom: 0px; 
 }
 
@@ -12,9 +12,12 @@
     display: flex;
     font-weight: bold; 
     margin-top: 0;
-    border-bottom: 2px solid pink; 
+    border-bottom: 2px solid grey; 
     padding-bottom: 5px; 
-    
+    padding-top: 0px;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-size: 20px;
 }
 
 .encabezado-libro p:first-child {
@@ -49,7 +52,8 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
 }
 
 .informacion-libro h4 {
@@ -70,7 +74,7 @@
     justify-content: flex-start; 
     align-items: flex-start; 
     margin: 20px 0 20px -20px;
-    border: 2px solid pink; 
+    border: 2px solid grey; 
     border-radius: 8px; 
     background-color: white; 
     padding: 10px;
@@ -85,7 +89,7 @@
     align-items: left;
     width: 100%; 
     text-align: left;
-    
+    font-family: "Inter", sans-serif;
 }
 
 .recuadro-total h3{
@@ -94,15 +98,21 @@
     align-items: left;
     width: 100%; 
     text-align: left;
-    border-bottom: 2px solid pink; 
+    border-bottom: 2px solid grey; 
     padding-bottom: 0px; 
     padding-top: 0px;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.recuadro-total p{
+    font-size: 17px;
 }
 
 .separator {
     width: 2px; 
     height: 500px;
-    background-color: pink; 
+    background-color: grey; 
     margin: 30px; 
 }
 
@@ -114,6 +124,7 @@
     padding: 10px 20px; 
     border-radius: 8px; 
     cursor: pointer; 
+    font-weight: lighter;
 }
 
 .recuadro-total button:hover {
@@ -138,6 +149,8 @@
     width: auto;   
     margin-left: 15px;  
     margin-bottom: 10px;
+    font-family: "Inter", sans-serif;
+    font-weight: lighter;
 }
 
 .seguir-comprando:hover {
