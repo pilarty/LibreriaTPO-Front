@@ -47,15 +47,15 @@
 .contenido-libro {
     display: flex; 
     align-items: center; 
-    margin-bottom: 20px;
-    margin-top: 10px;
-    
+    margin-bottom: 1.25rem;
+    margin-top: 0.625rem;
+    position: relative;
 }
 
 .imagen-libro {
-    width: 70px; 
+    width: 4.375rem; 
     height: auto; 
-    margin-right: 16px; 
+    margin-right: 1rem; 
 }
 
 .informacion-libro {
@@ -64,7 +64,7 @@
     align-items: center;
     width: 100%;
     font-family: "Inter", sans-serif;
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 .informacion-libro h4 {
