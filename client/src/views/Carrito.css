@@ -1,11 +1,22 @@
+.subtitulo {
+    font-family: "Newsreader", serif;
+    font-style: normal;
+    color: #D1A246;
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+    margin-top: 5rem;
+    margin-left: 2rem;
+    text-align: left;
+    position: relative;
+}
+
 .lista-libros {
     display: flex;
     flex-direction: column;
-    margin: 15px; 
+    margin: 1rem; 
     text-align: left; 
     width: 100%; 
     border-bottom: 1px solid grey; 
-    padding-bottom: 0px; 
 }
 
 .encabezado-libro {
@@ -13,24 +24,24 @@
     font-weight: bold; 
     margin-top: 0;
     border-bottom: 2px solid grey; 
-    padding-bottom: 5px; 
+    padding-bottom: 0.3125rem; 
     padding-top: 0px;
     font-family: "Inter", sans-serif;
     font-style: normal;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .encabezado-libro p:first-child {
     flex: 2;
     text-align: left;
-    margin-right: 100px;
+    margin-right: 6.25rem;
 }
 
 .encabezado-libro p {
     flex: 1; 
     text-align: center; 
     margin: 0; 
-    margin-right: 100px;
+    margin-right: 6.25rem;
 }
 
 .contenido-libro {
@@ -75,13 +86,13 @@
     display: flex;
     justify-content: flex-start; 
     align-items: flex-start; 
-    margin: 20px 0 20px -20px;
+    margin: 1.25rem auto;
     border: 2px solid grey; 
-    border-radius: 8px; 
+    border-radius: 0.5rem;
     background-color: white; 
-    padding: 10px;
+    padding: 0.625rem;
     box-sizing: border-box; 
-    width: 1200px;
+    width: 90%;
     height: auto;
 }
 
@@ -137,20 +148,20 @@
     display: flex;                
     flex-direction: column;       
     align-items: flex-start;      
-    width: 100%;         
+    width: 60%;         
 }
 
 .seguir-comprando {
     background-color: #297272;    
     color: white;                
     border: none;                 
-    padding: 10px 20px;          
-    border-radius: 8px;          
+    padding: 0.625rem 1.25rem;          
+    border-radius: 0.5rem;          
     cursor: pointer;              
-    margin-top: 0px;            
+    margin-top: auto;            
     width: auto;   
-    margin-left: 15px;  
-    margin-bottom: 10px;
+    margin-left: 0.9375rem;  
+    margin-bottom: 0.9375rem;
     font-family: "Inter", sans-serif;
     font-weight: lighter;
 }
