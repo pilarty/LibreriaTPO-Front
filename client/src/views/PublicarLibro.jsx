@@ -5,6 +5,7 @@ import Usuario from '../assets/Usuario.png'
 import Carrito from '../assets/Carrito.png'
 import Hamburguesa from '../assets/hamburguesa.png'
 import MenuDesplegable from "../components/MenuDesplegable";
+import MenuDesplegableGeneros from "../components/MenuDesplegableGeneros";
 import { useState } from 'react';
 
 const PublicarLibro = () => {
@@ -13,13 +14,19 @@ const PublicarLibro = () => {
 
     const [menuVisible, setMenuVisible] = useState(false);
 
+    const [menuGenerosVisible, setMenuGenerosVisible] = useState(false);
+
     const manejarUsuario = () => {
         navigate("/Usuario");
       }
       const manejarCarrito = () => {
         navigate("/Carrito");
       }
-    
+      
+      const manejarGeneros = () => {
+        setMenuGenerosVisible(!menuGenerosVisible);
+      }
+
       const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
       }
@@ -62,10 +69,15 @@ const PublicarLibro = () => {
                 <input type="text" className="input-field" placeholder="Idioma..."/>
                 <input type="number" className="input-field" placeholder="N° páginas..."/>
                 <input type="text" className="input-field" placeholder="ISBN..."/>
-                <input type="text" className="input-field" placeholder="Géneros..."/>
+                <button className="generos-field" onClick={manejarGeneros}>Géneros...
+                  <span className="arrow">▼</span>
+                </button>
                 <input type="number" className="input-field book-price" placeholder="Precio..."/>
                 <button className="boton-publicar" onClick={manejarPublicar}>Publicar</button>
             </div>
+            {menuGenerosVisible && (
+              <MenuDesplegableGeneros></MenuDesplegableGeneros>
+            )}
         </div>
       </div>
 

@@ -168,7 +168,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
-    resize: vertical; /* Permitir cambiar el tamaño verticalmente */
+    resize: vertical; 
 }
 
 /* Estilo del precio */
@@ -193,4 +193,63 @@
 
 .boton-publicar:hover {
     background-color: #c49754;
+}
+
+.menu-generos {
+  position: absolute;
+  top: 90px; 
+  right: 420px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+.menu-generos ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-generos ul li {
+  margin: 10px 0;
+}
+
+.menu-generos ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.menu-generos ul li a:hover {
+  color: #007bff;
+}
+
+.generos-field {
+  width: 100%;             
+  padding: 10;            
+  border: 1px solid #ccc;    
+  border-radius: 4px;        
+  font-size: 1rem;          
+  background-color: #fff;   
+  color: #777;              
+  box-sizing: border-box;   
+  cursor: pointer;
+  margin-bottom: 15px;    
+  text-align: left; 
+  position: relative;        /* Para posicionar la flecha */
+}
+
+.arrow {
+  margin-left: 10px;         /* Espacio entre el texto y la flecha */
+  font-size: 14px;           /* Ajusta el tamaño de la flecha */
+  vertical-align: middle;    /* Alinea verticalmente la flecha */
+  position: absolute;         /* Para posicionar la flecha correctamente */
+  right: 10px;               /* Alinea la flecha a la derecha del botón */
+  top: 50%;                  /* Centra verticalmente */
+  transform: translateY(-50%); /* Ajusta la posición vertical */
+}
+
+.generos-field:hover {
+  background-color: #f9f9f9; 
 }

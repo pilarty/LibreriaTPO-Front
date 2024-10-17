@@ -1,14 +1,16 @@
-import "../views/Homepage.css"
+import "../views/PublicarLibro.css"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from 'react';
 
-const MenuDesplegable = () => {
+const MenuDesplegableGeneros = () => {
 
     const [posts, setPost] = useState([]);
 
-    const [esAdmin, setEsAdmin] = useState(true);
-
     const generosUnicos = [...new Set(posts.map((post) => post.genero))];
+
+    const manejarGeneros = () => {
+      //ToDo
+    }
 
     useEffect(() => {
       fetch("http://localhost:4002/libros")
@@ -23,24 +25,18 @@ const MenuDesplegable = () => {
     }, []);
 
     return (
-        <div className="menu-hamburguesa">
+        <div className="menu-generos">
           <ul>
             {generosUnicos.map((genero, index) => (
+              <button >
                 <li key={index}>
                     <Link to={`/Libros?genero=${genero}`}>{genero}</Link>
                 </li>
+                </button>
             ))}
-            {esAdmin && (
-              <>
-                <hr className="linea-divisora" />
-                <li>
-                  <Link to="/publicarLibro">Publicar Libro</Link>
-                </li>
-              </>
-            )}
       </ul>
     </div>
     )
 }
 
-export default MenuDesplegable
+export default MenuDesplegableGeneros

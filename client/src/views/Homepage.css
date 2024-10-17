@@ -278,3 +278,9 @@
   width: 20px;
   height: 20px;
 }
+
+.linea-divisora {
+  margin: 4px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
