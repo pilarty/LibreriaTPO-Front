@@ -6,9 +6,10 @@ import Carrito from '../assets/Carrito.png'
 import Hamburguesa from '../assets/hamburguesa.png'
 import lupa from '../assets/lupa.png';
 import CardLibroList from "../components/CardLibroList";
+import MenuDesplegable from "../components/MenuDesplegable";
 import { Link } from "react-router-dom"
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const Homepage = () => {
@@ -56,15 +57,8 @@ const Homepage = () => {
           </div>
 
           {menuVisible && (
-        <div className="menu-hamburguesa">
-          <ul>
-            <li><Link to="/Libros">Romance</Link></li>
-            <li><Link to="/Libros">Terror</Link></li>
-            <li><Link to="/Libros">Ficción</Link></li>
-            <li><Link to="/Libros">Autoayuda</Link></li>
-          </ul>
-        </div>
-      )}
+            <MenuDesplegable></MenuDesplegable>
+          )}
 
           <div className="subtitulo-2">Recomendados</div>
           <CardLibroList></CardLibroList>

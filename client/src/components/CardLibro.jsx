@@ -1,5 +1,4 @@
 import "../views/Homepage.css"
-import Alas from '../assets/Alas de sangre.png'
 
   const CardLibro = ({image, titulo, precio}) => {
 
