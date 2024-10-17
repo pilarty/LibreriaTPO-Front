@@ -1,14 +1,14 @@
 #root {
-  width: 100%; /* O cualquier otro valor que necesites */
-  max-width: 100%; /* Asegúrate de que no haya limitación de ancho */
-  margin: 0 auto; /* Centrar en caso de que no ocupe todo el ancho */
+  width: 100%; 
+  max-width: 100%; 
+  margin: 0 auto; 
 }
  
 .logo {
   position: absolute;
-  left: 32px;
-  top: 68px;
-  width: 60px;
+  left: 1.29%;
+  top: 5.5%;
+  width: 2.4%;
   height: auto;
 }
   
