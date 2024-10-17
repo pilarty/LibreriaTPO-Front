@@ -7,88 +7,84 @@
 .logo {
   position: absolute;
   left: 1.29%;
-  top: 5.5%;
+  top: 5.5vh;
   width: 2.4%;
   height: auto;
 }
   
-  /* Estilos de la homepage */
-  .homepage-1 {
-    position: relative;
-    width: 100%;
-    height: auto;
-    background-color: rgba(255, 255, 255, 1);
-  
-  }
-
-  .lista-libros {
-    display: flex;
-    flex-direction: row; 
-    align-items: flex-start; 
-    width: 100%; 
-    max-width: 100%;
-    margin-left: 0; 
-    padding: 0; 
-    position: relative;
-    top: 260px;
-    left: 0;
-    flex-wrap: wrap;
+.homepage-1 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: rgba(255, 255, 255, 1);
 }
 
-.lista-libros-2{
+.lista-libros {
+  display: flex;
+  flex-direction: row; 
+  align-items: flex-start; 
+  width: 100%; 
+  max-width: 100%;
+  margin-left: 0; 
+  padding: 0; 
   position: relative;
-  top: 210px;
+  top: 20vh;
+  left: 0;
+  flex-wrap: wrap;
+}
+
+.lista-libros-2 {
+  position: relative;
+  top: 16vh;
   left: 0;
 }
 
-
 .header-2 {
-    display: flex;         
-    align-items: center;        
-    justify-content: flex-start; 
-    padding: 10px;              
-  }
+  display: flex;         
+  align-items: center;        
+  justify-content: flex-start; 
+  padding: 0.625rem;              
+}
 
+.subtitulo {
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #D1A246;
+  position: absolute;
+  top: 0;
+  left: 2.5rem;
+  font-size: 3.125rem;
+}
 
-  .subtitulo {
-    font-family: "Newsreader", serif;
-    font-weight: 500;
-    font-style: normal;
-    color: #D1A246;
-    position: absolute;
-    top: 0px;
-    left: 40px;
-    font-size: 50px
-  }
+.subtitulo-2 {
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #D1A246;
+  position: absolute;
+  top: 22.5vh;
+  left: 2.5rem;
+  font-size: 2.8125rem;
+}
 
-  .subtitulo-2 {
-    font-family: "Newsreader", serif;
-    font-weight: 500;
-    font-style: normal;
-    color: #D1A246;
-    position: absolute;
-    top: 280px;
-    left: 40px;
-    font-size: 45px
-  }
-
-  .libro {
-    display: flex;
-    flex-direction: column; /* Alinear contenido dentro de la card en columna */
-    align-items: center; /* Centrar el contenido (imagen y texto) */
-    text-align: center;
-    width: 300px; /* Ancho de cada card */
-    padding: 10px;
-    border: 1px solid #ddd; /* Borde alrededor de la card */
-    border-radius: 5px; /* Esquinas redondeadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+.libro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 18.75rem;
+  padding: 0.625rem;
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.3125rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .libro-img {
-  width: 100%; /* Hacer que la imagen ocupe todo el ancho de la card */
+  width: 100%;
   height: auto;
-  margin-bottom: 10px;
-  border-radius: 5px;
+  margin-bottom: 0.625rem;
+  border-radius: 0.3125rem;
 }
 
 .libro-text {
@@ -101,34 +97,33 @@
   color: #28a745; 
   font-size: 1.4rem;
   font-weight: bold;
-  margin: 10px 0 0;
+  margin: 0.625rem 0 0;
 }
 
 .text-vermas {
   font-size: 1.1rem;
   margin: 0;
   color: #5e83fa; 
-
 }
 
 .header-3 {
   display: flex;         
   align-items: center;        
   justify-content: flex-start; 
-  padding: 10px; 
+  padding: 0.625rem; 
   position: absolute;
-  top: 295px;
-  left: 325px;             
+  top: 24vh;
+  left: 20.3125rem;             
 }
 
 .header-4 {
   display: flex;         
   align-items: center;        
   justify-content: flex-start; 
-  padding: 10px; 
+  padding: 0.625rem; 
   position: absolute;
-  top: 1042px;
-  left: 250px;             
+  top: 84vh;
+  left: 15.625rem;             
 }
 
 .subtitulo-3 {
@@ -137,89 +132,88 @@
   font-style: normal;
   color: #D1A246;
   position: absolute;
-  top: 1026px;
-  left: 40px;
-  font-size: 45px
+  top: 82.3vh;
+  left: 2.5rem;
+  font-size: 2.8125rem;
 }
 
 .img-usuario {
-  width: 70px;
+  width: 4.375rem;
   height: auto;
 }
 
 .img-carrito {
-  width: 40px;
+  width: 2.5rem;
   height: auto;
 }
 
 .img-hamburguesa {
-  width: 32px;
+  width: 2rem;
   height: auto;
 }
 
-.boton-usuario{
+.boton-usuario {
   background-color: #ffffff;
   position: absolute;
-  left: 2210px;
-  top: 52px;
-  width: 70px;
-  height: 70px;
+  right: 9.375vw;
+  top: 3.25vh;
+  width: 4.375rem;
+  height: 4.375rem;
   display: flex;
   justify-content: center; 
   align-items: center;
 }
 
-.boton-carrito{
+.boton-carrito {
   background-color: #ffffff;
   position: absolute;
-  left: 2300px;
-  top: 52px;
-  width: 70px;
-  height: 70px;
+  right: 3.125vw;
+  top: 3.25vh;
+  width: 4.375rem;
+  height: 4.375rem;
   display: flex;
   justify-content: center; 
   align-items: center;
 }
 
-.boton-hamburguesa{
+.boton-hamburguesa {
   background-color: #ffffff;
   position: absolute;
-  left: 2120px;
-  top: 52px;
-  width: 70px;
-  height: 70px;
+  right: 15.625vw;
+  top: 3.25vh;
+  width: 4.375rem;
+  height: 4.375rem;
   display: flex;
   justify-content: center; 
   align-items: center;
 }
 
-.boton-libros{
+.boton-libros {
   background-color: #ffffff;
   display: flex;
   justify-content: center; 
   align-items: center;
-  width: 320px;
-  height: 520px;
-
+  width: 20rem;
+  height: 32.5rem;
 }
 
 .carrusel-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 0.625rem;
   width: 100%;
 }
 
 .menu-hamburguesa {
   position: absolute;
-  top: 90px; 
-  right: 420px;
+  top: 5.625rem; 
+  right: 26.25rem;
   background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 20px;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  padding: 0.625rem;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
 }
 
 .menu-hamburguesa ul {
@@ -229,7 +223,7 @@
 }
 
 .menu-hamburguesa ul li {
-  margin: 10px 0;
+  margin: 0.625rem 0;
 }
 
 .menu-hamburguesa ul li a {
@@ -246,41 +240,40 @@
   align-items: center;
 }
 
-
 .buscador {
   width: 100%;
-  max-width: 1000px;
-  padding: 12px 20px;
-  margin: 10px 0;
-  font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
+  max-width: 62.5rem;
+  padding: 0.75rem 1.25rem;
+  margin: 0.625rem 0;
+  font-size: 1rem;
+  border: 0.125rem solid #ccc;
+  border-radius: 0.5rem;
   background-color: #f9f9f9;
   color: #333;
   position: absolute;
-  top: 64px;
-  left: 700px;
+  top: 4rem;
+  left: 43.75rem;
 }
 
 .boton-lupa {
   background-color: #e6e6e6;
   border: none;
   cursor: pointer;
-  margin-left: 8px;
+  margin-left: 0.5rem;
   position: absolute;
-  top: 76px;
-  left: 1653px;
-  width: 80px;
-  height: 50x;
+  top: 4.777rem;
+  right: 49.9rem;
+  width: 5rem;
+  height: 2.6rem;
 }
 
 .img-lupa {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .linea-divisora {
-  margin: 4px 0;
+  margin: 0.25rem 0;
   border: none;
-  border-top: 1px solid #ccc;
+  border-top: 0.0625rem solid #ccc;
 }
