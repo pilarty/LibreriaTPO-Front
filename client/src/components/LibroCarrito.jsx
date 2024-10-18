@@ -51,19 +51,21 @@ const LibroCarrito = ({ link_imagen, titulo, precio, cantidad, isbn, carrito_mai
 
     return (
         <div className="contenido-libro">
-            <img src={link_imagen} className="imagen-libro" alt={titulo} />
+            <div className="producto-info">
+                <img src={link_imagen} className="imagen-libro" alt={titulo} />
             <div className="informacion-libro">
                 <h4>{titulo}</h4>
-                <p>${precio.toFixed(2)}</p>
-                <div className="cantidad">
-                    <button onClick={manejarDecrementar}>-</button>
-                    <span>{cantidadActual}</span>
-                    <button onClick={manejarIncrementar}>+</button>
-                </div>
-                <p>${subtotal.toFixed(2)}</p>
             </div>
         </div>
+        <div className="precio">${precio.toFixed(2)}</div>
+        <div className="cantidad">
+            <button onClick={manejarDecrementar}>-</button>
+            <span>{cantidadActual}</span>
+            <button onClick={manejarIncrementar}>+</button>
+        </div>
+        <div className="subtotal">${subtotal.toFixed(2)}</div>
+        </div>
     );
-};
+    };
 
 export default LibroCarrito;
