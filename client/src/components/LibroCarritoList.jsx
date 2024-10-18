@@ -25,7 +25,7 @@ const LibroCarritoList = ({ productosCarrito, emailUsuario }) => {
 
     return (
         <>
-        <div className="lista-libros">
+        
             <div className="encabezado-libro">
                 <p>Producto/s</p>
                 <p>Precio</p>
@@ -35,18 +35,17 @@ const LibroCarritoList = ({ productosCarrito, emailUsuario }) => {
 
             {detallesLibros.map((libro, index) => (
                 <div key={libro.isbn}>
-                    <LibroCarrito 
-                    link_imagen={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyNtOHlFQI6XGe8MZck5PMDhwEXpyf1odO9Q&s"} // CAMBIAR, HAY QUE PONER EL LINK ADECUADO (NECESITO EL GET DE LA IMAGEN)
-                    titulo={libro.titulo} 
-                    precio={libro.precio}
-                    cantidad={productosCarrito[index].cantidad} // Obtiene la cantidad que está guardada en producto carrito 
-                    isbn={libro.isbn}
-                    carrito_mail={emailUsuario}
-                    />
-                    {index !== detallesLibros.length - 1 && <hr />}
-                </div>
+                <LibroCarrito 
+                link_imagen={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyNtOHlFQI6XGe8MZck5PMDhwEXpyf1odO9Q&s"} // CAMBIAR, HAY QUE PONER EL LINK ADECUADO (NECESITO EL GET DE LA IMAGEN)
+                titulo={libro.titulo} 
+                precio={libro.precio}
+                cantidad={productosCarrito[index].cantidad} // Obtiene la cantidad que está guardada en producto carrito 
+                isbn={libro.isbn}
+                carrito_mail={emailUsuario}
+                />
+                {index !== detallesLibros.length - 1 && <hr />}
+            </div>
             ))}
-        </div>
         </>
     );
 };

@@ -1,183 +1,137 @@
-.subtitulo {
-    font-family: "Newsreader", serif;
-    font-style: normal;
-    color: #D1A246;
+:root {
+    --color-primary: #D1A246;
+    --color-secondary: #297272;
+    --color-secondary-hover: #1a4146;
+    --color-border: #ccc;
+    --font-primary: "Newsreader", serif;
+    --font-secondary: "Inter", sans-serif;
+  }
+  
+  .subtitulo {
+    font-family: var(--font-primary);
+    color: var(--color-primary);
     font-size: 3rem;
-    margin-bottom: 1.25rem;
-    margin-top: 5rem;
-    margin-left: 2rem;
+    margin: 5rem 0 1.25rem 2rem;
     text-align: left;
-    position: relative;
-}
-
-.lista-libros {
+  }
+  
+  .carrito-contenedor {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 1.25rem auto;
+    border: 2px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: white;
+    padding: 1.25rem;
+    width: 90%;
+    max-width: 1200px;
+  }
+  
+  .lista-boton {
+    flex: 3;
     display: flex;
     flex-direction: column;
-    margin: 1rem; 
-    text-align: left; 
-    width: 100%; 
-    border-bottom: 1px solid grey; 
-}
-
-.encabezado-libro {
-    display: flex;
-    font-weight: bold; 
-    margin-top: 0;
-    border-bottom: 2px solid grey; 
-    padding-bottom: 0.3125rem; 
-    padding-top: 0px;
-    font-family: "Inter", sans-serif;
-    font-style: normal;
-    font-size: 1.25rem;
-}
-
-.encabezado-libro p:first-child {
-    flex: 2;
-    text-align: left;
-    margin-right: 6.25rem;
-}
-
-.encabezado-libro p {
-    flex: 1; 
-    text-align: center; 
-    margin: 0; 
-    margin-right: 6.25rem;
-}
-
-.contenido-libro {
-    display: flex; 
-    align-items: center; 
-    margin-bottom: 1.25rem;
-    margin-top: 0.625rem;
-    position: relative;
-}
-
-.imagen-libro {
-    width: 4.375rem; 
-    height: auto; 
-    margin-right: 1rem; 
-}
-
-.informacion-libro {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: space-between;
+    margin-right: 1.25rem;
+  }
+  
+  .lista-libros {
     width: 100%;
-    font-family: "Inter", sans-serif;
+  }
+  
+  .encabezado-libro {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    gap: 1rem;
+    font-weight: bold;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-secondary);
+    font-size: 1.25rem;
+  }
+  
+  .contenido-libro {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    font-family: var(--font-secondary);
     font-size: 1.125rem;
-}
-
-.informacion-libro h4 {
-    flex: 2; 
-    margin: 0;
-    margin-right: 10px;
-    color: #D1A246;
-    font-weight:bold;
-}
-
-.informacion-libro p {
-    flex: 2; 
-    text-align: center; 
-    margin: 0;
-    margin-left: 0px;
-}
-
-.carrito-contenedor {
-    display: flex;
-    justify-content: flex-start; 
-    align-items: flex-start; 
-    margin: 1.25rem auto;
-    border: 2px solid grey; 
-    border-radius: 0.5rem;
-    background-color: white; 
-    padding: 0.625rem;
-    box-sizing: border-box; 
-    width: 90%;
+  }
+  
+  .imagen-libro {
+    width: 4.375rem;
     height: auto;
-}
-
-.recuadro-total {
-    display: flex;            
-    flex-direction: column;   
-    align-items: left;
-    width: 100%; 
-    text-align: left;
-    font-family: "Inter", sans-serif;
-}
-
-.recuadro-total h3{
-    display: flex;            
-    flex-direction: column;   
-    align-items: left;
-    width: 100%; 
-    text-align: left;
-    border-bottom: 2px solid grey; 
-    padding-bottom: 0px; 
-    padding-top: 0px;
-    font-size: 20px;
-    margin-bottom: 5px;
-}
-
-.recuadro-total p{
-    font-size: 17px;
-}
-
-.separator {
-    width: 2px; 
-    height: 500px;
-    background-color: grey; 
-    margin: 30px; 
-}
-
-.recuadro-total button {
-    margin-top: 10px;
-    background-color: #297272;
-    color: white; 
-    border: none; 
-    padding: 10px 20px; 
-    border-radius: 8px; 
-    cursor: pointer; 
-    font-weight: lighter;
-}
-
-.recuadro-total button:hover {
-    background-color: #1a4146; 
-}
-
-.lista-boton {
-    display: flex;                
-    flex-direction: column;       
-    align-items: flex-start;      
-    width: 60%;         
-}
-
-.seguir-comprando {
-    background-color: #297272;    
-    color: white;                
-    border: none;                 
-    padding: 0.625rem 1.25rem;          
-    border-radius: 0.5rem;          
-    cursor: pointer;              
-    margin-top: auto;            
-    width: auto;   
-    margin-left: 0.9375rem;  
-    margin-bottom: 0.9375rem;
-    font-family: "Inter", sans-serif;
-    font-weight: lighter;
-}
-
-.seguir-comprando:hover {
-    background-color: #1e595b;   
-}
-
-.cantidad {
+    margin-right: 1rem;
+  }
+  
+  .informacion-libro h4 {
+    margin: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+  
+  .cantidad {
     display: flex;
-    align-items: center; 
-}
-
-.cantidad button {
-    margin: 0 5px; 
-    padding: 5px 10px; 
-    cursor: pointer; 
-}
-
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cantidad button {
+    margin: 0 0.3125rem;
+    padding: 0.3125rem 0.625rem;
+    cursor: pointer;
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+  }
+  
+  .separator {
+    width: 2px;
+    background-color: var(--color-border);
+    margin: 0 1.25rem;
+    align-self: stretch;
+  }
+  
+  .recuadro-total {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: var(--font-secondary);
+  }
+  
+  .recuadro-total h3 {
+    width: 100%;
+    border-bottom: 2px solid var(--color-border);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .recuadro-total p {
+    font-size: 1.0625rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .recuadro-total button,
+  .seguir-comprando {
+    margin-top: 1rem;
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: normal;
+    transition: background-color 0.3s ease;
+  }
+  
+  .recuadro-total button:hover,
+  .seguir-comprando:hover {
+    background-color: var(--color-secondary-hover);
+  }

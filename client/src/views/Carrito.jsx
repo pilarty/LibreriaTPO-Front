@@ -60,6 +60,7 @@ const Carrito = () => {
                         productosCarrito={productosCarrito}
                         emailUsuario={emailUsuario} 
                     />
+                    
                     <button className="seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
                 </div>
                 <div className="separator"></div>
