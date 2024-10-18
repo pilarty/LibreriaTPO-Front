@@ -1,7 +1,7 @@
 import LibroCarrito from './LibroCarrito';
 import { useState, useEffect } from 'react';
 
-const LibroCarritoList = ({ productosCarrito, emailUsuario }) => {
+const LibroCarritoList = ({ productosCarrito, emailUsuario}) => {
     const [detallesLibros, setDetallesLibros] = useState([]);
 
     useEffect(() => {

@@ -6,50 +6,38 @@ import './Carrito.css';
 
 const Carrito = () => {
     const navigate = useNavigate();
-
+    
     const manejarSeguirComprando = () => {
         navigate("/");
     };
 
     const [Carrito, setCarrito] = useState([]); // mail y total
     const [productosCarrito, setProductosCarrito] = useState([]);
-    const [emailUsuario, setEmailUsuario] = useState('');
     const [subtotal, setSubtotal] = useState(0); 
 
-    const userId = 2; // CAMBIAR, USAR LOCALSTORAGE
-
-    const URL_USUARIO = `http://localhost:4002/usuarios/${userId}`;
+    const emailUsuario = "pgarcia@uade.edu.ar"; // CAMBIAR, USAR SESSIONSTORAGE
 
     useEffect(() => {
-        // Obtengo el mail del usuario
-        fetch(URL_USUARIO)
-            .then((response) => response.json())
-            .then((usuario) => {
-                setEmailUsuario(usuario.mail);
-        
-                const URL_CARRITO = `http://localhost:4002/carritos/${usuario.mail}`;
-                const URL_PRODUCTOS = `http://localhost:4002/productosCarrito/${usuario.mail}/listaDeProductosCarritoByMail`;
+        const URL_CARRITO = `http://localhost:4002/carritos/${emailUsuario}`;
+        const URL_PRODUCTOS = `http://localhost:4002/productosCarrito/${emailUsuario}/listaDeProductosCarritoByMail`;
 
-                // Hacer la solicitud al carrito
-                fetch(URL_CARRITO)
-                    .then((response) => response.json())
-                    .then((carrito) => {
-                        setCarrito(carrito);
-                        setSubtotal(carrito?.total || 0); 
-                        
-                        return fetch(URL_PRODUCTOS);
-                    })
-                    .then((response) => response.json())
-                    .then((productos) => {
-                        setProductosCarrito(productos);
-                    })
-                    .catch((error) => {
-                    });
+        // Hacer la solicitud al carrito
+        fetch(URL_CARRITO)
+            .then((response) => response.json())
+            .then((carrito) => {
+                setCarrito(carrito);
+                setSubtotal(carrito?.total || 0); 
+
+                return fetch(URL_PRODUCTOS);
+            })
+            .then((response) => response.json())
+            .then((productos) => {
+                setProductosCarrito(productos);
             })
             .catch((error) => {
-                console.log("Error al obtener los datos del usuario", error);
+                console.log("Error al obtener los datos del carrito", error);
             });
-    }, [userId]);
+    }, [emailUsuario]);
 
     return (
         <>
@@ -64,7 +52,7 @@ const Carrito = () => {
                     <button className="seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
                 </div>
                 <div className="separator"></div>
-                <TotalCarrito subtotal={subtotal} /> {/* HAGO UN GET DEL TOTAL DE CARRITO */}
+                <TotalCarrito emailUsuario={emailUsuario} />
             </div>
         </>
     );
