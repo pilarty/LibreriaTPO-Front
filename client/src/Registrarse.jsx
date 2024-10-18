@@ -9,7 +9,8 @@ const Registrarse = () => {
     nombre: '',
     apellido: '',
     mail: '',
-    contraseña: ''
+    contraseña: '',
+    role:'USUARIO'
   });
   const [error, setError] = useState('');
 
@@ -29,23 +30,24 @@ const Registrarse = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
+  
     if (!validateMail(formData.mail)) {
       setError('Por favor, introduce un mail válido.');
       return;
     }
-
+  
     try {
       const response = await fetch('http://localhost:4002/api/v1/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
+  
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('authToken', data.token);
-
+        sessionStorage.setItem('authToken', data.access_token);
+        sessionStorage.setItem('userEmail', formData.mail); // Guardando el correo
+  
         // Redirigir al HomePage
         navigate('/');
       } else {
