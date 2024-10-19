@@ -5,14 +5,31 @@ import "slick-carousel/slick/slick-theme.css";
 import CardLibro from "./CardLibro";
 import "../views/Homepage.css"
 
-const manejarLibros = () => {
-   //ToDo
- }
+import { useEffect, useState } from 'react';
 
 const CardLibroList = () => {
+
+  const manejarLibros = () => {
+    //ToDo
+  }
+
+    const [posts, setPost] = useState([]);
+
+    useEffect(() => {
+      fetch("http://localhost:4002/libros")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          setPost(data.content);
+        })
+        .catch((error) => {
+          console.error("Error al obtener los datos: ", error)
+        })
+    }, []);
+
     const settings = {
         dots: true,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 1,
@@ -49,31 +66,19 @@ const CardLibroList = () => {
 
     return (
        <Slider {...settings} className="lista-libros">
-         <div className="carrusel-item">
-           <button className="boton-libros" onClick={manejarLibros}>
-              <CardLibro />
-           </button>
-         </div>
-         <div className="carrusel-item">
-           <button className="boton-libros" onClick={manejarLibros}>
-              <CardLibro />
-           </button>
-         </div>
-         <div className="carrusel-item">
-           <button className="boton-libros" onClick={manejarLibros}>
-              <CardLibro />
-           </button>
-         </div>
-         <div className="carrusel-item">
-           <button className="boton-libros" onClick={manejarLibros}>
-              <CardLibro />
-           </button>
-         </div>
-         <div className="carrusel-item">
-           <button className="boton-libros" onClick={manejarLibros}>
-              <CardLibro />
-           </button>
-         </div>
+              {posts.map((post) =>(
+                <div className="carrusel-item">
+                <button className="boton-libros" onClick={manejarLibros}>
+                  <CardLibro
+                    key = {post.isbn}
+                    titulo = {post.titulo}
+                    precio = {post.precio}
+                    image = {post.image}
+                  ></CardLibro>
+                </button>
+                </div>
+              ))}
+
        </Slider>
     );
 };

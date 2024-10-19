@@ -44,6 +44,10 @@ const Navigation = () => {
                     <Link to="/Usuario">Usuario</Link>
 
                 </li>
+                <li>
+                    <Link to="/publicarLibro">PublicarLibro</Link>
+
+                </li>
             </ul>
         </nav>
     )

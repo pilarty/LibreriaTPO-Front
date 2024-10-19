@@ -12,6 +12,7 @@ import Favoritos from './Favoritos'
 import LibroSolo from './LibroSolo'
 import Registrarse from './Registrarse'
 import Usuario from './Usuario'
+import PublicarLibro from './PublicarLibro'
 
 const App = ()=>{
 
@@ -27,7 +28,7 @@ const App = ()=>{
         <Route path='/Libro' element={<LibroSolo/>}/>
         <Route path='/Registrarse' element={<Registrarse/>}/>
         <Route path='/Usuario' element={<Usuario/>}/>
-
+        <Route path='/publicarLibro' element={<PublicarLibro/>}/>
       </Routes>
     
     </>
