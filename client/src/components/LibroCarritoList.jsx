@@ -42,6 +42,7 @@ const LibroCarritoList = ({ productosCarrito, emailUsuario, onDelete }) => {
                         isbn={libro.isbn}
                         carrito_mail={emailUsuario}
                         onDelete={onDelete} // Pasamos la función onDelete
+                        
                     />
                     {index !== detallesLibros.length - 1 && <hr />}
                 </div>

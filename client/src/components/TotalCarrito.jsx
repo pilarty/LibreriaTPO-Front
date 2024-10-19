@@ -6,7 +6,6 @@ const TotalCarrito = ({ emailUsuario }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        
         const URL_CARRITO = `http://localhost:4002/carritos/${emailUsuario}`;
 
         fetch(URL_CARRITO)
@@ -33,4 +32,4 @@ const TotalCarrito = ({ emailUsuario }) => {
     );
 };
 
-export default TotalCarrito;  
+export default TotalCarrito;

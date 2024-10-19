@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LibroCarritoList from '../components/LibroCarritoList';
 import TotalCarrito from "../components/TotalCarrito";
@@ -36,7 +36,7 @@ const Carrito = () => {
             <h2 className="subtitulo">Tu Carrito</h2>
             <div className="carrito-contenedor">
                 <div className="lista-boton">
-                    {productosCarrito.length === 0 ? (
+                    {productosCarrito.length === 0 ? ( // Condición para mostrar el mensaje de carrito vacío
                         <div className="carrito-vacio">
                             <h3>Tu carrito está vacío.</h3>
                             <button className="volver-tiendas" onClick={manejarSeguirComprando}>
@@ -47,14 +47,14 @@ const Carrito = () => {
                         <>
                             <LibroCarritoList 
                                 productosCarrito={productosCarrito}
-                                setProductosCarrito={setProductosCarrito}
                                 emailUsuario={emailUsuario} 
+                                onDelete={eliminarLibroDelCarrito}
                             />
                             <button className="seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
                         </>
                     )}
                 </div>
-                {productosCarrito.length > 0 && (
+                {productosCarrito.length > 0 && ( // Solo mostrar el separador y el total si hay productos en el carrito
                     <>
                         <div className="separator"></div>
                         <TotalCarrito emailUsuario={emailUsuario} />
