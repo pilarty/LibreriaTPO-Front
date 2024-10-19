@@ -206,3 +206,30 @@
   position: relative;
   margin-right: 1rem;
 }
+
+.carrito-vacio {
+  text-align: center; 
+  padding: 1.25rem; 
+  border-radius: 0.5rem; 
+  margin: 1.25rem 0; 
+}
+
+.carrito-vacio h3 { 
+  margin: 0.625rem 0; 
+  color: #333; 
+}
+
+.carrito-vacio button { 
+  margin-top: 0.625rem; 
+  padding: 0.625rem 0.9375rem; 
+  border: none; 
+  border-radius: 0.3125rem; 
+  background-color: var(--color-secondary); 
+  color: white; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+.carrito-vacio button:hover { 
+  background-color: var(--color-secondary-hover); 
+}

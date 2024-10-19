@@ -35,7 +35,7 @@ const LibroCarritoList = ({ productosCarrito, emailUsuario, onDelete }) => {
             {detallesLibros.map((libro, index) => (
                 <div key={libro.isbn}>
                     <LibroCarrito 
-                        link_imagen={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyNtOHlFQI6XGe8MZck5PMDhwEXpyf1odO9Q&s"} // CAMBIAR, HAY QUE PONER EL LINK ADECUADO (NECESITO EL GET DE LA IMAGEN)
+                        link_imagen={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyNtOHlFQI6XGe8MZck5PMDhwEXpyf1odO9Q&s"} // CAMBIAR, HAY QUE PONER EL LINK ADECUADO
                         titulo={libro.titulo} 
                         precio={libro.precio}
                         cantidad={productosCarrito[index].cantidad} // Obtiene la cantidad que está guardada en producto carrito 

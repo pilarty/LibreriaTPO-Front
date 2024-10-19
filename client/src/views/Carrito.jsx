@@ -6,13 +6,7 @@ import './Carrito.css';
 
 const Carrito = () => {
     const navigate = useNavigate();
-    
-    const manejarSeguirComprando = () => {
-        navigate("/");
-    };
-
     const [productosCarrito, setProductosCarrito] = useState([]);
-
     const emailUsuario = "pgarcia@uade.edu.ar";
 
     useEffect(() => {
@@ -27,6 +21,10 @@ const Carrito = () => {
             });
     }, [emailUsuario]);
 
+    const manejarSeguirComprando = () => {
+        navigate("/");
+    };
+
     const eliminarLibroDelCarrito = (isbn) => {
         setProductosCarrito((prevProductos) =>
             prevProductos.filter((producto) => producto.libro.isbn !== isbn)
@@ -38,16 +36,30 @@ const Carrito = () => {
             <h2 className="subtitulo">Tu Carrito</h2>
             <div className="carrito-contenedor">
                 <div className="lista-boton">
-                    <LibroCarritoList 
-                        productosCarrito={productosCarrito}
-                        emailUsuario={emailUsuario} 
-                        onDelete={eliminarLibroDelCarrito}
-                    />
-                    
-                    <button className="seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
+                    {productosCarrito.length === 0 ? ( // Condición para mostrar el mensaje de carrito vacío
+                        <div className="carrito-vacio">
+                            <h3>Tu carrito está vacío.</h3>
+                            <button className="volver-tiendas" onClick={manejarSeguirComprando}>
+                                Volver a la tienda
+                            </button>
+                        </div>
+                    ) : (
+                        <>
+                            <LibroCarritoList 
+                                productosCarrito={productosCarrito}
+                                emailUsuario={emailUsuario} 
+                                onDelete={eliminarLibroDelCarrito}
+                            />
+                            <button className="seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
+                        </>
+                    )}
                 </div>
-                <div className="separator"></div>
-                <TotalCarrito emailUsuario={emailUsuario} />
+                {productosCarrito.length > 0 && ( // Solo mostrar el separador y el total si hay productos en el carrito
+                    <>
+                        <div className="separator"></div>
+                        <TotalCarrito emailUsuario={emailUsuario} />
+                    </>
+                )}
             </div>
         </>
     );
