@@ -57,14 +57,14 @@
   }
   
   .contenido-libro {
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr;
-    gap: 1rem;
+    display: flex;
     align-items: center;
+    padding: 10px;
     margin-bottom: 1.25rem;
+    border-bottom: 1px solid #eee;
     font-family: var(--font-secondary);
     font-size: 1.125rem;
-  }
+}
 
   .producto-info {
     flex: 3;
@@ -173,3 +173,36 @@
   .seguir-comprando:hover {
     background-color: var(--color-secondary-hover);
   }
+
+  .cruz-container {
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.cruz-container:hover {
+  background-color: #c0c0c0;
+}
+
+.cruz-container:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.imagen-container {
+  position: relative;
+  margin-right: 1rem;
+}

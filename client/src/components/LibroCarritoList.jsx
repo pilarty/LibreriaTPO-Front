@@ -1,7 +1,7 @@
 import LibroCarrito from './LibroCarrito';
 import { useState, useEffect } from 'react';
 
-const LibroCarritoList = ({ productosCarrito, emailUsuario}) => {
+const LibroCarritoList = ({ productosCarrito, emailUsuario, onDelete }) => {
     const [detallesLibros, setDetallesLibros] = useState([]);
 
     useEffect(() => {
@@ -25,7 +25,6 @@ const LibroCarritoList = ({ productosCarrito, emailUsuario}) => {
 
     return (
         <>
-        
             <div className="encabezado-libro">
                 <p>Producto/s</p>
                 <p>Precio</p>
@@ -35,16 +34,17 @@ const LibroCarritoList = ({ productosCarrito, emailUsuario}) => {
 
             {detallesLibros.map((libro, index) => (
                 <div key={libro.isbn}>
-                <LibroCarrito 
-                link_imagen={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyNtOHlFQI6XGe8MZck5PMDhwEXpyf1odO9Q&s"} // CAMBIAR, HAY QUE PONER EL LINK ADECUADO (NECESITO EL GET DE LA IMAGEN)
-                titulo={libro.titulo} 
-                precio={libro.precio}
-                cantidad={productosCarrito[index].cantidad} // Obtiene la cantidad que está guardada en producto carrito 
-                isbn={libro.isbn}
-                carrito_mail={emailUsuario}
-                />
-                {index !== detallesLibros.length - 1 && <hr />}
-            </div>
+                    <LibroCarrito 
+                        link_imagen={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyNtOHlFQI6XGe8MZck5PMDhwEXpyf1odO9Q&s"} // CAMBIAR, HAY QUE PONER EL LINK ADECUADO (NECESITO EL GET DE LA IMAGEN)
+                        titulo={libro.titulo} 
+                        precio={libro.precio}
+                        cantidad={productosCarrito[index].cantidad} // Obtiene la cantidad que está guardada en producto carrito 
+                        isbn={libro.isbn}
+                        carrito_mail={emailUsuario}
+                        onDelete={onDelete} // Pasamos la función onDelete
+                    />
+                    {index !== detallesLibros.length - 1 && <hr />}
+                </div>
             ))}
         </>
     );

@@ -11,33 +11,27 @@ const Carrito = () => {
         navigate("/");
     };
 
-    const [Carrito, setCarrito] = useState([]); // mail y total
     const [productosCarrito, setProductosCarrito] = useState([]);
-    const [subtotal, setSubtotal] = useState(0); 
 
-    const emailUsuario = "pgarcia@uade.edu.ar"; // CAMBIAR, USAR SESSIONSTORAGE
+    const emailUsuario = "pgarcia@uade.edu.ar";
 
     useEffect(() => {
-        const URL_CARRITO = `http://localhost:4002/carritos/${emailUsuario}`;
         const URL_PRODUCTOS = `http://localhost:4002/productosCarrito/${emailUsuario}/listaDeProductosCarritoByMail`;
-
-        // Hacer la solicitud al carrito
-        fetch(URL_CARRITO)
-            .then((response) => response.json())
-            .then((carrito) => {
-                setCarrito(carrito);
-                setSubtotal(carrito?.total || 0); 
-
-                return fetch(URL_PRODUCTOS);
-            })
+        fetch(URL_PRODUCTOS)
             .then((response) => response.json())
             .then((productos) => {
                 setProductosCarrito(productos);
             })
             .catch((error) => {
-                console.log("Error al obtener los datos del carrito", error);
+                console.log("Error al obtener los productos del carrito", error);
             });
     }, [emailUsuario]);
+
+    const eliminarLibroDelCarrito = (isbn) => {
+        setProductosCarrito((prevProductos) =>
+            prevProductos.filter((producto) => producto.libro.isbn !== isbn)
+        );
+    };
 
     return (
         <>
@@ -47,6 +41,7 @@ const Carrito = () => {
                     <LibroCarritoList 
                         productosCarrito={productosCarrito}
                         emailUsuario={emailUsuario} 
+                        onDelete={eliminarLibroDelCarrito}
                     />
                     
                     <button className="seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>

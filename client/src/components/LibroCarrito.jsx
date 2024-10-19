@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 
-const LibroCarrito = ({ link_imagen, titulo, precio, cantidad, isbn, carrito_mail }) => {
+const LibroCarrito = ({ link_imagen, titulo, precio, cantidad, isbn, carrito_mail, onDelete }) => {
     const [cantidadActual, setCantidad] = useState(cantidad);
-
     const subtotal = precio * cantidadActual;
-    
-    // ESTE PUT VA A MODIFICAR LA CANTIDAD DEL PRODUCTO CARRITO Y TMB EL TOTAL EN CARRITO
+
     const actualizarCantidadEnServidor = (nuevaCantidad) => {
         const url = `http://localhost:4002/productosCarrito/ActualizarCantLibro`;
         const data = {
@@ -49,23 +47,57 @@ const LibroCarrito = ({ link_imagen, titulo, precio, cantidad, isbn, carrito_mai
         }
     };
 
+    const eliminarDelCarrito = () => {
+        const url = `http://localhost:4002/productosCarrito/EliminarprodCarrito`;
+        const data = {
+            isbn: isbn,
+            carrito_mail: carrito_mail, 
+        };
+
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Error al eliminar el libro del carrito');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Libro eliminado del carrito:', data);
+            onDelete(isbn);  // Llama a onDelete para eliminar el libro del estado
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    };
+
     return (
         <div className="contenido-libro">
             <div className="producto-info">
-                <img src={link_imagen} className="imagen-libro" alt={titulo} />
-            <div className="informacion-libro">
-                <h4>{titulo}</h4>
+                <div className="imagen-container">
+                    <button className="cruz-container" onClick={eliminarDelCarrito}>
+                        &#10005; {/* Unicode 'x' symbol */}
+                    </button>
+                    <img src={link_imagen} className="imagen-libro" alt={titulo} />
+                </div>
+                <div className="informacion-libro">
+                    <h4>{titulo}</h4>
+                </div>
             </div>
-        </div>
-        <div className="precio">${precio.toFixed(2)}</div>
-        <div className="cantidad">
-            <button onClick={manejarDecrementar}>-</button>
-            <span>{cantidadActual}</span>
-            <button onClick={manejarIncrementar}>+</button>
-        </div>
-        <div className="subtotal">${subtotal.toFixed(2)}</div>
+            <div className="precio">${precio.toFixed(2)}</div>
+            <div className="cantidad">
+                <button onClick={manejarDecrementar}>-</button>
+                <span>{cantidadActual}</span>
+                <button onClick={manejarIncrementar}>+</button>
+            </div>
+            <div className="subtotal">${subtotal.toFixed(2)}</div>
         </div>
     );
-    };
+};
 
 export default LibroCarrito;
