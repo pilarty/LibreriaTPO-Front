@@ -6,8 +6,8 @@ const Navigation = () => {
     const location = useLocation();
     if (location.pathname === '/')
         return null;
-    if (location.pathname === '/Carrito') { {/*SACAR */}
-        return null; // No renderiza nada en la página del carrito
+    if (location.pathname === '/' || location.pathname === '/Carrito' || location.pathname === '/publicarLibro') {
+        return null; // No renderiza nada en estas páginas
     }
     return(
         <nav>
