@@ -8,10 +8,8 @@ const MenuDesplegable = () => {
 
     const [esAdmin, setEsAdmin] = useState(true);
 
-    const generosUnicos = [...new Set(posts.map((post) => post.genero))];
-
     useEffect(() => {
-      fetch("http://localhost:4002/libros")
+      fetch("http://localhost:4002/generos")
         .then((response) => response.json())
         .then((data) => {
           console.log(data)
@@ -25,9 +23,9 @@ const MenuDesplegable = () => {
     return (
         <div className="menu-hamburguesa">
           <ul>
-            {generosUnicos.map((genero, index) => (
+            {posts.map((post) =>(
                 <li key={index}>
-                    <Link to={`/Libros?genero=${genero}`}>{genero}</Link>
+                    <Link to={`/Libros`}>{post.nombre}</Link>
                 </li>
             ))}
             {esAdmin && (
