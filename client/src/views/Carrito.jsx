@@ -4,6 +4,19 @@ import LibroCarritoList from '../components/LibroCarritoList';
 import TotalCarrito from "../components/TotalCarrito";
 import './Carrito.css'; 
 
+/* LO QUE TENGO QUE AGREGAR
+import { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
+import Usuario from '../assets/Usuario.png';
+import Hamburguesa from '../assets/hamburguesa.png';
+import CardLibroList from "../components/CardLibroList";
+import MenuDesplegable from "../components/MenuDesplegable";
+import LibroCarritoList from '../components/LibroCarritoList';
+import TotalCarrito from "../components/TotalCarrito";
+import './Carrito.css'; 
+*/
+
 const Carrito = () => {
     const navigate = useNavigate();
     const [productosCarrito, setProductosCarrito] = useState([]);
@@ -33,7 +46,7 @@ const Carrito = () => {
 
     return (
         <>
-            <h2 className="subtitulo">Tu Carrito</h2>
+            <h2 className="subtituloTUCARRITO">Tu Carrito</h2>
             <div className="carrito-contenedor">
                 <div className="lista-boton">
                     {productosCarrito.length === 0 ? ( // Condición para mostrar el mensaje de carrito vacío

@@ -7,7 +7,7 @@
     --font-secondary: "Inter", sans-serif;
   }
   
-  .subtitulo {
+  .subtituloTUCARRITO {
     font-family: var(--font-primary);
     color: var(--color-primary);
     font-size: 2.5rem;
@@ -17,6 +17,7 @@
     font-weight: normal;
     border-bottom: 1px solid var(--color-border);
     width: 90%;
+    
 }
   
   .carrito-contenedor {
@@ -60,8 +61,7 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    margin-bottom: 1.25rem;
-    border-bottom: 1px solid #eee;
+
     font-family: var(--font-secondary);
     font-size: 1.125rem;
 }
@@ -75,7 +75,8 @@
   .imagen-libro {
     width: 3.75rem;
     height: auto;
-    margin-right: 1rem;
+    margin-right: 0rem;
+    margin-left: 8rem;
 }
   
 .informacion-libro {
@@ -84,7 +85,8 @@
 }
 
 .informacion-libro h4 {
-  margin: 0;
+  margin-left: 0.3rem;
+  margin-right: 1rem;
   color: var(--color-primary);
   font-weight: bold;
   font-size: 1rem;
@@ -111,7 +113,7 @@
   color: white;
   border: none;
   border-radius: 0.25rem;
-  font-size: 0.9rem;
+  font-size: 0.70rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,7 +178,7 @@
 
   .cruz-container {
     position: absolute;
-    left: -10px;
+    margin-left: 2rem;
     top: 50%;
     transform: translateY(-50%);
     width: 24px;
@@ -189,7 +191,7 @@
     align-items: center;
     cursor: pointer;
     font-size: 14px;
-    color: #333;
+    color: #060505;
     transition: background-color 0.3s ease;
 }
 
@@ -271,3 +273,118 @@
 }
 
 
+/*LO DE LA PARTE DE ARRIBA*/
+
+.header-2 {
+  display: flex;         
+  align-items: center;        
+  justify-content: flex-start; 
+  padding: 0.625rem;              
+}
+
+.logo {
+  position: absolute;
+  left: 1.29%;
+  top: 5.5vh;
+  width: 2.4%;
+  height: auto;
+}
+
+.subtitulo {
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #D1A246;
+  position: absolute;
+  top: 0;
+  left: 2.5rem;
+  font-size: 3.125rem;
+}
+
+.boton-hamburguesa {
+  background-color: #ffffff;
+  position: absolute;
+  right: 15.625vw;
+  top: 3.25vh;
+  width: 4.375rem;
+  height: 4.375rem;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.img-hamburguesa {
+  width: 2rem;
+  height: auto;
+}
+
+.boton-usuario {
+  background-color: #ffffff;
+  position: absolute;
+  right: 9.375vw;
+  top: 3.25vh;
+  width: 4.375rem;
+  height: 4.375rem;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.img-usuario {
+  width: 4.375rem;
+  height: auto;
+}
+
+.subtitulo-2 {
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #D1A246;
+  position: absolute;
+  top: 22.5vh;
+  left: 2.5rem;
+  font-size: 2.8125rem;
+}
+
+.header-3 {
+  display: flex;         
+  align-items: center;        
+  justify-content: flex-start; 
+  padding: 0.625rem; 
+  position: absolute;
+  top: 24vh;
+  left: 20.3125rem;             
+}
+
+.text-vermas {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #5e83fa; 
+}
+
+.subtitulo-3 {
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #D1A246;
+  position: absolute;
+  top: 82.3vh;
+  left: 2.5rem;
+  font-size: 2.8125rem;
+}
+
+.lista-libros-2 {
+  position: relative;
+  top: 16vh;
+  left: 0;
+}
+
+.header-4 {
+  display: flex;         
+  align-items: center;        
+  justify-content: flex-start; 
+  padding: 0.625rem; 
+  position: absolute;
+  top: 84vh;
+  left: 15.625rem;             
+}
