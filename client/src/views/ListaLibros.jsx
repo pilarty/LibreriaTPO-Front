@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ListaLibrosListaLibros from '../components/ListaLibrosListaLibros';
+import './ListaLibros.css';
 
 const ListaLibros = () => {
-    const { generoId } = useParams(); // Obtener el ID del género desde la URL
+    const { generoId } = useParams();
     const [generoNombre, setGeneroNombre] = useState(null);
-    const [libros, setLibros] = useState([]); // Estado para almacenar los libros
-    const [loading, setLoading] = useState(true); // Estado de carga
+    const [libros, setLibros] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (!generoId) return;
 
-        // Fetch para obtener el nombre del género y los libros
         fetch(`http://localhost:4002/generos/${generoId}`)
             .then((response) => {
                 if (!response.ok) {
@@ -21,14 +21,8 @@ const ListaLibros = () => {
             })
             .then((data) => {
                 setGeneroNombre(data.nombre);
-                console.log(data.nombre);
-
-                // Asegúrate de que data.libros sea un array
                 if (data.libro && Array.isArray(data.libro)) {
                     setLibros(data.libro);
-                    data.libro.forEach(libro => {
-                        console.log(libro.isbn); // Imprime cada ISBN
-                    });
                 } else {
                     console.error("No se encontró la lista de libros en la respuesta.");
                 }
@@ -37,17 +31,20 @@ const ListaLibros = () => {
                 console.error("Error al obtener el género: ", error);
             })
             .finally(() => {
-                setLoading(false); // Cambia el estado de carga a false
+                setLoading(false);
             });
     }, [generoId]);
 
     return (
         <div className="container">
-            <div className="title-container"> {/* Contenedor para el título y subtítulo */}
-            <h1 className="title">{generoNombre}</h1>
-            <h1 className="subtitle">Libros del género {generoNombre}</h1>
-        </div>
-            <ListaLibrosListaLibros libros={libros} loading={loading} />
+            <div className="title-container">
+                <h1 className="title">{generoNombre}</h1>
+                <h2 className="subtitle">Libros del género {generoNombre}</h2>
+            </div>
+            
+            <div className="lista-libros-container">
+                <ListaLibrosListaLibros libros={libros} loading={loading} />
+            </div>
         </div>
     );
 };
