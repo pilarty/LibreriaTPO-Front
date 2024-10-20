@@ -8,6 +8,9 @@ const Navigation = () => {
 if (location.pathname === '/publicarLibro') { {/*SACAR */}
         return null;
 } 
+if (location.pathname === '/Compra') { {/*SACAR */}
+        return null;
+}
 
     return(
         <nav>
@@ -43,7 +46,7 @@ if (location.pathname === '/publicarLibro') { {/*SACAR */}
                 <li>
                     <Link to="/Usuario">Usuario</Link>
 
-                </li>
+                </li> {/* agrega cosas a la lista*/}
                 <li>
                     <Link to="/publicarLibro">PublicarLibro</Link>
 
