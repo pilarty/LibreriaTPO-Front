@@ -156,7 +156,7 @@ label {
 
 .boton-comprar button {
     padding: 10px 40px;
-    background-color: #0d5b4b; /* Ajusta este color si es necesario */
+    background-color: #0e735f; /* Ajusta este color si es necesario */
     color: white;
     border: none;
     cursor: pointer;
@@ -165,7 +165,7 @@ label {
 }
 
 .boton-comprar button:hover {
-    background-color: #08382d; 
+    background-color: #0c624e; 
 }
 
 /* Estilos para la lista de libros */
