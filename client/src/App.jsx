@@ -10,7 +10,8 @@ import Carrito from './Carrito'
 import Compra from './Compra'
 import Favoritos from './Favoritos'
 import LibroSolo from './LibroSolo'
-import Registrarse from './Registrarse'
+import Registrarse from './views/Registrarse'
+import LoginPage from './views/LoginPage';
 import Usuario from './Usuario'
  
 const App = ()=>{
@@ -26,9 +27,9 @@ const App = ()=>{
         <Route path='/Favs' element={<Favoritos/>}/>
         <Route path='/Libro' element={<LibroSolo/>}/>
         <Route path='/Registrarse' element={<Registrarse/>}/>
+        <Route path='/LoginPage' element={<LoginPage />} />
         <Route path='/Usuario' element={<Usuario/>}/>
       </Routes>
-   
     </>
   )
 }
