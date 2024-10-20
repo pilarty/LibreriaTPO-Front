@@ -1,9 +1,8 @@
 import React from 'react';
-
 import "../views/ListaLibros.css";
-import Carrito from '../assets/Carrito.png'
+import Carrito from '../assets/Carrito.png';
 
-const LibroListaLibros = ({titulo, autor, precio, sinopsis, image}) => {
+const LibroListaLibros = ({ titulo, autor, precio, sinopsis, image }) => {
     const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
     
     return (

@@ -1,7 +1,15 @@
 import React from 'react';
 import LibroListaLibros from "./LibroListaLibros";
 
-const ListaLibrosListaLibros = ({ libros }) => {
+const ListaLibrosListaLibros = ({ libros, loading }) => {
+    if (loading) {
+        return <div>Cargando...</div>; // Mensaje mientras se cargan los libros
+    }
+
+    if (libros.length === 0) {
+        return <div>No se encontraron libros.</div>; // Mensaje si no hay libros
+    }
+
     return (
         <div>
             {libros.map((libro) => (
