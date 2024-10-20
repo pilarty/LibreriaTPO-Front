@@ -43,8 +43,10 @@ const ListaLibros = () => {
 
     return (
         <div className="container">
-            <h1 className="title">Libros del género {generoNombre}</h1>
-            <h2 className="subtitle">Libros del género {generoNombre}</h2>
+            <div className="title-container"> {/* Contenedor para el título y subtítulo */}
+            <h1 className="title">{generoNombre}</h1>
+            <h1 className="subtitle">Libros del género {generoNombre}</h1>
+        </div>
             <ListaLibrosListaLibros libros={libros} loading={loading} />
         </div>
     );
