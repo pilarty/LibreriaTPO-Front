@@ -6,7 +6,7 @@ const Navigation = () => {
     const location = useLocation();
     if (location.pathname === '/')
         return null;
-    if (location.pathname === '/' || location.pathname === '/Carrito' || location.pathname === '/publicarLibro') {
+    if (location.pathname === '/' || location.pathname === '/Carrito' || location.pathname === '/publicarLibro' || location.pathname === '/ListaLibros/1' ) {
         return null; // No renderiza nada en estas páginas
     }
     return(

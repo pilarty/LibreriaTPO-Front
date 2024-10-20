@@ -1,26 +1,20 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import LibroCarritoList from '../components/LibroCarritoList';
-import TotalCarrito from "../components/TotalCarrito";
-import './Carrito.css'; 
-
-/* LO QUE TENGO QUE AGREGAR
-import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import Usuario from '../assets/Usuario.png';
 import Hamburguesa from '../assets/hamburguesa.png';
-import CardLibroList from "../components/CardLibroList";
+
 import MenuDesplegable from "../components/MenuDesplegable";
 import LibroCarritoList from '../components/LibroCarritoList';
 import TotalCarrito from "../components/TotalCarrito";
 import './Carrito.css'; 
-*/
+
 
 const Carrito = () => {
     const navigate = useNavigate();
     const [productosCarrito, setProductosCarrito] = useState([]);
     const emailUsuario = "pgarcia@uade.edu.ar";
+    const [menuVisible, setMenuVisible] = useState(false);
 
     useEffect(() => {
         const URL_PRODUCTOS = `http://localhost:4002/productosCarrito/${emailUsuario}/listaDeProductosCarritoByMail`;
@@ -44,12 +38,33 @@ const Carrito = () => {
         );
     };
 
+    const manejarHamburguesa = () => {
+        setMenuVisible(!menuVisible);
+    };
+
+    const manejarUsuario = () => {
+        navigate("/Usuario");
+    };
+
     return (
         <>
+            <div className="header-2">
+                <img className="logo" src={logo} alt="Logo" />
+                <span className="subtitulo">The Golden Feather</span>
+                <button className="boton-hamburguesa" onClick={manejarHamburguesa}>
+                    <img className="img-hamburguesa" src={Hamburguesa} alt="Hamburguesa" />
+                </button>
+                <button className="boton-usuario" onClick={manejarUsuario}>
+                    <img className="img-usuario" src={Usuario} alt="Usuario" />
+                </button>
+            </div>
+
+            {menuVisible && <MenuDesplegable />}
+
             <h2 className="subtituloTUCARRITO">Tu Carrito</h2>
             <div className="carrito-contenedor">
                 <div className="lista-boton">
-                    {productosCarrito.length === 0 ? ( // Condición para mostrar el mensaje de carrito vacío
+                    {productosCarrito.length === 0 ? (
                         <div className="carrito-vacio">
                             <h3>Tu carrito está vacío.</h3>
                             <button className="volver-tiendas" onClick={manejarSeguirComprando}>
@@ -67,7 +82,7 @@ const Carrito = () => {
                         </>
                     )}
                 </div>
-                {productosCarrito.length > 0 && ( // Solo mostrar el separador y el total si hay productos en el carrito
+                {productosCarrito.length > 0 && (
                     <>
                         <div className="separator"></div>
                         <TotalCarrito emailUsuario={emailUsuario} />

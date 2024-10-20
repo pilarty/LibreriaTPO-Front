@@ -24,8 +24,8 @@ const MenuDesplegable = () => {
         <div className="menu-hamburguesa">
           <ul>
             {posts.map((post) =>(
-                <li key={index}>
-                    <Link to={`/ListaLibros/${post.generoId}`}>{post.id}</Link>
+                <li key={post.id}>
+                    <Link to={`/ListaLibros/${post.id}`}>{post.id}</Link>
 
                 </li>
             ))}

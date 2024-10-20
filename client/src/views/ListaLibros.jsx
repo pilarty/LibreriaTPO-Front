@@ -40,7 +40,7 @@ const ListaLibros = () => {
                 console.log("Datos de libros:", data); // Para verificar la respuesta
                 // Filtrar los libros usando 'genero_id' que corresponde a la propiedad en la base de datos
                 const librosFiltrados = data.content.filter(libro => {
-                    console.log("Libro genero_id:", libro.genero_id); // Para ver el id de género de cada libro
+                    console.log("Libro:", libro) // Para ver el id de género de cada libro
                     return libro.genero_id === Number(generoId); // Comparar como número
                 });
                 console.log("Libros filtrados:", librosFiltrados); // Para ver los libros filtrados
