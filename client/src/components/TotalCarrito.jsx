@@ -5,6 +5,7 @@ const TotalCarrito = ({ emailUsuario }) => {
     const [subtotal, setSubtotal] = useState(0);
     const navigate = useNavigate();
 
+    /*
     useEffect(() => {
         const URL_CARRITO = `http://localhost:4002/carritos/${emailUsuario}`;
 
@@ -18,6 +19,7 @@ const TotalCarrito = ({ emailUsuario }) => {
             });
     }, [emailUsuario]);
 
+    */
     const manejarFinalizarCompra = () => {
         navigate("/Compra");
     };
@@ -26,7 +28,8 @@ const TotalCarrito = ({ emailUsuario }) => {
         <div className="recuadro-total"> 
             <h3>Total del carrito</h3>
             <p>Envío: Podrás cambiar datos de envío y/o calcular el costo en el próximo paso.</p>
-            <p>Subtotal: ${subtotal.toFixed(2)}</p> 
+            {/*<p>Subtotal: ${subtotal.toFixed(2)}</p> */}
+            <p>Subtotal: ${100}</p>
             <button onClick={manejarFinalizarCompra}>Comprar</button>
         </div>
     );

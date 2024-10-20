@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
-const LibroCarrito = ({ link_imagen, titulo, precio, cantidad, isbn, carrito_mail, onDelete }) => {
+const LibroCarrito = ({ image, titulo, precio, cantidad, isbn, carrito_mail, onDelete }) => {
     const [cantidadActual, setCantidad] = useState(cantidad);
     const subtotal = precio * cantidadActual;
+    const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
 
     const actualizarCantidadEnServidor = (nuevaCantidad) => {
         const url = `http://localhost:4002/productosCarrito/ActualizarCantLibro`;
@@ -83,7 +84,8 @@ const LibroCarrito = ({ link_imagen, titulo, precio, cantidad, isbn, carrito_mai
                     <button className="cruz-container" onClick={eliminarDelCarrito}>
                         &#10005; {/* Unicode 'x' symbol */}
                     </button>
-                    <img src={link_imagen} className="imagen-libro" alt={titulo} />
+                    {/*<img src={link_imagen} className="imagen-libro" alt={titulo} />*/}
+                    <img className="imagen-libro" src={imageSrc} alt="Imagen" />
                 </div>
                 <div className="informacion-libro">
                     <h4>{titulo}</h4>
