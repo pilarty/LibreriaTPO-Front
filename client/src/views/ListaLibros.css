@@ -18,16 +18,16 @@
     padding: 2rem;
     width: 90%;
     max-width: 1400px;
-    }
-    
+}
+
 .title-container {
-    margin-bottom: 0rem; /* Espacio entre el contenedor de títulos y la lista de libros */
+    margin-bottom: 0rem;
 }   
 
 .title {
     font-family: var(--font-primary);
     color: var(--color-primary);
-    font-size: 5rem; /* Tamaño del título */
+    font-size: 5rem;
     margin: 2rem 0 1rem 2rem;
     padding-bottom: 0.5rem;
     text-align: left;
@@ -53,34 +53,36 @@
     margin-left: 0; 
     padding: 0; 
     position: relative;
-    top: 2rem;
-    left: 1rem;
+    top: 0.5rem;
+    left: 1.7rem;
     flex-wrap: nowrap; 
 }
-
 
 .book-container {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
     padding: 0.6rem;
     background-color: #FAFAF5;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 1px 0 rgba(0, 0, 0, 0.06); /* Puedes reducir la intensidad de la sombra */
-    margin-bottom: 1rem; /* Reducir el espacio entre contenedores */
-    width: 90%; /* Puedes ajustar el ancho si es necesario */
-
+    border-width: 1px; 
+    border-style: solid; 
+    border-color: #c7c3c3; /* Color más claro */
+    border-radius: 1.5rem;
+    margin-bottom: 3rem; 
+    width: 90%; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+
 .book-image {
-    width: 15rem;  /* Aumentado el ancho */
-    height: 24rem; /* Aumentado la altura */
-    
-    border-radius: 0.25rem;
+    width: 14rem;  
+    height: 20rem; 
+    border-radius: 1.5rem;
 }
 
 .book-details {
     flex-grow: 1;
+    margin-left: 1.5rem;
+    text-align: left;
 }
 
 .book-header {
@@ -91,24 +93,33 @@
 
 .book-title {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 700;
     color: black;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: var(--font-secondary);
 }
 
 .book-author {
     font-size: 2rem;
     font-weight: bolder;
     color: #287271;
+    margin: 0;
+    text-transform: uppercase;
+    
+    font-family: var(--font-secondary);
 }
 
 .book-price {
     font-size: 2rem;
     font-weight: bold;
-    margin-right: 0.5rem;
+    margin-right: 2rem;
+    text-transform: uppercase;
+    font-family: var(--font-secondary);
 }
 
 .cart-button {
-    background-color: #e5e7eb;
+    background-color: #ffffff;
     padding: 0.3rem;
     border-radius: 9999px;
 }
@@ -117,15 +128,19 @@
     font-size: 3rem;
     color: #1A4146;
     font-weight: 600;
-    margin-top: 0.1rem;
+    margin-top: 2rem;
+    text-align: left;
 }
 
 .synopsis-text {
     font-size: 1.5rem;
     color: #6D6D6D;
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+    text-align: left;
 }
 
 .lista-libros-container {
-    margin-top: 1rem; /* Espacio entre el subtítulo y la lista de libros */
-    width: 100%; /* Asegúrate de que ocupe el ancho completo, si es necesario */
+    margin-top: 1rem; 
+    width: 100%;
 }
