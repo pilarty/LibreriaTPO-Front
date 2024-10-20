@@ -151,7 +151,7 @@ label {
     display: flex; 
     justify-content: right; /* Centra el botón */
     margin-top: 100px; /* Espacio arriba del botón */
-    width: 60%; 
+    width: 90%; 
 }
 
 .boton-comprar button {

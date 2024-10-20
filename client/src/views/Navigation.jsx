@@ -11,6 +11,9 @@ if (location.pathname === '/publicarLibro') { {/*SACAR */}
 if (location.pathname === '/Compra') { {/*SACAR */}
         return null;
 }
+if (location.pathname === '/Libro') { {/*SACAR */}
+        return null;
+}
 
     return(
         <nav>
