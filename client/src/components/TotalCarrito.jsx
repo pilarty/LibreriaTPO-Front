@@ -27,7 +27,7 @@ const TotalCarrito = ({ emailUsuario }) => {
             <h3>Total del carrito</h3>
             <p>Envío: Podrás cambiar datos de envío y/o calcular el costo en el próximo paso.</p>
             <p>Subtotal: ${subtotal.toFixed(2)}</p> 
-            <button onClick={manejarFinalizarCompra}>Finalizar Compra</button>
+            <button onClick={manejarFinalizarCompra}>Comprar</button>
         </div>
     );
 };

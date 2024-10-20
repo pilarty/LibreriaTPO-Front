@@ -25,7 +25,8 @@ const MenuDesplegable = () => {
           <ul>
             {posts.map((post) =>(
                 <li key={index}>
-                    <Link to={`/Libros`}>{post.nombre}</Link>
+                    <Link to={`/ListaLibros/${post.generoId}`}>{post.id}</Link>
+
                 </li>
             ))}
             {esAdmin && (

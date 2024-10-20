@@ -48,6 +48,10 @@ const Navigation = () => {
                     <Link to="/publicarLibro">PublicarLibro</Link>
 
                 </li>
+                <li>
+                <Link to="/ListaLibros/1">Ver lista de libros del género 1</Link>
+
+                </li>
             </ul>
         </nav>
     )
