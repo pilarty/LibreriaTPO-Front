@@ -43,29 +43,31 @@
 /* Contenedor general del formulario */
 .compra-container {
     display: flex;
-    justify-content: space-between; /* Ajusta el espacio entre los elementos */
+    justify-content: space-between; /* Ajusta el espacio entre el formulario y la lista */
     align-items: flex-start; /* Alinea los elementos en la parte superior */
     padding: 20px;
 }
 
+/* Ajuste del formulario */
 .seccion-formulario {
-    width: 150%; /* Ajusta el espacio  */
+    width: 60%; /* Reducimos el ancho del formulario */
     background-color: #fff;
-    padding: 2rem;
+    padding: 1.5rem; /* Reduce el padding */
     border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: none; /* Elimina la sombra (relieve) */
     box-sizing: border-box;
     display: flex;
     flex-direction: column; /* Alinea los elementos verticalmente */
     gap: 1rem; /* Espacio entre los campos */
+    margin-right: 20px; /* Reducimos el margen entre el formulario y la lista de libros */
 }
 
 .seccion-formulario h1 {
     font-family: "Newsreader", serif;
     font-size: 1.5rem;
     color: #D1A246;
-    margin-top: 3rem; /* Aumenta el margen superior para separar más del subtítulo */
-    margin-bottom: 0rem; /* Aumenta el margen inferior para separar más del subtítulo */
+    margin-top: 3rem; /* Aumenta el margen superior */
+    margin-bottom: 0rem; /* Aumenta el margen inferior */
     text-align: left; /* Alineación del título a la izquierda */
 }
 
@@ -80,7 +82,7 @@ label {
 
 .seccion-formulario input,
 .seccion-formulario select {
-    width: 50%;
+    width: 100%; /* Ajusta el ancho al 100% */
     padding: 0.75rem;
     background-color: #ffffff; /* Fondo blanco */
     border: 1px solid #ccc; /* Borde gris claro */
@@ -134,7 +136,7 @@ label {
 
 /* Nueva clase para la lista de totales */
 .lista-totales {
-    width: 30%; /* Ajusta el espacio que quieras darle a la lista de totales */
+    width: 38%; /* Le damos más espacio a la lista de libros */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -170,26 +172,30 @@ label {
 .lista-libros {
     list-style-type: none; /* Elimina los bullets */
     padding: 0;
-    width: 30%; /* Ajusta el ancho de la lista según tu diseño */
-    margin-bottom: 60px; /* Espacio entre las listas */
+    display: grid; /*  Grid para crear dos columnas */
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    gap: 15px 1px; /* Espaciado entre las filas y columnas */
+    width: 100%; 
+    margin-bottom: 40px; /* Espacio entre las listas */
 }
 
 .lista-libros li {
-    display: flex;
-    justify-content: space-between; /* Distribuye el nombre y el precio en dos columnas */
-    margin-bottom: 10px; /* Espacio entre los libros */
+    display: contents; /* Permite que los elementos internos sigan el grid */
     font-family: "Newsreader", serif;
-    font-size: 1rem;
+    font-size:1.25rem;
     color: #333;
 }
 
 .lista-libros li span:first-child {
-    flex: 20; /* Hace que el nombre del libro ocupe más espacio */
+    grid-column: 1 / 2; /* Primera columna para el nombre del libro */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Esconde el desbordamiento de texto */
+    text-overflow: ellipsis; /* Añade "..." si el texto es demasiado largo */
 }
 
 .lista-libros li span:last-child {
-    flex: 0 0 90px; /* Ajusta el ancho de la columna del precio */
-    text-align: right;
+    grid-column: 2 / 3; /* Segunda columna para el precio */
+    text-align: right; /* Alinea el precio a la derecha */
     color: #D1A246; /* Color dorado para el precio */
 }
 
@@ -198,7 +204,39 @@ label {
     margin-right: 3px; /* Espacio entre el símbolo de dólar y el precio */
 }
 
+.popup-compra {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.popup-contenido {
+    background-color: #f4efef;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
 
+.popup-contenido h2 {
+    margin-bottom: 20px;
+    color: black; /* Cambia el color del texto a negro */
+}
 
+.popup-contenido button {
+    padding: 10px 20px;
+    background-color: #137c67;
+    color: rgb(233, 228, 228);
+    border: none;
+    cursor: pointer;
+}
+
+.popup-contenido button:hover {
+    background-color: #08382d;
+}
 
