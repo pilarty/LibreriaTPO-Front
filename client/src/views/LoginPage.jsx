@@ -54,6 +54,7 @@ const LoginPage = () => {
 
   return (
     <>
+    <div class="container">
       <img src={logo} alt="Logo de The Golden Feather" className="logo" />
       <h1>
         Bienvenido de nuevo a <br />
@@ -82,6 +83,7 @@ const LoginPage = () => {
       <p className="Registrarse-link">
         ¿No estás registrado? <Link to="/Registrarse">Registrate</Link>
       </p>
+      </div>
     </>
   );
 };

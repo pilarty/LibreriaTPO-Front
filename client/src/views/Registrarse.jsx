@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Registrarse.css';
-import logo from './assets/logo.png';
+import logo from '../assets/logo.png';
 
 const Registrarse = () => {
   const navigate = useNavigate();
@@ -59,7 +59,8 @@ const Registrarse = () => {
   };
 
   return (
-    <>
+    <>  
+    <div class="container">
         <img src={logo} alt="Logo de The Golden Feather" className="logo" />
         <h1>Bienvenido a The Golden Feather</h1>
         {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -101,6 +102,7 @@ const Registrarse = () => {
         <p className="LoginPage-link">
           ¿Ya tienes una cuenta? <Link to="/LoginPage">Iniciar Sesión</Link>
         </p>
+      </div>
     </>
   );
 };
