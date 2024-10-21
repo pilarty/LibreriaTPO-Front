@@ -1,131 +1,150 @@
 
-/*body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #fff;
-    color: #000; Texto en negro por defecto 
-  }*/ 
-  
-  .header-2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .logo {
-    height: 50px;
-  }
-  
-  .subtitulo {
-    font-size: 24px;
-    color: #000; /* Subtítulo en negro */
-  }
-  
-  .boton-hamburguesa, .boton-usuario, .boton-carrito {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .boton-hamburguesa img, 
-  .boton-usuario img, 
-  .boton-carrito img {
-    width: 30px;
-    margin-left: 10px;
-  }
-  
-  .libro-container {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 40px;
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    background-color: #fafafa;
-  }
-  
-  /* Sección de la imagen y el título */
-  .libro-imagen-seccion {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px;
-  }
-  
-  .libro-imagen-placeholder {
-    width: 300px;
-    height: 400px;
-    background-color: #eee8e8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-  }
-  
-  .libro-imagen-placeholder img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 10px;
-  }
-  
-  /* Título debajo de la imagen */
-  .titulo-libro {
-    margin-top: 15px;
-    font-size: 22px;
-    text-align: center;
-    color: #000; /* Título en negro */
-  }
-  
-  .libro-detalles {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  /* Precio en dorado */
-  .precio {
-    font-size: 22px;
-    color: #c49b34; /* Dorado */
-    margin: 10px 0;
-  }
-  
-  .boton-agregar {
-    background-color: #c49b34;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
-  .boton-agregar:hover {
-    background-color: #b08a2e;
-  }
-  
-  .libro-info h3 {
-    font-size: 20px;
-    margin-top: 20px;
-    color: #000; /* Títulos dentro de la información en negro */
-  }
-  
-  .libro-info p {
-    margin: 5px 0;
-    color: #000; /* Párrafos en negro */
-  }
-  
-  .menu-desplegable {
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    background-color: white;
-    border: 1px solid #e0e0e0;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
+/* Estilos generales del header */
+.header-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #fff; /* Fondo blanco */
+  border-bottom: 1px solid #e0e0e0; /* Línea sutil */
+}
+
+.logo {
+  height: 50px;
+}
+
+.subtitulo {
+  font-size: 24px;
+  color: #000; /* Subtítulo en negro */
+  font-weight: bold;
+}
+
+.boton-hamburguesa, .boton-usuario, .boton-carrito {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.boton-hamburguesa img, 
+.boton-usuario img, 
+.boton-carrito img {
+  width: 30px;
+  margin-left: 10px;
+}
+
+
+/* Estilos del contenedor del libro */
+.libro-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #fafafa;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sección de la imagen y el título */
+.libro-imagen-seccion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.libro-imagen-placeholder {
+  width: 300px;
+  height: 400px;
+  background-color: #eee8e8; /* Color gris claro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #d6d6d6;
+}
+
+.libro-imagen-placeholder img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+}
+
+/* Título debajo de la imagen */
+.titulo-libro {
+  margin-top: 15px;
+  font-size: 22px;
+  text-align: center;
+  color: #000; /* Título en negro */
+  font-weight: bold;
+}
+
+/* Detalles del libro */
+.libro-detalles {
+  width: 50%; /* Ajustar el ancho */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Precio en dorado */
+.precio {
+  font-size: 22px;
+  color: #c49b34; /* Dorado */
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+/* Botón de agregar al carrito */
+.boton-agregar {
+  background-color: #c49b34;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.boton-agregar:hover {
+  background-color: #b08a2e; /* Oscurecer al hacer hover */
+}
+
+/* Selector de cantidad */
+.selector-cantidad {
+  margin: 10px 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.selector-cantidad select {
+  padding: 5px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Información del libro */
+.libro-info h3 {
+  font-size: 20px;
+  margin-top: 20px;
+  color: #000; /* Títulos dentro de la información en negro */
+  font-weight: bold;
+}
+
+.libro-info p {
+  margin: 5px 0;
+  color: #000; /* Párrafos en negro */
+  line-height: 1.6;
+}
+
+.libro-info strong {
+  font-weight: bold;
+}
