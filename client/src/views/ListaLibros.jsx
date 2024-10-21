@@ -76,7 +76,7 @@ const ListaLibros = () => {
                 <h1 className="title">{generoNombre}</h1>
                 <h2 className="subtitle">Libros del género {generoNombre}</h2>
             </div>
-            
+            <hr></hr>
             <ListaLibrosListaLibros libros={libros} loading={loading} />
             
         </div>
