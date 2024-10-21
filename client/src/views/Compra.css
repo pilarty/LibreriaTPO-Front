@@ -58,7 +58,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column; /* Alinea los elementos verticalmente */
-    gap: 1rem; /* Espacio entre los campos */
+    gap: 3rem; /* Espacio entre los campos */
     margin-right: 20px; /* Reducimos el margen entre el formulario y la lista de libros */
 }
 

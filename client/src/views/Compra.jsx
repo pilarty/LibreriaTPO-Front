@@ -26,13 +26,7 @@ const Compra = () => {
     };
 
     // Libros disponibles para la compra --> esto se cambia en el back
-    const libros = [
-        { nombre: 'Libro1', precio: 89 },
-        { nombre: 'Libro2', precio: 10 },
-        { nombre: 'Libro3', precio: 70 },
-        { nombre: 'Otro libro', precio: 100 },
-        { nombre: 'Libro especial', precio: 850 }
-    ];
+    
 
     return (
         <div>
@@ -56,7 +50,7 @@ const Compra = () => {
 
                 {/* lista de libros y totales */}
                 <div className="lista-totales">
-                    <ListaLibrosCompra libros={libros} /> 
+                    <ListaLibrosCompra /> 
                  {/*}   <TotalCompra totalSinDescuento={totalSinDescuento} totalFinal={totalFinal} /> */}
                 </div>
             </div>

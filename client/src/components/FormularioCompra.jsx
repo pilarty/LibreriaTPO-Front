@@ -41,7 +41,6 @@ const FormularioCompra = () => {
 
             <form>
                 <div className='form-group'>
-                    <label htmlFor="nombre">Nombre</label>
                     <input
                         type="text"
                         name="nombre"
@@ -53,7 +52,6 @@ const FormularioCompra = () => {
                     />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="apellido">Apellido</label>
                     <input
                         type="text"
                         name="apellido"
@@ -65,7 +63,6 @@ const FormularioCompra = () => {
                     />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="codigoPostal">Código Postal</label>
                     <input
                         type="text"
                         name="codigoPostal"
@@ -77,7 +74,6 @@ const FormularioCompra = () => {
                     />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="direccion">Dirección</label>
                     <input
                         type="text"
                         name="direccion"
@@ -89,7 +85,6 @@ const FormularioCompra = () => {
                     />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="piso">Piso/Departamento</label>
                     <input
                         type="text"
                         name="piso"
@@ -100,7 +95,6 @@ const FormularioCompra = () => {
                     />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="giftCard">Gift Card</label>
                     <input
                         type="text"
                         id="giftCard"
@@ -110,7 +104,6 @@ const FormularioCompra = () => {
                     />
                 </div>
                 <div className='form-group'>
-                    <label htmlFor="medioPago">Medio de Pago</label>
                     <select
                         name="medioPago"
                         id="medioPago"

@@ -62,7 +62,7 @@ const LibroSolo = () => {
           <p className="precio">$50</p>
           <button className="boton-agregar">Agregar al carrito</button>
 
-          <div className="libro-info">
+          <div className="libro-info"> {/* esto lo voy a tener que cambiar en el back*/}
             <h3>CATHERINE MAILLARD</h3>
             <p>
               El oráculo de la Mujer Medicina proporciona las claves para
