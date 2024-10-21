@@ -14,7 +14,7 @@ const ListaLibros = ( ) => {
     console.log(posts)
     //conectar con el back COMO LA MINA
     useEffect(() => { 
-        fetch('http://localhost:4002/productosCarrito/pgarcia@uade.edu.ar/listaDeProductosCarritoByMail')
+        fetch(`http://localhost:4002/productosCarrito/${mailUsuario}/listaDeProductosCarritoByMail`)
           .then((response) => response.json())
           .then((data) => {
             console.log(data)

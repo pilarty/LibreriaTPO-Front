@@ -1,6 +1,7 @@
 
 import "../views/Compra.css";
 import React, { useState } from "react";
+import { useEffect } from 'react';
 
 
 const FormularioCompra = () => {
@@ -15,8 +16,7 @@ const FormularioCompra = () => {
         numeroSeguridad: '',
         fechaVencimiento: ''
     });
-
-    const [giftCardAplicada, setGiftCardAplicada] = useState(false); 
+ 
     const [compraRealizada, setCompraRealizada] = useState(false); // Nuevo estado para el popup
 
     const handleChange = (e) => {
@@ -34,6 +34,21 @@ const FormularioCompra = () => {
     const handleRedirigirHome = () => {
         window.location.href = "/"; // Redirige a la homepage
     };
+
+    const [posts, setPost] = useState([]);
+    console.log(posts)
+
+    useEffect(() => { 
+        fetch(`http://localhost:4002/giftcards/byCodigo/${formulario.giftcard}`)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+            setPost(data);
+          })
+          .catch((error) => {
+            console.error("Error al ingresar la GiftCard: ", error)
+          })
+      }, [ ]);
 
     return (
         <div className='seccion-formulario'>
