@@ -6,7 +6,6 @@ const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
 
     const [posts, setPost] = useState([]);
     const [popupVisible, setPopupVisible] = useState(false);
-    const generosUnicos = [...new Set(posts.map((post) => post.genero))];
 
     const seleccionarGenero = (genero) => {
       onGeneroSeleccionado(genero);
@@ -21,31 +20,36 @@ const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
           },
           body: JSON.stringify({nombre: nuevoGenero})
         })
-      console.log("Nuevo género creado:", nuevoGenero);
+        .then(response => response.json())
+        .then(data => {
+          console.log("Nuevo género creado:", data);
+          obtenerGeneros();
+        })
       }
 
+     const obtenerGeneros = ()=> {
+        fetch("http://localhost:4002/generos")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+            setPost(data.content);
+          })
+          .catch((error) => {
+            console.error("Error al obtener los datos: ", error)
+          })
+      };
 
-
-
-    useEffect(() => {
-      fetch("http://localhost:4002/libros")
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data)
-          setPost(data.content);
-        })
-        .catch((error) => {
-          console.error("Error al obtener los datos: ", error)
-        })
-    }, []);
+      useEffect(() => {
+        obtenerGeneros();
+      }, []);
 
     return (
         <div className="menu-generos">
           <ul>
-            {generosUnicos.map((genero, index) => (
-              <li key={index}>
-                <button onClick={() => seleccionarGenero(genero)}>
-                  {genero}
+            {posts.map((post) => (
+              <li key={post.id}>
+                <button onClick={() => seleccionarGenero(post.nombre)}>
+                  {post.nombre}
                 </button>
               </li>
             ))}
