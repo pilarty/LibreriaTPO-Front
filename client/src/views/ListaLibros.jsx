@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ListaLibrosListaLibros from '../components/ListaLibrosListaLibros';
 import './ListaLibros.css';
 import logo from '../assets/logo.png';
@@ -9,6 +10,7 @@ import Carrito from '../assets/Carrito.png'
 import MenuDesplegable from "../components/MenuDesplegable";
 
 const ListaLibros = () => {
+    const navigate = useNavigate();
     const { generoId } = useParams();
     const [generoNombre, setGeneroNombre] = useState(null);
     const [libros, setLibros] = useState([]);
