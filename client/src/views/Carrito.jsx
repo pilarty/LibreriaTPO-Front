@@ -13,7 +13,13 @@ const Carrito = () => {
     const [productosCarrito, setProductosCarrito] = useState([]);
     const [menuVisible, setMenuVisible] = useState(false);
     const emailUsuario = "pgarcia@uade.edu.ar";
-    //const emailUsuario = sessionStorage.getItem();
+    //const emailUsuario = sessionStorage.getItem('userEmail'); DESCOMENTARLO
+
+    useEffect(() => {
+        if (!emailUsuario) {
+            navigate('/LoginPage'); //ESTA BIEN ESCRITO?
+        }
+    }, [emailUsuario, navigate]);
 
     useEffect(() => {
         const URL_PRODUCTOS = `http://localhost:4002/productosCarrito/${emailUsuario}/listaDeProductosCarritoByMail`;
