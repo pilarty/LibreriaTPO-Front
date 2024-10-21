@@ -3,18 +3,17 @@ import { useNavigate, Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import Usuario from '../assets/Usuario.png';
 import Hamburguesa from '../assets/hamburguesa.png';
-
 import MenuDesplegable from "../components/MenuDesplegable";
 import LibroCarritoList from '../components/LibroCarritoList';
 import TotalCarrito from "../components/TotalCarrito";
 import './Carrito.css'; 
 
-
 const Carrito = () => {
     const navigate = useNavigate();
     const [productosCarrito, setProductosCarrito] = useState([]);
-    const emailUsuario = "pgarcia@uade.edu.ar";
     const [menuVisible, setMenuVisible] = useState(false);
+    const emailUsuario = "pgarcia@uade.edu.ar";
+    //const emailUsuario = sessionStorage.getItem();
 
     useEffect(() => {
         const URL_PRODUCTOS = `http://localhost:4002/productosCarrito/${emailUsuario}/listaDeProductosCarritoByMail`;
