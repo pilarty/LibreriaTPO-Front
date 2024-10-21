@@ -11,18 +11,20 @@ const ListaLibrosListaLibros = ({ libros, loading }) => {
     }
 
     return (
-        <div className="lista-libros">
-            {libros.map((libro) => (
-                <LibroListaLibros 
-                    key={libro.isbn}
-                    titulo={libro.titulo}
-                    autor={libro.autor}
-                    precio={libro.precio}
-                    sinopsis={libro.descripcion} 
-                    image={libro.image} 
-                />
-            ))}
-        </div>
+        <>
+        <div className="libros-container">
+                {libros.map((libro) => (
+                    <LibroListaLibros 
+                        key={libro.isbn}
+                        titulo={libro.titulo}
+                        autor={libro.autor}
+                        precio={libro.precio}
+                        sinopsis={libro.descripcion} 
+                        image={libro.image} 
+                    />
+                ))}
+            </div>
+        </>
     );
 };
 

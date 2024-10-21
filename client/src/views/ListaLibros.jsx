@@ -48,27 +48,28 @@ const ListaLibros = () => {
     const manejarUsuario = () => {
         navigate("/Usuario");
     };
+
     const manejarCarrito = () => {
         navigate("/Carrito");
-      }
+    }
 
     return (
         <>
         <div className="header-2">
-                <img className="logo" src={logo} alt="Logo" />
-                <span className="subtitulo">The Golden Feather</span>
-                <button className="boton-hamburguesa" onClick={manejarHamburguesa}>
-                    <img className="img-hamburguesa" src={Hamburguesa} alt="Hamburguesa" />
-                </button>
-                <button className="boton-usuario" onClick={manejarUsuario}>
-                    <img className="img-usuario" src={Usuario} alt="Usuario" />
-                </button>
-                <button className="boton-carrito" onClick={manejarCarrito}>
-              <img className="img-carrito" src={Carrito} alt="Carrito" />
+            <img className="logo" src={logo} alt="Logo" />
+            <span className="subtitulo">The Golden Feather</span>
+            <button className="boton-hamburguesa" onClick={manejarHamburguesa}>
+                <img className="img-hamburguesa" src={Hamburguesa} alt="Hamburguesa" />
             </button>
-            </div>
+            <button className="boton-usuario" onClick={manejarUsuario}>
+                <img className="img-usuario" src={Usuario} alt="Usuario" />
+            </button>
+            <button className="boton-carrito" onClick={manejarCarrito}>
+                <img className="img-carrito" src={Carrito} alt="Carrito" />
+            </button>
+        </div>
 
-            {menuVisible && <MenuDesplegable />}
+        {menuVisible && <MenuDesplegable />}
 
         <div className="container">
             <div className="title-container">
@@ -76,9 +77,8 @@ const ListaLibros = () => {
                 <h2 className="subtitle">Libros del género {generoNombre}</h2>
             </div>
             
-            <div className="lista-libros-container">
-                <ListaLibrosListaLibros libros={libros} loading={loading} />
-            </div>
+            <ListaLibrosListaLibros libros={libros} loading={loading} />
+            
         </div>
         </>
     );

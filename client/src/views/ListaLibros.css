@@ -1,27 +1,30 @@
+/* Variables de Color y Fuente */
 :root {
-    --color-primary: #D1A246;
-    --color-secondary: #297272;
-    --color-secondary-hover: #1a4146;
-    --color-border: #ccc;
-    --font-primary: "Newsreader", serif;
-    --font-secondary: "Inter", sans-serif;
+    --color-primary: #D1A246;  /* Color primario */
+    --color-secondary: #297272;  /* Color secundario */
+    --color-border: #ccc;  /* Color del borde */
+    --font-primary: "Newsreader", serif;  /* Fuente principal */
+    --font-secondary: "Inter", sans-serif;  /* Fuente secundaria */
 }
 
+/* Contenedor principal */
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 1.25rem auto;
+  padding: 2rem;
+  width: 90%;
+  /*max-width: 1400px;*/
+}
+
+/* Títulos */
+.title-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 1.25rem auto;
-    border-radius: 0.5rem;
-    background-color: white;
-    padding: 2rem;
-    width: 90%;
-    max-width: 1400px;
+    margin-bottom: 0;
 }
-
-.title-container {
-    margin-bottom: 0rem;
-}   
 
 .title {
     font-family: var(--font-primary);
@@ -43,53 +46,70 @@
     font-weight: normal;
 }
 
+/* Contenedor de Libros */
+.libros-container {
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 1rem; 
+    width: 100%; 
+    max-width: 100%;
+    padding: 1rem; 
+    border-radius: 0.5rem; 
+    margin-top: 2rem; 
+    position: relative;
+    top: 20vh;
+    left: 0;
+    flex-wrap: wrap;
+}
+
+/* Estilo de la Lista de Libros */
 .lista-libros {
     display: flex;
     flex-direction: column; 
-    align-items: flex-start; 
-    width: 100%; 
-    max-width: 100%;
-    margin-left: 0; 
-    padding: 0; 
-    position: relative;
-    top: 0.5rem;
-    left: 1.7rem;
-    flex-wrap: nowrap; 
+    align-items: flex-start;
+    width: 100%;
+    padding: 0;
 }
 
+/* Contenedor de cada Libro */
 .book-container {
     display: flex;
+    flex-direction: row;
     align-items: flex-start;
-    padding: 0.6rem;
+    padding: 1rem;
     background-color: #FAFAF5;
-    border-width: 1px; 
-    border-style: solid; 
-    border-color: #c7c3c3;
+    border: 1px solid #c7c3c3;
     border-radius: 1.5rem;
-    margin-bottom: 3rem; 
-    width: 90%; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 1000px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
+/* Estilo de la Imagen del Libro */
 .book-image {
     width: 12rem;  
     height: 16rem; 
     border-radius: 1.5rem;
+    object-fit: cover;
 }
 
+/* Detalles del Libro */
 .book-details {
     flex-grow: 1;
     margin-left: 1.5rem;
     text-align: left;
 }
 
+/* Encabezado de Libro */
 .book-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
+/* Títulos y Precios de Libros */
 .book-title {
     font-size: 2rem;
     font-weight: 700;
@@ -105,7 +125,6 @@
     color: #287271;
     margin: 0;
     text-transform: uppercase;
-    
     font-family: var(--font-secondary);
 }
 
@@ -117,12 +136,14 @@
     font-family: var(--font-secondary);
 }
 
+/* Botón de Carrito */
 .cart-button {
     background-color: #ffffff;
     padding: 0.3rem;
     border-radius: 9999px;
 }
 
+/* Sinopsis */
 .synopsis-title {
     font-size: 3rem;
     color: #1A4146;
@@ -135,101 +156,76 @@
     font-size: 1.5rem;
     color: #6D6D6D;
     margin-top: 0.5rem;
-    margin-bottom: 0rem;
+    margin-bottom: 0;
     text-align: left;
 }
 
-.lista-libros-container {
-    margin-top: 1rem; 
-    width: 100%;
-
-}
-
-/*LO DE LA PARTE DE ARRIBA*/
+/* Estilos del Header */
 .header-2 {
     display: flex;         
     align-items: center;        
     justify-content: flex-start; 
     padding: 0.625rem;              
-  }
-  
-  .logo {
+}
+
+.logo {
     position: absolute;
     left: 1.29%;
     top: 5.5vh;
     width: 2.4%;
     height: auto;
-  }
-  
-  .subtitulo {
-    font-family: "Newsreader", serif;
+}
+
+.subtitulo {
+    font-family: var(--font-primary);
     font-weight: 500;
-    font-style: normal;
-    color: #D1A246;
+    color: var(--color-primary);
     position: absolute;
     top: 0;
     left: 2.5rem;
     font-size: 3.125rem;
-  }
-  
-  .boton-hamburguesa {
+}
+
+.boton-hamburguesa,
+.boton-usuario,
+.boton-carrito {
     background-color: #ffffff;
     position: absolute;
+    width: 4.375rem;
+    height: 4.375rem;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.boton-hamburguesa {
     right: 15.625vw;
     top: 3.25vh;
-    width: 4.375rem;
-    height: 4.375rem;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-  }
-  
-  .img-hamburguesa {
-    width: 2rem;
-    height: auto;
-  }
-  
-  .boton-usuario {
-    background-color: #ffffff;
-    position: absolute;
+}
+
+.boton-usuario {
     right: 9.375vw;
     top: 3.25vh;
-    width: 4.375rem;
-    height: 4.375rem;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-  }
-  
-  .img-usuario {
-    width: 4.375rem;
+}
+
+.boton-carrito {
+    right: 3.125vw;
+    top: 3.25vh;
+}
+
+.img-hamburguesa,
+.img-usuario,
+.img-carrito {
+    width: 2.5rem;
     height: auto;
-  }
-  
-  .subtitulo-2 {
-    font-family: "Newsreader", serif;
+}
+
+/* Subtítulos */
+.subtitulo-2 {
+    font-family: var(--font-primary);
     font-weight: 500;
-    font-style: normal;
-    color: #D1A246;
+    color: var(--color-primary);
     position: absolute;
     top: 22.5vh;
     left: 2.5rem;
-    font-size: 2.8125rem;
-  }
-
-  .img-carrito {
-    width: 2.5rem;
-    height: auto;
-  }
-  
-  .boton-carrito {
-    background-color: #ffffff;
-    position: absolute;
-    right: 3.125vw;
-    top: 3.25vh;
-    width: 4.375rem;
-    height: 4.375rem;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-  }
+}
