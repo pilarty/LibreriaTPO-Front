@@ -16,6 +16,7 @@ const ListaLibrosListaLibros = ({ libros, loading }) => {
                 {libros.map((libro) => (
                     <LibroListaLibros 
                         key={libro.isbn}
+                        isbn={libro.isbn}
                         titulo={libro.titulo}
                         autor={libro.autor}
                         precio={libro.precio}
