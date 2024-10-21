@@ -17,15 +17,17 @@ const PublicarLibro = () => {
     const [menuVisible, setMenuVisible] = useState(false);
     const [menuGenerosVisible, setMenuGenerosVisible] = useState(false);
     const [generoSeleccionado, setGeneroSeleccionado] = useState("Genero...");
-    const [titulo, setTitulo] = useState("")
-    const [descripcion, setDescripcion] = useState("")
-    const [editorial, setEditorial] = useState("")
-    const [año, setAño] = useState("")
-    const [idioma, setIdioma] = useState("")
-    const [numPaginas, setNumPaginas] = useState("");
-    const [isbn, setIsbn] = useState("");
-    const [precio, setPrecio] = useState("");
-
+    const [titulop, setTitulo] = useState("")
+    const [descripcionp, setDescripcion] = useState("")
+    const [editorialp, setEditorial] = useState("")
+    const [edicionp, setEdicion] = useState("")
+    const [idiomap, setIdioma] = useState("")
+    const [numPaginasp, setNumPaginas] = useState("");
+    const [isbnp, setIsbn] = useState("");
+    const [autorp, setAutor] = useState([]);
+    const [stockp, setStock] = useState("");
+    const [preciop, setPrecio] = useState("");
+    const [posts, setPost] = useState([]);
     const manejarUsuario = () => {
         navigate("/Usuario");
       }
@@ -41,41 +43,49 @@ const PublicarLibro = () => {
         setMenuVisible(!menuVisible);
       }
 
-      const manejarPublicar = () => {
-        console.log({
-          titulo,
-          descripcion,
-          editorial,
-          año,
-          idioma,
-          numPaginas,
-          isbn,
-          precio,
-          genero: generoSeleccionado,
-      });
+      const handleAutorChange = (e) => {
+        const autores = e.target.value.split(',').map(autor => autor.trim());
+        setAutor(autores);
+      };
+
+      const transformarGenero = async () => {
+        const response = await fetch(`http://localhost:4002/generos/${generoSeleccionado}/idByNombre`);
+        const data = await response.json();
+        console.log("Genero ID:", data);
+        return data; 
+      };
+
+      const manejarPublicar = async () => {
+        const generoIdp = await transformarGenero();
+        console.log(generoIdp);
+        fetch("http://localhost:4002/libros", {
+        method: 'post',
+          headers: {
+          //'Authorization': 'Bearer ${token}'
+          'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({isbn: isbnp,
+                                titulo: titulop,
+                                precio: preciop,
+                                cantPaginas: numPaginasp,
+                                descripcion: descripcionp,
+                                stock: stockp,
+                                editorial: editorialp,
+                                edicion: edicionp,
+                                idioma: idiomap,
+                                generoId: generoIdp,
+                                autor: autorp
+          })
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+          })
+          .catch((error) => {
+            console.error("Error al obtener los datos: ", error)
+          })
       }
 
-      useEffect(() => {
-        const handleClickOutside = (event) => {
-          if (
-            generosRef.current && 
-            !generosRef.current.contains(event.target) && 
-            !buttonGenerosRef.current.contains(event.target)
-          ) {
-            setMenuGenerosVisible(false);
-          }
-        };
-    
-        if (menuGenerosVisible) {
-          document.addEventListener("mousedown", handleClickOutside);
-        } else {
-          document.removeEventListener("mousedown", handleClickOutside);
-        }
-    
-        return () => {
-          document.removeEventListener("mousedown", handleClickOutside);
-        };
-      }, [menuGenerosVisible]);
     
 
 
@@ -107,62 +117,76 @@ const PublicarLibro = () => {
                 type="text"
                 className="input-field"
                 placeholder="Título..."
-                value={titulo}
+                value={titulop}
                 onChange={(e) => setTitulo(e.target.value)}
               />
               <textarea
                 className="textarea-field"
                 placeholder="Sinopsis..."
-                value={descripcion}
+                value={descripcionp}
                 onChange={(e) => setDescripcion(e.target.value)}
               />
               <input
                 type="text"
                 className="input-field"
                 placeholder="Editorial..."
-                value={editorial}
+                value={editorialp}
                 onChange={(e) => setEditorial(e.target.value)}
               />
               <input
                 type="number"
                 className="input-field"
-                placeholder="Año..."
-                value={año}
-                onChange={(e) => setAño(e.target.value)}
+                placeholder="Edición..."
+                value={edicionp}
+                onChange={(e) => setEdicion(e.target.value)}
               />
               <input
                 type="text"
                 className="input-field"
                 placeholder="Idioma..."
-                value={idioma}
+                value={idiomap}
                 onChange={(e) => setIdioma(e.target.value)}
               />
               <input
                 type="number"
                 className="input-field"
                 placeholder="N° páginas..."
-                value={numPaginas}
+                value={numPaginasp}
                 onChange={(e) => setNumPaginas(e.target.value)}
               />
               <input
                 type="text"
                 className="input-field"
                 placeholder="ISBN..."
-                value={isbn}
+                value={isbnp}
                 onChange={(e) => setIsbn(e.target.value)}
               />
               <button 
                 className="generos-field" 
-                onClick={manejarGeneros} r
+                onClick={manejarGeneros}
                 ef={buttonGenerosRef}>
                 {generoSeleccionado}
                 <span className="arrow">▼</span>
               </button>
               <input
+                type="text"
+                className="input-field"
+                placeholder="Autor..."
+                value={autorp.join(', ')}
+                onChange={handleAutorChange}
+              />
+              <input
+                type="number"
+                className="input-field"
+                placeholder="Stock..."
+                value={stockp}
+                onChange={(e) => setStock(e.target.value)}
+              />
+              <input
                 type="number"
                 className="input-field book-price"
                 placeholder="Precio..."
-                value={precio}
+                value={preciop}
                 onChange={(e) => setPrecio(e.target.value)}
               />
               <button className="boton-publicar" onClick={manejarPublicar}>
