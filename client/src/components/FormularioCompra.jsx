@@ -27,7 +27,6 @@ const FormularioCompra = () => {
     };
 
     const handleRealizarCompra = () => {
-        // Aquí puedes agregar lógica para manejar la compra (validaciones, envío de datos, etc.)
         setCompraRealizada(true); // Muestra el popup
     };
 
@@ -38,7 +37,7 @@ const FormularioCompra = () => {
     const [posts, setPost] = useState([]);
     console.log(posts)
 
-    useEffect(() => { 
+    const obtenerGift = () => { 
         fetch(`http://localhost:4002/giftcards/byCodigo/${formulario.giftcard}`)
           .then((response) => response.json())
           .then((data) => {
@@ -48,7 +47,7 @@ const FormularioCompra = () => {
           .catch((error) => {
             console.error("Error al ingresar la GiftCard: ", error)
           })
-      }, [ ]);
+      };
 
     return (
         <div className='seccion-formulario'>
@@ -115,8 +114,9 @@ const FormularioCompra = () => {
                         id="giftCard"
                         placeholder="Gift Card"
                         value={formulario.gifcard}
-                        onChange={handleChange}
-                    />
+                        onChange={handleChange, obtenerGift}
+                    /> 
+                    
                 </div>
                 <div className='form-group'>
                     <select
