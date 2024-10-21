@@ -30,6 +30,43 @@ const LibroSolo = () => {
         setCantidad(event.target.value);
     };
 
+    const emailUsuario = "pgarcia@uade.edu.ar";
+    // const emailUsuario = sessionStorage.getItem('userEmail'); // DESCOMENTARLO
+ 
+    const manejarAgregarACarrito = (isbn, cantidad) => {
+        if (!emailUsuario) {
+            navigate('/LoginPage');
+        } else {
+            const requestBody = {
+                cantidad: {cantidad},
+                isbn: isbn,
+                carrito_mail: emailUsuario
+            };
+   
+            fetch(`http://localhost:4002/productosCarrito`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(requestBody)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("No se pudo agregar el producto al carrito");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Producto agregado al carrito:", data);
+                alert("Producto agregado al carrito");
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("No se pudo agregar el producto al carrito. Intente de nuevo.");
+            });
+        }
+    };
+
     const [post, setPost] = useState([]);
     const [isbn, setisbn] = useState([]);
 
@@ -92,7 +129,7 @@ const LibroSolo = () => {
                         </select>
                     </div>
 
-                    <button className="boton-agregar">
+                    <button className="boton-agregar" onClick={() => manejarAgregarACarrito(post.isbn, cantidad)}>
                         Agregar {cantidad} al carrito
                     </button>
 
@@ -106,7 +143,7 @@ const LibroSolo = () => {
                             <strong>Edicion:</strong> {post.edicion}<br />
                             <strong>Idioma:</strong> {post.idioma}<br />
                             <strong>Páginas:</strong> {post.cantPaginas}<br />
-                            <strong>ISBN13:</strong> {post.isbn}<br />
+                            <strong>ISBN:</strong> {post.isbn}<br />
                             <strong>Géneros:</strong> {post.genero} <br />
                         </p>
                     </div>
