@@ -4,9 +4,12 @@ import { useLocation } from 'react-router-dom'; {/*SACAR */}
 
 const Navigation = () => {
     const location = useLocation();
-    if (location.pathname === '/')
-        return null;
-    if (location.pathname === '/' || location.pathname === '/Carrito' || location.pathname === '/publicarLibro' || location.pathname === '/ListaLibros/1' ) {
+    if (
+        location.pathname === '/' || 
+        location.pathname === '/Carrito' || 
+        location.pathname === '/publicarLibro' || 
+        /^\/ListaLibros\/\d+$/.test(location.pathname) // Verifica si la ruta comienza con '/ListaLibros/' y sigue con un número
+    ) {
         return null; // No renderiza nada en estas páginas
     }
     return(
@@ -46,10 +49,6 @@ const Navigation = () => {
                 </li>
                 <li>
                     <Link to="/publicarLibro">PublicarLibro</Link>
-
-                </li>
-                <li>
-                <Link to="/ListaLibros/1">Ver lista de libros del género 1</Link>
 
                 </li>
             </ul>
