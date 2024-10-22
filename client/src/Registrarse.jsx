@@ -46,7 +46,7 @@ const Registrarse = () => {
       if (response.ok) {
         const data = await response.json();
         sessionStorage.setItem('authToken', data.access_token);
-        sessionStorage.setItem('userEmail', formData.mail); // Guardando el correo
+        sessionStorage.setItem('mail', formData.mail); // Guardando el correo
   
         // Redirigir al HomePage
         navigate('/');
