@@ -73,7 +73,7 @@ const ListaLibros = () => {
 
         {menuVisible && <MenuDesplegable />}
 
-        <div className="container">
+        <div className="containerPILAR">
             <div className="title-container">
                 <h1 className="title">{generoNombre}</h1>
                 <h2 className="subtitle">Libros del género {generoNombre}</h2>

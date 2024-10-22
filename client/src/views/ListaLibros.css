@@ -8,7 +8,7 @@
 }
 
 /* Contenedor principal */
-.container {
+.containerPILAR {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

@@ -89,57 +89,57 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
-        <img src="/logo.png" alt="Profile" className="profileImage" />
-        <h1 className="title">{'Hola ' + profile.nombre+'!'}</h1>
-        <h2 className="editTitle">Editar</h2>
+    <div className="usuario-container">
+      <div className="usuario-header">
+        <img src="/logo.png" alt="Profile" className="usuario-profileImage" />
+        <h1 className="usuario-title">{'Hola ' + profile.nombre+'!'}</h1>
+        <h2 className="usuario-editTitle">Editar</h2>
       </div>
 
       <div>
         <input
           type="text"
+          className = "usuario-input"
           value={profile.nombre}
           onChange={(e) => setProfile({ ...profile, nombre: e.target.value })}
           placeholder="Nombre"
-          className="input"
         />
         <input
           type="text"
           value={profile.apellido}
           onChange={(e) => setProfile({ ...profile, apellido: e.target.value })}
           placeholder="Apellido"
-          className="input"
+          className = "usuario-input"
         />
         <input
           type="text"
           value={profile.direccion}
           onChange={(e) => setProfile({ ...profile, direccion: e.target.value })}
           placeholder="Dirección"
-          className="input"
+          className = "usuario-input"
         />
         <input
           type="text"
           value={profile.CP}
           onChange={(e) => setProfile({ ...profile, CP: e.target.value })}
           placeholder="Código Postal"
-          className="input"
+          className = "usuario-input"
         />
 
-        <button onClick={handleEditProfile} className="saveButton">
+        <button onClick={handleEditProfile} className="usuario-saveButton">
           Guardar
         </button>
       </div>
 
-      <div className="deleteSection">
+      <div className="usuario-deleteSection">
         <input
           type="password"
           value={contraseña}
           onChange={(e) => setContraseña(e.target.value)}
           placeholder="Contraseña"
-          className="input"
+          className = "usuario-input"
         />
-        <button onClick={handleDeleteAccount} className="deleteButton">
+        <button onClick={handleDeleteAccount} className="usuario-deleteButton">
           Eliminar cuenta
         </button>
       </div>
