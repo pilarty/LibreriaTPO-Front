@@ -13,13 +13,12 @@
     margin-bottom: 20px;
   }
   
-  .usuario-profileImage {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
+  .usuario-logo {
+    width: 250px;
+    height: 250px ;
+    margin: 0 auto 1rem;
+    display: block;
+    }
   
   .usuario-title {
     color: #4a3000;
