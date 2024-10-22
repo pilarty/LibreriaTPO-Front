@@ -1,20 +1,19 @@
 import { Link } from "react-router-dom"
+import { useLocation } from 'react-router-dom'; {/*SACAR */}
+
 
 const Navigation = () => {
-    if (location.pathname === '/') { {/*SACAR */}
-        return null; // No renderiza nada en la página del inicio
-}
-
-if (location.pathname === '/publicarLibro') { {/*SACAR */}
-        return null;
-} 
-if (location.pathname === '/Compra') { {/*SACAR */}
-        return null;
-}
-if (location.pathname === '/Libro') { {/*SACAR */}
-        return null;
-}
-
+    const location = useLocation();
+    if (
+        location.pathname === '/' || 
+        location.pathname === '/Carrito' || 
+        location.pathname === '/publicarLibro' || 
+        location.pathname === '/Compra' ||
+        location.pathname === '/Libro' ||
+        /^\/ListaLibros\/\d+$/.test(location.pathname) // Verifica si la ruta comienza con '/ListaLibros/' y sigue con un número
+    ) {
+        return null; // No renderiza nada en estas páginas
+    }
     return(
         <nav>
             <ul>

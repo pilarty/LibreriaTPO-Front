@@ -1,0 +1,233 @@
+/* Variables de Color y Fuente */
+:root {
+    --color-primary: #D1A246;  /* Color primario */
+    --color-secondary: #297272;  /* Color secundario */
+    --color-border: #ccc;  /* Color del borde */
+    --font-primary: "Newsreader", serif;  /* Fuente principal */
+    --font-secondary: "Inter", sans-serif;  /* Fuente secundaria */
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 1.25rem auto;
+  padding: 2rem;
+  width: 90%;
+  /*max-width: 1400px;*/
+  box-shadow: none; 
+}
+
+/* Títulos */
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 0;
+}
+
+.title {
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    font-size: 5rem;
+    /*margin: 2rem 0 1rem 2rem;*/
+    padding-bottom: 0.5rem;
+    text-align: left;
+    font-weight: normal;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.subtitle {
+    font-family: var(--font-primary);
+    color: gray; 
+    font-size: 2rem; 
+    /*margin: 0 0 1rem 2rem; */
+    text-align: left;
+    font-weight: normal;
+}
+
+/* Contenedor de Libros */
+.libros-container {
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 1rem; 
+    width: 80%; 
+    max-width: 100%;
+    padding: 1rem; 
+    border-radius: 0.5rem; 
+    margin-top: 2rem; 
+    position: relative;
+    top: 15vh;
+    left: 0;
+    flex-wrap: wrap;
+}
+
+.lista-libros-container{
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start;
+}
+
+
+/* Contenedor de cada Libro */
+.book-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 1rem;
+    background-color: #FAFAF5;
+    border: 1px solid #c7c3c3;
+    border-radius: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de la Imagen del Libro */
+.book-image {
+    width: 12rem;  
+    height: 16rem; 
+    border-radius: 1.5rem;
+    object-fit: cover;
+}
+
+/* Detalles del Libro */
+.book-details {
+    flex-grow: 1;
+    margin-left: 1.5rem;
+    text-align: left;
+}
+
+/* Encabezado de Libro */
+.book-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Títulos y Precios de Libros */
+.book-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: var(--font-secondary);
+}
+
+.book-author {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #287271;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: var(--font-secondary);
+}
+
+.book-price {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-right: 2rem;
+    text-transform: uppercase;
+    font-family: var(--font-secondary);
+}
+
+/* Botón de Carrito */
+.cart-button {
+    background-color: #ffffff;
+    padding: 0.3rem;
+    border-radius: 9999px;
+}
+
+/* Sinopsis */
+.synopsis-title {
+    font-size: 3rem;
+    color: #1A4146;
+    font-weight: 600;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.synopsis-text {
+    font-size: 1.5rem;
+    color: #6D6D6D;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+/* Estilos del Header */
+.header-2 {
+    display: flex;         
+    align-items: center;        
+    justify-content: flex-start; 
+    padding: 0.625rem;              
+}
+
+.logo {
+    position: absolute;
+    left: 1.29%;
+    top: 5.5vh;
+    width: 2.4%;
+    height: auto;
+}
+
+.subtitulo {
+    font-family: "Newsreader", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #D1A246;
+    position: absolute;
+    top: 0;
+    left: 2.5rem;
+    font-size: 3.125rem;
+}
+
+.boton-hamburguesa,
+.boton-usuario,
+.boton-carrito {
+    background-color: #ffffff;
+    position: absolute;
+    width: 4.375rem;
+    height: 4.375rem;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.boton-hamburguesa {
+    right: 15.625vw;
+    top: 3.25vh;
+}
+
+.boton-usuario {
+    right: 9.375vw;
+    top: 3.25vh;
+}
+
+.boton-carrito {
+    right: 3.125vw;
+    top: 3.25vh;
+}
+
+.img-hamburguesa,
+.img-usuario,
+.img-carrito {
+    width: 2.5rem;
+    height: auto;
+}
+
+/* Subtítulos */
+.subtitulo-2 {
+    font-family: "Newsreader", serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #D1A246;
+    position: absolute;
+    top: 22.5vh;
+    left: 2.5rem;
+    font-size: 2.8125rem;
+}

@@ -21,7 +21,7 @@ const App = ()=>{
       <Navigation />
       <Routes>
         <Route path='/' element={<Homepage/>}/>
-        <Route path='/Libros' element={<ListaLibros/>}/>
+        <Route path='/ListaLibros/:generoId' element={<ListaLibros />} />
         <Route path='/Carrito' element={<Carrito/>}/>
         <Route path='/Compra' element={<Compra/>}/>
         <Route path='/Favs' element={<Favoritos/>}/>

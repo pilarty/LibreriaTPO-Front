@@ -1,18 +1,381 @@
-.lista-libros {
+:root {
+    --color-primary: #D1A246;
+    --color-secondary: #297272;
+    --color-secondary-hover: #1a4146;
+    --color-border: #ccc;
+    --font-primary: "Newsreader", serif;
+    --font-secondary: "Inter", sans-serif;
+  }
+  
+  .subtituloTUCARRITO {
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    margin: 2rem 0 1rem 2rem;
+    padding-bottom: 0.5rem;
+    text-align: left;
+    font-weight: normal;
+    border-bottom: 1px solid var(--color-border);
+    width: 90%;
+    
+}
+  
+  .carrito-contenedor {
     display: flex;
-    flex-direction: column; /* Para que cada libro esté en una nueva línea */
-    align-items: flex-start; /* Alinear los elementos al principio (izquierda) */
-    width: 100%; /* Asegurarse de que ocupe todo el ancho disponible */
-    margin-left: 0; /* Para asegurarse de que no tenga margen a la izquierda */
-    padding: 0; /* Para eliminar cualquier relleno */
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 1.25rem auto;
+    border: 2px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: white;
+    padding: 1.25rem;
+    width: 90%;
+    max-width: 1200px;
+  }
+  
+  .lista-boton {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 1.25rem;
+  }
+  
+  
+  .encabezado-libro {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    gap: 1rem;
+    font-weight: bold;
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-secondary);
+    font-size: 1.25rem;
+  }
+  
+  .contenido-libro {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+
+    font-family: var(--font-secondary);
+    font-size: 1.125rem;
 }
 
-.encabezado-libro {
-    display: flex; /* Para mostrar encabezados uno al lado del otro */
-    justify-content: space-between; /* Espacio entre encabezados */
-    font-weight: bold; /* Hacer que los encabezados sean más destacados */
+  .producto-info {
+    flex: 3;
+    display: flex;
+    align-items: center;
+}
+  
+  .imagen-libro {
+    width: 3.75rem;
+    height: auto;
+    margin-right: 0rem;
+    margin-left: 8rem;
+}
+  
+.informacion-libro {
+  display: flex;
+  flex-direction: column;
 }
 
-.encabezado-libro p {
-    margin: 0 15px; /* Espacio horizontal de 15px entre los elementos */
+.informacion-libro h4 {
+  margin-left: 0.3rem;
+  margin-right: 1rem;
+  color: var(--color-primary);
+  font-weight: bold;
+  font-size: 1rem;
+}
+  
+.precio {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.cantidad {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cantidad button {
+  width: 1.5rem;
+  height: 1.4rem;
+  cursor: pointer;
+  background-color: var(--color-secondary);
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 0.70rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cantidad span {
+  margin: 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.subtotal {
+  flex: 1;
+  text-align: right;
+  font-size: 0.9rem;
+}
+  
+  .separator {
+    width: 2px;
+    background-color: var(--color-border);
+    margin: 0 1.25rem;
+    align-self: stretch;
+  }
+  
+  .recuadro-total {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: var(--font-secondary);
+  }
+  
+  .recuadro-total h3 {
+    width: 100%;
+    border-bottom: 2px solid var(--color-border);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .recuadro-total p {
+    font-size: 1.0625rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .recuadro-total button,
+  .seguir-comprando {
+    margin-top: 1rem;
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: normal;
+    transition: background-color 0.3s ease;
+  }
+  
+  .recuadro-total button:hover,
+  .seguir-comprando:hover {
+    background-color: var(--color-secondary-hover);
+  }
+
+  .cruz-container {
+    position: absolute;
+    margin-left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #060505;
+    transition: background-color 0.3s ease;
+}
+
+.cruz-container:hover {
+  background-color: #c0c0c0;
+}
+
+.cruz-container:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.imagen-container {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.carrito-vacio {
+  text-align: center; 
+  padding: 1.25rem; 
+  border-radius: 0.5rem; 
+  margin: 1.25rem 0; 
+}
+
+.carrito-vacio h3 { 
+  margin: 0.625rem 0; 
+  color: #333; 
+}
+
+.carrito-vacio button { 
+  margin-top: 0.625rem; 
+  padding: 0.625rem 0.9375rem; 
+  border: none; 
+  border-radius: 0.3125rem; 
+  background-color: var(--color-secondary); 
+  color: white; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+.carrito-vacio button:hover { 
+  background-color: var(--color-secondary-hover); 
+}
+
+.contenido-libro-wrapper {
+  position: relative; /* Para permitir que el overlay se posicione sobre el contenido */
+}
+
+.contenido-libro.eliminando {
+  opacity: 0.5; /* Reduce la visibilidad del contenido cuando se está eliminando */
+  pointer-events: none; /* Desactiva los eventos (clicks) cuando se está eliminando */
+}
+
+.overlay-cargando {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7); /* Fondo semitransparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10; /* Aseguramos que esté encima de todo */
+}
+
+.loading-spinner {
+  border: 0.125rem solid #f3f3f3; /* Borde con 2px equivalente en rem */
+  border-top: 0.125rem solid #f25a41; /* Parte superior del borde con 2px en rem */
+  border-radius: 50%;
+  width: 1.25rem; /* Ancho de 20px equivalente en rem */
+  height: 1.25rem; /* Altura de 20px equivalente en rem */
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/*LO DE LA PARTE DE ARRIBA*/
+
+.header-2 {
+  display: flex;         
+  align-items: center;        
+  justify-content: flex-start; 
+  padding: 0.625rem;              
+}
+
+.logo {
+  position: absolute;
+  left: 1.29%;
+  top: 5.5vh;
+  width: 2.4%;
+  height: auto;
+}
+
+.subtitulo {
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #D1A246;
+  position: absolute;
+  top: 0;
+  left: 2.5rem;
+  font-size: 3.125rem;
+}
+
+.boton-hamburguesa {
+  background-color: #ffffff;
+  position: absolute;
+  right: 15.625vw;
+  top: 3.25vh;
+  width: 4.375rem;
+  height: 4.375rem;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.img-hamburguesa {
+  width: 2rem;
+  height: auto;
+}
+
+.boton-usuario {
+  background-color: #ffffff;
+  position: absolute;
+  right: 9.375vw;
+  top: 3.25vh;
+  width: 4.375rem;
+  height: 4.375rem;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.img-usuario {
+  width: 4.375rem;
+  height: auto;
+}
+
+.subtitulo-2 {
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #D1A246;
+  position: absolute;
+  top: 22.5vh;
+  left: 2.5rem;
+  font-size: 2.8125rem;
+}
+
+.header-3 {
+  display: flex;         
+  align-items: center;        
+  justify-content: flex-start; 
+  padding: 0.625rem; 
+  position: absolute;
+  top: 24vh;
+  left: 20.3125rem;             
+}
+
+.text-vermas {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #5e83fa; 
+}
+
+.subtitulo-3 {
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  font-style: normal;
+  color: #D1A246;
+  position: absolute;
+  top: 82.3vh;
+  left: 2.5rem;
+  font-size: 2.8125rem;
+}
+
+.header-4 {
+  display: flex;         
+  align-items: center;        
+  justify-content: flex-start; 
+  padding: 0.625rem; 
+  position: absolute;
+  top: 84vh;
+  left: 15.625rem;             
 }
