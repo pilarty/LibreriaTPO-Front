@@ -112,7 +112,7 @@
     background-color: #ffffff;
 }
 
-.container {
+.contenedor {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -143,7 +143,7 @@
 }
 
 /* Información del libro */
-.book-details {
+.book-detalles {
     flex: 1;
     margin-left: 40px;
 }
@@ -158,6 +158,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
+    background-color: #ffffff;
 }
 
 /* Estilo del textarea */
@@ -172,7 +173,7 @@
 }
 
 /* Estilo del precio */
-.book-price {
+.book-precio {
     font-size: 1rem;
     color: #333;
     
@@ -197,7 +198,7 @@
 
 .menu-generos {
   position: absolute;
-  top: 792px; 
+  top: 737px; 
   right: 220px;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

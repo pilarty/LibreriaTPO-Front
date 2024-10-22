@@ -107,12 +107,12 @@ const PublicarLibro = () => {
     
           {menuVisible && <MenuDesplegable></MenuDesplegable>}
     
-          <div className="container">
+          <div className="contenedor">
             <div className="book-image">
               <img src="ruta_a_la_imagen" alt="imagen" />
             </div>
     
-            <div className="book-details">
+            <div className="book-detalles">
               <input
                 type="text"
                 className="input-field"
@@ -184,7 +184,7 @@ const PublicarLibro = () => {
               />
               <input
                 type="number"
-                className="input-field book-price"
+                className="input-field book-precio"
                 placeholder="Precio..."
                 value={preciop}
                 onChange={(e) => setPrecio(e.target.value)}
