@@ -8,6 +8,7 @@ const ListaLibros = ( ) => {
         { nombre: 'Otro libro', precio: 100 },
         { nombre: 'Libro especial', precio: 850 }
     ];
+    //// const mailUsuario = sessionStorage.getItem('userEmail'); // DESCOMENTARLO
     const mailUsuario = "pgarcia@uade.edu.ar"
 
     const [posts, setPost] = useState([]);
