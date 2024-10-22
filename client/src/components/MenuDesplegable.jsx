@@ -7,7 +7,7 @@ const MenuDesplegable = () => {
 
     const [posts, setPost] = useState([]);
 
-    const [esAdmin, setEsAdmin] = useState(true);
+    const [esAdmin, setEsAdmin] = useState(false);
     const navigate = useNavigate();
 
     const emailUsuario = sessionStorage.getItem('mail');

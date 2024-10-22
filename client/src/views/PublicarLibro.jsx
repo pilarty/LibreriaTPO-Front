@@ -13,6 +13,7 @@ const PublicarLibro = () => {
     const navigate = useNavigate();
     const generosRef = useRef(null);
     const buttonGenerosRef = useRef(null);
+    const imagenRef = useRef(null);
 
     const [menuVisible, setMenuVisible] = useState(false);
     const [menuGenerosVisible, setMenuGenerosVisible] = useState(false);
@@ -28,6 +29,7 @@ const PublicarLibro = () => {
     const [stockp, setStock] = useState("");
     const [preciop, setPrecio] = useState("");
     const [posts, setPost] = useState([]);
+    const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
     const manejarUsuario = () => {
         navigate("/Usuario");
       }
@@ -48,6 +50,31 @@ const PublicarLibro = () => {
         setAutor(autores);
       };
 
+      const handleImagenChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImagenSeleccionada(file);
+        }
+      };
+
+      const postImagenes = async () => {
+        const formData = new FormData();
+        formData.append('name', titulop);
+        formData.append('isbn', isbnp);
+        formData.append('file', imagenSeleccionada);
+        fetch("http://localhost:4002/images", {
+          method: 'post',
+          body: formData
+          })
+        .then(response => response.json()) // Manejo de la respuesta
+        .then(data => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+
       const transformarGenero = async () => {
         const response = await fetch(`http://localhost:4002/generos/${generoSeleccionado}/idByNombre`);
         const data = await response.json();
@@ -57,6 +84,7 @@ const PublicarLibro = () => {
 
       const manejarPublicar = async () => {
         const generoIdp = await transformarGenero();
+        
         console.log(generoIdp);
         fetch("http://localhost:4002/libros", {
         method: 'post',
@@ -78,8 +106,10 @@ const PublicarLibro = () => {
           })
         })
           .then((response) => response.json())
-          .then((data) => {
-            console.log(data)
+          .then(async (data) => {
+            console.log("Libro creado:", data);
+            await postImagenes();
+            alert("Libro publicado exitosamente");
           })
           .catch((error) => {
             console.error("Error al obtener los datos: ", error)
@@ -108,9 +138,17 @@ const PublicarLibro = () => {
           {menuVisible && <MenuDesplegable></MenuDesplegable>}
     
           <div className="contenedor">
-            <div className="book-image">
-              <img src="ruta_a_la_imagen" alt="imagen" />
+            <div className="book-image" onClick={() => imagenRef.current.click()}> {/* Abrir input al hacer clic */}
+              <img src={imagenSeleccionada ? URL.createObjectURL(imagenSeleccionada) : "ruta_a_la_imagen"} alt="imagen" />
             </div>
+            <input
+              type="file"
+              className="input-field"
+              accept="image/*"
+              onChange={handleImagenChange}
+              ref={imagenRef} 
+              style={{ display: 'none' }}
+            />
     
             <div className="book-detalles">
               <input
