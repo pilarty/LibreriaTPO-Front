@@ -12,7 +12,7 @@ const ListaLibrosListaLibros = ({ libros, loading }) => {
 
     return (
         <>
-        <div className="libros-container">
+        <div className="libros-containerPILAR">
                 {libros.map((libro) => (
                     <LibroListaLibros 
                         key={libro.isbn}

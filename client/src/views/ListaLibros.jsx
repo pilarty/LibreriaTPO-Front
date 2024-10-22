@@ -74,9 +74,9 @@ const ListaLibros = () => {
         {menuVisible && <MenuDesplegable />}
 
         <div className="containerPILAR">
-            <div className="title-container">
-                <h1 className="title">{generoNombre}</h1>
-                <h2 className="subtitle">Libros del género {generoNombre}</h2>
+            <div className="title-containerPILAR">
+                <h1 className="titlePILAR">{generoNombre}</h1>
+                <h2 className="subtitlePILAR">Libros del género {generoNombre}</h2>
             </div>
             <hr></hr>
             <ListaLibrosListaLibros libros={libros} loading={loading} />
