@@ -23,7 +23,7 @@ const TotalCarrito = ({ emailUsuario }) => {
     };
 
     return (
-        <div className="recuadro-total"> 
+        <div className="recuadro-totalPILAR"> 
             <h3>Total del carrito</h3>
             <p>Envío: Podrás cambiar datos de envío y/o calcular el costo en el próximo paso.</p>
             <p>Subtotal: ${subtotal.toFixed(2)}</p> 

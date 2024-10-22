@@ -84,7 +84,7 @@ const Carrito = () => {
                                 emailUsuario={emailUsuario} 
                                 onDelete={eliminarLibroDelCarrito}
                             />
-                            <button className="seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
+                            <button className="seguir-comprandoPILAR" onClick={manejarSeguirComprando}>Seguir comprando</button>
                         </>
                     )}
                 </div>

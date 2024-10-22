@@ -4,7 +4,7 @@ const LibroCarritoList = ({ productosCarrito, emailUsuario, onDelete }) => {
 
     return (
         <>
-            <div className="encabezado-libro">
+            <div className="encabezado-libroPILAR">
                 <p>Producto/s</p>
                 <p>Precio</p>
                 <p>Cantidad</p>
