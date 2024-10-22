@@ -6,8 +6,10 @@ import Carrito from '../assets/Carrito.png';
 import Hamburguesa from '../assets/hamburguesa.png';
 import { useNavigate } from 'react-router-dom';
 import { useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 
 const LibroSolo = () => {
+    //const { isbn } = useParams()
     const isbn = 1005;
     const [menuVisible, setMenuVisible] = useState(false);
     const [cantidad, setCantidad] = useState(1); // Estado para la cantidad seleccionada
