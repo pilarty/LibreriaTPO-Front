@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect} from 'react';
 
 const LibroSolo = () => {
+    const isbn = 1002;
     const [menuVisible, setMenuVisible] = useState(false);
     const [cantidad, setCantidad] = useState(1); // Estado para la cantidad seleccionada
     const navigate = useNavigate();
@@ -68,19 +69,23 @@ const LibroSolo = () => {
     };
 
     const [post, setPost] = useState([]);
-    const [isbn, setisbn] = useState([]);
+    //const [isbn, setisbn] = useState([]);
+
+    
 
     useEffect(() => {
       fetch(`http://localhost:4002/libros/${isbn}`)
         .then((response) => response.json())
         .then((data) => {
           console.log(data)
-          setPost(data.content);
+          setPost(data);
         })
         .catch((error) => {
           console.error("Error al obtener los datos: ", error)
         })
     }, []);
+
+    const imageSrc = post.image ? `data:image/jpeg;base64,${post.image}` : 'default-image-path.jpg';
 
 
     return (
@@ -108,14 +113,28 @@ const LibroSolo = () => {
                 {/* Imagen y Título */}
                 <div className="libro-imagen-seccion">
                     <div className="libro-imagen-placeholder">
-                        <img src="https://via.placeholder.com/300x400" alt="Imagen del Libro" />
+                        <img src={imageSrc} alt="Imagen del Libro" />
                     </div>
-                    <h2 className="titulo-libro">LA MUJER MEDICINA. EL ORÁCULO</h2>
+                    <h2 className="titulo-libro">{post.titulo}</h2>
                 </div>
 
                 {/* Detalles del libro */}
                 <div className="libro-detalles">
-                    <p className="precio">$50</p>
+                    <div className="libro-info">
+                        <h3>{post.autor}</h3>
+                        <p>
+                            {post.descripcion}
+                        </p>
+                        <p>
+                            <strong>Editorial:</strong> {post.editorial}<br />
+                            <strong>Edicion:</strong> {post.edicion}<br />
+                            <strong>Idioma:</strong> {post.idioma}<br />
+                            <strong>Páginas:</strong> {post.cantPaginas}<br />
+                            <strong>ISBN:</strong> {post.isbn}<br />
+                            <strong>Géneros:</strong> {post.genero} <br />
+                        </p>
+                    </div>
+                    <p className="precio">${post.precio}</p>
 
                     {/* Selector de cantidad */}
                     <div className="selector-cantidad">
@@ -132,21 +151,6 @@ const LibroSolo = () => {
                     <button className="boton-agregar" onClick={() => manejarAgregarACarrito(post.isbn, cantidad)}>
                         Agregar {cantidad} al carrito
                     </button>
-
-                    <div className="libro-info">
-                        <h3>CATHERINE MAILLARD</h3>
-                        <p>
-                            {post.descripcion}
-                        </p>
-                        <p>
-                            <strong>Editorial:</strong> {post.editorial}<br />
-                            <strong>Edicion:</strong> {post.edicion}<br />
-                            <strong>Idioma:</strong> {post.idioma}<br />
-                            <strong>Páginas:</strong> {post.cantPaginas}<br />
-                            <strong>ISBN:</strong> {post.isbn}<br />
-                            <strong>Géneros:</strong> {post.genero} <br />
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
