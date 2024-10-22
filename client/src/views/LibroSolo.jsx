@@ -120,6 +120,24 @@ const LibroSolo = () => {
                         <img src={imageSrc} alt="Imagen del Libro" />
                     </div>
                     <h2 className="titulo-libro">{post.titulo}</h2>
+
+                    <div className="precio-cantidad">
+                        <p className="precio">${post.precio}</p>
+
+                    {/* Selector de cantidad */}
+
+                <div className="selector-cantidad">
+                <label htmlFor="cantidad" className="cantidad-label">Cantidad: </label>
+                <select id="cantidad" value={cantidad} onChange={manejarCambioCantidad}>
+                {[...Array(10).keys()].map((n) => (
+                    <option key={n + 1} value={n + 1}>
+                        {n + 1}
+                    </option>
+                ))}
+                 </select>
+
+                </div>
+                </div>
                 </div>
 
                 {/* Detalles del libro */}
@@ -138,26 +156,14 @@ const LibroSolo = () => {
                             <strong>Géneros:</strong> {post.genero} <br />
                         </p>
                     </div>
-                    <p className="precio">${post.precio}</p>
-
-                    {/* Selector de cantidad */}
-                    <div className="selector-cantidad">
-                        <label htmlFor="cantidad">Cantidad: </label>
-                        <select id="cantidad" value={cantidad} onChange={manejarCambioCantidad}>
-                            {[...Array(10).keys()].map((n) => (
-                                <option key={n + 1} value={n + 1}>
-                                    {n + 1}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
 
                     <button className="boton-agregar" onClick={() => manejarAgregarACarrito(post.isbn, cantidad)}>
                         Agregar {cantidad} al carrito
                     </button>
                 </div>
             </div>
-        </div>
+    </div>
+    
     );
 };
 

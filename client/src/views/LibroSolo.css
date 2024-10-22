@@ -74,7 +74,7 @@
 /* Estilos del contenedor del libro */
 .libro-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: flex-start;
   margin-top: 40px;
   padding: 20px;
@@ -95,13 +95,14 @@
 .libro-imagen-placeholder {
   width: 300px;
   height: 400px;
-  background-color: #eee8e8; /* Color gris claro */
+  background-color: #ffffff; /* Color gris claro */
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid #d6d6d6;
+  margin-left: 500px;
 }
 
 .libro-imagen-placeholder img {
@@ -117,6 +118,7 @@
   text-align: center;
   color: #000; /* Título en negro */
   font-weight: bold;
+  margin-left: 500px;
 }
 
 /* Detalles del libro */
@@ -125,14 +127,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 10px;
 }
 
+.precio-cantidad {
+  display: flex;
+  align-items: center; /* Alinea verticalmente el precio y la cantidad en el centro */
+  justify-content: flex-start; /* Centra el contenido horizontalmente */
+  gap: 80px; /* Espacio entre el precio y el selector de cantidad */
+  margin-top: 20px; /* Añade un poco de espacio encima del precio y la cantidad */
+  margin-left: 500px;
+}
 /* Precio en dorado */
 .precio {
-  font-size: 22px;
-  color: #c49b34; /* Dorado */
-  margin: 10px 0;
-  font-weight: bold;
+  font-size: 24px; /* Tamaño del precio */
+  font-weight: bold; /* Negrita para el precio */
+  color: #c49b34; /* Color dorado */
+  margin: 0;
+  line-height: 1; /* Elimina márgenes si hay alguno */
 }
 
 /* Botón de agregar al carrito */
@@ -143,7 +155,7 @@
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 20px;
   transition: background-color 0.3s ease;
 }
@@ -168,18 +180,26 @@
   cursor: pointer;
 }
 
+.cantidad-label {
+  font-size: 24px; /* Aumenta este valor según lo que necesites */
+  font-weight: bold;
+  line-height: 1; /* Opcional, para hacer el texto en negrita */
+}
+
 /* Información del libro */
 .libro-info h3 {
-  font-size: 20px;
+  font-size: 30px;
   margin-top: 20px;
-  color: #000; /* Títulos dentro de la información en negro */
+  color: #0b5a40; /* Títulos dentro de la información en negro */
   font-weight: bold;
+  text-align: left;
 }
 
 .libro-info p {
-  margin: 5px 0;
+  margin: 35px 0;
   color: #000; /* Párrafos en negro */
   line-height: 1.6;
+  text-align: left;
 }
 
 .libro-info strong {
