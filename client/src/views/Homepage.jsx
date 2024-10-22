@@ -6,6 +6,7 @@ import Carrito from '../assets/Carrito.png'
 import Hamburguesa from '../assets/hamburguesa.png'
 import lupa from '../assets/lupa.png';
 import CardLibroList from "../components/CardLibroList";
+import CardLibroListNovedades from "../components/CardLibroListNovedades";
 import MenuDesplegable from "../components/MenuDesplegable";
 import { Link } from "react-router-dom"
 import { useNavigate } from 'react-router-dom';
@@ -68,7 +69,7 @@ const Homepage = () => {
           </div>
           <div className="subtitulo-3">Novedades</div>
           <div className="lista-libros-2">
-            <CardLibroList></CardLibroList>
+            <CardLibroListNovedades></CardLibroListNovedades>
           </div>
           <div className="header-4">
           <Link className="text-vermas" to="/Libros">Ver más</Link>
