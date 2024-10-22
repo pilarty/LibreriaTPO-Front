@@ -9,8 +9,8 @@ const Navigation = () => {
         location.pathname === '/Carrito' || 
         location.pathname === '/publicarLibro' || 
         location.pathname === '/Compra' ||
-        location.pathname === '/Libro' ||
-        /^\/ListaLibros\/\d+$/.test(location.pathname) // Verifica si la ruta comienza con '/ListaLibros/' y sigue con un número
+        /^\/ListaLibros\/\d+$/.test(location.pathname) || // Verifica si la ruta comienza con '/ListaLibros/' y sigue con un número
+        /^\/Libro\/\d+$/.test(location.pathname)
     ) {
         return null; // No renderiza nada en estas páginas
     }

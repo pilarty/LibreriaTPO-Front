@@ -22,6 +22,7 @@ const App = ()=>{
       <Routes>
         <Route path='/' element={<Homepage/>}/>
         <Route path='/ListaLibros/:generoId' element={<ListaLibros />} />
+        <Route path='/Libro/:isbn' element={<LibroSolo />} />
         <Route path='/Carrito' element={<Carrito/>}/>
         <Route path='/Compra' element={<Compra/>}/>
         <Route path='/Favs' element={<Favoritos/>}/>

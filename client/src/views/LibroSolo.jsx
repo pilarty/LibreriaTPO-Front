@@ -9,8 +9,9 @@ import { useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 
 const LibroSolo = () => {
-    //const { isbn } = useParams()
-    const isbn = 1005;
+
+    const {isbn } = useParams();
+    //const isbn = 1005;
     const [menuVisible, setMenuVisible] = useState(false);
     const [cantidad, setCantidad] = useState(1); // Estado para la cantidad seleccionada
     const navigate = useNavigate();
@@ -86,7 +87,7 @@ const LibroSolo = () => {
         .catch((error) => {
           console.error("Error al obtener los datos: ", error)
         })
-    }, []);
+    }, [isbn]);
 
     const imageSrc = post.image ? `data:image/jpeg;base64,${post.image}` : 'default-image-path.jpg';
 
