@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-import logo from './assets/logo.png';
+import logo from '../assets/logo.png';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ const LoginPage = () => {
 
   return (
     <>
-    <div class="container">
+    <div classname="container">
       <img src={logo} alt="Logo de The Golden Feather" className="logo" />
       <h1>
         Bienvenido de nuevo a <br />

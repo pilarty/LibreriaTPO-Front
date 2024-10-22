@@ -13,6 +13,7 @@ import LibroSolo from './LibroSolo'
 import Registrarse from './Registrarse'
 import Usuario from './Usuario'
 import PublicarLibro from './PublicarLibro'
+import LoginPage from './LoginPage'
 
 const App = ()=>{
 
@@ -30,6 +31,7 @@ const App = ()=>{
         <Route path='/Registrarse' element={<Registrarse/>}/>
         <Route path='/Usuario' element={<Usuario/>}/>
         <Route path='/publicarLibro' element={<PublicarLibro/>}/>
+        <Route path='/LoginPage' element={<LoginPage/>}/>
       </Routes>
     
     </>
