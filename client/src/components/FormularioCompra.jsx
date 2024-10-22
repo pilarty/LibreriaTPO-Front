@@ -24,6 +24,7 @@ const FormularioCompra = () => {
             ...formulario,
             [e.target.name]: e.target.value
         });
+        obtenerGift()
     };
 
     const handleRealizarCompra = () => {
@@ -114,7 +115,7 @@ const FormularioCompra = () => {
                         id="giftCard"
                         placeholder="Gift Card"
                         value={formulario.gifcard}
-                        onChange={handleChange, obtenerGift}
+                        onChange={handleChange}
                     /> 
                     
                 </div>

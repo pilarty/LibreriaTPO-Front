@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect} from 'react';
 
 const LibroSolo = () => {
-    const isbn = 1002;
+    const isbn = 1005;
     const [menuVisible, setMenuVisible] = useState(false);
     const [cantidad, setCantidad] = useState(1); // Estado para la cantidad seleccionada
     const navigate = useNavigate();
@@ -34,12 +34,16 @@ const LibroSolo = () => {
     const emailUsuario = "pgarcia@uade.edu.ar";
     // const emailUsuario = sessionStorage.getItem('userEmail'); // DESCOMENTARLO
  
+
+    const [post, setPost] = useState([]);
+    //const [isbn, setisbn] = useState([]);
+
     const manejarAgregarACarrito = (isbn, cantidad) => {
         if (!emailUsuario) {
             navigate('/LoginPage');
         } else {
             const requestBody = {
-                cantidad: {cantidad},
+                cantidad: cantidad,
                 isbn: isbn,
                 carrito_mail: emailUsuario
             };
@@ -67,9 +71,6 @@ const LibroSolo = () => {
             });
         }
     };
-
-    const [post, setPost] = useState([]);
-    //const [isbn, setisbn] = useState([]);
 
     
 
