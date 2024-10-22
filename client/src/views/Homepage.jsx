@@ -13,7 +13,7 @@ import { useState } from 'react';
 
 
 const Homepage = () => {
-
+ //funciones que fueron llamadas en el return
   const navigate = useNavigate();
 
   const [menuVisible, setMenuVisible] = useState(false);
