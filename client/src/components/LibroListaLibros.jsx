@@ -7,8 +7,8 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
     const navigate = useNavigate();
     const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
 
-    const emailUsuario = "pgarcia@uade.edu.ar";
-    // const emailUsuario = sessionStorage.getItem('userEmail'); // DESCOMENTARLO
+    
+    const emailUsuario = sessionStorage.getItem('mail');
 
     const manejarAgregarACarrito = (isbn) => {
         if (!emailUsuario) {
