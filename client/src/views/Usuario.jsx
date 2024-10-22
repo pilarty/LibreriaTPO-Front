@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Usuario.css'; 
+import logo from '../assets/logo.png';
 
-const ProfilePage = () => {
+const Usuario = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
     nombre_usuario: '',
@@ -95,8 +96,8 @@ const ProfilePage = () => {
 
   return (
     <div className="usuario-container">
+      <img src={logo} alt="Logo de The Golden Feather" className="usuario-logo" />
       <div className="usuario-header">
-        <img src="/logo.png" alt="Profile" className="usuario-profileImage" />
         <h1 className="usuario-title">{'Hola ' + profile.nombre+'!'}</h1>
         <h2 className="usuario-editTitle">Editar</h2>
       </div>
@@ -152,4 +153,5 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default Usuario;
+
