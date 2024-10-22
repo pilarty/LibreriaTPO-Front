@@ -16,19 +16,24 @@ const ProfilePage = () => {
   const [contraseña, setContraseña] = useState('');
 
   const mail = sessionStorage.getItem('mail');
-  console.log('Valor de mail:', mail);
 
+  useEffect(() => {
+      if (!mail) {
+          navigate('/LoginPage'); 
+      }
+  }, [mail, navigate]);
 
   // Fetch de datos del perfil previo a la edicion
   useEffect(() => {
-    const mail = sessionStorage.getItem('mail');
-    fetch(`http://localhost:4002/usuarios/mail/${mail}`)
-      .then(response => response.json())
-      .then(data => {
-        console.log('Datos recibidos del GET:', data); // Para ver la estructura exacta
-        setProfile(data); 
-      })
-      .catch(error => console.error('Error al obtener el perfil:', error));
+    if (mail) {
+      fetch(`http://localhost:4002/usuarios/mail/${mail}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Datos recibidos del GET:', data); // Para ver la estructura exacta
+          setProfile(data); 
+        })
+        .catch(error => console.error('Error al obtener el perfil:', error));
+    }
   }, [mail]);
 
   const handleEditProfile = async () => {
