@@ -9,11 +9,11 @@ import TotalCarrito from "../components/TotalCarrito";
 import './Carrito.css'; 
 
 const Carrito = () => {
-    const navigate = useNavigate();
+    
     const [productosCarrito, setProductosCarrito] = useState([]);
     const [menuVisible, setMenuVisible] = useState(false);
-    const emailUsuario = "pgarcia@uade.edu.ar";
-    //const emailUsuario = sessionStorage.getItem('userEmail'); DESCOMENTARLO
+    const emailUsuario = sessionStorage.getItem('mail');
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!emailUsuario) {
