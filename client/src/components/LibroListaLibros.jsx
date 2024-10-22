@@ -45,23 +45,23 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
     };
     
     return (
-        <div className="book-container">
-            <img src={imageSrc} alt={titulo} className="book-image" />
-            <div className="book-details">
-                <div className="book-header">
+        <div className="book-containerPILAR">
+            <img src={imageSrc} alt={titulo} className="book-imagePILAR" />
+            <div className="book-detailsPILAR">
+                <div className="book-headerPILAR">
                     <div>
-                        <h3 className="book-title">{titulo}</h3>
-                        <p className="book-author">{autor}</p>
+                        <h3 className="book-titlePILAR">{titulo}</h3>
+                        <p className="book-authorPILAR">{autor}</p>
                     </div>
                     <div className="flex items-center">
-                        <span className="book-price">${precio}</span>
-                        <button className="cart-button" onClick={() => manejarAgregarACarrito(isbn)}>
+                        <span className="book-pricePILAR">${precio}</span>
+                        <button className="cart-buttonPILAR" onClick={() => manejarAgregarACarrito(isbn)}>
                             <img className="img-carrito" src={Carrito} alt="Carrito" />
                         </button>
                     </div>
                 </div>
-                <h4 className="synopsis-title">Sinopsis</h4>
-                <p className="synopsis-text">{sinopsis}</p>
+                <h4 className="synopsis-titlePILAR">Sinopsis</h4>
+                <p className="synopsis-textPILAR">{sinopsis}</p>
             </div>
         </div>
     );
