@@ -32,7 +32,6 @@ const ProfilePage = () => {
   }, [mail]);
 
   const handleEditProfile = async () => {
-    const mail = sessionStorage.getItem('mail');
     try {
       
       const updateData = {
@@ -45,7 +44,7 @@ const ProfilePage = () => {
 
       console.log('Datos a enviar en PUT:', updateData); // Para ver que  envio
 
-      const response = await fetch(`http://localhost:4002/usuarios/mail/${mail}`, {
+      const response = await fetch(`http://localhost:4002/usuarios/${profile.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -71,8 +70,8 @@ const ProfilePage = () => {
   // Eliminar Usuario
   const handleDeleteAccount = () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar tu cuenta?')) {
-      const mail = sessionStorage.getItem('mail');
-      fetch(`http://localhost:4002/usuarios/mail/${mail}`, {
+
+      fetch(`http://localhost:4002/usuarios/${profile.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -93,7 +92,7 @@ const ProfilePage = () => {
     <div className="container">
       <div className="header">
         <img src="/logo.png" alt="Profile" className="profileImage" />
-        <h1 className="title">{'Hola, ' + profile.nombre}</h1>
+        <h1 className="title">{'Hola ' + profile.nombre+'!'}</h1>
         <h2 className="editTitle">Editar</h2>
       </div>
 

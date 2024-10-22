@@ -40,6 +40,8 @@ const LoginPage = () => {
       }
 
       const data = await response.json();
+      sessionStorage.setItem('authToken', data.access_token);
+      sessionStorage.setItem('mail', mail); // Guardando el correo
       
       // asumiendo que el backend devuelve un token o mensaje de éxito
       console.log('Inicio de sesión exitoso', data);

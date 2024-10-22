@@ -6,6 +6,7 @@ import logo from './assets/logo.png';
 const Registrarse = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    id: '',
     nombre: '',
     apellido: '',
     mail: '',
@@ -47,6 +48,7 @@ const Registrarse = () => {
         const data = await response.json();
         sessionStorage.setItem('authToken', data.access_token);
         sessionStorage.setItem('mail', formData.mail); // Guardando el correo
+
   
         // Redirigir al HomePage
         navigate('/');
