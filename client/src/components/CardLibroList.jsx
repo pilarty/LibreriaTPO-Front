@@ -4,14 +4,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CardLibro from "./CardLibro";
 import "../views/Homepage.css"
+import { Link } from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 
 const CardLibroList = () => {
 
-  const manejarLibros = () => {
-    //ToDo
+  const navigate2 = useNavigate();
+
+  const manejarLibros = (isbn) => {
+    navigate2(`/Libro/${isbn}`);
   }
+
 
     const [posts, setPost] = useState([]);
 
@@ -68,7 +73,7 @@ const CardLibroList = () => {
        <Slider {...settings} className="lista-libros">
               {posts.map((post) =>(
                 <div className="carrusel-item">
-                <button className="boton-libros" onClick={manejarLibros}>
+                <button className="boton-libros" onClick={() => manejarLibros(post.isbn)}>
                   <CardLibro
                     key = {post.isbn}
                     titulo = {post.titulo}
