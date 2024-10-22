@@ -4,6 +4,11 @@ const Navigation = () => {
     if (location.pathname === '/') { {/*SACAR */}
         return null; // No renderiza nada en la página del inicio
 }
+
+if (location.pathname === '/publicarLibro') { {/*SACAR */}
+        return null;
+} 
+
     return(
         <nav>
             <ul>
@@ -37,6 +42,10 @@ const Navigation = () => {
                 </li>
                 <li>
                     <Link to="/Usuario">Usuario</Link>
+
+                </li>
+                <li>
+                    <Link to="/publicarLibro">PublicarLibro</Link>
 
                 </li>
             </ul>
