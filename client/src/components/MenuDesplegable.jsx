@@ -8,6 +8,25 @@ const MenuDesplegable = () => {
 
     const [esAdmin, setEsAdmin] = useState(true);
 
+    //const emailUsuario = sessionStorage.getItem('userEmail'); DESCOMENTARLO
+    const emailUsuario = "csalemme@uade.edu.ar"
+    useEffect(() => {
+      fetch(`http://localhost:4002/usuarios/mail/${emailUsuario}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          if (data.role === "ADMIN") {
+            setEsAdmin(true); 
+          } else {
+            setEsAdmin(false); 
+          }
+        })
+        .catch((error) => {
+          console.error("Error al obtener los datos: ", error)
+        })
+  } , []);
+
+
     useEffect(() => {
       fetch("http://localhost:4002/generos")
         .then((response) => response.json())
