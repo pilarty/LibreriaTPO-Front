@@ -9,9 +9,9 @@ import TotalCarrito from "../components/TotalCarrito";
 import './Carrito.css'; 
 
 const Carrito = () => {
+    
     const [productosCarrito, setProductosCarrito] = useState([]);
     const [menuVisible, setMenuVisible] = useState(false);
-    
     const emailUsuario = sessionStorage.getItem('mail');
     const navigate = useNavigate();
 

@@ -34,8 +34,7 @@ const LibroSolo = () => {
         setCantidad(event.target.value);
     };
 
-    const emailUsuario = "pgarcia@uade.edu.ar";
-    // const emailUsuario = sessionStorage.getItem('userEmail'); // DESCOMENTARLO
+    const emailUsuario = sessionStorage.getItem('mail');
  
 
     const [post, setPost] = useState([]);
