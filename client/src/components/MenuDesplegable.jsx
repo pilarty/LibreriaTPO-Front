@@ -1,15 +1,17 @@
 import "../views/Homepage.css"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MenuDesplegable = () => {
 
     const [posts, setPost] = useState([]);
 
     const [esAdmin, setEsAdmin] = useState(true);
+    const navigate = useNavigate();
 
-    //const emailUsuario = sessionStorage.getItem('userEmail'); DESCOMENTARLO
-    const emailUsuario = "csalemme@uade.edu.ar"
+    const emailUsuario = sessionStorage.getItem('mail');
+    //const emailUsuario = "csalemme@uade.edu.ar"
     useEffect(() => {
       fetch(`http://localhost:4002/usuarios/mail/${emailUsuario}`)
         .then((response) => response.json())
@@ -39,6 +41,12 @@ const MenuDesplegable = () => {
         })
     }, []);
 
+    const handleLogout = () => {
+      sessionStorage.removeItem('authToken');
+      sessionStorage.removeItem('mail');
+      navigate('/LoginPage');
+    };
+
     return (
         <div className="menu-hamburguesa">
           <ul>
@@ -55,6 +63,12 @@ const MenuDesplegable = () => {
                 </li>
               </>
             )}
+            <hr className="linea-divisora" />
+            <li>
+              <a onClick={handleLogout} className="cerrar-link">
+                Cerrar sesión
+              </a>
+          </li>
       </ul>
     </div>
     )

@@ -32,6 +32,7 @@ const Homepage = () => {
   const manejarBusqueda = () => {
     navigate("/Libros"); 
   }
+
   
     return (
         <div>

@@ -76,7 +76,7 @@
 
   .menu-hamburguesa {
     position: absolute;
-    top: 90px; 
+    top: 4rem; 
     right: 420px;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
