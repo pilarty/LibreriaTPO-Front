@@ -67,13 +67,13 @@ const Carrito = () => {
 
             {menuVisible && <MenuDesplegable />}
 
-            <h2 className="subtituloTUCARRITO">Tu Carrito</h2>
+            <h2 className="carrito-subtitulo">Tu Carrito</h2>
             <div className="carrito-contenedor">
-                <div className="lista-boton">
+                <div className="carrito-listaLibros-seguirComprando">
                     {productosCarrito.length === 0 ? (
-                        <div className="carrito-vacio">
+                        <div className="carrito-carrito-vacio">
                             <h3>Tu carrito está vacío.</h3>
-                            <button className="volver-tiendas" onClick={manejarSeguirComprando}>
+                            <button onClick={manejarSeguirComprando}>
                                 Volver a la tienda
                             </button>
                         </div>
