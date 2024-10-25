@@ -78,26 +78,25 @@ const LibroCarrito = ({ image, titulo, precio, cantidad, isbn, carrito_mail, onD
     };
 
     return (
-        <div className="contenido-libroPILAR">
-            <div className="producto-infoPILAR">
-                <div className="imagen-container">
-                    <button className="cruz-container" onClick={eliminarDelCarrito}>
-                        &#10005; {/* Unicode 'x' symbol */}
+        <div className="libroCarrito-contenido-libro">
+            <div className="libroCarrito-producto-info">
+                <div className="libroCarrito-imagen-container">
+                    <button className="libroCarrito-cruz-container" onClick={eliminarDelCarrito}>
+                        &#10005;
                     </button>
-                    {/*<img src={link_imagen} className="imagen-libro" alt={titulo} />*/}
-                    <img className="imagen-libroPILAR" src={imageSrc} alt="Imagen" />
+                    <img className="libroCarrito-imagen-libro" src={imageSrc} alt="Imagen" />
                 </div>
-                <div className="informacion-libroPILAR">
+                <div className="libroCarrito-informacion-libro">
                     <h4>{titulo}</h4>
                 </div>
             </div>
-            <div className="precioPILAR">${precio.toFixed(2)}</div>
-            <div className="cantidadPILAR">
+            <div className="libroCarrito-precio">${precio.toFixed(2)}</div>
+            <div className="libroCarrito-cantidad">
                 <button onClick={manejarDecrementar}>-</button>
                 <span>{cantidadActual}</span>
                 <button onClick={manejarIncrementar}>+</button>
             </div>
-            <div className="subtotalPILAR">${subtotal.toFixed(2)}</div>
+            <div className="libroCarrito-subtotal">${subtotal.toFixed(2)}</div>
         </div>
     );
 };

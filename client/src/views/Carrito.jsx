@@ -84,13 +84,13 @@ const Carrito = () => {
                                 emailUsuario={emailUsuario} 
                                 onDelete={eliminarLibroDelCarrito}
                             />
-                            <button className="seguir-comprandoPILAR" onClick={manejarSeguirComprando}>Seguir comprando</button>
+                            <button className="carrito-seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
                         </>
                     )}
                 </div>
                 {productosCarrito.length > 0 && (
                     <>
-                        <div className="separator"></div>
+                        <div className="carrito-separador"></div>
                         <TotalCarrito emailUsuario={emailUsuario} />
                     </>
                 )}

@@ -1,33 +1,29 @@
-/* Variables de Color y Fuente */
 :root {
-    --color-primary: #D1A246;  /* Color primario */
-    --color-secondary: #297272;  /* Color secundario */
-    --color-border: #ccc;  /* Color del borde */
-    --font-primary: "Newsreader", serif;  /* Fuente principal */
-    --font-secondary: "Inter", sans-serif;  /* Fuente secundaria */
+    --color-primary: #D1A246;  
+    --color-secondary: #297272; 
+    --color-border: #ccc;
+    --font-primary: "Newsreader", serif; 
+    --font-secondary: "Inter", sans-serif; 
 }
 
-/* Contenedor principal */
-.containerPILAR {
+.listaLibros-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin: 1.25rem auto;
     padding: 2rem;
     width: 90%;
-    /*max-width: 1400px;*/
     box-shadow: none; 
 }
 
-/* Títulos */
-.title-containerPILAR {
+.listaLibros-title-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 0;
 }
 
-.titlePILAR {
+.listaLibros-title {
     font-family: var(--font-primary);
     color: var(--color-primary);
     font-size: 7rem;
@@ -38,7 +34,7 @@
     border-bottom: 1px solid var(--color-border);
 }
 
-.subtitlePILAR {
+.listaLibros-subtitle {
     font-family: var(--font-primary);
     color: gray; 
     font-size: 4rem; 
@@ -47,8 +43,7 @@
     font-weight: normal;
 }
 
-/* Contenedor de Libros */
-.libros-containerPILAR {
+.listaLibrosListaLibros-libros-container {
     display: flex; 
     flex-direction: column; 
     align-items: flex-start; 
@@ -64,8 +59,7 @@
     flex-wrap: wrap;
 }
 
-/* Contenedor de cada Libro */
-.book-containerPILAR {
+.libroListaLibros-book-container {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -79,30 +73,26 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo de la Imagen del Libro */
-.book-imagePILAR {
+.libroListaLibros-book-image {
     width: 12rem;  
     height: 18rem; 
     border-radius: 1.5rem;
     object-fit: cover;
 }
 
-/* Detalles del Libro */
-.book-detailsPILAR {
+.libroListaLibros-book-details {
     flex-grow: 1;
     margin-left: 1.5rem;
     text-align: left;
 }
 
-/* Encabezado de Libro */
-.book-headerPILAR {
+.libroListaLibros-book-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-/* Títulos y Precios de Libros */
-.book-titlePILAR {
+.libroListaLibros-book-title {
     font-size: 2rem;
     font-weight: 700;
     color: black;
@@ -111,7 +101,7 @@
     font-family: var(--font-secondary);
 }
 
-.book-authorPILAR {
+.libroListaLibros-book-author {
     font-size: 2rem;
     font-weight: bolder;
     color: #287271;
@@ -120,23 +110,21 @@
     font-family: var(--font-secondary);
 }
 
-.book-pricePILAR {
+.libroListaLibros-book-price {
     font-size: 2rem;
     font-weight: bold;
-    margin-right: 2rem;
+    margin-left: 20rem;
     text-transform: uppercase;
     font-family: var(--font-secondary);
 }
 
-/* Botón de Carrito */
-.cart-buttonPILAR{
+.libroListaLibros-cart-button{
     background-color: #ffffff;
     padding: 0.3rem;
     border-radius: 9999px;
 }
 
-/* Sinopsis */
-.synopsis-titlePILAR {
+.libroListaLibros-synopsis-title {
     font-size: 3rem;
     color: #1A4146;
     font-weight: 600;
@@ -144,7 +132,7 @@
     text-align: left;
 }
 
-.synopsis-textPILAR {
+.libroListaLibros-synopsis-text {
     font-size: 1.5rem;
     color: #6D6D6D;
     margin-top: 0rem;
@@ -152,7 +140,12 @@
     text-align: left;
 }
 
-/* Estilos del Header */
+.libroListaLibros-img-carrito {
+    width: 2.5rem;
+    height: auto;
+}
+
+/*LO DE LA PARTE DE ARRIBA*/
 .header-2 {
     display: flex;         
     align-items: center;        
@@ -179,11 +172,11 @@
     font-size: 3.125rem;
 }
 
-.boton-hamburguesa,
-.boton-usuario,
-.boton-carrito {
+.boton-hamburguesa {
     background-color: #ffffff;
     position: absolute;
+    right: 15.625vw;
+    top: 3.25vh;
     width: 4.375rem;
     height: 4.375rem;
     display: flex;
@@ -191,36 +184,41 @@
     align-items: center;
 }
 
-.boton-hamburguesa {
-    right: 15.625vw;
-    top: 3.25vh;
-}
-
-.boton-usuario {
-    right: 9.375vw;
-    top: 3.25vh;
-}
-
-.boton-carrito {
-    right: 3.125vw;
-    top: 3.25vh;
-}
-
-.img-hamburguesa,
-.img-usuario,
-.img-carrito {
-    width: 2.5rem;
+.img-hamburguesa {
+    width: 2rem;
     height: auto;
 }
 
-/* Subtítulos */
-.subtitulo-2 {
-    font-family: "Newsreader", serif;
-    font-weight: 500;
-    font-style: normal;
-    color: #D1A246;
+.boton-usuario {
+    background-color: #ffffff;
     position: absolute;
-    top: 22.5vh;
-    left: 2.5rem;
-    font-size: 2.8125rem;
+    right: 9.375vw;
+    top: 3.25vh;
+    width: 4.375rem;
+    height: 4.375rem;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.img-usuario {
+    width: 4.375rem;
+    height: auto;
+}
+
+.boton-carrito {
+    background-color: #ffffff;
+    position: absolute;
+    right: 3.125vw;
+    top: 3.25vh;
+    width: 4.375rem;
+    height: 4.375rem;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.img-carrito {
+    width: 2.5rem;
+    height: auto;
 }

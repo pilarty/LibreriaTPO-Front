@@ -45,23 +45,21 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
     };
     
     return (
-        <div className="book-containerPILAR">
-            <img src={imageSrc} alt={titulo} className="book-imagePILAR" />
-            <div className="book-detailsPILAR">
-                <div className="book-headerPILAR">
+        <div className="libroListaLibros-book-container">
+            <img src={imageSrc} alt={titulo} className="libroListaLibros-book-image" />
+            <div className="libroListaLibros-book-details">
+                <div className="libroListaLibros-book-header">
                     <div>
-                        <h3 className="book-titlePILAR">{titulo}</h3>
-                        <p className="book-authorPILAR">{autor}</p>
+                        <h3 className="libroListaLibros-book-title">{titulo}</h3>
+                        <p className="libroListaLibros-book-author">{autor}</p>
                     </div>
-                    <div className="flex items-center">
-                        <span className="book-pricePILAR">${precio}</span>
-                        <button className="cart-buttonPILAR" onClick={() => manejarAgregarACarrito(isbn)}>
-                            <img className="img-carrito" src={Carrito} alt="Carrito" />
-                        </button>
-                    </div>
+                    <span className="libroListaLibros-book-price">${precio}</span>
+                    <button className="libroListaLibros-cart-button" onClick={() => manejarAgregarACarrito(isbn)}>
+                        <img className="libroListaLibros-img-carrito" src={Carrito} alt="Carrito" />
+                    </button>
                 </div>
-                <h4 className="synopsis-titlePILAR">Sinopsis</h4>
-                <p className="synopsis-textPILAR">{sinopsis}</p>
+                <h4 className="libroListaLibros-synopsis-title">Sinopsis</h4>
+                <p className="libroListaLibros-synopsis-text">{sinopsis}</p>
             </div>
         </div>
     );

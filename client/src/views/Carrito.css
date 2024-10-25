@@ -17,8 +17,7 @@
     font-weight: normal;
     border-bottom: 1px solid var(--color-border);
     width: 95%;
-    
-}
+  }
   
   .carrito-contenedor {
     display: flex;
@@ -31,7 +30,6 @@
     padding: 1.25rem;
     width: 80%;
     height: auto;
-    /*max-width: 1600px;*/
   }
   
   .carrito-listaLibros-seguirComprando {
@@ -42,8 +40,7 @@
     margin-right: 1.25rem;
   }
   
-  
-  .encabezado-libroPILAR {
+  .libroCarritoList-encabezado-libro {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr 1fr;
     gap: 1rem;
@@ -55,95 +52,94 @@
     font-size: 2rem;
   }
   
-  .contenido-libroPILAR {
+  .libroCarrito-contenido-libro{
     display: flex;
     align-items: center;
     padding: 10px;
     font-family: var(--font-secondary);
     font-size: 1.125rem;
-}
+  }
 
-  .producto-infoPILAR {
+  .libroCarrito-producto-info {
     flex: 3;
     display: flex;
     align-items: center;
-}
-  
-  .imagen-libroPILAR {
+  }
+
+  .libroCarrito-imagen-libro {
     width: 6rem;
     height: 8rem;
     margin-right: 0rem;
     margin-left: 18rem;
-}
+  }
+
+.libroCarrito-informacion-libro {
+    display: flex;
+    flex-direction: column;
+  }
+
+.libroCarrito-informacion-libro h4 {
+    margin-left: 2rem;
+    margin-right: 1rem;
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 2rem;
+    font-family: var(--font-secondary);
+  }
+
+.libroCarrito-precio {
+    flex: 1;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+.libroCarrito-cantidad {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.libroCarrito-cantidad button {
+    width: 1.5rem;
+    height: 1.8rem;
+    cursor: pointer;
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.libroCarrito-cantidad span {
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+  }
+
+.libroCarrito-subtotal {
+    flex: 1;
+    /*text-align: right;*/
+    font-size: 1.5rem;
+  }
   
-.informacion-libroPILAR {
-  display: flex;
-  flex-direction: column;
-}
-
-.informacion-libroPILAR h4 {
-  margin-left: 2rem;
-  margin-right: 1rem;
-  color: var(--color-primary);
-  font-weight: bold;
-  font-size: 2rem;
-  font-family: var(--font-secondary);
-}
-  
-.precioPILAR {
-  flex: 1;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-.cantidadPILAR {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cantidadPILAR button {
-  width: 1.5rem;
-  height: 1.8rem;
-  cursor: pointer;
-  background-color: var(--color-secondary);
-  color: white;
-  border: none;
-  border-radius: 0.25rem;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cantidadPILAR span {
-  margin: 0 0.5rem;
-  font-size: 1.5rem;
-}
-
-.subtotalPILAR {
-  flex: 1;
-  /*text-align: right;*/
-  font-size: 1.5rem;
-}
-  
-  .separator {
+  .carrito-separador {
     width: 2px;
     background-color: var(--color-border);
     margin: 0 1.25rem;
     align-self: stretch;
   }
   
-  .recuadro-totalPILAR {
+  .libroCarrito-recuadro-total {
     flex: 1;
     display: flex;
     flex-direction: column;
     font-family: var(--font-secondary);
-
   }
   
-  .recuadro-totalPILAR h3 {
+  .libroCarrito-recuadro-total h3 {
     width: 100%;
     border-bottom: 2px solid var(--color-border);
     font-size: 2rem;
@@ -152,14 +148,14 @@
     
   }
   
-  .recuadro-totalPILAR p {
+  .libroCarrito-recuadro-total p {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     text-align: left;
   }
   
-  .recuadro-totalPILAR button,
-  .seguir-comprandoPILAR {
+  .libroCarrito-recuadro-total button,
+  .carrito-seguir-comprando {
     margin-top: 1rem;
     background-color: var(--color-secondary);
     color: white;
@@ -173,12 +169,12 @@
     font-size: 1.25rem;
   }
   
-  .recuadro-total button:hover,
-  .seguir-comprandoPILAR:hover {
+  .libroCarrito-recuadro-total button:hover,
+  .carrito-seguir-comprando:hover {
     background-color: var(--color-secondary-hover);
   }
 
-  .cruz-container {
+  .libroCarrito-cruz-container {
     position: absolute;
     margin-left: 5rem;
     top: 50%;
@@ -197,16 +193,16 @@
     transition: background-color 0.3s ease;
 }
 
-.cruz-container:hover {
+.libroCarrito-cruz-container:hover {
   background-color: #c0c0c0;
 }
 
-.cruz-container:focus {
+.libroCarrito-cruz-container:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
-.imagen-container {
+.libroCarrito-imagen-container {
   position: relative;
   margin-right: 1rem;
 }
@@ -238,17 +234,7 @@
   background-color: var(--color-secondary-hover); 
 }
 
-.contenido-libro-wrapper {
-  position: relative; /* Para permitir que el overlay se posicione sobre el contenido */
-}
-
-.contenido-libro.eliminando {
-  opacity: 0.5; /* Reduce la visibilidad del contenido cuando se está eliminando */
-  pointer-events: none; /* Desactiva los eventos (clicks) cuando se está eliminando */
-}
-
 /*LO DE LA PARTE DE ARRIBA*/
-
 .header-2 {
   display: flex;         
   align-items: center;        
@@ -307,52 +293,4 @@
 .img-usuario {
   width: 4.375rem;
   height: auto;
-}
-
-.subtitulo-2 {
-  font-family: "Newsreader", serif;
-  font-weight: 500;
-  font-style: normal;
-  color: #D1A246;
-  position: absolute;
-  top: 22.5vh;
-  left: 2.5rem;
-  font-size: 2.8125rem;
-}
-
-.header-3 {
-  display: flex;         
-  align-items: center;        
-  justify-content: flex-start; 
-  padding: 0.625rem; 
-  position: absolute;
-  top: 24vh;
-  left: 20.3125rem;             
-}
-
-.text-vermas {
-  font-size: 1.1rem;
-  margin: 0;
-  color: #5e83fa; 
-}
-
-.subtitulo-3 {
-  font-family: "Newsreader", serif;
-  font-weight: 500;
-  font-style: normal;
-  color: #D1A246;
-  position: absolute;
-  top: 82.3vh;
-  left: 2.5rem;
-  font-size: 2.8125rem;
-}
-
-.header-4 {
-  display: flex;         
-  align-items: center;        
-  justify-content: flex-start; 
-  padding: 0.625rem; 
-  position: absolute;
-  top: 84vh;
-  left: 15.625rem;             
 }
