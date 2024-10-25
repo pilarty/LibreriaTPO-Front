@@ -6,6 +6,13 @@
     --font-primary: "Newsreader", serif;
     --font-secondary: "Inter", serif;
   }
+
+  body {
+    font-family: 'Newsreader', serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
   
   .subtituloTUCARRITO {
     font-family: var(--font-primary);
@@ -248,7 +255,7 @@
 }
 
 /*LO DE LA PARTE DE ARRIBA*/
-
+/*
 .header-2 {
   display: flex;         
   align-items: center;        
@@ -307,7 +314,7 @@
 .img-usuario {
   width: 4.375rem;
   height: auto;
-}
+}*/
 
 .subtitulo-2 {
   font-family: "Newsreader", serif;

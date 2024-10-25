@@ -1,4 +1,5 @@
 import "./PublicarLibro.css";
+import "./App.css";
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png'
 import Usuario from '../assets/Usuario.png'
@@ -122,8 +123,10 @@ const PublicarLibro = () => {
       return (
         <div>
           <div className="header-2">
-            <img className="logo" src={logo} alt="Logo" />
-            <span className="subtitulo">The Golden Feather</span>
+            <a href="/" className="boton-inicio">
+              <img className="logo" src={logo} alt="Logo" />
+              <span className="subtitulo">The Golden Feather</span>
+            </a>
             <button className="boton-hamburguesa" onClick={manejarHamburguesa}>
               <img className="img-hamburguesa" src={Hamburguesa} alt="Hamburguesa" />
             </button>
@@ -137,97 +140,97 @@ const PublicarLibro = () => {
     
           {menuVisible && <MenuDesplegable></MenuDesplegable>}
     
-          <div className="contenedor">
-            <div className="book-image" onClick={() => imagenRef.current.click()}> {/* Abrir input al hacer clic */}
+          <div className="PublicarLibro-contenedor">
+            <div className="PublicarLibro-book-image" onClick={() => imagenRef.current.click()}> {/* Abrir input al hacer clic */}
               <img src={imagenSeleccionada ? URL.createObjectURL(imagenSeleccionada) : "ruta_a_la_imagen"} alt="imagen" />
             </div>
             <input
               type="file"
-              className="input-field"
+              className="PublicarLibro-input-field"
               accept="image/*"
               onChange={handleImagenChange}
               ref={imagenRef} 
               style={{ display: 'none' }}
             />
     
-            <div className="book-detalles">
+            <div className="PublicarLibro-book-detalles">
               <input
                 type="text"
-                className="input-field"
+                className="PublicarLibro-input-field"
                 placeholder="Título..."
                 value={titulop}
                 onChange={(e) => setTitulo(e.target.value)}
               />
               <textarea
-                className="textarea-field"
+                className="PublicarLibro-textarea-field"
                 placeholder="Sinopsis..."
                 value={descripcionp}
                 onChange={(e) => setDescripcion(e.target.value)}
               />
               <input
                 type="text"
-                className="input-field"
+                className="PublicarLibro-input-field"
                 placeholder="Editorial..."
                 value={editorialp}
                 onChange={(e) => setEditorial(e.target.value)}
               />
               <input
                 type="number"
-                className="input-field"
+                className="PublicarLibro-input-field"
                 placeholder="Edición..."
                 value={edicionp}
                 onChange={(e) => setEdicion(e.target.value)}
               />
               <input
                 type="text"
-                className="input-field"
+                className="PublicarLibro-input-field"
                 placeholder="Idioma..."
                 value={idiomap}
                 onChange={(e) => setIdioma(e.target.value)}
               />
               <input
                 type="number"
-                className="input-field"
+                className="PublicarLibro-input-field"
                 placeholder="N° páginas..."
                 value={numPaginasp}
                 onChange={(e) => setNumPaginas(e.target.value)}
               />
               <input
                 type="text"
-                className="input-field"
+                className="PublicarLibro-input-field"
                 placeholder="ISBN..."
                 value={isbnp}
                 onChange={(e) => setIsbn(e.target.value)}
               />
               <button 
-                className="generos-field" 
+                className="PublicarLibro-generos-field" 
                 onClick={manejarGeneros}
                 ef={buttonGenerosRef}>
                 {generoSeleccionado}
-                <span className="arrow">▼</span>
+                <span className="PublicarLibro-arrow">▼</span>
               </button>
               <input
                 type="text"
-                className="input-field"
+                className="PublicarLibro-input-field"
                 placeholder="Autor..."
                 value={autorp.join(', ')}
                 onChange={handleAutorChange}
               />
               <input
                 type="number"
-                className="input-field"
+                className="PublicarLibro-input-field"
                 placeholder="Stock..."
                 value={stockp}
                 onChange={(e) => setStock(e.target.value)}
               />
               <input
                 type="number"
-                className="input-field book-precio"
+                className="PublicarLibro-input-field book-precio"
                 placeholder="Precio..."
                 value={preciop}
                 onChange={(e) => setPrecio(e.target.value)}
               />
-              <button className="boton-publicar" onClick={manejarPublicar}>
+              <button className="PublicarLibro-boton-publicar" onClick={manejarPublicar}>
                 Publicar
               </button>
             </div>

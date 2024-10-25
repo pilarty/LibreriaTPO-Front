@@ -8,14 +8,14 @@
   background-color: #fff; /* Fondo blanco 
   border-bottom: 1px solid #e0e0e0; /* Línea sutil 
 }
-*/
+
 .logo {
   height: 50px;
 }
 
-.subtitulo {
+.LibroSolo-subtitulo {
   font-size: 24px;
-  color: #000; /* Subtítulo en negro */
+  color: #000;  Subtítulo en negro 
   font-weight: bold;
 }
 

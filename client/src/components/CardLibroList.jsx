@@ -70,10 +70,10 @@ const CardLibroList = () => {
     };
 
     return (
-       <Slider {...settings} className="lista-libros">
+       <Slider {...settings} className="homepage-lista-libros">
               {posts.slice(0, Math.ceil(posts.length / 2)).map((post) => (
-                <div className="carrusel-item">
-                <button className="boton-libros" onClick={() => manejarLibros(post.isbn)}>
+                <div className="homepage-carrusel-item">
+                <button className="homepage-boton-libros" onClick={() => manejarLibros(post.isbn)}>
                   <CardLibro
                     key = {post.isbn}
                     titulo = {post.titulo}

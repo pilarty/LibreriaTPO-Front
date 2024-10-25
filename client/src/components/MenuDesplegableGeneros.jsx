@@ -44,7 +44,7 @@ const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
       }, []);
 
     return (
-        <div className="menu-generos">
+        <div className="PublicarLibro-menu-generos">
           <ul>
             {posts.map((post) => (
               <li key={post.id}>
@@ -53,7 +53,7 @@ const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
                 </button>
               </li>
             ))}
-            <hr className="linea-divisora" />
+            <hr className="PublicarLibro-linea-divisora" />
             <button onClick={() => setPopupVisible(true)}>Crear nuevo genero </button>
       </ul>
       {popupVisible && (
