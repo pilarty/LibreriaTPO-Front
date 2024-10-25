@@ -145,6 +145,36 @@
     height: auto;
 }
 
+.listaLibros-paginacion-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+.listaLibros-paginacion-container button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.listaLibros-paginacion-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.listaLibros-paginacion-container span {
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+
 /*LO DE LA PARTE DE ARRIBA*/
 .header-2 {
     display: flex;         
