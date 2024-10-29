@@ -1,5 +1,6 @@
 import React from "react";
 import "./Homepage.css";
+import "./App.css";
 import logo from '../assets/logo.png'
 import Usuario from '../assets/Usuario.png'
 import Carrito from '../assets/Carrito.png'
@@ -14,7 +15,6 @@ import { useState } from 'react';
 
 
 const Homepage = () => {
- //funciones que fueron llamadas en el return
   const navigate = useNavigate();
 
   const [menuVisible, setMenuVisible] = useState(false);
@@ -38,13 +38,14 @@ const Homepage = () => {
     return (
         <div>
           <div className="header-2">
-            <img className="logo" src={logo} alt="Logo" />
-            <span className="subtitulo">The Golden Feather</span>
-
-            <div className="buscador-container">
-              <input className="buscador" type="text" placeholder="Buscar..." />
-              <button className="boton-lupa" onClick={manejarBusqueda}>
-                <img className="img-lupa" src={lupa} alt="Buscar" />
+            <a href="/" className="boton-inicio">
+              <img className="logo" src={logo} alt="Logo" />
+              <span className="subtitulo">The Golden Feather</span>
+            </a>
+            <div className="homepage-buscador-container">
+              <input className="homepage-buscador" type="text" placeholder="Buscar..." />
+              <button className="homepage-boton-lupa" onClick={manejarBusqueda}>
+                <img className="homepage-img-lupa" src={lupa} alt="Buscar" />
               </button>
             </div>
             <button className="boton-hamburguesa" onClick={manejarHamburguesa}>
@@ -62,17 +63,17 @@ const Homepage = () => {
             <MenuDesplegable></MenuDesplegable>
           )}
 
-          <div className="subtitulo-2">Recomendados</div>
+          <div className="homepage-subtitulo-2">Recomendados</div>
           <CardLibroList></CardLibroList>
-          <div className="header-3">
-            <Link className="text-vermas" to="/Libros">Ver más</Link>
+          <div className="homepage-header-3">
+            <Link className="homepage-text-vermas" to="/Libros">Ver más</Link>
           </div>
-          <div className="subtitulo-3">Novedades</div>
-          <div className="lista-libros-2">
+          <div className="homepage-subtitulo-3">Novedades</div>
+          <div className="homepage-lista-libros-2">
             <CardLibroListNovedades></CardLibroListNovedades>
           </div>
-          <div className="header-4">
-          <Link className="text-vermas" to="/Libros">Ver más</Link>
+          <div className="homepage-header-4">
+          <Link className="homepage-text-vermas" to="/Libros">Ver más</Link>
           </div>
         </div>
       );

@@ -1,7 +1,6 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -13,20 +12,130 @@
   color: #888;
 }
 
+/*Parte superior*/
 .subtitulo {
   font-family: "Newsreader", serif;
   font-weight: 500;
   font-style: normal;
   color: #D1A246;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 2.5rem;
+  font-size: 3.125rem;
   margin: 60px;
-  font-size: 35px
 }
 
+.logo {
+  position: absolute;
+  left: 1.29%;
+  top: 5.5vh;
+  width: 2.4%;
+  height: auto;
+}
 
+.header-2 {
+  display: flex;         
+  align-items: center;        
+  justify-content: flex-start; 
+  padding: 0.625rem;              
+}
 
+.img-usuario {
+  width: 70px;
+  height: auto;
+}
+
+.img-carrito {
+  width: 40px;
+  height: auto;
+}
+
+.img-hamburguesa {
+  width: 32px;
+  height: auto;
+}
+
+.boton-usuario{
+  background-color: #ffffff;
+  position: absolute;
+  left: 2210px;
+  top: 52px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.boton-carrito{
+  background-color: #ffffff;
+  position: absolute;
+  left: 2300px;
+  top: 52px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.boton-hamburguesa{
+  background-color: #ffffff;
+  position: absolute;
+  left: 2120px;
+  top: 52px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.menu-hamburguesa {
+  position: absolute;
+  top: 4rem; 
+  right: 420px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+.menu-hamburguesa ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-hamburguesa ul li {
+  margin: 10px 0;
+}
+
+.menu-hamburguesa ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.menu-hamburguesa ul li a:hover {
+  color: #007bff;
+}
+
+.cerrar-link{
+  color: black;
+  text-decoration: none; 
+  cursor: pointer;
+  transition: color 0.3s ease; 
+}
+
+.cerrar-link:hover {
+  color: red !important; 
+}
+
+.boton-inicio{
+  text-decoration: 'none';
+  color: 'inherit'
+}
 
 
 

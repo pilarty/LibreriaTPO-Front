@@ -95,9 +95,10 @@ const LibroSolo = () => {
         <div>
             
             <div className="header-2">
-                <img className="logo" src={logo} alt="Logo" />
-                <span className="subtitulo">The Golden Feather</span>
-
+                <a href="/" className="boton-inicio">
+                    <img className="logo" src={logo} alt="Logo" />
+                    <span className="subtitulo">The Golden Feather</span>
+                </a>
                 <button className="boton-hamburguesa" onClick={manejarHamburguesa}>
                     <img className="img-hamburguesa" src={Hamburguesa} alt="Menú" />
                 </button>

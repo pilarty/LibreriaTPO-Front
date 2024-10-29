@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
 
-    const [posts, setPost] = useState([]);
+    
     const [popupVisible, setPopupVisible] = useState(false);
 
     const seleccionarGenero = (genero) => {
@@ -23,28 +23,26 @@ const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
         .then(response => response.json())
         .then(data => {
           console.log("Nuevo género creado:", data);
-          obtenerGeneros();
         })
       }
 
-     const obtenerGeneros = ()=> {
-        fetch("http://localhost:4002/generos")
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data)
-            setPost(data.content);
-          })
-          .catch((error) => {
-            console.error("Error al obtener los datos: ", error)
-          })
-      };
+    const [posts, setPost] = useState([]);
 
-      useEffect(() => {
-        obtenerGeneros();
-      }, []);
+    useEffect(() => {
+      fetch("http://localhost:4002/generos")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          setPost(data.content);
+        })
+        .catch((error) => {
+          console.error("Error al obtener los datos: ", error)
+        })
+    }, [posts]);
 
     return (
-        <div className="menu-generos">
+      <div>
+        <div className="PublicarLibro-menu-generos">
           <ul>
             {posts.map((post) => (
               <li key={post.id}>
@@ -53,9 +51,10 @@ const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
                 </button>
               </li>
             ))}
-            <hr className="linea-divisora" />
+            <hr className="PublicarLibro-linea-divisora" />
             <button onClick={() => setPopupVisible(true)}>Crear nuevo genero </button>
-      </ul>
+          </ul>
+        </div>
       {popupVisible && (
         <CrearGenero 
           onClose={() => setPopupVisible(false)} 

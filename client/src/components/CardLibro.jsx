@@ -5,10 +5,10 @@ import "../views/Homepage.css"
     const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
 
     return (
-      <div className="libro">
-        <img className="libro-img" src={imageSrc} alt="Imagen" />
-        <div className="libro-text">{titulo}</div>
-        <div className="libro-precio">${precio}</div>
+      <div className="homepage-libro">
+        <img className="homepage-libro-img" src={imageSrc} alt="Imagen" />
+        <div className="homepage-libro-text">{titulo}</div>
+        <div className="homepage-libro-precio">${precio}</div>
         
       </div>
     );
