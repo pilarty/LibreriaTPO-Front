@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Usuario.css'; 
 import logo from '../assets/logo.png';
+import userIMG from '../assets/userIMG.png';
 
 const Usuario = () => {
   const navigate = useNavigate();
@@ -107,64 +108,56 @@ const Usuario = () => {
       });
     }
   };
-
+//className="usuario-container"
   return (
-    <div className="usuario-container">
-      <img src={logo} alt="Logo de The Golden Feather" className="usuario-logo" />
-      <div className="usuario-header">
-        <h1 className="usuario-title">{'Hola ' + profile.nombre+'!'}</h1>
-        <h2 className="usuario-editTitle">Editar</h2>
-      </div>
+    <div>
+    <header className="usuario-header">
+      <img src={logo} alt="Logo de The Golden Feather" className="usuario-logo-small" />
+      <span className="usuario-logo-text">The Golden Feather</span>
+    </header>
+  
+    <div className="usuario-profile">
+      <img src={userIMG} alt="Foto de perfil" className="usuario-logo" />
+      <h1 className="usuario-title">{'Hola ' + profile.nombre + '!'}</h1>
+    </div>
+  
+    <div className="usuario-form-wrapper">
+      <div className="usuario-form">
+        <input type="text" 
+        className="usuario-input" 
+        value={nombre} onChange={(e) => setNombre(e.target.value)} 
+        placeholder="Nombre" />
 
-      <div>
-        <input
-          type="text"
-          className = "usuario-input"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          placeholder="Nombre"
-        />
-        <input
-          type="text"
-          value={apellido}
-          onChange={(e) => setApellido(e.target.value)}
-          placeholder="Apellido"
-          className = "usuario-input"
-        />
-        <input
-          type="text"
-          value={direccion}
-          onChange={(e) => setDireccion(e.target.value )}
-          placeholder="Dirección"
-          className = "usuario-input"
-        />
-        <input
-          type="text"
-          value={CP}
-          onChange={(e) => setCp(e.target.value)}
-          placeholder="Código Postal"
-          className = "usuario-input"
-        />
-      </div>
+        <input type="text" 
+        className="usuario-input" 
+        value={apellido} onChange={(e) => setApellido(e.target.value)} 
+        placeholder="Apellido" />
 
-      <div className="usuario-deleteSection">
-        <input
-          type="password"
-          value={contraseña}
-          onChange={(e) => setContraseña(e.target.value)}
-          placeholder="Contraseña"
-          className = "usuario-input"
-        />
-        <button onClick={handleEditProfile} className="usuario-saveButton">
-          Guardar
-        </button>
-        <button onClick={handleDeleteAccount} className="usuario-deleteButton">
-          Eliminar cuenta
-        </button>
+        <input type="text" 
+        className="usuario-input" 
+        value={direccion} onChange={(e) => setDireccion(e.target.value)} 
+        placeholder="Dirección" />
+        
+        <input type="text" 
+        className="usuario-input" 
+        value={CP} onChange={(e) => setCp(e.target.value)} 
+        placeholder="Código Postal" />
+        
+        <input type="password" 
+        className="usuario-input" 
+        value={contraseña} onChange={(e) => setContraseña(e.target.value)} 
+        placeholder="Contraseña" />
+      </div>
+  
+      <div className="usuario-buttons">
+        <button onClick={handleEditProfile} className="usuario-saveButton">Guardar</button>
+        <button onClick={handleDeleteAccount} className="usuario-deleteButton">Eliminar cuenta</button>
       </div>
     </div>
-  );
-};
+  </div>
+  
+    );
+  };
 
 export default Usuario;
 

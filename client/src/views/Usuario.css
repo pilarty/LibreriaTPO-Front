@@ -1,72 +1,91 @@
- .usuario-container {
-    font-family: 'Newsreader', serif;
-    background-color: #ffffff;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .usuario-header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .usuario-logo {
-    width: 250px;
-    height: 250px ;
-    margin: 0 auto 1rem;
-    display: block;
-    }
-  
-  .usuario-title {
-    color: #4a3000;
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .usuario-editTitle {
-    color: #4a3000;
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .usuario-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #d4a763;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .usuario-saveButton {
-    background-color: #218c8d;
-    color: #f8e9c8;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    width: 100%;
-    margin-top: 10px;
-  }
-  
-  .usuario-deleteSection {
-    margin-top: 30px;
-  }
-  
-  .usuario-deleteButton {
-    background-color: #c0392b;
-    color: #f8e9c8;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    width: 100%;
-  }
-  
+/*.usuario-container {
+  font-family: 'Newsreader', serif;
+  background-color: #ffffff;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}*/
+
+.usuario-header {
+  display: flex;
+  align-items: center;
+  position: absolute; 
+  top: 10px; 
+  left: 10px; 
+  gap: 10px;
+}
+
+.usuario-logo-small {
+  width: 40px; 
+  height: 40px;
+}
+
+.usuario-logo-text {
+  font-size: 20px;
+  color: #d4a763;
+}
+
+.usuario-profile {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.usuario-logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.usuario-title {
+  color: #4a3000;
+  font-size: 24px;
+}
+
+.usuario-form {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.usuario-form-wrapper {
+  max-width: 500px; /* Limita el ancho del formulario */
+  margin: 0 auto; /* Centra el formulario en la pantalla */
+}
+
+.usuario-input {
+  width: 100%; /* Ocupa el ancho completo dentro del límite de .usuario-form-wrapper */
+  padding: 10px;
+  border: 1px solid #d4a763;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.usuario-buttons {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px; /* Limita el ancho de los botones */
+  margin: 20px auto 0; /* Centra los botones en la pantalla */
+}
+
+.usuario-saveButton, .usuario-deleteButton {
+  flex: 1;
+  max-width: 48%; /* Ajusta cada botón al 48% del ancho del contenedor */
+  padding: 10px;
+  font-size: 16px;
+  background-color: #218c8d;
+  color: #f8e9c8;
+}
+
+.usuario-deleteButton {
+  flex: 1;
+  max-width: 48%; /* Ajusta cada botón al 48% del ancho del contenedor */
+  padding: 10px;
+  font-size: 16px;
+  background-color: #c0392b;
+  color: #f8e9c8;
+}
