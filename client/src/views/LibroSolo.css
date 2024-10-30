@@ -76,12 +76,12 @@
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
-  margin-top: 40px;
-  padding: 20px;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  background-color: #fafafa;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 2%;
+  padding: 2%;
+  border: 1rem solid #ffffff;
+  border-radius: 1%;
+  background-color: #ffffff;
+  box-shadow: 0rem 4rem 8rem rgb(255, 255, 255);
 }
 
 /* Sección de la imagen y el título */
@@ -89,36 +89,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
+  width: 20%;
 }
 
 .libro-imagen-placeholder {
-  width: 300px;
-  height: 400px;
+  width: 400%;
+  height: 25rem;
   background-color: #ffffff; /* Color gris claro */
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 1%;
   overflow: hidden;
-  border: 1px solid #d6d6d6;
-  margin-left: 500px;
+  border: 0rem solid #ffffff;
+  margin-left: 32rem;
 }
 
 .libro-imagen-placeholder img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 10px;
+  max-width: 100rem;
+  max-height: 25rem;
+  border-radius: 5%;
 }
 
 /* Título debajo de la imagen */
 .titulo-libro {
-  margin-top: 15px;
-  font-size: 22px;
+  margin-top: 2%;
+  font-size: 2rem;
   text-align: center;
   color: #000; /* Título en negro */
   font-weight: bold;
-  margin-left: 500px;
+  margin-left: 110%;
 }
 
 /* Detalles del libro */
@@ -127,20 +127,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 10px;
+  margin-left: 1%;
 }
 
 .precio-cantidad {
   display: flex;
   align-items: center; /* Alinea verticalmente el precio y la cantidad en el centro */
   justify-content: flex-start; /* Centra el contenido horizontalmente */
-  gap: 80px; /* Espacio entre el precio y el selector de cantidad */
-  margin-top: 20px; /* Añade un poco de espacio encima del precio y la cantidad */
-  margin-left: 500px;
+  gap: 15%; /* Espacio entre el precio y el selector de cantidad */
+  margin-top: 2%; /* Añade un poco de espacio encima del precio y la cantidad */
+  margin-left: 31.5rem;
 }
 /* Precio en dorado */
 .precio {
-  font-size: 24px; /* Tamaño del precio */
+  font-size: 170%; /* Tamaño del precio */
   font-weight: bold; /* Negrita para el precio */
   color: #c49b34; /* Color dorado */
   margin: 0;
@@ -152,11 +152,11 @@
   background-color: #c49b34;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 1% 2%;
+  border-radius: 5rem;
   cursor: pointer;
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 120%;
+  margin-bottom: 2%;
   transition: background-color 0.3s ease;
 }
 
@@ -166,37 +166,37 @@
 
 /* Selector de cantidad */
 .selector-cantidad {
-  margin: 10px 0 20px 0;
+  margin: 10% 0 1rem 0;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 10%;
 }
 
 .selector-cantidad select {
-  padding: 5px;
-  border: 1px solid #e0e0e0;
-  border-radius: 5px;
-  font-size: 16px;
+  padding: 0.5rem;
+  border: 0.1rem solid #e0e0e0;
+  border-radius: 10%;
+  font-size: 1rem;
   cursor: pointer;
 }
 
 .cantidad-label {
-  font-size: 24px; /* Aumenta este valor según lo que necesites */
+  font-size: 150%; /* Aumenta este valor según lo que necesites */
   font-weight: bold;
   line-height: 1; /* Opcional, para hacer el texto en negrita */
 }
 
 /* Información del libro */
 .libro-info h3 {
-  font-size: 30px;
-  margin-top: 20px;
+  font-size: 210%;
+  margin-top: 0.5rem;
   color: #0b5a40; /* Títulos dentro de la información en negro */
   font-weight: bold;
   text-align: left;
 }
 
 .libro-info p {
-  margin: 35px 0;
+  margin: 3.2% 0;
   color: #000; /* Párrafos en negro */
   line-height: 1.6;
   text-align: left;
