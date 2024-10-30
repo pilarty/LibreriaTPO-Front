@@ -49,7 +49,7 @@
 }
 
 /* Ajuste del formulario */
-.seccion-formulario {
+.Compra-seccion-formulario {
     width: 60%; /* Reducimos el ancho del formulario */
     background-color: #fff;
     padding: 1.5rem; /* Reduce el padding */
@@ -62,7 +62,7 @@
     margin-right: 20px; /* Reducimos el margen entre el formulario y la lista de libros */
 }
 
-.seccion-formulario h1 {
+.Compra-seccion-formulario h1 {
     font-family: "Newsreader", serif;
     font-size: 1.5rem;
     color: #D1A246;
@@ -71,7 +71,7 @@
     text-align: left; /* Alineación del título a la izquierda */
 }
 
-.form-group {
+.Compra-form-group {
     display: flex;
     flex-direction: column;
     margin-top: 2rem; /* Alinea el label y el input verticalmente */
@@ -81,8 +81,8 @@ label {
     margin-bottom: 0.5rem; /* Espacio entre el label y el input */
 }
 
-.seccion-formulario input,
-.seccion-formulario select {
+.Compra-seccion-formulario input,
+.Compra-seccion-formulario select {
     width: 100%; /* Ajusta el ancho al 100% */
     padding: 0.75rem;
     background-color: #ffffff; /* Fondo blanco */
@@ -94,20 +94,20 @@ label {
     box-sizing: border-box; /* Asegura que el padding no desborde el ancho */
 }
 
-.seccion-formulario input::placeholder,
-.seccion-formulario select::placeholder {
+.Compra-seccion-formulario input::placeholder,
+.Compra-seccion-formulario select::placeholder {
     color: #646363; 
 }
 
-.seccion-formulario input:focus,
-.seccion-formulario select:focus {
+.Compra-seccion-formulario input:focus,
+.Compra-seccion-formulario select:focus {
     outline: none;
     border-color: #D1A246; /* Borde dorado al enfocar */
     box-shadow: 0 0 5px rgba(163, 135, 80, 0.5); /* Sombra dorada al enfocar */
 }
 
 /* Ajuste específico para el campo select */
-.seccion-formulario select {
+.Compra-seccion-formulario select {
     line-height: normal; /* Ajusta la altura de línea */
     vertical-align: middle; /* Alineación vertical al centro */
     -webkit-appearance: none; /* Elimina estilos predeterminados en Webkit */
@@ -116,7 +116,7 @@ label {
     background-image: none; /* Elimina el ícono de flecha predeterminado */
 }
 
-.seccion-formulario button {
+.Compra-seccion-formulario button {
     width: 100%;
     padding: 0.75rem;
     background-color: #004D40;
@@ -129,21 +129,21 @@ label {
     font-family: "Newsreader", serif;
 }
 
-.seccion-formulario button:hover {
+.Compra-seccion-formulario button:hover {
     background-color: #ffffff; /* Color blanco al pasar el cursor */
     color: #004D40; /* Cambia el color del texto en hover */
     border: 1px solid #004D40; /* Agrega un borde en hover */
 }
 
 /* Nueva clase para la lista de totales */
-.lista-totales {
+.Compra-lista-totales {
     width: 38%; /* Le damos más espacio a la lista de libros */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.totales {
+.Compra-totales {
     margin-bottom: 20px;
 }
 
@@ -170,7 +170,7 @@ label {
 }
 
 /* Estilos para la lista de libros */
-.list-libros {
+.Compra-list-libros {
     list-style-type: none; /* Elimina los bullets */
     padding: 0;
     display: grid; /*  Grid para crear dos columnas */
@@ -180,27 +180,27 @@ label {
     margin-bottom: 40px; /* Espacio entre las listas */
 }
 
-.list-libros li {
+.Compra-list-libros li {
     display: contents; /* Permite que los elementos internos sigan el grid */
     font-family: "Newsreader", serif;
     font-size:1.25rem;
     color: #333;
 }
 
-.list-libros li span:first-child {
+.Compra-list-libros li span:first-child {
     grid-column: 1 / 2; /* Primera columna para el nombre del libro */
     white-space: nowrap; /* Evita que el texto se divida en varias líneas */
     overflow: hidden; /* Esconde el desbordamiento de texto */
     text-overflow: ellipsis; /* Añade "..." si el texto es demasiado largo */
 }
 
-.list-libros li span:last-child {
+.Compra-list-libros li span:last-child {
     grid-column: 2 / 3; /* Segunda columna para el precio */
     text-align: right; /* Alinea el precio a la derecha */
     color: #D1A246; /* Color dorado para el precio */
 }
 
-.list-libros li span:last-child::before {
+.Compra-list-libros li span:last-child::before {
     content: "$"; /* Agrega el símbolo de dólar antes del precio */
     margin-right: 3px; /* Espacio entre el símbolo de dólar y el precio */
 }
@@ -217,19 +217,19 @@ label {
     align-items: center;
 }
 
-.popup-contenido {
+.Compra-popup-contenido {
     background-color: #f4efef;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
 }
 
-.popup-contenido h2 {
+.Compra-popup-contenido h2 {
     margin-bottom: 20px;
     color: rgb(5, 5, 5); /* Cambia el color del texto a negro */
 }
 
-.popup-contenido button {
+.Compra-popup-contenido button {
     padding: 10px 20px;
     background-color: #137c67;
     color: rgb(233, 228, 228);
@@ -237,7 +237,7 @@ label {
     cursor: pointer;
 }
 
-.popup-contenido button:hover {
+.Compra-popup-contenido button:hover {
     background-color: #08382d;
 }
 

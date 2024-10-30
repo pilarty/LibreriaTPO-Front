@@ -26,7 +26,7 @@ const ListaLibros = ( ) => {
       }, [ ]);
 
     return(
-    <ul className='list-libros'>
+    <ul className='Compra-list-libros'>
         {posts.map((post) => ( 
             <li key={post.id}> {/*Es necesario en React cuando se renderizan listas*/}
                 <span>{post.libro.titulo}</span>
