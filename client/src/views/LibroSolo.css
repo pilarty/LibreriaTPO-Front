@@ -72,7 +72,7 @@
 
 
 /* Estilos del contenedor del libro */
-.libro-container {
+.libroSolo-container {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
@@ -85,14 +85,14 @@
 }
 
 /* Sección de la imagen y el título */
-.libro-imagen-seccion {
+.libroSolo-imagen-seccion {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 20%;
 }
 
-.libro-imagen-placeholder {
+.libroSolo-imagen-placeholder {
   width: 400%;
   height: 25rem;
   background-color: #ffffff; /* Color gris claro */
@@ -105,14 +105,14 @@
   margin-left: 32rem;
 }
 
-.libro-imagen-placeholder img {
+.libroSolo-imagen-placeholder img {
   max-width: 100rem;
   max-height: 25rem;
   border-radius: 5%;
 }
 
 /* Título debajo de la imagen */
-.titulo-libro {
+.titulo-libroSolo {
   margin-top: 2%;
   font-size: 2rem;
   text-align: center;
@@ -122,7 +122,7 @@
 }
 
 /* Detalles del libro */
-.libro-detalles {
+.libroSolo-detalles {
   width: 50%; /* Ajustar el ancho */
   display: flex;
   flex-direction: column;
@@ -130,7 +130,7 @@
   margin-left: 1%;
 }
 
-.precio-cantidad {
+.LibroSolo-precio-cantidad {
   display: flex;
   align-items: center; /* Alinea verticalmente el precio y la cantidad en el centro */
   justify-content: flex-start; /* Centra el contenido horizontalmente */
@@ -139,7 +139,7 @@
   margin-left: 31.5rem;
 }
 /* Precio en dorado */
-.precio {
+.LibroSolo-precio {
   font-size: 170%; /* Tamaño del precio */
   font-weight: bold; /* Negrita para el precio */
   color: #c49b34; /* Color dorado */
@@ -148,7 +148,7 @@
 }
 
 /* Botón de agregar al carrito */
-.boton-agregar {
+.LibroSolo-boton-agregar {
   background-color: #c49b34;
   color: white;
   border: none;
@@ -160,19 +160,19 @@
   transition: background-color 0.3s ease;
 }
 
-.boton-agregar:hover {
+.LibroSolo-boton-agregar:hover {
   background-color: #b08a2e; /* Oscurecer al hacer hover */
 }
 
 /* Selector de cantidad */
-.selector-cantidad {
+.LibroSolo-selector-cantidad {
   margin: 10% 0 1rem 0;
   display: flex;
   align-items: center;
   gap: 10%;
 }
 
-.selector-cantidad select {
+.LibroSolo-selector-cantidad select {
   padding: 0.5rem;
   border: 0.1rem solid #e0e0e0;
   border-radius: 10%;
@@ -180,14 +180,14 @@
   cursor: pointer;
 }
 
-.cantidad-label {
+.LibroSolo-cantidad-label {
   font-size: 150%; /* Aumenta este valor según lo que necesites */
   font-weight: bold;
   line-height: 1; /* Opcional, para hacer el texto en negrita */
 }
 
 /* Información del libro */
-.libro-info h3 {
+.libroSolo-info h3 {
   font-size: 210%;
   margin-top: 0.5rem;
   color: #0b5a40; /* Títulos dentro de la información en negro */
@@ -195,13 +195,13 @@
   text-align: left;
 }
 
-.libro-info p {
+.libroSolo-info p {
   margin: 3.2% 0;
   color: #000; /* Párrafos en negro */
   line-height: 1.6;
   text-align: left;
 }
 
-.libro-info strong {
+.libroSolo-info strong {
   font-weight: bold;
 }

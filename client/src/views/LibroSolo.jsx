@@ -113,22 +113,22 @@ const LibroSolo = () => {
             </div>
 
             {/* Tarjeta del libro */}
-            <div className="libro-container">
+            <div className="libroSolo-container">
                 {/* Imagen y Título */}
-                <div className="libro-imagen-seccion">
-                    <div className="libro-imagen-placeholder">
+                <div className="libroSolo-imagen-seccion">
+                    <div className="libroSolo-imagen-placeholder">
                         <img src={imageSrc} alt="Imagen del Libro" />
                     </div>
-                    <h2 className="titulo-libro">{post.titulo}</h2>
+                    <h2 className="titulo-libroSolo">{post.titulo}</h2>
 
-                    <div className="precio-cantidad">
-                        <p className="precio">${post.precio}</p>
+                    <div className="LibroSolo-precio-cantidad">
+                        <p className="LibroSolo-precio">${post.precio}</p>
 
                     {/* Selector de cantidad */}
 
-                <div className="selector-cantidad">
-                <label htmlFor="cantidad" className="cantidad-label">Cantidad: </label>
-                <select id="cantidad" value={cantidad} onChange={manejarCambioCantidad}>
+                <div className="LibroSolo-selector-cantidad">
+                <label htmlFor="LibroSolo-cantidad" className="LibroSolo-cantidad-label">Cantidad: </label>
+                <select id="LibroSolo-cantidad" value={cantidad} onChange={manejarCambioCantidad}>
                 {[...Array(10).keys()].map((n) => (
                     <option key={n + 1} value={n + 1}>
                         {n + 1}
@@ -141,8 +141,8 @@ const LibroSolo = () => {
                 </div>
 
                 {/* Detalles del libro */}
-                <div className="libro-detalles">
-                    <div className="libro-info">
+                <div className="libroSolo-detalles">
+                    <div className="libroSolo-info">
                         <h3>{post.autor}</h3>
                         <p>
                             {post.descripcion}
@@ -157,7 +157,7 @@ const LibroSolo = () => {
                         </p>
                     </div>
 
-                    <button className="boton-agregar" onClick={() => manejarAgregarACarrito(post.isbn, cantidad)}>
+                    <button className="LibroSolo-boton-agregar" onClick={() => manejarAgregarACarrito(post.isbn, cantidad)}>
                         Agregar {cantidad} al carrito
                     </button>
                 </div>
