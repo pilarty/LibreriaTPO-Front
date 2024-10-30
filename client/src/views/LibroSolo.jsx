@@ -144,6 +144,7 @@ const LibroSolo = () => {
                 <div className="libroSolo-detalles">
                     <div className="libroSolo-info">
                         <h3>{post.autor}</h3>
+                        <p className="LibroSolo-sinopsis-titulo">Sinopsis:</p>
                         <p>
                             {post.descripcion}
                         </p>

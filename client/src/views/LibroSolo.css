@@ -1,6 +1,4 @@
 
-<<<<<<< HEAD
-=======
 /* Estilos generales del header 
 .header-2 {
   display: flex;
@@ -11,7 +9,6 @@
   border-bottom: 1px solid #e0e0e0; /* Línea sutil 
 }
 
->>>>>>> main
 .logo {
   height: 50px;
 }
@@ -85,6 +82,8 @@
   border-radius: 1%;
   background-color: #ffffff;
   box-shadow: 0rem 4rem 8rem rgb(255, 255, 255);
+  width: 90%;
+  
 }
 
 /* Sección de la imagen y el título */
@@ -96,8 +95,8 @@
 }
 
 .libroSolo-imagen-placeholder {
-  width: 400%;
-  height: 25rem;
+  width: 500%;
+  height: 30rem;
   background-color: #ffffff; /* Color gris claro */
   display: flex;
   align-items: center;
@@ -105,28 +104,37 @@
   border-radius: 1%;
   overflow: hidden;
   border: 0rem solid #ffffff;
-  margin-left: 32rem;
+  margin-left: 1rem;
 }
 
 .libroSolo-imagen-placeholder img {
   max-width: 100rem;
-  max-height: 25rem;
+  max-height: 28rem;
   border-radius: 5%;
+  object-fit: cover;
 }
 
 /* Título debajo de la imagen */
 .titulo-libroSolo {
   margin-top: 2%;
   font-size: 2rem;
-  text-align: center;
-  color: #000; /* Título en negro */
+  color: #0b5a40; /* Título en negro */
   font-weight: bold;
-  margin-left: 110%;
+  text-align: center;
+  margin-left: 33%;
+  margin-right: auto;
+  
+  /* Ajustes para texto largo */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%; 
 }
+
 
 /* Detalles del libro */
 .libroSolo-detalles {
-  width: 50%; /* Ajustar el ancho */
+  width: 50%; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -139,11 +147,11 @@
   justify-content: flex-start; /* Centra el contenido horizontalmente */
   gap: 15%; /* Espacio entre el precio y el selector de cantidad */
   margin-top: 2%; /* Añade un poco de espacio encima del precio y la cantidad */
-  margin-left: 31.5rem;
+  margin-left: 2%;
 }
 /* Precio en dorado */
 .LibroSolo-precio {
-  font-size: 170%; /* Tamaño del precio */
+  font-size: 175%; /* Tamaño del precio */
   font-weight: bold; /* Negrita para el precio */
   color: #c49b34; /* Color dorado */
   margin: 0;
@@ -164,7 +172,7 @@
 }
 
 .LibroSolo-boton-agregar:hover {
-  background-color: #b08a2e; /* Oscurecer al hacer hover */
+  background-color: #b08a2e; 
 }
 
 /* Selector de cantidad */
@@ -184,7 +192,7 @@
 }
 
 .LibroSolo-cantidad-label {
-  font-size: 150%; /* Aumenta este valor según lo que necesites */
+  font-size: 150%; 
   font-weight: bold;
   line-height: 1; /* Opcional, para hacer el texto en negrita */
 }
@@ -199,12 +207,22 @@
 }
 
 .libroSolo-info p {
-  margin: 3.2% 0;
-  color: #000; /* Párrafos en negro */
+  margin: 3% 0;
+  color: #000;
   line-height: 1.6;
   text-align: left;
+  font-size: 1.5rem; /* Tamaño de texto para el párrafo */
 }
 
-.libroSolo-info strong {
+/* Estilo para el texto en negrita (etiquetas <strong>) dentro de la información */
+.libroSolo-info p strong {
+  font-size: 1.5rem; /* Tamaño de las etiquetas <strong> */
   font-weight: bold;
+  color: #000000; /* Color destacado */
+}
+
+.LibroSolo-sinopsis-titulo {
+  font-size: 1.5rem; 
+  font-weight: bold; 
+  color: #333; 
 }
