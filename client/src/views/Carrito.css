@@ -4,21 +4,20 @@
     --color-secondary-hover: #1a4146;
     --color-border: #ccc;
     --font-primary: "Newsreader", serif;
-    --font-secondary: "Inter", sans-serif;
+    --font-secondary: "Inter", serif;
   }
   
-  .subtituloTUCARRITO {
+  .carrito-subtitulo {
     font-family: var(--font-primary);
     color: var(--color-primary);
-    font-size: 2.5rem;
+    font-size: 4rem;
     margin: 2rem 0 1rem 2rem;
     padding-bottom: 0.5rem;
     text-align: left;
     font-weight: normal;
     border-bottom: 1px solid var(--color-border);
-    width: 90%;
-    
-}
+    width: 95%;
+  }
   
   .carrito-contenedor {
     display: flex;
@@ -29,11 +28,11 @@
     border-radius: 0.5rem;
     background-color: white;
     padding: 1.25rem;
-    width: 90%;
-    max-width: 1200px;
+    width: 80%;
+    height: auto;
   }
   
-  .lista-boton {
+  .carrito-listaLibros-seguirComprando {
     flex: 3;
     display: flex;
     flex-direction: column;
@@ -41,8 +40,7 @@
     margin-right: 1.25rem;
   }
   
-  
-  .encabezado-libro {
+  .libroCarritoList-encabezado-libro {
     display: grid;
     grid-template-columns: 3fr 1fr 1fr 1fr;
     gap: 1rem;
@@ -51,112 +49,113 @@
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
     font-family: var(--font-secondary);
-    font-size: 1.25rem;
+    font-size: 2rem;
   }
   
-  .contenido-libro {
+  .libroCarrito-contenido-libro{
     display: flex;
     align-items: center;
     padding: 10px;
-
     font-family: var(--font-secondary);
     font-size: 1.125rem;
-}
+  }
 
-  .producto-info {
+  .libroCarrito-producto-info {
     flex: 3;
     display: flex;
     align-items: center;
-}
-  
-  .imagen-libro {
-    width: 3.75rem;
-    height: auto;
+  }
+
+  .libroCarrito-imagen-libro {
+    width: 6rem;
+    height: 8rem;
     margin-right: 0rem;
-    margin-left: 8rem;
-}
+    margin-left: 18rem;
+  }
+
+.libroCarrito-informacion-libro {
+    display: flex;
+    flex-direction: column;
+  }
+
+.libroCarrito-informacion-libro h4 {
+    margin-left: 2rem;
+    margin-right: 1rem;
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 2rem;
+    font-family: var(--font-secondary);
+  }
+
+.libroCarrito-precio {
+    flex: 1;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+.libroCarrito-cantidad {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.libroCarrito-cantidad button {
+    width: 1.5rem;
+    height: 1.8rem;
+    cursor: pointer;
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.libroCarrito-cantidad span {
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+  }
+
+.libroCarrito-subtotal {
+    flex: 1;
+    /*text-align: right;*/
+    font-size: 1.5rem;
+  }
   
-.informacion-libro {
-  display: flex;
-  flex-direction: column;
-}
-
-.informacion-libro h4 {
-  margin-left: 0.3rem;
-  margin-right: 1rem;
-  color: var(--color-primary);
-  font-weight: bold;
-  font-size: 1rem;
-}
-  
-.precio {
-  flex: 1;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-.cantidad {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cantidad button {
-  width: 1.5rem;
-  height: 1.4rem;
-  cursor: pointer;
-  background-color: var(--color-secondary);
-  color: white;
-  border: none;
-  border-radius: 0.25rem;
-  font-size: 0.70rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cantidad span {
-  margin: 0 0.5rem;
-  font-size: 0.9rem;
-}
-
-.subtotal {
-  flex: 1;
-  text-align: right;
-  font-size: 0.9rem;
-}
-  
-  .separator {
+  .carrito-separador {
     width: 2px;
     background-color: var(--color-border);
     margin: 0 1.25rem;
     align-self: stretch;
   }
   
-  .recuadro-total {
+  .libroCarrito-recuadro-total {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     font-family: var(--font-secondary);
   }
   
-  .recuadro-total h3 {
+  .libroCarrito-recuadro-total h3 {
     width: 100%;
     border-bottom: 2px solid var(--color-border);
-    font-size: 1.25rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
+    
   }
   
-  .recuadro-total p {
-    font-size: 1.0625rem;
+  .libroCarrito-recuadro-total p {
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    text-align: left;
   }
   
-  .recuadro-total button,
-  .seguir-comprando {
+  .libroCarrito-recuadro-total button,
+  .carrito-seguir-comprando {
     margin-top: 1rem;
     background-color: var(--color-secondary);
     color: white;
@@ -166,20 +165,22 @@
     cursor: pointer;
     font-weight: normal;
     transition: background-color 0.3s ease;
+    font-family: var(--font-secondary);
+    font-size: 1.25rem;
   }
   
-  .recuadro-total button:hover,
-  .seguir-comprando:hover {
+  .libroCarrito-recuadro-total button:hover,
+  .carrito-seguir-comprando:hover {
     background-color: var(--color-secondary-hover);
   }
 
-  .cruz-container {
+  .libroCarrito-cruz-container {
     position: absolute;
-    margin-left: 2rem;
+    margin-left: 5rem;
     top: 50%;
     transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
+    width: 50px;
+    height: 40px;
     border-radius: 50%;
     background-color: #e0e0e0;
     border: none;
@@ -192,33 +193,33 @@
     transition: background-color 0.3s ease;
 }
 
-.cruz-container:hover {
+.libroCarrito-cruz-container:hover {
   background-color: #c0c0c0;
 }
 
-.cruz-container:focus {
+.libroCarrito-cruz-container:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
-.imagen-container {
+.libroCarrito-imagen-container {
   position: relative;
   margin-right: 1rem;
 }
 
-.carrito-vacio {
+.carrito-carrito-vacio {
   text-align: center; 
   padding: 1.25rem; 
   border-radius: 0.5rem; 
   margin: 1.25rem 0; 
 }
 
-.carrito-vacio h3 { 
+.carrito-carrito-vacio h3 { 
   margin: 0.625rem 0; 
   color: #333; 
 }
 
-.carrito-vacio button { 
+.carrito-carrito-vacio button { 
   margin-top: 0.625rem; 
   padding: 0.625rem 0.9375rem; 
   border: none; 
@@ -229,49 +230,11 @@
   transition: background-color 0.3s ease; 
 }
 
-.carrito-vacio button:hover { 
+.carrito-carrito-vacio button:hover { 
   background-color: var(--color-secondary-hover); 
 }
 
-.contenido-libro-wrapper {
-  position: relative; /* Para permitir que el overlay se posicione sobre el contenido */
-}
-
-.contenido-libro.eliminando {
-  opacity: 0.5; /* Reduce la visibilidad del contenido cuando se está eliminando */
-  pointer-events: none; /* Desactiva los eventos (clicks) cuando se está eliminando */
-}
-
-.overlay-cargando {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.7); /* Fondo semitransparente */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10; /* Aseguramos que esté encima de todo */
-}
-
-.loading-spinner {
-  border: 0.125rem solid #f3f3f3; /* Borde con 2px equivalente en rem */
-  border-top: 0.125rem solid #f25a41; /* Parte superior del borde con 2px en rem */
-  border-radius: 50%;
-  width: 1.25rem; /* Ancho de 20px equivalente en rem */
-  height: 1.25rem; /* Altura de 20px equivalente en rem */
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-
 /*LO DE LA PARTE DE ARRIBA*/
-
 .header-2 {
   display: flex;         
   align-items: center;        
@@ -330,52 +293,4 @@
 .img-usuario {
   width: 4.375rem;
   height: auto;
-}
-
-.subtitulo-2 {
-  font-family: "Newsreader", serif;
-  font-weight: 500;
-  font-style: normal;
-  color: #D1A246;
-  position: absolute;
-  top: 22.5vh;
-  left: 2.5rem;
-  font-size: 2.8125rem;
-}
-
-.header-3 {
-  display: flex;         
-  align-items: center;        
-  justify-content: flex-start; 
-  padding: 0.625rem; 
-  position: absolute;
-  top: 24vh;
-  left: 20.3125rem;             
-}
-
-.text-vermas {
-  font-size: 1.1rem;
-  margin: 0;
-  color: #5e83fa; 
-}
-
-.subtitulo-3 {
-  font-family: "Newsreader", serif;
-  font-weight: 500;
-  font-style: normal;
-  color: #D1A246;
-  position: absolute;
-  top: 82.3vh;
-  left: 2.5rem;
-  font-size: 2.8125rem;
-}
-
-.header-4 {
-  display: flex;         
-  align-items: center;        
-  justify-content: flex-start; 
-  padding: 0.625rem; 
-  position: absolute;
-  top: 84vh;
-  left: 15.625rem;             
 }

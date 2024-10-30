@@ -1,5 +1,5 @@
 /* Estilos generales */
-.container body {
+.login-fondo {
     font-family: "Newsreader", serif;
     background-color: #FFF5E6;
     display: flex;
@@ -9,9 +9,12 @@
     margin: 0;
 }
 
+.login-container{
+
+}
 
 /* Estilos para el logo */
-.container .logo {
+.login-logo {
     width: 250px;
     height: 250px;
     margin: 0 auto 1rem;
@@ -19,7 +22,7 @@
 }
 
 /* Estilos para el título */
-.container h1 {
+.login-h1 {
     text-align: center;
     color: #4A3000;
     font-size: 2.25rem;
@@ -27,19 +30,19 @@
 }
 
 /* Estilos para el formulario */
-.container form {
+.login-form {
     display: flex;
     flex-direction: column;
 }
 
-.container input {
+.login-input {
     margin-bottom: 1rem;
     padding: 0.5rem;
     border: 1px solid #D4A763;
     border-radius: 4px;
 }
 
-.container button {
+.login-button {
     background-color: hwb(156 18% 51%);
     color: #F8E9C8;
     border: none;
@@ -51,21 +54,21 @@
     transition: background-color 0.3s ease;
 }
 
-.container button:hover {
+.login-button:hover {
     background-color: hwb(156 32% 37%);
 }
 
 
-.container .Registrarse-link {
+.login-Registrarse-link {
     margin-top: 20px;
     text-align: center;
   }
   
-.container .Registrarse-link a {
+.login-Registrarse-link a {
     color: #4CAF50;
     text-decoration: none;
   }
   
-.container .Registrarse-link a:hover {
+.login-Registrarse-link a:hover {
     text-decoration: underline;
   }

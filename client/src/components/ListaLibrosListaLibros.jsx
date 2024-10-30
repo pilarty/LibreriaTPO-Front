@@ -12,7 +12,8 @@ const ListaLibrosListaLibros = ({ libros, loading }) => {
 
     return (
         <>
-        <div className="libros-container">
+        <div className="listaLibrosListaLibros-libros-container
+        ">
                 {libros.map((libro) => (
                     <LibroListaLibros 
                         key={libro.isbn}

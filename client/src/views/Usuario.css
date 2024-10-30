@@ -1,6 +1,6 @@
- .container {
+ .usuario-container {
     font-family: 'Newsreader', serif;
-    background-color: #fff5e6;
+    background-color: #ffffff;
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
@@ -8,32 +8,31 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .header {
+  .usuario-header {
     text-align: center;
     margin-bottom: 20px;
   }
   
-  .profileImage {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
+  .usuario-logo {
+    width: 250px;
+    height: 250px ;
+    margin: 0 auto 1rem;
+    display: block;
+    }
   
-  .title {
+  .usuario-title {
     color: #4a3000;
     font-size: 24px;
     margin-bottom: 10px;
   }
   
-  .editTitle {
+  .usuario-editTitle {
     color: #4a3000;
     font-size: 20px;
     margin-bottom: 20px;
   }
   
-  .input {
+  .usuario-input {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -42,7 +41,7 @@
     font-size: 16px;
   }
   
-  .saveButton {
+  .usuario-saveButton {
     background-color: #218c8d;
     color: #f8e9c8;
     border: none;
@@ -55,11 +54,11 @@
     margin-top: 10px;
   }
   
-  .deleteSection {
+  .usuario-deleteSection {
     margin-top: 30px;
   }
   
-  .deleteButton {
+  .usuario-deleteButton {
     background-color: #c0392b;
     color: #f8e9c8;
     border: none;

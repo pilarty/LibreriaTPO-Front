@@ -61,14 +61,15 @@ const Registrarse = () => {
   };
 
   return (
-    <>  
-    <div class="container">
-        <img src={logo} alt="Logo de The Golden Feather" className="logo" />
-        <h1>Bienvenido a The Golden Feather</h1>
+    <body className='registrarse-fondo'>  
+    <div class="registrse-conteiner">
+        <img src={logo} alt="Logo de The Golden Feather" className="registrarse-logo" />
+        <div className='registrarse-h1'> Bienvenido a The Golden Feather</div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form onSubmit={handleSubmit}>
+        <form className='registrarse-form' onSubmit={handleSubmit}>
           <input
             type="text"
+            className='registrarse-input'
             name="nombre"
             value={formData.nombre}
             onChange={handleChange}
@@ -77,6 +78,7 @@ const Registrarse = () => {
           />
           <input
             type="text"
+            className='registrarse-input'
             name="apellido"
             value={formData.apellido}
             onChange={handleChange}
@@ -85,6 +87,7 @@ const Registrarse = () => {
           />
           <input
             type="email"
+            className='registrarse-input'
             name="mail"
             value={formData.mail}
             onChange={handleChange}
@@ -93,19 +96,20 @@ const Registrarse = () => {
           />
           <input
             type="password"
+            className='registrarse-input'
             name="contraseña"
             value={formData.contraseña}
             onChange={handleChange}
             placeholder="Contraseña"
             required
           />
-          <button type="submit">Registrarse</button>
+          <button className='registrarse-button' type="submit">Registrarse</button>
         </form>
-        <p className="LoginPage-link">
+        <p className="registrarse-login-link">
           ¿Ya tienes una cuenta? <Link to="/LoginPage">Iniciar Sesión</Link>
         </p>
       </div>
-    </>
+    </body>
   );
 };
 

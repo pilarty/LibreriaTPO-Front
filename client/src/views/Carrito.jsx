@@ -17,9 +17,10 @@ const Carrito = () => {
 
     useEffect(() => {
         if (!emailUsuario) {
-            navigate('/LoginPage'); //ESTA BIEN ESCRITO?
+            navigate('/LoginPage'); 
         }
     }, [emailUsuario, navigate]);
+
 
     useEffect(() => {
         const URL_PRODUCTOS = `http://localhost:4002/productosCarrito/${emailUsuario}/listaDeProductosCarritoByMail`;
@@ -54,8 +55,10 @@ const Carrito = () => {
     return (
         <>
             <div className="header-2">
-                <img className="logo" src={logo} alt="Logo" />
-                <span className="subtitulo">The Golden Feather</span>
+                <a href="/" className="boton-inicio">
+                    <img className="logo" src={logo} alt="Logo" />
+                    <span className="subtitulo">The Golden Feather</span>
+                </a>
                 <button className="boton-hamburguesa" onClick={manejarHamburguesa}>
                     <img className="img-hamburguesa" src={Hamburguesa} alt="Hamburguesa" />
                 </button>
@@ -66,13 +69,13 @@ const Carrito = () => {
 
             {menuVisible && <MenuDesplegable />}
 
-            <h2 className="subtituloTUCARRITO">Tu Carrito</h2>
+            <h2 className="carrito-subtitulo">Tu Carrito</h2>
             <div className="carrito-contenedor">
-                <div className="lista-boton">
+                <div className="carrito-listaLibros-seguirComprando">
                     {productosCarrito.length === 0 ? (
-                        <div className="carrito-vacio">
+                        <div className="carrito-carrito-vacio">
                             <h3>Tu carrito está vacío.</h3>
-                            <button className="volver-tiendas" onClick={manejarSeguirComprando}>
+                            <button onClick={manejarSeguirComprando}>
                                 Volver a la tienda
                             </button>
                         </div>
@@ -83,13 +86,13 @@ const Carrito = () => {
                                 emailUsuario={emailUsuario} 
                                 onDelete={eliminarLibroDelCarrito}
                             />
-                            <button className="seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
+                            <button className="carrito-seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
                         </>
                     )}
                 </div>
                 {productosCarrito.length > 0 && (
                     <>
-                        <div className="separator"></div>
+                        <div className="carrito-separador"></div>
                         <TotalCarrito emailUsuario={emailUsuario} />
                     </>
                 )}

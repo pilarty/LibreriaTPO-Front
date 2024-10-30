@@ -7,8 +7,8 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
     const navigate = useNavigate();
     const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
 
-    const emailUsuario = "pgarcia@uade.edu.ar";
-    // const emailUsuario = sessionStorage.getItem('userEmail'); // DESCOMENTARLO
+    
+    const emailUsuario = sessionStorage.getItem('mail');
 
     const manejarAgregarACarrito = (isbn) => {
         if (!emailUsuario) {
@@ -45,23 +45,21 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
     };
     
     return (
-        <div className="book-container">
-            <img src={imageSrc} alt={titulo} className="book-image" />
-            <div className="book-details">
-                <div className="book-header">
+        <div className="libroListaLibros-book-container">
+            <img src={imageSrc} alt={titulo} className="libroListaLibros-book-image" />
+            <div className="libroListaLibros-book-details">
+                <div className="libroListaLibros-book-header">
                     <div>
-                        <h3 className="book-title">{titulo}</h3>
-                        <p className="book-author">{autor}</p>
+                        <h3 className="libroListaLibros-book-title">{titulo}</h3>
+                        <p className="libroListaLibros-book-author">{autor}</p>
                     </div>
-                    <div className="flex items-center">
-                        <span className="book-price">${precio}</span>
-                        <button className="cart-button" onClick={() => manejarAgregarACarrito(isbn)}>
-                            <img className="img-carrito" src={Carrito} alt="Carrito" />
-                        </button>
-                    </div>
+                    <span className="libroListaLibros-book-price">${precio}</span>
+                    <button className="libroListaLibros-cart-button" onClick={() => manejarAgregarACarrito(isbn)}>
+                        <img className="libroListaLibros-img-carrito" src={Carrito} alt="Carrito" />
+                    </button>
                 </div>
-                <h4 className="synopsis-title">Sinopsis</h4>
-                <p className="synopsis-text">{sinopsis}</p>
+                <h4 className="libroListaLibros-synopsis-title">Sinopsis</h4>
+                <p className="libroListaLibros-synopsis-text">{sinopsis}</p>
             </div>
         </div>
     );

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Usuario.css'; 
+import logo from '../assets/logo.png';
 
-const ProfilePage = () => {
+const Usuario = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
     nombre_usuario: '',
@@ -11,38 +12,53 @@ const ProfilePage = () => {
     nombre: '',
     apellido: '',
     direccion: '',
-    CP: '',
+    CP: 0,
   });
+  const [nombre, setNombre] = useState(profile.nombre);
+  const [apellido, setApellido] = useState(profile.apellido);
+  const [direccion, setDireccion] = useState('');
+  const [CP, setCp] = useState(0);
   const [contraseña, setContraseña] = useState('');
 
   const mail = sessionStorage.getItem('mail');
-  console.log('Valor de mail:', mail);
 
+  useEffect(() => {
+      if (!mail) {
+          navigate('/LoginPage'); 
+      }
+  }, [mail, navigate]);
 
   // Fetch de datos del perfil previo a la edicion
   useEffect(() => {
-    const mail = sessionStorage.getItem('mail');
-    fetch(`http://localhost:4002/usuarios/mail/${mail}`)
-      .then(response => response.json())
-      .then(data => {
-        console.log('Datos recibidos del GET:', data); // Para ver la estructura exacta
-        setProfile(data); 
-      })
-      .catch(error => console.error('Error al obtener el perfil:', error));
+    if (mail) {
+      fetch(`http://localhost:4002/usuarios/mail/${mail}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log('Datos recibidos del GET:', data); // Para ver la estructura exacta
+          console.log(data.contraseña);
+          setProfile(data); 
+        })
+        .catch(error => console.error('Error al obtener el perfil:', error));
+    }
   }, [mail]);
 
+  
+  //editar usuario
   const handleEditProfile = async () => {
-    try {
-      
+    
+    try { 
       const updateData = {
-        ...profile,
-        nombre: profile.nombre,
-        apellido: profile.apellido,
-        direccion: profile.direccion,
-        CP: profile.CP
+        nombre: nombre,
+        apellido: apellido,
+        mail: profile.mail,
+        contraseña: contraseña,
+        direccion: direccion,
+        CP:CP,
+        role: 'USUARIO'
       };
 
       console.log('Datos a enviar en PUT:', updateData); // Para ver que  envio
+      console.log('ID del perfil:', profile.id);
 
       const response = await fetch(`http://localhost:4002/usuarios/${profile.id}`, {
         method: 'PUT',
@@ -67,6 +83,10 @@ const ProfilePage = () => {
     }
   };
 
+
+
+
+
   // Eliminar Usuario
   const handleDeleteAccount = () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar tu cuenta?')) {
@@ -89,57 +109,56 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
-        <img src="/logo.png" alt="Profile" className="profileImage" />
-        <h1 className="title">{'Hola ' + profile.nombre+'!'}</h1>
-        <h2 className="editTitle">Editar</h2>
+    <div className="usuario-container">
+      <img src={logo} alt="Logo de The Golden Feather" className="usuario-logo" />
+      <div className="usuario-header">
+        <h1 className="usuario-title">{'Hola ' + profile.nombre+'!'}</h1>
+        <h2 className="usuario-editTitle">Editar</h2>
       </div>
 
       <div>
         <input
           type="text"
-          value={profile.nombre}
-          onChange={(e) => setProfile({ ...profile, nombre: e.target.value })}
+          className = "usuario-input"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
           placeholder="Nombre"
-          className="input"
         />
         <input
           type="text"
-          value={profile.apellido}
-          onChange={(e) => setProfile({ ...profile, apellido: e.target.value })}
+          value={apellido}
+          onChange={(e) => setApellido(e.target.value)}
           placeholder="Apellido"
-          className="input"
+          className = "usuario-input"
         />
         <input
           type="text"
-          value={profile.direccion}
-          onChange={(e) => setProfile({ ...profile, direccion: e.target.value })}
+          value={direccion}
+          onChange={(e) => setDireccion(e.target.value )}
           placeholder="Dirección"
-          className="input"
+          className = "usuario-input"
         />
         <input
           type="text"
-          value={profile.CP}
-          onChange={(e) => setProfile({ ...profile, CP: e.target.value })}
+          value={CP}
+          onChange={(e) => setCp(e.target.value)}
           placeholder="Código Postal"
-          className="input"
+          className = "usuario-input"
         />
-
-        <button onClick={handleEditProfile} className="saveButton">
-          Guardar
-        </button>
       </div>
 
-      <div className="deleteSection">
+      <div className="usuario-deleteSection">
         <input
           type="password"
           value={contraseña}
           onChange={(e) => setContraseña(e.target.value)}
           placeholder="Contraseña"
-          className="input"
+          className = "usuario-input"
         />
-        <button onClick={handleDeleteAccount} className="deleteButton">
+        <button onClick={handleEditProfile} className="usuario-saveButton">
+          Guardar
+        </button>
+        <button onClick={handleDeleteAccount} className="usuario-deleteButton">
           Eliminar cuenta
         </button>
       </div>
@@ -147,4 +166,5 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default Usuario;
+

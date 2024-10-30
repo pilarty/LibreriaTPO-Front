@@ -4,115 +4,7 @@
     margin: 0 auto; 
   }
    
-  .logo {
-    position: absolute;
-    left: 1.29%;
-    top: 5.5%;
-    width: 2.4%;
-    height: auto;
-  }
-
-  .subtitulo {
-    font-family: "Newsreader", serif;
-    font-weight: 500;
-    font-style: normal;
-    color: #D1A246;
-    position: absolute;
-    top: 0px;
-    left: 40px;
-    font-size: 50px
-  }
-
-  .img-usuario {
-    width: 70px;
-    height: auto;
-  }
-  
-  .img-carrito {
-    width: 40px;
-    height: auto;
-  }
-  
-  .img-hamburguesa {
-    width: 32px;
-    height: auto;
-  }
-  
-  .boton-usuario{
-    background-color: #ffffff;
-    position: absolute;
-    left: 2210px;
-    top: 52px;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-  }
-  
-  .boton-carrito{
-    background-color: #ffffff;
-    position: absolute;
-    left: 2300px;
-    top: 52px;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-  }
-  
-  .boton-hamburguesa{
-    background-color: #ffffff;
-    position: absolute;
-    left: 2120px;
-    top: 52px;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-  }
-
-  .menu-hamburguesa {
-    position: absolute;
-    top: 90px; 
-    right: 420px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 20px;
-  }
-  
-  .menu-hamburguesa ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .menu-hamburguesa ul li {
-    margin: 10px 0;
-  }
-  
-  .menu-hamburguesa ul li a {
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .menu-hamburguesa ul li a:hover {
-    color: #007bff;
-  }
-
-
-  body {
-    font-family: 'Newsreader', serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-}
-
-.contenedor {
+.PublicarLibro-contenedor {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -125,8 +17,7 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Imagen del libro */
-.book-image {
+.PublicarLibro-book-image {
     width: 450px;
     height: 600px;
     background-color: #ececec;
@@ -136,22 +27,18 @@
     border-radius: 4px;
 }
 
-.book-image img {
+.PublicarLibro-book-image img {
     max-width: 100%;
     max-height: 100%;
     border-radius: 4px;
 }
 
-/* Información del libro */
-.book-detalles {
+.PublicarLibro-book-detalles {
     flex: 1;
     margin-left: 40px;
 }
 
-
-
-/* Estilos para los inputs */
-.input-field {
+.PublicarLibro-input-field {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -161,8 +48,8 @@
     background-color: #ffffff;
 }
 
-/* Estilo del textarea */
-.textarea-field {
+
+.PublicarLibro-textarea-field {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -172,15 +59,13 @@
     resize: vertical; 
 }
 
-/* Estilo del precio */
-.book-precio {
+.PublicarLibro-book-precio {
     font-size: 1rem;
     color: #333;
     
 }
 
-/* Estilo del botón */
-.boton-publicar{
+.PublicarLibro-boton-publicar{
     background-color: rgba(40, 114, 113, 1);
     color: white;
     border: none;
@@ -192,11 +77,11 @@
     display: inline-block;
 }
 
-.boton-publicar:hover {
+.PublicarLibro-boton-publicar:hover {
     background-color: rgb(35, 100, 99);
 }
 
-.menu-generos {
+.PublicarLibro-menu-generos {
   position: absolute;
   top: 737px; 
   right: 220px;
@@ -209,26 +94,26 @@
   flex-direction: column;
 }
 
-.menu-generos ul {
+.PublicarLibro-menu-generos ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.menu-generos ul li {
+.PublicarLibro-menu-generos ul li {
   margin: 10px 0;
 }
 
-.menu-generos ul li a {
+.PublicarLibro-menu-generos ul li a {
   text-decoration: none;
   color: #333;
 }
 
-.menu-generos ul li a:hover {
+.PublicarLibro-menu-generos ul li a:hover {
   color: #007bff;
 }
 
-.generos-field {
+.PublicarLibro-generos-field {
   width: 100%;             
   padding: 10px;            
   border: 1px solid #ccc;    
@@ -243,7 +128,7 @@
   position: relative;        
 }
 
-.arrow {
+.PublicarLibro-arrow {
   margin-left: 10px;         
   font-size: 14px;           
   vertical-align: middle;    
@@ -253,11 +138,11 @@
   transform: translateY(-50%); 
 }
 
-.generos-field:hover {
+.PublicarLibro-generos-field:hover {
   background-color: #f9f9f9; 
 }
 
-.popup-overlay {
+.PublicarLibro-popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -269,7 +154,7 @@
   justify-content: center;
 }
 
-.popup-content {
+.PublicarLibro-popup-content {
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -279,20 +164,20 @@
   flex-direction: column;
 }
 
-.popup-buttons {
+.PublicarLibro-popup-buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 25px;
 }
 
-.input-popup {
+.PublicarLibro-input-popup {
   width: 90%;
   padding: 8px;
   box-sizing: border-box; 
   margin-left: 15px;
 }
 
-.boton-crearGenero{
+.PublicarLibro-boton-crearGenero{
   background-color: rgba(40, 114, 113, 1);
   color: white;
   border: none;
@@ -301,11 +186,11 @@
   display: inline-block;
 }
 
-.boton-crearGenero:hover {
+.PublicarLibro-boton-crearGenero:hover {
   background-color: rgb(35, 100, 99);
 }
 
-.boton-cancelarGenero{
+.PublicarLibro-boton-cancelarGenero{
   background-color: #ececec;
   color: rgb(0, 0, 0);
   border: none;
@@ -314,6 +199,6 @@
   display: inline-block;
 }
 
-.boton-cancelarGenero:hover {
+.PublicarLibro-boton-cancelarGenero:hover {
   background-color: #d6d6d6;
 }

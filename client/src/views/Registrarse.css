@@ -1,5 +1,5 @@
 /* Estilos generales */
-.container body {
+.registrarse-fondo {
   font-family: "Newsreader", serif;
   background-color: #FFF5E6;
   display: flex;
@@ -11,7 +11,11 @@
 
 /* Estilos para el logo*/
 
-.container .logo {
+.registrse-conteiner{
+
+}
+
+.registrarse-logo {
   width: 250px;
   height: 250px ;
   margin: 0 auto 1rem;
@@ -19,7 +23,7 @@
   }
 
 /* Estilos para el título */
-.container h1 {
+.registrarse-h1 {
   text-align: center;
   color: #4A3000;
   font-size: 2rem;
@@ -27,19 +31,19 @@
 }
 
 /* Estilos para el formulario */
-.container form {
+.registrarse-form {
   display: flex;
   flex-direction: column;
 }
 
-.container input {
+.registrarse-input {
   margin-bottom: 1rem;
   padding: 0.5rem;
   border: 1px solid #D4A763;
   border-radius: 4px;
 }
 
-.container button {
+.registrarse-button {
   background-color: hwb(156 18% 51%);
   color: #F8E9C8;
   border: none;
@@ -51,23 +55,23 @@
   transition: background-color 0.3s ease;
 }
 
-.container button:hover {
+.registrarse-button:hover {
   background-color: hwb(156 32% 37%);
 }
 
 
 /* Estilos para el enlace de inicio de sesión */
-.container .login-link {
+.registrarse-login-link {
   text-align: center;
   margin-top: 1rem;
 }
 
-.container .login-link a {
+.registrarse-login-link a {
   color: hwb(156 18% 51%);
   text-decoration: none;
 }
 
-.container .login-link a:hover {
+.registrarse-login-link a:hover {
   text-decoration: underline;
 }
 

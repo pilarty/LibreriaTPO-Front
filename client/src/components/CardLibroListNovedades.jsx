@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 
-const CardLibroList = () => {
+const CardLibroListNovedades = () => {
 
   const navigate2 = useNavigate();
 
@@ -71,7 +71,7 @@ const CardLibroList = () => {
 
     return (
        <Slider {...settings} className="homepage-lista-libros">
-              {posts.slice(0, Math.ceil(posts.length / 2)).map((post) => (
+              {posts.slice(Math.floor(posts.length / 2)).map((post) => (
                 <div className="homepage-carrusel-item">
                 <button className="homepage-boton-libros" onClick={() => manejarLibros(post.isbn)}>
                   <CardLibro
@@ -88,4 +88,4 @@ const CardLibroList = () => {
     );
 };
 
-export default CardLibroList;
+export default CardLibroListNovedades;

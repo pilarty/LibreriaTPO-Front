@@ -55,17 +55,18 @@ const LoginPage = () => {
   };
 
   return (
-    <>
-    <div classname="container">
-      <img src={logo} alt="Logo de The Golden Feather" className="logo" />
-      <h1>
+    <body className='login-fondo'>
+    <div classname="login-container">
+      <img src={logo} alt="Logo de The Golden Feather" className="login-logo" />
+      <div className='login-h1'>
         Bienvenido de nuevo a <br />
         <span className="tituloEspecial">The Golden Feather</span>
-      </h1>
+      </div>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
+      <form className='login-form' onSubmit={handleSubmit}>
         <input
           type="email"
+          className='login-input'
           id="mail"
           value={mail}
           onChange={(e) => setMail(e.target.value)}
@@ -74,19 +75,20 @@ const LoginPage = () => {
         />
         <input
           type="password"
+          className='login-input'
           id="contraseña"
           value={contraseña}
           onChange={(e) => setContraseña(e.target.value)}
           placeholder="Contraseña"
           required
         />
-        <button type="submit">Iniciar Sesión</button>
+        <button className='login-button' type="submit">Iniciar Sesión</button>
       </form>
-      <p className="Registrarse-link">
+      <p className="login-Registrarse-link">
         ¿No estás registrado? <Link to="/Registrarse">Registrate</Link>
       </p>
       </div>
-    </>
+    </body>
   );
 };
 

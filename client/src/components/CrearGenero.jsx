@@ -10,19 +10,19 @@ const CrearGenero = ({ onClose, onSubmit }) => {
     };
   
     return (
-      <div className="popup-overlay">
-        <div className="popup-content">
+      <div className="PublicarLibro-popup-overlay">
+        <div className="PublicarLibro-popup-content">
           <h2>Crear nuevo género</h2>
           <input
             type="text"
-            className="input-popup"
+            className="PublicarLibro-input-popup"
             placeholder="Nuevo género..."
             value={nuevoGenero}
             onChange={(e) => setNuevoGenero(e.target.value)}
           />
-          <div className="popup-buttons">
-            <button className='boton-cancelarGenero' onClick={onClose}>Cancelar</button>
-            <button className='boton-crearGenero' onClick={manejarSubmit}>Crear</button>
+          <div className="PublicarLibro-popup-buttons">
+            <button className='PublicarLibro-boton-cancelarGenero' onClick={onClose}>Cancelar</button>
+            <button className='PublicarLibro-boton-crearGenero' onClick={manejarSubmit}>Crear</button>
           </div>
         </div>
       </div>
