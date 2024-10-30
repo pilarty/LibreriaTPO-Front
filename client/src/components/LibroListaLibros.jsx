@@ -11,6 +11,8 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
     const emailUsuario = sessionStorage.getItem('mail');
     const [mensaje, setMensaje] = useState('');
 
+
+
     const mostrarMensaje = (texto) => {
         setMensaje(texto);
         setTimeout(() => setMensaje(''), 3000);
