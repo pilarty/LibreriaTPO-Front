@@ -6,8 +6,9 @@ import CardLibro from "./CardLibro";
 import "../views/Homepage.css"
 import { Link } from "react-router-dom"
 import { useNavigate } from 'react-router-dom';
-
 import { useEffect, useState } from 'react';
+import {useDispatch, useSelector} from "react-redux"
+import { fetchPost } from '../Redux/postSlice';
 
 const CardLibroList = () => {
 
@@ -17,9 +18,22 @@ const CardLibroList = () => {
     navigate2(`/Libro/${isbn}`);
   }
 
+  const dispatch = useDispatch()
+  const {items: items, loading, error} = useSelector((state)=> state.posts)
+  console.log(items)
 
+  useEffect(()=>{
+    dispatch(fetchPost())
+  }, [dispatch])
+
+  if (loading || items.length === 0) return <p>Cargando publicaciones...</p>;
+  if (error) return <p>Errro al acrgar las publicaciones: {error}</p>
+  //if (!items.length) return <p>No hay publicaciones disponibles.</p>;
+
+ /*
     const [posts, setPost] = useState([]);
 
+    //Se supone que esto no va más
     useEffect(() => {
       fetch("http://localhost:4002/libros")
         .then((response) => response.json())
@@ -30,7 +44,9 @@ const CardLibroList = () => {
         .catch((error) => {
           console.error("Error al obtener los datos: ", error)
         })
-    }, []);
+    }, []);*/
+
+    
 
     const settings = {
         dots: true,
@@ -71,7 +87,7 @@ const CardLibroList = () => {
 
     return (
        <Slider {...settings} className="homepage-lista-libros">
-              {posts.slice(0, Math.ceil(posts.length / 2)).map((post) => (
+              {items.content.map((post) => (
                 <div className="homepage-carrusel-item">
                 <button className="homepage-boton-libros" onClick={() => manejarLibros(post.isbn)}>
                   <CardLibro
