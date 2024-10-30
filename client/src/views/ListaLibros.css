@@ -194,6 +194,23 @@
     height: auto; 
 }
 
+.libroListaLibros-mensaje-general {
+    color: black;
+    font-size: 1.5rem; 
+    background-color: #F8E9C8;
+    border-radius: 5px;
+    padding: 1rem; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease-in-out;
+    margin: 1rem auto; 
+    margin-right: 1rem;
+    text-align: center; 
+    max-width: 80%; 
+    width: fit-content; 
+    min-width: 200px; 
+}
+
+
 /*LO DE LA PARTE DE ARRIBA*/
 .header-2 {
     display: flex;         
