@@ -87,8 +87,13 @@
 
 .libroListaLibros-book-header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.libroListaLibros-title-container {
+    display: flex; 
+    align-items: center;
 }
 
 .libroListaLibros-book-title {
@@ -97,6 +102,12 @@
     color: black;
     margin: 0;
     text-transform: uppercase;
+}
+.libroListaLibros-price-button-container {
+    display: flex; /* Utiliza Flexbox para el precio y el botón */
+    align-items: center; /* Centra verticalmente el precio y el botón */
+    justify-content: flex-end; /* Alinea todo a la derecha */
+    margin-top: 0.5rem; /* Añade margen superior para separar del autor */
 }
 
 .libroListaLibros-book-author {
@@ -110,8 +121,7 @@
 .libroListaLibros-book-price {
     font-size: 2rem;
     font-weight: bold;
-    margin-left: 20rem;
-    margin-top: 0.5rem;
+    margin-top: 0rem;
     text-transform: uppercase;
 }
 
@@ -172,6 +182,17 @@
     font-weight: bold;
 }
 
+.libroListaLibros-star-button {
+    background: transparent;
+    border: none; 
+    cursor: pointer; 
+    margin-left: 0.5rem; 
+}
+
+.libroListaLibros-star-icon {
+    width: 2.5rem; 
+    height: auto; 
+}
 
 /*LO DE LA PARTE DE ARRIBA*/
 .header-2 {

@@ -2,6 +2,7 @@ import React from 'react';
 import "../views/ListaLibros.css";
 import Carrito from '../assets/Carrito.png';
 import { useNavigate } from 'react-router-dom';
+import Estrella from '../assets/Estrella.png'
 
 const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
     const navigate = useNavigate();
@@ -49,20 +50,28 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
             <img src={imageSrc} alt={titulo} className="libroListaLibros-book-image" />
             <div className="libroListaLibros-book-details">
                 <div className="libroListaLibros-book-header">
-                    <div>
+                    <div className="libroListaLibros-title-container">
                         <h3 className="libroListaLibros-book-title">{titulo}</h3>
-                        <p className="libroListaLibros-book-author">{autor}</p>
+                        <button className="libroListaLibros-star-button" onClick={() => manejarFavorito(isbn)}>
+                            <img src={Estrella} alt="Estrella" className="libroListaLibros-star-icon" />
+                        </button>
                     </div>
-                    <span className="libroListaLibros-book-price">${precio}</span>
-                    <button className="libroListaLibros-cart-button" onClick={() => manejarAgregarACarrito(isbn)}>
-                        <img className="libroListaLibros-img-carrito" src={Carrito} alt="Carrito" />
-                    </button>
+                    <div className="libroListaLibros-price-button-container">
+                        <span className="libroListaLibros-book-price">${precio}</span>
+                        <button className="libroListaLibros-cart-button" onClick={() => manejarAgregarACarrito(isbn)}>
+                            <img className="libroListaLibros-img-carrito" src={Carrito} alt="Carrito" />
+                        </button>
+                    </div>
                 </div>
+                <p className="libroListaLibros-book-author">{autor}</p>
                 <h4 className="libroListaLibros-synopsis-title">Sinopsis</h4>
                 <p className="libroListaLibros-synopsis-text">{sinopsis}</p>
             </div>
         </div>
     );
+    
+    
+    
 };
 
 export default LibroListaLibros;
