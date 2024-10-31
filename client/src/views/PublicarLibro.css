@@ -46,6 +46,7 @@
     border-radius: 4px;
     font-size: 1rem;
     background-color: #ffffff;
+    box-sizing: border-box;
 }
 
 
@@ -57,6 +58,7 @@
     border-radius: 4px;
     font-size: 1rem;
     resize: vertical; 
+    box-sizing: border-box;
 }
 
 .PublicarLibro-book-precio {
