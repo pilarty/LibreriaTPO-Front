@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from "react-redux"
-import { fetchPost } from '../Redux/postSlice';
+import { getLibros } from '../Redux/librosSlice';
 
 const CardLibroList = () => {
 
@@ -19,34 +19,15 @@ const CardLibroList = () => {
   }
 
   const dispatch = useDispatch()
-  const {items: items, loading, error} = useSelector((state)=> state.posts)
+  const {items: items, loading, error} = useSelector((state)=> state.libros)
   console.log(items)
 
   useEffect(()=>{
-    dispatch(fetchPost())
+    dispatch(getLibros())
   }, [dispatch])
 
   if (loading || items.length === 0) return <p>Cargando publicaciones...</p>;
   if (error) return <p>Errro al acrgar las publicaciones: {error}</p>
-  //if (!items.length) return <p>No hay publicaciones disponibles.</p>;
-
- /*
-    const [posts, setPost] = useState([]);
-
-    //Se supone que esto no va más
-    useEffect(() => {
-      fetch("http://localhost:4002/libros")
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data)
-          setPost(data.content);
-        })
-        .catch((error) => {
-          console.error("Error al obtener los datos: ", error)
-        })
-    }, []);*/
-
-    
 
     const settings = {
         dots: true,
