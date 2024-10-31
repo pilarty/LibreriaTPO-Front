@@ -38,6 +38,7 @@
     flex-direction: column;
     justify-content: space-between;
     margin-right: 1.25rem;
+    
   }
   
   .libroCarritoList-encabezado-libro {
@@ -48,7 +49,7 @@
     border-bottom: 2px solid var(--color-border);
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
-    font-family: var(--font-secondary);
+    
     font-size: 2rem;
   }
   
@@ -56,7 +57,7 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    font-family: var(--font-secondary);
+    
     font-size: 1.125rem;
   }
 
@@ -84,7 +85,6 @@
     color: var(--color-primary);
     font-weight: bold;
     font-size: 2rem;
-    font-family: var(--font-secondary);
   }
 
 .libroCarrito-precio {
@@ -121,7 +121,6 @@
 
 .libroCarrito-subtotal {
     flex: 1;
-    /*text-align: right;*/
     font-size: 1.5rem;
   }
   
@@ -136,7 +135,6 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    font-family: var(--font-secondary);
   }
   
   .libroCarrito-recuadro-total h3 {
@@ -145,7 +143,6 @@
     font-size: 2rem;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    
   }
   
   .libroCarrito-recuadro-total p {
@@ -165,7 +162,6 @@
     cursor: pointer;
     font-weight: normal;
     transition: background-color 0.3s ease;
-    font-family: var(--font-secondary);
     font-size: 1.25rem;
   }
   
