@@ -139,8 +139,8 @@
     padding: 0.3rem;
 }
 .libroListaLibros-cart-button:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-    transition: box-shadow 0.3s ease; /* Suaviza la transición */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease; 
 }
 
 .libroListaLibros-synopsis-title {
