@@ -1,13 +1,8 @@
 import React from 'react';
 import LibroListaLibros from "./LibroListaLibros";
-import { useNavigate } from 'react-router-dom';
 
 const ListaLibrosListaLibros = ({ libros, loading }) => {
-    const navigate2 = useNavigate();
-
-    const manejarLibros = (isbn) => {
-        navigate2(`/Libro/${isbn}`);
-    }
+    
     
     if (loading) {
         return <div>Cargando...</div>; // Mensaje mientras se cargan los libros
@@ -22,7 +17,7 @@ const ListaLibrosListaLibros = ({ libros, loading }) => {
         <div className="listaLibrosListaLibros-libros-container
         ">
                 {libros.map((libro) => (
-                    //<button className= "listaLibroslistaLibros-boton-libros" onClick={()=>manejarLibros(libro.isbn)}>
+                    
                     <LibroListaLibros 
                         key={libro.isbn}
                         isbn={libro.isbn}

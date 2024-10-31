@@ -11,7 +11,9 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
     const emailUsuario = sessionStorage.getItem('mail');
     const [mensaje, setMensaje] = useState('');
 
-
+    const manejarLibros = (isbn) => {
+        navigate(`/Libro/${isbn}`);
+    }
 
     const mostrarMensaje = (texto) => {
         setMensaje(texto);
@@ -79,7 +81,12 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
                 <div className="libroListaLibros-book-details">
                     <div className="libroListaLibros-book-header">
                         <div className="libroListaLibros-title-container">
-                            <h3 className="libroListaLibros-book-title">{titulo}</h3>
+                        <h3
+                        className="libroListaLibros-book-title"
+                        onClick={() => manejarLibros(isbn)} // Acción al hacer clic
+                    >
+                        {titulo}
+                    </h3>
                             <button className="libroListaLibros-star-button" onClick={() => manejarFavorito(isbn)}>
                                 <img src={Estrella} alt="Estrella" className="libroListaLibros-star-icon" />
                             </button>
