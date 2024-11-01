@@ -81,8 +81,8 @@
   max-width: 48%; /* Ajusta cada botón al 48% del ancho del contenedor */
   padding: 10px;
   font-size: 16px;
-  background-color: #218c8d;
-  color: #f8e9c8;
+  background-color: #a0db89;
+  color: #1b4b08;
 }
 
 .usuario-deleteButton {

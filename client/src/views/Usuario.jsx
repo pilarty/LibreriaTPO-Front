@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Usuario.css'; 
+import './Usuario.css';
 import logo from '../assets/logo.png';
 import userIMG from '../assets/userIMG.png';
 
@@ -20,46 +20,46 @@ const Usuario = () => {
   const [direccion, setDireccion] = useState('');
   const [CP, setCp] = useState(0);
   const [contraseña, setContraseña] = useState('');
+  const [isEditing, setIsEditing] = useState(false); 
 
   const mail = sessionStorage.getItem('mail');
 
   useEffect(() => {
-      if (!mail) {
-          navigate('/LoginPage'); 
-      }
+    if (!mail) {
+      navigate('/LoginPage');
+    }
   }, [mail, navigate]);
 
-  // Fetch de datos del perfil previo a la edicion
+  // Fetch de datos del perfil previo a la edición
   useEffect(() => {
     if (mail) {
       fetch(`http://localhost:4002/usuarios/mail/${mail}`)
         .then(response => response.json())
         .then(data => {
-          console.log('Datos recibidos del GET:', data); // Para ver la estructura exacta
-          console.log(data.contraseña);
-          setProfile(data); 
+          console.log('Datos recibidos del GET:', data);
+          setProfile(data);
         })
         .catch(error => console.error('Error al obtener el perfil:', error));
     }
   }, [mail]);
 
-  
-  //editar usuario
+  // Función para cambiar a modo edición
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  // Editar usuario
   const handleEditProfile = async () => {
-    
-    try { 
+    try {
       const updateData = {
         nombre: nombre,
         apellido: apellido,
         mail: profile.mail,
         contraseña: contraseña,
         direccion: direccion,
-        CP:CP,
+        CP: CP,
         role: 'USUARIO'
       };
-
-      console.log('Datos a enviar en PUT:', updateData); // Para ver que  envio
-      console.log('ID del perfil:', profile.id);
 
       const response = await fetch(`http://localhost:4002/usuarios/${profile.id}`, {
         method: 'PUT',
@@ -68,9 +68,6 @@ const Usuario = () => {
         },
         body: JSON.stringify(updateData),
       });
-
-      const responseText = await response.text(); 
-      console.log('Respuesta completa:', responseText); 
 
       if (response.ok) {
         alert('Perfil actualizado exitosamente');
@@ -84,14 +81,9 @@ const Usuario = () => {
     }
   };
 
-
-
-
-
   // Eliminar Usuario
   const handleDeleteAccount = () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar tu cuenta?')) {
-
       fetch(`http://localhost:4002/usuarios/${profile.id}`, {
         method: 'DELETE',
         headers: {
@@ -108,56 +100,62 @@ const Usuario = () => {
       });
     }
   };
-//className="usuario-container"
+
   return (
     <div>
-    <header className="usuario-header">
-      <img src={logo} alt="Logo de The Golden Feather" className="usuario-logo-small" />
-      <span className="usuario-logo-text">The Golden Feather</span>
-    </header>
-  
-    <div className="usuario-profile">
-      <img src={userIMG} alt="Foto de perfil" className="usuario-logo" />
-      <h1 className="usuario-title">{'Hola ' + profile.nombre + '!'}</h1>
-    </div>
-  
-    <div className="usuario-form-wrapper">
-      <div className="usuario-form">
-        <input type="text" 
-        className="usuario-input" 
-        value={nombre} onChange={(e) => setNombre(e.target.value)} 
-        placeholder="Nombre" />
+      <header className="usuario-header">
+        <img src={logo} alt="Logo de The Golden Feather" className="usuario-logo-small" />
+        <span className="usuario-logo-text">The Golden Feather</span>
+      </header>
 
-        <input type="text" 
-        className="usuario-input" 
-        value={apellido} onChange={(e) => setApellido(e.target.value)} 
-        placeholder="Apellido" />
-
-        <input type="text" 
-        className="usuario-input" 
-        value={direccion} onChange={(e) => setDireccion(e.target.value)} 
-        placeholder="Dirección" />
-        
-        <input type="text" 
-        className="usuario-input" 
-        value={CP} onChange={(e) => setCp(e.target.value)} 
-        placeholder="Código Postal" />
-        
-        <input type="password" 
-        className="usuario-input" 
-        value={contraseña} onChange={(e) => setContraseña(e.target.value)} 
-        placeholder="Contraseña" />
+      <div className="usuario-profile">
+        <img src={userIMG} alt="Foto de perfil" className="usuario-logo" />
+        <h1 className="usuario-title">{'Hola ' + profile.nombre + '!'}</h1>
       </div>
-  
-      <div className="usuario-buttons">
-        <button onClick={handleEditProfile} className="usuario-saveButton">Guardar</button>
-        <button onClick={handleDeleteAccount} className="usuario-deleteButton">Eliminar cuenta</button>
+
+      <div className="usuario-form-wrapper">
+        <div className="usuario-form">
+          <input type="text" 
+          className="usuario-input" 
+          value={nombre} onChange={(e) => setNombre(e.target.value)} 
+          placeholder="Nombre" />
+
+          <input type="text" 
+          className="usuario-input" 
+          value={apellido} onChange={(e) => setApellido(e.target.value)} 
+          placeholder="Apellido" />
+
+          <input type="text" 
+          className="usuario-input" 
+          value={direccion} onChange={(e) => setDireccion(e.target.value)} 
+          placeholder="Dirección" />
+          
+          <input type="text" 
+          className="usuario-input" 
+          value={CP} onChange={(e) => setCp(e.target.value)} 
+          placeholder="Código Postal" />
+          
+          <input type="password" 
+          className="usuario-input" 
+          value={contraseña} onChange={(e) => setContraseña(e.target.value)} 
+          placeholder="Contraseña" />
+        </div>
+
+        {/* Boton para activar modo edición */}
+        {!isEditing && (
+          <button onClick={handleEditClick} className="usuario-saveButton">Editar</button>
+        )}
+
+        {/* Botones de Guardar y Eliminar */}
+        {isEditing && (
+          <div className="usuario-buttons">
+            <button onClick={handleEditProfile} className="usuario-saveButton">Guardar</button>
+            <button onClick={handleDeleteAccount} className="usuario-deleteButton">Eliminar cuenta</button>
+          </div>
+        )}
       </div>
     </div>
-  </div>
-  
-    );
-  };
+  );
+};
 
 export default Usuario;
-
