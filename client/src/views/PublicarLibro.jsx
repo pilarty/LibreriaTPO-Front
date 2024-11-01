@@ -8,6 +8,8 @@ import Hamburguesa from '../assets/hamburguesa.png'
 import MenuDesplegable from "../components/MenuDesplegable";
 import MenuDesplegableGeneros from "../components/MenuDesplegableGeneros";
 import { useState, useRef, useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux"
+import { createLibros } from '../Redux/librosSlice';
 
 const PublicarLibro = () => {
 
@@ -31,6 +33,8 @@ const PublicarLibro = () => {
     const [preciop, setPrecio] = useState("");
     const [posts, setPost] = useState([]);
     const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
+    const [publicacionLista, setPublicacionLista] = useState(false);
+    const [libroNuevo, setLibroNuevo] = useState(null);
     const manejarUsuario = () => {
         navigate("/Usuario");
       }
@@ -67,7 +71,7 @@ const PublicarLibro = () => {
           method: 'post',
           body: formData
           })
-        .then(response => response.json()) // Manejo de la respuesta
+        .then(response => response.json())
         .then(data => {
           console.log('Success:', data);
         })
@@ -83,42 +87,45 @@ const PublicarLibro = () => {
         return data; 
       };
 
+
       const manejarPublicar = async () => {
         const generoIdp = await transformarGenero();
+        const libroData= {
+          isbn: isbnp,
+          titulo: titulop,
+          precio: preciop,
+          cantPaginas: numPaginasp,
+          descripcion: descripcionp,
+          stock: stockp,
+          editorial: editorialp,
+          edicion: edicionp,
+          idioma: idiomap,
+          generoId: generoIdp,
+          autor: autorp
+        }
+        setLibroNuevo(libroData)
+        setPublicacionLista(true)
+        console.log(libroNuevo)
+      }
         
-        console.log(generoIdp);
-        fetch("http://localhost:4002/libros", {
-        method: 'post',
-          headers: {
-          //'Authorization': 'Bearer ${token}'
-          'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({isbn: isbnp,
-                                titulo: titulop,
-                                precio: preciop,
-                                cantPaginas: numPaginasp,
-                                descripcion: descripcionp,
-                                stock: stockp,
-                                editorial: editorialp,
-                                edicion: edicionp,
-                                idioma: idiomap,
-                                generoId: generoIdp,
-                                autor: autorp
-          })
-        })
-          .then((response) => response.json())
+      const dispatch = useDispatch()
+      const {items, loading, error} = useSelector((state)=> state.libros)
+
+      useEffect(()=>{
+        if (publicacionLista){
+          dispatch(createLibros(libroNuevo))
+          .unwrap()
           .then(async (data) => {
             console.log("Libro creado:", data);
             await postImagenes();
             alert("Libro publicado exitosamente");
           })
-          .catch((error) => {
-            console.error("Error al obtener los datos: ", error)
-          })
-      }
+        setLibroNuevo(null)
+        setPublicacionLista(false)
+        }
+      }, [publicacionLista, dispatch])
 
-    
-
+      if (error) return <p>Errro al cargar las publicaciones: {error}</p>
 
       return (
         <div>
