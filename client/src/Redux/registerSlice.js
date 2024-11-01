@@ -10,7 +10,7 @@ export const registerUser = createAsyncThunk("register/registerUser", async (use
   const registerSlice = createSlice({
     name: "register",
     initialState: {
-      user: null, 
+      token: null, 
       loading: false,
       error: null,
     },
@@ -23,7 +23,7 @@ export const registerUser = createAsyncThunk("register/registerUser", async (use
         })
         .addCase(registerUser.fulfilled, (state, action) => {
           state.loading = false;
-          state.user = action.payload; 
+          state.token = action.payload.access_token; 
         })
         .addCase(registerUser.rejected, (state, action) => {
           state.loading = false;
