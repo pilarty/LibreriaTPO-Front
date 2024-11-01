@@ -19,7 +19,7 @@ const CardLibroList = () => {
   }
 
   const dispatch = useDispatch()
-  const {items: items, loading, error} = useSelector((state)=> state.libros)
+  const {items: items, loading, error, libro} = useSelector((state)=> state.libros)
   console.log(items)
 
   useEffect(()=>{
