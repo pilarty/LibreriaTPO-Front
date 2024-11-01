@@ -1,6 +1,13 @@
+import { useDispatch } from 'react-redux';
+import { eliminarProductoCarrito } from '../Redux/productoCarritoSlice';
 import LibroCarrito from './LibroCarrito';
 
-const LibroCarritoList = ({ productosCarrito, emailUsuario, onDelete }) => {
+const LibroCarritoList = ({ productosCarrito, emailUsuario }) => {
+    const dispatch = useDispatch();
+
+    const handleDelete = (isbn) => {
+        dispatch(eliminarProductoCarrito({ isbn, carrito_mail: emailUsuario }));
+    };
 
     return (
         <>
@@ -21,7 +28,7 @@ const LibroCarritoList = ({ productosCarrito, emailUsuario, onDelete }) => {
                         cantidad={producto.cantidad} 
                         isbn={producto.libro.isbn}
                         carrito_mail={emailUsuario}
-                        onDelete={onDelete} 
+                        onDelete={handleDelete}
                     />
                     {index !== productosCarrito.length - 1 && <hr />}
                 </div>
