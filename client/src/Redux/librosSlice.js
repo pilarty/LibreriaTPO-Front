@@ -16,6 +16,16 @@ export const createLibros = createAsyncThunk("libros/createLibros", async (newLi
     return data;
   });
 
+export const putLibro = createAsyncThunk("libros/putLibro", async ({ isbn, updatedLibro }) => {
+  const { data } = await axios.put(`http://localhost:4002/libros/${isbn}`, updatedLibro);
+  return data;
+});
+
+export const deleteLibro = createAsyncThunk("libros/deleteLibro", async (isbn) => {
+  await axios.delete(`http://localhost:4002/libros/${isbn}`);
+  return isbn;
+});
+
 const librosSlice = createSlice({
     name: "libros",
     initialState: {
@@ -65,6 +75,37 @@ const librosSlice = createSlice({
             state.items = [action.payload];
           })
           .addCase(createLibros.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+          })
+
+          // PUT LIBRO
+          .addCase(putLibro.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+          })
+          .addCase(putLibro.fulfilled, (state, action) => {
+            state.loading = false;
+            const index = state.items.findIndex(libro => libro.isbn === action.payload.isbn);
+            if (index !== -1) {
+              state.items[index] = action.payload;
+            }
+          })
+          .addCase(putLibro.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+          })
+
+          // DELETE LIBRO
+          .addCase(deleteLibro.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+          })
+          .addCase(deleteLibro.fulfilled, (state, action) => {
+            state.loading = false;
+            state.items = state.items.filter(libro => libro.isbn !== action.payload); 
+          })
+          .addCase(deleteLibro.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message;
           });
