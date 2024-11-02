@@ -7,6 +7,8 @@ import Hamburguesa from '../assets/hamburguesa.png';
 import { useNavigate } from 'react-router-dom';
 import { useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux"
+import { getLibroByIsbn } from '../Redux/librosSlice';
 
 const LibroSolo = () => {
 
@@ -37,7 +39,7 @@ const LibroSolo = () => {
     const emailUsuario = sessionStorage.getItem('mail');
  
 
-    const [post, setPost] = useState([]);
+    //const [libro, setlibro] = useState([]);
     //const [isbn, setisbn] = useState([]);
 
     const manejarAgregarACarrito = (isbn, cantidad) => {
@@ -51,7 +53,7 @@ const LibroSolo = () => {
             };
    
             fetch(`http://localhost:4002/productosCarrito`, {
-                method: "POST",
+                method: "libro",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -74,21 +76,20 @@ const LibroSolo = () => {
         }
     };
 
-    
 
-    useEffect(() => {
-      fetch(`http://localhost:4002/libros/${isbn}`)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data)
-          setPost(data);
-        })
-        .catch((error) => {
-          console.error("Error al obtener los datos: ", error)
-        })
-    }, [isbn]);
+  const dispatch = useDispatch()
+  const {items: items, loading, error, libro} = useSelector((state)=> state.libros)
+  console.log(libro)
 
-    const imageSrc = post.image ? `data:image/jpeg;base64,${post.image}` : 'default-image-path.jpg';
+  useEffect(()=>{
+    dispatch(getLibroByIsbn(isbn))
+  }, [dispatch, isbn])
+
+  if (loading) return <p>Cargando publicacion...</p>;
+  if (error) return <p>Errro al cargar la publicacion: {error}</p>
+
+
+    const imageSrc = libro.image ? `data:image/jpeg;base64,${libro.image}` : 'default-image-path.jpg';
 
 
     return (
@@ -119,10 +120,10 @@ const LibroSolo = () => {
                     <div className="libroSolo-imagen-placeholder">
                         <img src={imageSrc} alt="Imagen del Libro" />
                     </div>
-                    <h2 className="titulo-libroSolo">{post.titulo}</h2>
+                    <h2 className="titulo-libroSolo">{libro.titulo}</h2>
 
                     <div className="LibroSolo-precio-cantidad">
-                        <p className="LibroSolo-precio">${post.precio}</p>
+                        <p className="LibroSolo-precio">${libro.precio}</p>
 
                     {/* Selector de cantidad */}
 
@@ -143,21 +144,21 @@ const LibroSolo = () => {
                 {/* Detalles del libro */}
                 <div className="libroSolo-detalles">
                     <div className="libroSolo-info">
-                        <h3>{post.autor}</h3>
+                        <h3>{libro.autor}</h3>
                         <p>
-                            {post.descripcion}
+                            {libro.descripcion}
                         </p>
                         <p>
-                            <strong>Editorial:</strong> {post.editorial}<br />
-                            <strong>Edicion:</strong> {post.edicion}<br />
-                            <strong>Idioma:</strong> {post.idioma}<br />
-                            <strong>Páginas:</strong> {post.cantPaginas}<br />
-                            <strong>ISBN:</strong> {post.isbn}<br />
-                            <strong>Géneros:</strong> {post.genero} <br />
+                            <strong>Editorial:</strong> {libro.editorial}<br />
+                            <strong>Edicion:</strong> {libro.edicion}<br />
+                            <strong>Idioma:</strong> {libro.idioma}<br />
+                            <strong>Páginas:</strong> {libro.cantPaginas}<br />
+                            <strong>ISBN:</strong> {libro.isbn}<br />
+                            <strong>Géneros:</strong> {libro.genero} <br />
                         </p>
                     </div>
 
-                    <button className="LibroSolo-boton-agregar" onClick={() => manejarAgregarACarrito(post.isbn, cantidad)}>
+                    <button className="LibroSolo-boton-agregar" onClick={() => manejarAgregarACarrito(libro.isbn, cantidad)}>
                         Agregar {cantidad} al carrito
                     </button>
                 </div>
