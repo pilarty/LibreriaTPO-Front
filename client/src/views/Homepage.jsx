@@ -70,7 +70,7 @@ const Homepage = () => {
           </div>
           <div className="homepage-subtitulo-3">Novedades</div>
           <div className="homepage-lista-libros-2">
-            <CardLibroList></CardLibroList>
+            <CardLibroListNovedades></CardLibroListNovedades>
           </div>
           <div className="homepage-header-4">
           <Link className="homepage-text-vermas" to="/Libros">Ver más</Link>
