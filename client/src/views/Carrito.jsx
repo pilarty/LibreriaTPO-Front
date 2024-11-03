@@ -28,6 +28,14 @@ const Carrito = () => {
         }
     }, [emailUsuario, navigate, dispatch]);
 
+    if (loading) {
+        return <div>Cargando...</div>;
+    }
+
+    if (error) {
+        return <div>Error al cargar los datos: {error}</div>;
+    }
+
     const manejarSeguirComprando = () => {
         navigate("/");
     };

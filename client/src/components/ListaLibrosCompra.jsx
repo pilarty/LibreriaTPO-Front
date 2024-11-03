@@ -1,36 +1,34 @@
 import "../views/Compra.css";
 import { useEffect, useState } from 'react';
-const ListaLibros = ( ) => {
-    const libros = [
-        { nombre: 'Libro1', precio: 89 },
-        { nombre: 'Libro2', precio: 10 },
-        { nombre: 'Libro3', precio: 70 },
-        { nombre: 'Otro libro', precio: 100 },
-        { nombre: 'Libro especial', precio: 850 }
-    ];
-    const mailUsuario = sessionStorage.getItem('mail'); 
+import { useSelector, useDispatch } from 'react-redux';
+import { getProductosCarrito } from '../Redux/productoCarritoSlice';
 
-    const [posts, setPost] = useState([]);
-    console.log(posts)
-    //conectar con el back COMO LA MINA
-    useEffect(() => { 
-        fetch(`http://localhost:4002/productosCarrito/${mailUsuario}/listaDeProductosCarritoByMail`)
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data)
-            setPost(data);
-          })
-          .catch((error) => {
-            console.error("Error al obtener los datos: ", error)
-          })
-      }, [ ]);
+const ListaLibros = ( ) => {
+    const mailUsuario = sessionStorage.getItem('mail');
+    const dispatch = useDispatch();
+
+    const productosCarrito = useSelector((state) => state.productoCarrito.productos);
+    const loading = useSelector((state) => state.productoCarrito.loading);
+    const error = useSelector((state) => state.productoCarrito.error);
+
+    useEffect(() => {
+      dispatch(getProductosCarrito(mailUsuario));
+    }, [dispatch, mailUsuario]);
+
+    if (loading) {
+        return <div>Cargando...</div>;
+    }
+
+    if (error) {
+        return <div>Error al cargar los datos: {error}</div>;
+    }
 
     return(
     <ul className='list-libros'>
-        {posts.map((post) => ( 
-            <li key={post.id}> {/*Es necesario en React cuando se renderizan listas*/}
-                <span>{post.libro.titulo}</span>
-                <span>{post.libro.precio}</span>
+        {productosCarrito.map((producto) => ( 
+            <li key={producto.id}> {/*Es necesario en React cuando se renderizan listas*/}
+                <span>{producto.libro.titulo}</span>
+                <span>{producto.libro.precio}</span>
             </li>
         ))}
     </ul>

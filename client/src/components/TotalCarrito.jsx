@@ -17,10 +17,16 @@ const TotalCarrito = ({ emailUsuario }) => {
         }
     }, [dispatch, emailUsuario]);
 
-    // Calcula el subtotal sumando los precios de todos los productos en el carrito
-    const subtotal = productosCarrito.reduce((total, producto) => {
-        return total + producto.libro.precio * producto.cantidad;
-    }, 0);
+    
+    const calcularSubtotal = (carrito) => {
+        let subtotal = 0;
+        carrito.forEach((producto) => {
+            subtotal += producto.libro.precio * producto.cantidad;
+        });
+        return subtotal;
+    };
+    
+    const subtotal = calcularSubtotal(productosCarrito);
 
     const manejarFinalizarCompra = () => {
         navigate("/Compra");

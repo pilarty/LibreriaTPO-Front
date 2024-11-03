@@ -35,8 +35,9 @@ const FormularioCompra = () => {
         window.location.href = "/"; // Redirige a la homepage
     };
 
-    const [posts, setPost] = useState([]);
+    /*const [posts, setPost] = useState([]);
     console.log(posts)
+    */
 
     const obtenerGift = () => { 
         fetch(`http://localhost:4002/giftcards/byCodigo/${formulario.giftcard}`)

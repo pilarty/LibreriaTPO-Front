@@ -1,5 +1,5 @@
 //. --> esta en la misma carpeta; ..---> esta en otra carpeta 
-import React, { useState } from "react";
+import { useState, useEffect } from 'react';
 import "./Compra.css";
 import logo from '../assets/logo.png'; 
 import Usuario from '../assets/Usuario.png'; 
@@ -9,10 +9,32 @@ import { useNavigate } from 'react-router-dom';
 import FormularioCompra from "../components/FormularioCompra"; 
 import ListaLibrosCompra from "../components/ListaLibrosCompra"; 
 import TotalCompra from "../components/TotalCompra"; 
+import { useSelector, useDispatch } from 'react-redux';
+import { getCarrito } from '../Redux/carritoSlice';
 
 const Compra = () => {
-    // Funciones
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const carrito = useSelector((state) => state.carrito.carrito);
+    const loading = useSelector((state) => state.carrito.loading);
+    const error = useSelector((state) => state.carrito.error);
+
+    const mailUsuario = sessionStorage.getItem('mail');
+
+    useEffect(() => {
+        if (mailUsuario) {
+            dispatch(getCarrito(mailUsuario));
+        }
+    }, [dispatch, mailUsuario]);
+
+    if (loading) {
+        return <div>Cargando carrito...</div>;
+    }
+
+    if (error) {
+        return <div>Error al cargar el carrito: {error}</div>;
+    }
 
     const manejarUsuario = () => {
         navigate("/Usuario");
@@ -24,6 +46,9 @@ const Compra = () => {
     const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
     };
+
+    const totalSinDescuento = carrito.total || 0; // Usa el total directamente
+    const totalFinal = carrito.total || 0;
 
     // Libros disponibles para la compra --> esto se cambia en el back
     
@@ -53,7 +78,7 @@ const Compra = () => {
                 {/* lista de libros y totales */}
                 <div className="lista-totales">
                     <ListaLibrosCompra /> 
-                 {/*}   <TotalCompra totalSinDescuento={totalSinDescuento} totalFinal={totalFinal} /> */}
+                {/*<TotalCompra totalSinDescuento={totalSinDescuento} totalFinal={totalFinal} /> */}
                 </div>
             </div>
         </div>
