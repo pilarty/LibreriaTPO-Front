@@ -13,20 +13,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCarrito } from '../Redux/carritoSlice';
 
 const Compra = () => {
+    // MUESTRA EL MENU
+    const [menuVisible, setMenuVisible] = useState(false);
+    const mailUsuario = sessionStorage.getItem('mail');
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const carrito = useSelector((state) => state.carrito.carrito);
+    const carrito = useSelector((state) => state.carrito.items_carrito);
     const loading = useSelector((state) => state.carrito.loading);
     const error = useSelector((state) => state.carrito.error);
-
-    const mailUsuario = sessionStorage.getItem('mail');
 
     useEffect(() => {
         if (mailUsuario) {
             dispatch(getCarrito(mailUsuario));
         }
     }, [dispatch, mailUsuario]);
+
+    const totalSinDescuento = carrito.total ?? 0; 
+    const totalFinal = carrito.total ?? 0;
 
     if (loading) {
         return <div>Cargando carrito...</div>;
@@ -40,18 +44,11 @@ const Compra = () => {
         navigate("/Usuario");
     };
 
-    // MUESTRA EL MENU
-    const [menuVisible, setMenuVisible] = useState(false);
-
     const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
     };
-
-    const totalSinDescuento = carrito.total || 0; // Usa el total directamente
-    const totalFinal = carrito.total || 0;
-
-    // Libros disponibles para la compra --> esto se cambia en el back
     
+    // Libros disponibles para la compra --> esto se cambia en el back
 
     return (
         <div>
@@ -78,7 +75,7 @@ const Compra = () => {
                 {/* lista de libros y totales */}
                 <div className="lista-totales">
                     <ListaLibrosCompra /> 
-                {/*<TotalCompra totalSinDescuento={totalSinDescuento} totalFinal={totalFinal} /> */}
+                <TotalCompra totalSinDescuento={totalSinDescuento} totalFinal={totalFinal} /> 
                 </div>
             </div>
         </div>

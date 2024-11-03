@@ -10,7 +10,7 @@ export const getCarrito = createAsyncThunk('carrito/getCarrito',
 const carritoSlice = createSlice({
     name: "carrito",
     initialState: {
-        carrito: [], 
+        items_carrito: [], 
         loading: false, 
         error: null, 
     },
@@ -23,7 +23,7 @@ const carritoSlice = createSlice({
         })
         .addCase(getCarrito.fulfilled, (state, action) => { 
             state.loading = false;
-            state.carrito = action.payload; 
+            state.items_carrito = action.payload; 
         })
         .addCase(getCarrito.rejected, (state, action) => {
             state.loading = false;
