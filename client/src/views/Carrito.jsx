@@ -11,7 +11,6 @@ import { getProductosCarrito } from '../Redux/productoCarritoSlice';
 import './Carrito.css';
 
 const Carrito = () => {
-    //const [productosCarrito, setProductosCarrito] = useState([]);
     const [menuVisible, setMenuVisible] = useState(false);
     const emailUsuario = sessionStorage.getItem('mail');
     const navigate = useNavigate();
@@ -28,33 +27,6 @@ const Carrito = () => {
             dispatch(getProductosCarrito(emailUsuario)); // Despachar acción para obtener productos
         }
     }, [emailUsuario, navigate, dispatch]);
-
-    /*
-    useEffect(() => {
-        if (!emailUsuario) {
-            navigate('/LoginPage'); 
-        }
-    }, [emailUsuario, navigate]);
-
-
-    useEffect(() => {
-        const URL_PRODUCTOS = `http://localhost:4002/productosCarrito/${emailUsuario}/listaDeProductosCarritoByMail`;
-        fetch(URL_PRODUCTOS)
-            .then((response) => response.json())
-            .then((productos) => {
-                setProductosCarrito(productos);
-            })
-            .catch((error) => {
-                console.log("Error al obtener los productos del carrito", error);
-            });
-    }, [emailUsuario]);
-
-    const eliminarLibroDelCarrito = (isbn) => {
-        setProductosCarrito((prevProductos) =>
-            prevProductos.filter((producto) => producto.libro.isbn !== isbn)
-        );
-    };
-    */
 
     const manejarSeguirComprando = () => {
         navigate("/");
