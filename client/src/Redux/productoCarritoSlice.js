@@ -2,6 +2,21 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import axios from "axios"
 
 //CREATE
+export const createProductoCarrito = createAsyncThunk(
+  "productosCarrito/createProductoCarrito",
+  async (producto, { rejectWithValue }) => {
+      try {
+          const response = await axios.post("http://localhost:4002/productosCarrito", {
+              cantidad: producto.cantidad,
+              isbn: producto.isbn,
+              carrito_mail: producto.carrito_mail,
+          });
+          return response.data;
+      } catch (error) {
+          return rejectWithValue(error.response ? error.response.data : error.message);
+      }
+  }
+);
 
 //GET PRODUCTOS CARRITO BY MAIL
 export const getProductosCarrito = createAsyncThunk("productosCarrito/getProductosCarrito",
@@ -41,64 +56,79 @@ export const eliminarProductoCarrito = createAsyncThunk("productoCarrito/elimina
 );
 
 const productoCarritoSlice = createSlice({
-    name: "productoCarrito",
-    initialState: {
-        productos: [],
-        loading: false,
-        error: null,
-    },
-    reducers: {},
-    extraReducers: (builder) => {
-      builder
-        // GET PRODUCTOS CARRITO
-        .addCase(getProductosCarrito.pending, (state) => {
-          state.loading = true;
-          state.error = null;
-        })
-        .addCase(getProductosCarrito.fulfilled, (state, action) => { //operación asíncrona completada exitosamente
-          state.loading = false;
-          state.productos = action.payload;
-        })
-        .addCase(getProductosCarrito.rejected, (state, action) => {
-          state.loading = false;
-          state.error = action.error.message;
-        })
-  
-        // PUT ACTUALIZAR CANTIDAD PRODUCTO
-        .addCase(actualizarCantidadProducto.pending, (state) => {
-          state.loading = true;
-          state.error = null;
-        })
-        .addCase(actualizarCantidadProducto.fulfilled, (state, action) => {
-          const { isbn, cantidad } = action.payload;
-          const producto = state.productos.find((p) => p.libro.isbn === isbn);
-          if (producto) {
-            producto.cantidad = cantidad;
-          }
-          state.loading = false;
-        })
-        .addCase(actualizarCantidadProducto.rejected, (state, action) => {
-          state.loading = false;
-          state.error = action.payload;
-        })
-  
-        // DELETE ELIMINAR PRODUCTO DEL CARRITO
-        .addCase(eliminarProductoCarrito.pending, (state) => {
-          state.loading = true;
-          state.error = null;
-        })
-        .addCase(eliminarProductoCarrito.fulfilled, (state, action) => {
-          const isbn = action.payload;
-          state.productos = state.productos.filter(
-            (producto) => producto.libro.isbn !== isbn
-          );
-          state.loading = false;
-        })
-        .addCase(eliminarProductoCarrito.rejected, (state, action) => {
-          state.loading = false;
-          state.error = action.payload;
-        });
-    },
-  });
+  name: "productoCarrito",
+  initialState: {
+      productos: [],
+      loading: false,
+      error: null,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      // GET PRODUCTOS CARRITO
+      .addCase(getProductosCarrito.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getProductosCarrito.fulfilled, (state, action) => {
+        state.loading = false;
+        state.productos = action.payload;
+      })
+      .addCase(getProductosCarrito.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+
+      // PUT ACTUALIZAR CANTIDAD PRODUCTO
+      .addCase(actualizarCantidadProducto.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(actualizarCantidadProducto.fulfilled, (state, action) => {
+        const { isbn, cantidad } = action.payload;
+        const producto = state.productos.find((p) => p.libro.isbn === isbn);
+        if (producto) {
+          producto.cantidad = cantidad;
+        }
+        state.loading = false;
+      })
+      .addCase(actualizarCantidadProducto.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // DELETE ELIMINAR PRODUCTO DEL CARRITO
+      .addCase(eliminarProductoCarrito.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(eliminarProductoCarrito.fulfilled, (state, action) => {
+        const isbn = action.payload;
+        state.productos = state.productos.filter(
+          (producto) => producto.libro.isbn !== isbn
+        );
+        state.loading = false;
+      })
+      .addCase(eliminarProductoCarrito.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // POST CREATE PRODUCTO CARRITO
+      .addCase(createProductoCarrito.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createProductoCarrito.fulfilled, (state, action) => {
+        state.loading = false;
+        state.productos.push(action.payload);
+      })
+      .addCase(createProductoCarrito.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
+});
+
   
 export default productoCarritoSlice.reducer;

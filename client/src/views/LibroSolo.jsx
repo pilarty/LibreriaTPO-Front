@@ -7,11 +7,14 @@ import Hamburguesa from '../assets/hamburguesa.png';
 import { useNavigate } from 'react-router-dom';
 import { useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { createProductoCarrito } from '../Redux/productoCarritoSlice';
 
 const LibroSolo = () => {
 
     const {isbn } = useParams();
     //const isbn = 1005;
+    const dispatch = useDispatch();
     const [menuVisible, setMenuVisible] = useState(false);
     const [cantidad, setCantidad] = useState(1); // Estado para la cantidad seleccionada
     const navigate = useNavigate();
@@ -49,32 +52,21 @@ const LibroSolo = () => {
                 isbn: isbn,
                 carrito_mail: emailUsuario
             };
-   
-            fetch(`http://localhost:4002/productosCarrito`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(requestBody)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("No se pudo agregar el producto al carrito");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Producto agregado al carrito:", data);
-                alert("Producto agregado al carrito");
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("No se pudo agregar el producto al carrito. Intente de nuevo.");
-            });
+
+            dispatch(createProductoCarrito(requestBody))
+                .then((response) => {
+                    if (response.error) {
+                        throw new Error("No se pudo agregar el producto al carrito");
+                    }
+                    console.log("Producto agregado al carrito:", response.payload);
+                    alert("Producto agregado al carrito");
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("No se pudo agregar el producto al carrito. Intente de nuevo.");
+                });
         }
     };
-
-    
 
     useEffect(() => {
       fetch(`http://localhost:4002/libros/${isbn}`)

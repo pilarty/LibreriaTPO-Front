@@ -4,9 +4,12 @@ import Carrito from '../assets/Carrito.png';
 import { useNavigate } from 'react-router-dom';
 import Estrella from '../assets/Estrella.png'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createProductoCarrito } from '../Redux/productoCarritoSlice';
 
 const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
     const emailUsuario = sessionStorage.getItem('mail');
     const [mensaje, setMensaje] = useState('');
@@ -20,35 +23,26 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
         setTimeout(() => setMensaje(''), 3000);
     };
 
-    const manejarAgregarACarrito = (isbn) => {
+    const manejarAgregarACarrito = () => {
         if (!emailUsuario) {
             navigate('/LoginPage'); 
         } else {
             const requestBody = {
                 cantidad: 1,
-                isbn: isbn, 
+                isbn: isbn,
                 carrito_mail: emailUsuario
             };
-    
-            fetch(`http://localhost:4002/productosCarrito`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(requestBody)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("No se pudo agregar el producto al carrito");
-                }
-                return response.json(); 
-            })
-            .then(data => {
-                mostrarMensaje("Producto agregado al carrito");
-            })
-            .catch(error => {
-                mostrarMensaje("No se pudo agregar el producto al carrito. Intente de nuevo.");
-            });
+
+            dispatch(createProductoCarrito(requestBody))
+                .then((response) => {
+                    if (response.error) {
+                        throw new Error(response.error.message);
+                    }
+                    mostrarMensaje("Producto agregado al carrito");
+                })
+                .catch(() => {
+                    mostrarMensaje("No se pudo agregar el producto al carrito. Intente de nuevo.");
+                });
         }
     };
 
