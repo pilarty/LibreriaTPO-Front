@@ -24,7 +24,7 @@ const Carrito = () => {
         if (!emailUsuario) {
             navigate('/LoginPage'); 
         } else {
-            dispatch(getProductosCarrito(emailUsuario)); // Despachar acción para obtener productos
+            dispatch(getProductosCarrito(emailUsuario));
         }
     }, [emailUsuario, navigate, dispatch]);
 

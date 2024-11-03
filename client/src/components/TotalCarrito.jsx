@@ -1,22 +1,26 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCarrito } from "../Redux/carritoSlice";
 
 const TotalCarrito = ({ emailUsuario }) => {
-    const [subtotal, setSubtotal] = useState(0);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const URL_CARRITO = `http://localhost:4002/carritos/${emailUsuario}`;
+    const productosCarrito = useSelector((state) => state.productoCarrito.productos);
+    const loading = useSelector((state) => state.carrito.loading);
+    const error = useSelector((state) => state.carrito.error);
 
-        fetch(URL_CARRITO)
-            .then((response) => response.json())
-            .then((carrito) => {
-                setSubtotal(carrito.total); 
-            })
-            .catch((error) => {
-                console.error("Error al obtener el total del carrito:", error);
-            });
-    }, [emailUsuario]);
+    useEffect(() => {
+        if (emailUsuario) {
+            dispatch(getCarrito(emailUsuario));
+        }
+    }, [dispatch, emailUsuario]);
+
+    // Calcula el subtotal sumando los precios de todos los productos en el carrito
+    const subtotal = productosCarrito.reduce((total, producto) => {
+        return total + producto.libro.precio * producto.cantidad;
+    }, 0);
 
     const manejarFinalizarCompra = () => {
         navigate("/Compra");
