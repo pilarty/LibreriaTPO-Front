@@ -9,7 +9,9 @@ import MenuDesplegable from "../components/MenuDesplegable";
 import MenuDesplegableGeneros from "../components/MenuDesplegableGeneros";
 import { useState, useRef, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux"
-import { createLibros } from '../Redux/librosSlice';
+import { postImagen } from "../Redux/imagenesSlice";
+import { getIdByNombre } from "../Redux/generosSlice";
+import { createLibros } from "../Redux/librosSlice";
 
 const PublicarLibro = () => {
 
@@ -35,22 +37,21 @@ const PublicarLibro = () => {
     const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
     const [publicacionLista, setPublicacionLista] = useState(false);
     const [libroNuevo, setLibroNuevo] = useState(null);
+
     const manejarUsuario = () => {
         navigate("/Usuario");
       }
       const manejarCarrito = () => {
         navigate("/Carrito");
       }
-      
       const manejarGeneros = () => {
         setMenuGenerosVisible(!menuGenerosVisible);
       }
-
       const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
       }
 
-      const handleAutorChange = (e) => {
+      const handleAutorChange = (e) => {          //Revisar
         const autores = e.target.value.split(',').map(autor => autor.trim());
         setAutor(autores);
       };
@@ -62,34 +63,10 @@ const PublicarLibro = () => {
         }
       };
 
-      const postImagenes = async () => {
-        const formData = new FormData();
-        formData.append('name', titulop);
-        formData.append('isbn', isbnp);
-        formData.append('file', imagenSeleccionada);
-        fetch("http://localhost:4002/images", {
-          method: 'post',
-          body: formData
-          })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Success:', data);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-      }
-
-      const transformarGenero = async () => {
-        const response = await fetch(`http://localhost:4002/generos/${generoSeleccionado}/idByNombre`);
-        const data = await response.json();
-        console.log("Genero ID:", data);
-        return data; 
-      };
-
-
       const manejarPublicar = async () => {
-        const generoIdp = await transformarGenero();
+        const generoIdp = await dispatch(getIdByNombre(generoSeleccionado))
+          .unwrap()
+          .then((data) => data);
         const libroData= {
           isbn: isbnp,
           titulo: titulop,
@@ -117,7 +94,11 @@ const PublicarLibro = () => {
           .unwrap()
           .then(async (data) => {
             console.log("Libro creado:", data);
-            await postImagenes();
+            const formData = new FormData();
+            formData.append("name", titulop);
+            formData.append("isbn", isbnp);
+            formData.append("file", imagenSeleccionada);
+            await dispatch(postImagen(formData)).unwrap();
             alert("Libro publicado exitosamente");
           })
         setLibroNuevo(null)
@@ -125,7 +106,7 @@ const PublicarLibro = () => {
         }
       }, [publicacionLista, dispatch])
 
-      if (error) return <p>Errro al cargar las publicaciones: {error}</p>
+      if (error) return <p>Error al cargar las publicaciones: {error}</p>
 
       return (
         <div>
