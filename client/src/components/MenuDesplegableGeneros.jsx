@@ -1,6 +1,8 @@
 import "../views/PublicarLibro.css"
 import CrearGenero from "./CrearGenero";
 import { useEffect, useState } from 'react';
+import { createGenero, getAllGeneros } from "../Redux/generosSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
 
@@ -12,39 +14,32 @@ const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
     }
 
     const manejarCrearGenero = (nuevoGenero) => {
-        fetch("http://localhost:4002/generos", {
-          method: 'post',
-          headers: {
-            //'Authorization': 'Bearer ${token}'
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({nombre: nuevoGenero})
-        })
-        .then(response => response.json())
-        .then(data => {
+      dispatch(createGenero({ nombre: nuevoGenero }))
+        .unwrap()
+        .then((data) => {
           console.log("Nuevo género creado:", data);
         })
-      }
-
-    const [posts, setPost] = useState([]);
-
-    useEffect(() => {
-      fetch("http://localhost:4002/generos")
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data)
-          setPost(data.content);
-        })
         .catch((error) => {
-          console.error("Error al obtener los datos: ", error)
-        })
-    }, [posts]);
+          console.error("Error al crear género:", error);
+        });
+    };
+
+    const dispatch = useDispatch();
+    const { items: posts, loading, error } = useSelector((state) => state.generos);
+    console.log(posts)
+    
+    useEffect(() => {
+      dispatch(getAllGeneros());
+    }, [dispatch]);
+
+    if (loading || posts.length === 0) return <p>Cargando géneros...</p>;
+    if (error) return <p>Error al cargar géneros: {error}</p>;
 
     return (
       <div>
         <div className="PublicarLibro-menu-generos">
           <ul>
-            {posts.map((post) => (
+            {posts.content.map((post) => (
               <li key={post.id}>
                 <button onClick={() => seleccionarGenero(post.nombre)}>
                   {post.nombre}

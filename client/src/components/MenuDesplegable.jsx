@@ -47,6 +47,7 @@ const MenuDesplegable = () => {
       navigate('/LoginPage');
     };
 
+    /*
     return (
         <div className="menu-hamburguesa">
           <ul>
@@ -73,5 +74,47 @@ const MenuDesplegable = () => {
     </div>
     )
 }
+*/
 
+return (
+  <div className="menu-hamburguesa">
+    <ul className="menu-section">
+      <h3>Géneros</h3>
+      {posts.map((post) => (
+        <li key={post.id}>
+          <Link to={`/ListaLibros/${post.id}`}>{post.nombre}</Link>
+        </li>
+      ))}
+    </ul>
+    <ul className="menu-section">
+      <h3>Otro</h3>
+      <li>
+        <Link to="/giftcards">GiftCards</Link>
+      </li>
+      <li>
+        <Link to="/favoritos">Favoritos</Link>
+      </li>
+      <li>
+        <a onClick={handleLogout} className="cerrar-link">
+          Cerrar sesión
+        </a>
+      </li>
+    </ul>
+    {esAdmin && (
+      <ul className="menu-section">
+        <h3>Admin</h3>
+        <li>
+          <Link to="/publicarLibro">Publicar Libro</Link>
+        </li>
+        <li>
+          <Link to="/administrarLibros">Administrar Libros</Link>
+        </li>
+        <li>
+          <Link to="/verOrdenes">Ver Ordenes</Link>
+        </li>
+      </ul>
+    )}
+  </div>
+);
+}
 export default MenuDesplegable

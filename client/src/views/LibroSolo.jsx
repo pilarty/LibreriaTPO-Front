@@ -85,7 +85,7 @@ const LibroSolo = () => {
     dispatch(getLibroByIsbn(isbn))
   }, [dispatch, isbn])
 
-  if (loading) return <p>Cargando publicacion...</p>;
+  if (loading || libro === null) return <p>Cargando publicacion...</p>;
   if (error) return <p>Errro al cargar la publicacion: {error}</p>
 
 
