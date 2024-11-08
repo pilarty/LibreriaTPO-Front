@@ -92,44 +92,54 @@
 }
 
 .menu-hamburguesa {
+  display: inline-flex;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding-bottom: 20px;
+  border-radius: 8px;
+  font-size: 18px;
   position: absolute;
   top: 4rem; 
   right: 420px;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 20px;
 }
 
-.menu-hamburguesa ul {
+.menu-section {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 0 25px; 
 }
 
-.menu-hamburguesa ul li {
-  margin: 10px 0;
+.menu-section h3 {
+  font-size: 19px;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
-.menu-hamburguesa ul li a {
+.menu-section li {
+  margin: 5px 0;
+}
+
+.menu-section li a {
   text-decoration: none;
   color: #333;
+  transition: color 0.3s ease;
 }
 
-.menu-hamburguesa ul li a:hover {
+.menu-section li a:hover {
   color: #007bff;
 }
 
-.cerrar-link{
+.cerrar-link {
   color: black;
-  text-decoration: none; 
+  text-decoration: none;
   cursor: pointer;
-  transition: color 0.3s ease; 
+  transition: color 0.3s ease;
 }
 
 .cerrar-link:hover {
-  color: red !important; 
+  color: red !important;
 }
 
 .boton-inicio{
