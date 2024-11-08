@@ -1,4 +1,4 @@
-/*import React, { useState } from "react";
+import React, { useState } from "react";
 import logo from '../assets/logo.png'; 
 import Usuario from '../assets/Usuario.png'; 
 import Hamburguesa from '../assets/hamburguesa.png'; 
@@ -43,4 +43,6 @@ const Cupones = () => {
 
         </div>
     );
-};*/
+};
+
+export default Cupones
