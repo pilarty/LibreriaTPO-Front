@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Usuario.css';
 import logo from '../assets/logo.png';
 import userIMG from '../assets/userIMG.png';
+import {useDispatch, useSelector} from "react-redux"
+import { putUsuario } from "../Redux/usuariosSlice";
 
 const Usuario = () => {
   const navigate = useNavigate();
@@ -18,9 +20,10 @@ const Usuario = () => {
   const [nombre, setNombre] = useState(profile.nombre);
   const [apellido, setApellido] = useState(profile.apellido);
   const [direccion, setDireccion] = useState('');
-  const [CP, setCp] = useState(0);
+  const [CP, setCp] = useState("");
   const [contraseña, setContraseña] = useState('');
-  const [isEditing, setIsEditing] = useState(false); 
+  const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useDispatch() 
 
   const mail = sessionStorage.getItem('mail');
 
@@ -50,37 +53,23 @@ const Usuario = () => {
 
   // Editar usuario
   const handleEditProfile = async () => {
-    try {
       const updateData = {
         nombre: nombre,
         apellido: apellido,
-        mail: profile.mail,
-        contraseña: contraseña,
         direccion: direccion,
-        CP: CP,
-        role: 'USUARIO'
+        cp: parseInt(CP, 10),
       };
-
-      const response = await fetch(`http://localhost:4002/usuarios/${profile.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updateData),
-      });
-
-      if (response.ok) {
+      console.log(updateData)
+      try {
+        await dispatch(putUsuario({ id: profile.id, updatedUser: updateData })).unwrap();
         alert('Perfil actualizado exitosamente');
         navigate('/');
-      } else {
+      } catch (error) {
         alert('Hubo un error al actualizar el perfil. Inténtalo nuevamente.');
+        console.error('Error al actualizar el perfil:', error);
       }
-    } catch (error) {
-      console.error('Error completo:', error);
-      alert('Ocurrió un error al intentar actualizar el perfil.');
     }
-  };
-
+    
   // Eliminar Usuario
   const handleDeleteAccount = () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar tu cuenta?')) {
@@ -130,7 +119,7 @@ const Usuario = () => {
           value={direccion} onChange={(e) => setDireccion(e.target.value)} 
           placeholder="Dirección" />
           
-          <input type="text" 
+          <input type="number" 
           className="usuario-input" 
           value={CP} onChange={(e) => setCp(e.target.value)} 
           placeholder="Código Postal" />
