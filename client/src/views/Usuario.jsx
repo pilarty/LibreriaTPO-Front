@@ -6,6 +6,8 @@ import userIMG from '../assets/userIMG.png';
 
 const Usuario = () => {
   const navigate = useNavigate();
+  
+  // estado inicial del perfil
   const [profile, setProfile] = useState({
     nombre_usuario: '',
     mail: '',
@@ -15,22 +17,25 @@ const Usuario = () => {
     direccion: '',
     CP: 0,
   });
-  const [nombre, setNombre] = useState(profile.nombre);
-  const [apellido, setApellido] = useState(profile.apellido);
+
+  // estados individuales inicializados con los valores del perfil
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
   const [direccion, setDireccion] = useState('');
   const [CP, setCp] = useState(0);
   const [contraseña, setContraseña] = useState('');
-  const [isEditing, setIsEditing] = useState(false); 
-
+  const [isEditing, setIsEditing] = useState(false);
+  
   const mail = sessionStorage.getItem('mail');
 
+  //redirigir si no hay mail
   useEffect(() => {
     if (!mail) {
       navigate('/LoginPage');
     }
   }, [mail, navigate]);
 
-  // Fetch de datos del perfil previo a la edición
+  //obtener y establecer los datos del perfil
   useEffect(() => {
     if (mail) {
       fetch(`http://localhost:4002/usuarios/mail/${mail}`)
@@ -38,17 +43,21 @@ const Usuario = () => {
         .then(data => {
           console.log('Datos recibidos del GET:', data);
           setProfile(data);
+          // actualizar los estados individuales con los datos recibidos
+          setNombre(data.nombre || '');
+          setApellido(data.apellido || '');
+          setDireccion(data.direccion || '');
+          setCp(data.CP || 0);
         })
         .catch(error => console.error('Error al obtener el perfil:', error));
     }
   }, [mail]);
 
-  // Función para cambiar a modo edición
+ //editar usuario
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
-  // Editar usuario
   const handleEditProfile = async () => {
     try {
       const updateData = {
@@ -135,10 +144,12 @@ const Usuario = () => {
           value={CP} onChange={(e) => setCp(e.target.value)} 
           placeholder="Código Postal" />
           
+          {isEditing && (
           <input type="password" 
           className="usuario-input" 
           value={contraseña} onChange={(e) => setContraseña(e.target.value)} 
           placeholder="Contraseña" />
+          )}
         </div>
 
         {/* Boton para activar modo edición */}
