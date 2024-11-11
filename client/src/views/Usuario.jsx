@@ -6,6 +6,7 @@ import userIMG from '../assets/userIMG.png';
 import {useDispatch, useSelector} from "react-redux"
 import { putUsuario } from "../Redux/usuariosSlice";
 import { getUsuario } from "../Redux/usuariosSlice";
+import { deleteUsuario } from "../Redux/usuariosSlice";
 
 const Usuario = () => {
   const navigate = useNavigate();
@@ -76,20 +77,16 @@ const Usuario = () => {
   // Eliminar Usuario
   const handleDeleteAccount = () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar tu cuenta?')) {
-      fetch(`http://localhost:4002/usuarios/${usuario.id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ contraseña }),
-      }).then(response => {
-        if (response.ok) {
+      dispatch(deleteUsuario(usuario.id))
+        .unwrap()
+        .then(() => {
           alert('Cuenta eliminada exitosamente');
           navigate('/');
-        } else {
+        })
+        .catch((error) => {
           alert('Error al eliminar la cuenta. Verifica tu contraseña.');
-        }
-      });
+          console.error(error);
+        });
     }
   };
 
