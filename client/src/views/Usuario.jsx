@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux"
 import { putUsuario } from "../Redux/usuariosSlice";
 import { getUsuario } from "../Redux/usuariosSlice";
 import { deleteUsuario } from "../Redux/usuariosSlice";
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const Usuario = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const Usuario = () => {
     })
   }, [dispatch])
 
-  if (loading || usuario === null) return <p>Cargando publicaciones...</p>;
+  if (loading || usuario === null) return <LoadingSpinner></LoadingSpinner>;
   if (error) return <p>Error al cargar el usuario: {error}</p>
 
   // Función para cambiar a modo edición

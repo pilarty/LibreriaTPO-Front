@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux"
 import { getLibroByIsbn } from '../Redux/librosSlice';
 import { createProductoCarrito } from '../Redux/productoCarritoSlice';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const LibroSolo = () => {
 
@@ -78,7 +79,7 @@ const LibroSolo = () => {
     dispatch(getLibroByIsbn(isbn))
   }, [dispatch, isbn])
 
-  if (loading || libro === null) return <p>Cargando publicacion...</p>;
+  if (loading || libro === null) return <LoadingSpinner></LoadingSpinner>;
   if (error) return <p>Errro al cargar la publicacion: {error}</p>
 
 

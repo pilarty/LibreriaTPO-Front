@@ -8,6 +8,7 @@ import MenuDesplegable from "../components/MenuDesplegable";
 import LibroCarritoList from '../components/LibroCarritoList';
 import TotalCarrito from "../components/TotalCarrito";
 import { getProductosCarrito } from '../Redux/productoCarritoSlice';
+import LoadingSpinner from '../components/LoadingSpinner';
 import './Carrito.css';
 
 const Carrito = () => {
@@ -29,7 +30,7 @@ const Carrito = () => {
     }, [emailUsuario, navigate, dispatch]);
 
     if (loading) {
-        return <div>Cargando...</div>;
+        return <div><LoadingSpinner></LoadingSpinner></div>;
     }
 
     if (error) {

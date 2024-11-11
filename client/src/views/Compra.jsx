@@ -11,6 +11,7 @@ import ListaLibrosCompra from "../components/ListaLibrosCompra";
 import TotalCompra from "../components/TotalCompra"; 
 import { useSelector, useDispatch } from 'react-redux';
 import { getCarrito } from '../Redux/carritoSlice';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const Compra = () => {
     // MUESTRA EL MENU
@@ -33,7 +34,7 @@ const Compra = () => {
     const totalFinal = carrito.total ?? 0;
 
     if (loading) {
-        return <div>Cargando carrito...</div>;
+        return <div><LoadingSpinner></LoadingSpinner></div>;
     }
 
     if (error) {
