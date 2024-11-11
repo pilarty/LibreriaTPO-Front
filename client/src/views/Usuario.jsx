@@ -5,6 +5,7 @@ import logo from '../assets/logo.png';
 import userIMG from '../assets/userIMG.png';
 import {useDispatch, useSelector} from "react-redux"
 import { putUsuario } from "../Redux/usuariosSlice";
+import { getUsuario } from "../Redux/usuariosSlice";
 
 const Usuario = () => {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ const Usuario = () => {
     direccion: '',
     CP: 0,
   });
-  const [nombre, setNombre] = useState(profile.nombre);
-  const [apellido, setApellido] = useState(profile.apellido);
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
   const [direccion, setDireccion] = useState('');
   const [CP, setCp] = useState("");
   const [contraseña, setContraseña] = useState('');
@@ -34,17 +35,19 @@ const Usuario = () => {
   }, [mail, navigate]);
 
   // Fetch de datos del perfil previo a la edición
-  useEffect(() => {
-    if (mail) {
-      fetch(`http://localhost:4002/usuarios/mail/${mail}`)
-        .then(response => response.json())
-        .then(data => {
-          console.log('Datos recibidos del GET:', data);
-          setProfile(data);
-        })
-        .catch(error => console.error('Error al obtener el perfil:', error));
-    }
-  }, [mail]);
+  const {items: items, loading, error, usuario} = useSelector((state)=> state.usuarios)
+  console.log(usuario)
+
+  useEffect(()=>{
+    dispatch(getUsuario(mail))
+    .unwrap()
+    .then(async (data) => {
+      setProfile(data);
+    })
+  }, [dispatch])
+
+  if (loading || usuario === null) return <p>Cargando publicaciones...</p>;
+  if (error) return <p>Error al cargar el usuario: {error}</p>
 
   // Función para cambiar a modo edición
   const handleEditClick = () => {
@@ -61,7 +64,7 @@ const Usuario = () => {
       };
       console.log(updateData)
       try {
-        await dispatch(putUsuario({ id: profile.id, updatedUser: updateData })).unwrap();
+        await dispatch(putUsuario({ id: usuario.id, updatedUser: updateData })).unwrap();
         alert('Perfil actualizado exitosamente');
         navigate('/');
       } catch (error) {
@@ -73,7 +76,7 @@ const Usuario = () => {
   // Eliminar Usuario
   const handleDeleteAccount = () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar tu cuenta?')) {
-      fetch(`http://localhost:4002/usuarios/${profile.id}`, {
+      fetch(`http://localhost:4002/usuarios/${usuario.id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -99,7 +102,7 @@ const Usuario = () => {
 
       <div className="usuario-profile">
         <img src={userIMG} alt="Foto de perfil" className="usuario-logo" />
-        <h1 className="usuario-title">{'Hola ' + profile.nombre + '!'}</h1>
+        <h1 className="usuario-title">{'Hola ' + usuario.nombre + '!'}</h1>
       </div>
 
       <div className="usuario-form-wrapper">
