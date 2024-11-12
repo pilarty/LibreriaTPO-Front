@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import { getLibros } from '../Redux/librosSlice';
+import LoadingSpinner from './LoadingSpinner';
 
 const CardLibroList = () => {
 
@@ -26,7 +27,7 @@ const CardLibroList = () => {
     dispatch(getLibros())
   }, [dispatch])
 
-  if (loading || items.length === 0) return <p>Cargando publicaciones...</p>;
+  if (loading || items.length === 0) return <LoadingSpinner></LoadingSpinner>;
   if (error) return <p>Errro al acrgar las publicaciones: {error}</p>
 
     const settings = {
@@ -68,7 +69,7 @@ const CardLibroList = () => {
 
     return (
        <Slider {...settings} className="homepage-lista-libros">
-              {items.content.map((post) => (
+              {items.content.filter((post) => post.recomendado === true).map((post) => (
                 <div className="homepage-carrusel-item">
                 <button className="homepage-boton-libros" onClick={() => manejarLibros(post.isbn)}>
                   <CardLibro

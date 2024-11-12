@@ -3,6 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Usuario.css';
 import logo from '../assets/logo.png';
 import userIMG from '../assets/userIMG.png';
+import {useDispatch, useSelector} from "react-redux"
+import { putUsuario } from "../Redux/usuariosSlice";
+import { getUsuario } from "../Redux/usuariosSlice";
+import { deleteUsuario } from "../Redux/usuariosSlice";
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const Usuario = () => {
   const navigate = useNavigate();
@@ -16,14 +21,14 @@ const Usuario = () => {
     direccion: '',
     cp: 0, 
   });
-
-  const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
   const [direccion, setDireccion] = useState('');
-  const [cp, setCp] = useState('');
+  const [CP, setCp] = useState("");
   const [contraseña, setContraseña] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  
+  const dispatch = useDispatch() 
+
   const mail = sessionStorage.getItem('mail');
 
   useEffect(() => {
@@ -32,22 +37,20 @@ const Usuario = () => {
     }
   }, [mail, navigate]);
 
-// obtengo los datos
-  useEffect(() => {
-    if (mail) {
-      fetch(`http://localhost:4002/usuarios/mail/${mail}`)
-        .then(response => response.json())
-        .then(data => {
-          console.log('Datos recibidos del GET:', data);
-          setProfile(data);
-          setNombre(data.nombre || '');
-          setApellido(data.apellido || '');
-          setDireccion(data.direccion || '');
-          setCp(data.cp ? data.cp.toString() : '');
-        })
-        .catch(error => console.error('Error al obtener el perfil:', error));
-    }
-  }, [mail]);
+  // Fetch de datos del perfil previo a la edición
+  const {items: items, loading, error, usuario} = useSelector((state)=> state.usuarios)
+  console.log(usuario)
+
+  useEffect(()=>{
+    dispatch(getUsuario(mail))
+    .unwrap()
+    .then(async (data) => {
+      setProfile(data);
+    })
+  }, [dispatch])
+
+  if (loading || usuario === null) return <LoadingSpinner></LoadingSpinner>;
+  if (error) return <p>Error al cargar el usuario: {error}</p>
 
   const handleCpChange = (e) => {
     const value = e.target.value;
@@ -61,54 +64,37 @@ const Usuario = () => {
   };
 // put para editar los datoss
   const handleEditProfile = async () => {
-    try {
       const updateData = {
-        nombre,
-        apellido,
-        mail: profile.mail,
-        contraseña,
-        direccion,
-        cp: parseInt(cp) || 0, 
-        role: 'USUARIO'
+        nombre: nombre,
+        apellido: apellido,
+        direccion: direccion,
+        cp: parseInt(CP, 10),
       };
-
-      const response = await fetch(`http://localhost:4002/usuarios/${profile.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updateData),
-      });
-
-      if (response.ok) {
+      console.log(updateData)
+      try {
+        await dispatch(putUsuario({ id: usuario.id, updatedUser: updateData })).unwrap();
         alert('Perfil actualizado exitosamente');
         setProfile({ ...profile, cp: parseInt(cp) || 0 }); 
         navigate('/');
-      } else {
+      } catch (error) {
         alert('Hubo un error al actualizar el perfil. Inténtalo nuevamente.');
+        console.error('Error al actualizar el perfil:', error);
       }
-    } catch (error) {
-      console.error('Error completo:', error);
-      alert('Ocurrió un error al intentar actualizar el perfil.');
     }
-  };
-// eliminar tengo q ponerle la condicion bien
+    
+  // Eliminar Usuario
   const handleDeleteAccount = () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar tu cuenta?')) {
-      fetch(`http://localhost:4002/usuarios/${profile.id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ contraseña }),
-      }).then(response => {
-        if (response.ok) {
+      dispatch(deleteUsuario(usuario.id))
+        .unwrap()
+        .then(() => {
           alert('Cuenta eliminada exitosamente');
           navigate('/');
-        } else {
+        })
+        .catch((error) => {
           alert('Error al eliminar la cuenta. Verifica tu contraseña.');
-        }
-      });
+          console.error(error);
+        });
     }
   };
 
@@ -121,7 +107,7 @@ const Usuario = () => {
 
       <div className="usuario-profile">
         <img src={userIMG} alt="Foto de perfil" className="usuario-logo" />
-        <h1 className="usuario-title">{'Hola ' + profile.nombre + '!'}</h1>
+        <h1 className="usuario-title">{'Hola ' + usuario.nombre + '!'}</h1>
       </div>
 
       <div className="usuario-form-wrapper">
@@ -141,7 +127,7 @@ const Usuario = () => {
           value={direccion} onChange={(e) => setDireccion(e.target.value)} 
           placeholder="Dirección" />
           
-          <input type="text" 
+          <input type="number" 
           className="usuario-input" 
           value={cp} onChange={handleCpChange} 
           placeholder="Código Postal" />

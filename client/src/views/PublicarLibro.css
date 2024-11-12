@@ -8,23 +8,26 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     padding: 20px 40px;
     background-color: white;
     max-width: 2160px;
     max-height: 1200px;
     margin: 20px auto;
+    margin-top: 120px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .PublicarLibro-book-image {
-    width: 450px;
-    height: 600px;
+    width: 481px;
+    height: 720px;
     background-color: #ececec;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 4px;
+    transform: translateY(-40px);
 }
 
 .PublicarLibro-book-image img {
@@ -47,6 +50,7 @@
     font-size: 1rem;
     background-color: #ffffff;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 
@@ -59,6 +63,7 @@
     font-size: 1rem;
     resize: vertical; 
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 .PublicarLibro-book-precio {
@@ -203,4 +208,42 @@
 
 .PublicarLibro-boton-cancelarGenero:hover {
   background-color: #d6d6d6;
+}
+
+.PublicarLibro-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  width: 100px;       
+  text-align: left;
+  justify-content: left; 
+  display: block;
+  text-align: left;
+}
+
+.PublicarLibro-checkboxes {
+  display: flex;
+  gap: 15px; 
+  margin-top: 20px; 
+  align-items: center;
+}
+
+.PublicarLibro-checkboxes label {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #333; 
+  cursor: pointer;
+  font-family: Arial, sans-serif; 
+}
+
+.PublicarLibro-checkboxes input[type="checkbox"] {
+  margin-right: 8px; 
+  width: 20px;
+  height: 20px;
+  accent-color: #007bff; 
+}
+
+.PublicarLibro-checkboxes input[type="checkbox"]:hover {
+  transform: scale(1.1); 
 }
