@@ -1,10 +1,11 @@
 import React from 'react';
 import LibroListaLibros from "./LibroListaLibros";
+import LoadingSpinner from './LoadingSpinner';
 
 const ListaLibrosListaLibros = ({ libros, loading }) => {
     
     if (loading) {
-        return <div>Cargando...</div>;
+        return <div><LoadingSpinner></LoadingSpinner></div>;
     }
 
     if (libros.length === 0) {

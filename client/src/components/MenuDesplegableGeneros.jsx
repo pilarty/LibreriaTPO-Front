@@ -3,6 +3,7 @@ import CrearGenero from "./CrearGenero";
 import { useEffect, useState } from 'react';
 import { createGenero, getAllGeneros } from "../Redux/generosSlice";
 import { useSelector, useDispatch } from "react-redux";
+import LoadingSpinner from './LoadingSpinner';
 
 const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
 
@@ -32,7 +33,7 @@ const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
       dispatch(getAllGeneros());
     }, [dispatch]);
 
-    if (loading || posts.length === 0) return <p>Cargando géneros...</p>;
+    if (loading || posts.length === 0) return <LoadingSpinner></LoadingSpinner>;
     if (error) return <p>Error al cargar géneros: {error}</p>;
 
     return (
