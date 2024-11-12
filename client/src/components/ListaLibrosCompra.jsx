@@ -24,7 +24,7 @@ const ListaLibros = ( ) => {
     }
 
     return(
-    <ul className='list-libros'>
+        <ul className='Compra-list-libros'>
         {productosCarrito.map((producto) => ( 
             <li key={producto.id}> {/*Es necesario en React cuando se renderizan listas*/}
                 <span>{producto.libro.titulo}</span>

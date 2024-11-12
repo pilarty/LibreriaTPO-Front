@@ -68,12 +68,12 @@ const Compra = () => {
             {/* es un if */}
             {menuVisible && <MenuDesplegable />}
 
-            <div className="compra-container">
+            <div className="Compra-container">
                 <FormularioCompra
                 />
 
                 {/* lista de libros y totales */}
-                <div className="lista-totales">
+                <div className="Compra-lista-totales">
                     <ListaLibrosCompra /> 
                 <TotalCompra totalSinDescuento={totalSinDescuento} totalFinal={totalFinal} /> 
                 </div>
