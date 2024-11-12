@@ -220,3 +220,30 @@
   display: block;
   text-align: left;
 }
+
+.PublicarLibro-checkboxes {
+  display: flex;
+  gap: 15px; 
+  margin-top: 20px; 
+  align-items: center;
+}
+
+.PublicarLibro-checkboxes label {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #333; 
+  cursor: pointer;
+  font-family: Arial, sans-serif; 
+}
+
+.PublicarLibro-checkboxes input[type="checkbox"] {
+  margin-right: 8px; 
+  width: 20px;
+  height: 20px;
+  accent-color: #007bff; 
+}
+
+.PublicarLibro-checkboxes input[type="checkbox"]:hover {
+  transform: scale(1.1); 
+}

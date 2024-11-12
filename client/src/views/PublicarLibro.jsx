@@ -19,7 +19,6 @@ const PublicarLibro = () => {
     const generosRef = useRef(null);
     const buttonGenerosRef = useRef(null);
     const imagenRef = useRef(null);
-
     const [menuVisible, setMenuVisible] = useState(false);
     const [menuGenerosVisible, setMenuGenerosVisible] = useState(false);
     const [generoSeleccionado, setGeneroSeleccionado] = useState("Genero...");
@@ -37,6 +36,8 @@ const PublicarLibro = () => {
     const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
     const [publicacionLista, setPublicacionLista] = useState(false);
     const [libroNuevo, setLibroNuevo] = useState(null);
+    const [esRecomendado, setEsRecomendado] = useState(false);
+    const [esNovedad, setEsNovedad] = useState(false);
 
     const manejarUsuario = () => {
         navigate("/Usuario");
@@ -78,7 +79,9 @@ const PublicarLibro = () => {
           edicion: edicionp,
           idioma: idiomap,
           generoId: generoIdp,
-          autor: autorp
+          autor: autorp,
+          recomendado: esRecomendado,
+          novedad: esNovedad
         }
         setLibroNuevo(libroData)
         setPublicacionLista(true)
@@ -100,6 +103,7 @@ const PublicarLibro = () => {
             formData.append("file", imagenSeleccionada);
             await dispatch(postImagen(formData)).unwrap();
             alert("Libro publicado exitosamente");
+            //navigate('/');
           })
         setLibroNuevo(null)
         setPublicacionLista(false)
@@ -230,6 +234,24 @@ const PublicarLibro = () => {
                 value={preciop}
                 onChange={(e) => setPrecio(e.target.value)}
               />
+              <div className="PublicarLibro-checkboxes">
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={esRecomendado}
+                        onChange={(e) => setEsRecomendado(e.target.checked)}
+                    />
+                    Recomendado
+                </label>
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={esNovedad}
+                        onChange={(e) => setEsNovedad(e.target.checked)}
+                    />
+                    Novedad
+                </label>
+              </div>
               <button className="PublicarLibro-boton-publicar" onClick={manejarPublicar}>
                 Publicar
               </button>
