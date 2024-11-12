@@ -7,7 +7,6 @@ import userIMG from '../assets/userIMG.png';
 const Usuario = () => {
   const navigate = useNavigate();
   
-  // estado inicial del perfil
   const [profile, setProfile] = useState({
     nombre_usuario: '',
     mail: '',
@@ -15,27 +14,25 @@ const Usuario = () => {
     nombre: '',
     apellido: '',
     direccion: '',
-    CP: 0,
+    cp: 0, 
   });
 
-  // estados individuales inicializados con los valores del perfil
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [direccion, setDireccion] = useState('');
-  const [CP, setCp] = useState(0);
+  const [cp, setCp] = useState('');
   const [contraseña, setContraseña] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   
   const mail = sessionStorage.getItem('mail');
 
-  //redirigir si no hay mail
   useEffect(() => {
     if (!mail) {
       navigate('/LoginPage');
     }
   }, [mail, navigate]);
 
-  //obtener y establecer los datos del perfil
+// obtengo los datos
   useEffect(() => {
     if (mail) {
       fetch(`http://localhost:4002/usuarios/mail/${mail}`)
@@ -43,30 +40,35 @@ const Usuario = () => {
         .then(data => {
           console.log('Datos recibidos del GET:', data);
           setProfile(data);
-          // actualizar los estados individuales con los datos recibidos
           setNombre(data.nombre || '');
           setApellido(data.apellido || '');
           setDireccion(data.direccion || '');
-          setCp(data.CP || 0);
+          setCp(data.cp ? data.cp.toString() : '');
         })
         .catch(error => console.error('Error al obtener el perfil:', error));
     }
   }, [mail]);
 
- //editar usuario
+  const handleCpChange = (e) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setCp(value);
+    }
+  };
+//cambio en la pag para editar
   const handleEditClick = () => {
     setIsEditing(true);
   };
-
+// put para editar los datoss
   const handleEditProfile = async () => {
     try {
       const updateData = {
-        nombre: nombre,
-        apellido: apellido,
+        nombre,
+        apellido,
         mail: profile.mail,
-        contraseña: contraseña,
-        direccion: direccion,
-        CP: CP,
+        contraseña,
+        direccion,
+        cp: parseInt(cp) || 0, 
         role: 'USUARIO'
       };
 
@@ -80,6 +82,7 @@ const Usuario = () => {
 
       if (response.ok) {
         alert('Perfil actualizado exitosamente');
+        setProfile({ ...profile, cp: parseInt(cp) || 0 }); 
         navigate('/');
       } else {
         alert('Hubo un error al actualizar el perfil. Inténtalo nuevamente.');
@@ -89,8 +92,7 @@ const Usuario = () => {
       alert('Ocurrió un error al intentar actualizar el perfil.');
     }
   };
-
-  // Eliminar Usuario
+// eliminar tengo q ponerle la condicion bien
   const handleDeleteAccount = () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar tu cuenta?')) {
       fetch(`http://localhost:4002/usuarios/${profile.id}`, {
@@ -141,7 +143,7 @@ const Usuario = () => {
           
           <input type="text" 
           className="usuario-input" 
-          value={CP} onChange={(e) => setCp(e.target.value)} 
+          value={cp} onChange={handleCpChange} 
           placeholder="Código Postal" />
           
           {isEditing && (
@@ -152,12 +154,10 @@ const Usuario = () => {
           )}
         </div>
 
-        {/* Boton para activar modo edición */}
         {!isEditing && (
           <button onClick={handleEditClick} className="usuario-saveButton">Editar</button>
         )}
 
-        {/* Botones de Guardar y Eliminar */}
         {isEditing && (
           <div className="usuario-buttons">
             <button onClick={handleEditProfile} className="usuario-saveButton">Guardar</button>
