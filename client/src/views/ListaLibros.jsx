@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGeneroById } from '../Redux/generosSlice';
+import { getLibros } from '../Redux/librosSlice';
 import ListaLibrosListaLibros from '../components/ListaLibrosListaLibros';
 import './ListaLibros.css';
 import logo from '../assets/logo.png';
@@ -11,33 +13,32 @@ import MenuDesplegable from "../components/MenuDesplegable";
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const ListaLibros = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const { generoId } = useParams();
-    const [generoNombre, setGeneroNombre] = useState(null);
-    const [libros, setLibros] = useState([]);
-    const [loading, setLoading] = useState(true);
+
+    const generoNombre = useSelector((state) => state.generos.genero?.nombre);
+    //const libros = useSelector((state) => state.libros.items);
+    //const loading = useSelector((state) => state.libros.loading);
+    //const totalPages = useSelector((state) => state.libros.totalPages); 
+
     const [menuVisible, setMenuVisible] = useState(false);
     const [page, setPage] = useState(0);
+    const [libros, setLibros] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (!generoId) return;
+        if (generoId) {
+            dispatch(getGeneroById(generoId));
+        }
+    }, [generoId, dispatch]);
 
-        // Obtener el nombre del género
-        fetch(`http://localhost:4002/generos/${generoId}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                setGeneroNombre(data.nombre);
-            })
-            .catch((error) => {
-                console.error("Error al obtener el género: ", error);
-            });
-    }, [generoId]);
+    {/*
+    useEffect(() => {
+        dispatch(getLibros());
+    }, [page, dispatch]);
+    */}
 
     useEffect(() => {
         setLoading(true);
@@ -60,7 +61,7 @@ const ListaLibros = () => {
             .finally(() => {
                 setLoading(false); // Finaliza la carga
             });
-    }, [page, generoNombre]); {/*le tengo que poner tambien generoId?*/}
+    }, [page, generoNombre]);
 
     const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
