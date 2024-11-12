@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux"
 import { getAllGeneros } from "../Redux/generosSlice";
 import { getUsuario } from "../Redux/usuariosSlice";
+import LoadingSpinner from './LoadingSpinner';
 
 const MenuDesplegable = () => {
     const [esAdmin, setEsAdmin] = useState(false);
@@ -39,7 +40,7 @@ const MenuDesplegable = () => {
     navigate('/LoginPage');
   };
 
-  if (loading || posts.length === 0) return <p>Cargando generos...</p>;
+  if (loading || posts.length === 0) return <p><LoadingSpinner></LoadingSpinner></p>;
   if (error) return <p>Errro al cargar los generos: {error}</p>
 
 return (

@@ -8,6 +8,7 @@ import Usuario from '../assets/Usuario.png';
 import Hamburguesa from '../assets/hamburguesa.png';
 import Carrito from '../assets/Carrito.png';
 import MenuDesplegable from "../components/MenuDesplegable";
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const ListaLibros = () => {
     const navigate = useNavigate();
@@ -111,7 +112,7 @@ const ListaLibros = () => {
                 </div>
                 <hr />
                 {loading ? (
-                    <p>Cargando libros...</p>
+                    <LoadingSpinner></LoadingSpinner>
                 ) : (
                     <ListaLibrosListaLibros libros={libros} />
                 )}

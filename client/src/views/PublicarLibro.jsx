@@ -19,7 +19,6 @@ const PublicarLibro = () => {
     const generosRef = useRef(null);
     const buttonGenerosRef = useRef(null);
     const imagenRef = useRef(null);
-
     const [menuVisible, setMenuVisible] = useState(false);
     const [menuGenerosVisible, setMenuGenerosVisible] = useState(false);
     const [generoSeleccionado, setGeneroSeleccionado] = useState("Genero...");
@@ -37,6 +36,8 @@ const PublicarLibro = () => {
     const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
     const [publicacionLista, setPublicacionLista] = useState(false);
     const [libroNuevo, setLibroNuevo] = useState(null);
+    const [esRecomendado, setEsRecomendado] = useState(false);
+    const [esNovedad, setEsNovedad] = useState(false);
 
     const manejarUsuario = () => {
         navigate("/Usuario");
@@ -78,7 +79,9 @@ const PublicarLibro = () => {
           edicion: edicionp,
           idioma: idiomap,
           generoId: generoIdp,
-          autor: autorp
+          autor: autorp,
+          recomendado: esRecomendado,
+          novedad: esNovedad
         }
         setLibroNuevo(libroData)
         setPublicacionLista(true)
@@ -100,6 +103,7 @@ const PublicarLibro = () => {
             formData.append("file", imagenSeleccionada);
             await dispatch(postImagen(formData)).unwrap();
             alert("Libro publicado exitosamente");
+            //navigate('/');
           })
         setLibroNuevo(null)
         setPublicacionLista(false)
@@ -129,7 +133,7 @@ const PublicarLibro = () => {
           {menuVisible && <MenuDesplegable></MenuDesplegable>}
     
           <div className="PublicarLibro-contenedor">
-            <div className="PublicarLibro-book-image" onClick={() => imagenRef.current.click()}> {/* Abrir input al hacer clic */}
+            <div className="PublicarLibro-book-image" onClick={() => imagenRef.current.click()}> 
               <img src={imagenSeleccionada ? URL.createObjectURL(imagenSeleccionada) : "ruta_a_la_imagen"} alt="imagen" />
             </div>
             <input
@@ -142,6 +146,7 @@ const PublicarLibro = () => {
             />
     
             <div className="PublicarLibro-book-detalles">
+              <label className="PublicarLibro-label">Título:</label>
               <input
                 type="text"
                 className="PublicarLibro-input-field"
@@ -149,12 +154,14 @@ const PublicarLibro = () => {
                 value={titulop}
                 onChange={(e) => setTitulo(e.target.value)}
               />
+              <label className="PublicarLibro-label">Sinopsis:</label>
               <textarea
                 className="PublicarLibro-textarea-field"
                 placeholder="Sinopsis..."
                 value={descripcionp}
                 onChange={(e) => setDescripcion(e.target.value)}
               />
+              <label className="PublicarLibro-label">Editorial:</label>
               <input
                 type="text"
                 className="PublicarLibro-input-field"
@@ -162,6 +169,7 @@ const PublicarLibro = () => {
                 value={editorialp}
                 onChange={(e) => setEditorial(e.target.value)}
               />
+              <label className="PublicarLibro-label">Edición:</label>
               <input
                 type="number"
                 className="PublicarLibro-input-field"
@@ -169,6 +177,7 @@ const PublicarLibro = () => {
                 value={edicionp}
                 onChange={(e) => setEdicion(e.target.value)}
               />
+              <label className="PublicarLibro-label">Idioma:</label>
               <input
                 type="text"
                 className="PublicarLibro-input-field"
@@ -176,6 +185,7 @@ const PublicarLibro = () => {
                 value={idiomap}
                 onChange={(e) => setIdioma(e.target.value)}
               />
+              <label className="PublicarLibro-label">N° páginas:</label>
               <input
                 type="number"
                 className="PublicarLibro-input-field"
@@ -183,6 +193,7 @@ const PublicarLibro = () => {
                 value={numPaginasp}
                 onChange={(e) => setNumPaginas(e.target.value)}
               />
+              <label className="PublicarLibro-label">ISBN:</label>
               <input
                 type="text"
                 className="PublicarLibro-input-field"
@@ -190,13 +201,16 @@ const PublicarLibro = () => {
                 value={isbnp}
                 onChange={(e) => setIsbn(e.target.value)}
               />
-              <button 
-                className="PublicarLibro-generos-field" 
+              <label className="PublicarLibro-label">Género:</label>
+              <button
+                className="PublicarLibro-generos-field"
                 onClick={manejarGeneros}
-                ef={buttonGenerosRef}>
+                ref={buttonGenerosRef}
+              >
                 {generoSeleccionado}
                 <span className="PublicarLibro-arrow">▼</span>
               </button>
+              <label className="PublicarLibro-label">Autor(es):</label>
               <input
                 type="text"
                 className="PublicarLibro-input-field"
@@ -204,6 +218,7 @@ const PublicarLibro = () => {
                 value={autorp.join(', ')}
                 onChange={handleAutorChange}
               />
+              <label className="PublicarLibro-label">Stock:</label>
               <input
                 type="number"
                 className="PublicarLibro-input-field"
@@ -211,6 +226,7 @@ const PublicarLibro = () => {
                 value={stockp}
                 onChange={(e) => setStock(e.target.value)}
               />
+              <label className="PublicarLibro-label">Precio:</label>
               <input
                 type="number"
                 className="PublicarLibro-input-field book-precio"
@@ -218,6 +234,24 @@ const PublicarLibro = () => {
                 value={preciop}
                 onChange={(e) => setPrecio(e.target.value)}
               />
+              <div className="PublicarLibro-checkboxes">
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={esRecomendado}
+                        onChange={(e) => setEsRecomendado(e.target.checked)}
+                    />
+                    Recomendado
+                </label>
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={esNovedad}
+                        onChange={(e) => setEsNovedad(e.target.checked)}
+                    />
+                    Novedad
+                </label>
+              </div>
               <button className="PublicarLibro-boton-publicar" onClick={manejarPublicar}>
                 Publicar
               </button>
