@@ -1,47 +1,43 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import logo from '../assets/logo.png';
 import Usuario from '../assets/Usuario.png';
 import Hamburguesa from '../assets/hamburguesa.png';
 import MenuDesplegable from "../components/MenuDesplegable";
 import LibroCarritoList from '../components/LibroCarritoList';
 import TotalCarrito from "../components/TotalCarrito";
-import './Carrito.css'; 
+import { getProductosCarrito } from '../Redux/productoCarritoSlice';
+import './Carrito.css';
 
 const Carrito = () => {
-    
-    const [productosCarrito, setProductosCarrito] = useState([]);
     const [menuVisible, setMenuVisible] = useState(false);
     const emailUsuario = sessionStorage.getItem('mail');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const productosCarrito = useSelector((state) => state.productoCarrito.productos);
+    const loading = useSelector((state) => state.productoCarrito.loading);
+    const error = useSelector((state) => state.productoCarrito.error);
 
     useEffect(() => {
         if (!emailUsuario) {
             navigate('/LoginPage'); 
+        } else {
+            dispatch(getProductosCarrito(emailUsuario));
         }
-    }, [emailUsuario, navigate]);
+    }, [emailUsuario, navigate, dispatch]);
 
+    if (loading) {
+        return <div>Cargando...</div>;
+    }
 
-    useEffect(() => {
-        const URL_PRODUCTOS = `http://localhost:4002/productosCarrito/${emailUsuario}/listaDeProductosCarritoByMail`;
-        fetch(URL_PRODUCTOS)
-            .then((response) => response.json())
-            .then((productos) => {
-                setProductosCarrito(productos);
-            })
-            .catch((error) => {
-                console.log("Error al obtener los productos del carrito", error);
-            });
-    }, [emailUsuario]);
+    if (error) {
+        return <div>Error al cargar los datos: {error}</div>;
+    }
 
     const manejarSeguirComprando = () => {
         navigate("/");
-    };
-
-    const eliminarLibroDelCarrito = (isbn) => {
-        setProductosCarrito((prevProductos) =>
-            prevProductos.filter((producto) => producto.libro.isbn !== isbn)
-        );
     };
 
     const manejarHamburguesa = () => {
@@ -83,8 +79,7 @@ const Carrito = () => {
                         <>
                             <LibroCarritoList 
                                 productosCarrito={productosCarrito}
-                                emailUsuario={emailUsuario} 
-                                onDelete={eliminarLibroDelCarrito}
+                                emailUsuario={emailUsuario}
                             />
                             <button className="carrito-seguir-comprando" onClick={manejarSeguirComprando}>Seguir comprando</button>
                         </>

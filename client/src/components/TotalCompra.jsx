@@ -1,16 +1,16 @@
 
-import React from 'react';
+const TotalCompra = ({ totalSinDescuento, totalFinal }) => {
+    return(
+        <div>
+            <div>
+            Total sin descuento ${totalSinDescuento.toFixed(2)}
+            </div>
+            <div>
+            Total final ${totalFinal.toFixed(2)}
+            </div>
+        </div>
+    );
+};
 
-const Totales = ({ totalSinDescuento, totalFinal }) => (
-    <div>
-        <p>
-            Total sin descuento <span>${totalSinDescuento.toFixed(2)}</span>
-        </p>
-        <p>
-            Total final <span>${totalFinal.toFixed(2)}</span>
-        </p>
-    </div>
-);
-
-export default Totales;
+export default TotalCompra;
 

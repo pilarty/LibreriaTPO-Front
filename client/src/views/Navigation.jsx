@@ -12,6 +12,7 @@ const Navigation = () => {
         location.pathname === '/Usuario' ||
         location.pathname === '/Registrarse' ||
         location.pathname === '/LoginPage' ||
+        location.pathname === '/Cupones' ||
         /^\/ListaLibros\/\d+$/.test(location.pathname) || // Verifica si la ruta comienza con '/ListaLibros/' y sigue con un número
         /^\/Libro\/\d+$/.test(location.pathname)
     ) {

@@ -35,8 +35,9 @@ const FormularioCompra = () => {
         window.location.href = "/"; // Redirige a la homepage
     };
 
-    const [posts, setPost] = useState([]);
+    /*const [posts, setPost] = useState([]);
     console.log(posts)
+    */
 
     const obtenerGift = () => { 
         fetch(`http://localhost:4002/giftcards/byCodigo/${formulario.giftcard}`)
@@ -51,11 +52,11 @@ const FormularioCompra = () => {
       };
 
     return (
-        <div className='seccion-formulario'>
+        <div className='Compra-seccion-formulario'>
             <h1>Formulario de Compra</h1>
 
             <form>
-                <div className='form-group'>
+                <div className='Compra-form-group'>
                     <input
                         type="text"
                         name="nombre"
@@ -66,7 +67,7 @@ const FormularioCompra = () => {
                         required
                     />
                 </div>
-                <div className='form-group'>
+                <div className='Compra-form-group'>
                     <input
                         type="text"
                         name="apellido"
@@ -77,7 +78,7 @@ const FormularioCompra = () => {
                         required
                     />
                 </div>
-                <div className='form-group'>
+                <div className='Compra-form-group'>
                     <input
                         type="text"
                         name="codigoPostal"
@@ -88,7 +89,7 @@ const FormularioCompra = () => {
                         required
                     />
                 </div>
-                <div className='form-group'>
+                <div className='Compra-form-group'>
                     <input
                         type="text"
                         name="direccion"
@@ -99,7 +100,7 @@ const FormularioCompra = () => {
                         required
                     />
                 </div>
-                <div className='form-group'>
+                <div className='Compra-form-group'>
                     <input
                         type="text"
                         name="piso"
@@ -109,7 +110,7 @@ const FormularioCompra = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <div className='form-group'>
+                <div className='Compra-form-group'>
                     <input
                         type="text"
                         id="giftCard"
@@ -119,7 +120,7 @@ const FormularioCompra = () => {
                     /> 
                     
                 </div>
-                <div className='form-group'>
+                <div className='Compra-form-group'>
                     <select
                         name="medioPago"
                         id="medioPago"
@@ -136,8 +137,7 @@ const FormularioCompra = () => {
 
                 {(formulario.medioPago === 'tarjetaCredito' || formulario.medioPago === 'tarjetaDebito') && (
                     <>
-                        <div className='form-group'>
-                            <label htmlFor="numeroTarjeta">Número de Tarjeta</label>
+                        <div className='Compra-form-group'>
                             <input
                                 type="text"
                                 name="numeroTarjeta"
@@ -148,8 +148,7 @@ const FormularioCompra = () => {
                                 required
                             />
                         </div>
-                        <div className='form-group'>
-                            <label htmlFor="numeroSeguridad">Número de Seguridad</label>
+                        <div className='Compra-form-group'>
                             <input
                                 type="text"
                                 name="numeroSeguridad"
@@ -160,8 +159,7 @@ const FormularioCompra = () => {
                                 required
                             />
                         </div>
-                        <div className='form-group'>
-                            <label htmlFor="fechaVencimiento">Fecha de Vencimiento</label>
+                        <div className='Compra-form-group'>
                             <input
                                 type="text"
                                 name="fechaVencimiento"
@@ -184,7 +182,7 @@ const FormularioCompra = () => {
 
             {compraRealizada && (
                 <div className="popup-compra">
-                    <div className="popup-contenido">
+                    <div className="Compra-popup-contenido">
                         <h2>¡Tu compra fue realizada con éxito!</h2>
                         <button onClick={handleRedirigirHome}>Volver a la homepage</button>
                     </div>

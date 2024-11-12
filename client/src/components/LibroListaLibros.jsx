@@ -2,66 +2,101 @@ import React from 'react';
 import "../views/ListaLibros.css";
 import Carrito from '../assets/Carrito.png';
 import { useNavigate } from 'react-router-dom';
+import Estrella from '../assets/Estrella.png'
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createProductoCarrito } from '../Redux/productoCarritoSlice';
 
 const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
-
-    
     const emailUsuario = sessionStorage.getItem('mail');
+    const [mensaje, setMensaje] = useState('');
 
-    const manejarAgregarACarrito = (isbn) => {
+    const manejarLibros = (isbn) => {
+        navigate(`/Libro/${isbn}`);
+    }
+
+    const mostrarMensaje = (texto) => {
+        setMensaje(texto);
+        setTimeout(() => setMensaje(''), 3000);
+    };
+
+    const manejarAgregarACarrito = () => {
         if (!emailUsuario) {
             navigate('/LoginPage'); 
         } else {
             const requestBody = {
                 cantidad: 1,
-                isbn: isbn, 
+                isbn: isbn,
                 carrito_mail: emailUsuario
             };
+
+            dispatch(createProductoCarrito(requestBody))
+                .then((response) => {
+                    if (response.error) {
+                        throw new Error(response.error.message);
+                    }
+                    mostrarMensaje("Producto agregado al carrito");
+                })
+                .catch(() => {
+                    mostrarMensaje("No se pudo agregar el producto al carrito. Intente de nuevo.");
+                });
+        }
+    };
+
+    const manejarFavorito = (isbn) => {
+        if (!emailUsuario) {
+            navigate('/LoginPage'); 
+            return;
+        }
+
+        const favoritosKey = `favoritos_${emailUsuario}`;
+        const favoritosGuardados = JSON.parse(localStorage.getItem(favoritosKey)) || [];
+        
+        const yaEsFavorito = favoritosGuardados.includes(isbn);
     
-            fetch(`http://localhost:4002/productosCarrito`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(requestBody)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("No se pudo agregar el producto al carrito");
-                }
-                return response.json(); 
-            })
-            .then(data => {
-                console.log("Producto agregado al carrito:", data);
-                alert("Producto agregado al carrito");
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("No se pudo agregar el producto al carrito. Intente de nuevo.");
-            });
+        if (yaEsFavorito) {
+            mostrarMensaje("Este libro ya está en favoritos");
+        } else {
+            favoritosGuardados.push(isbn);
+            localStorage.setItem(favoritosKey, JSON.stringify(favoritosGuardados));
+            console.log(`Libro agregado a favoritos: ${isbn}`); // Log para verificar que se agregó
+            console.log(`Favoritos actuales: ${JSON.parse(localStorage.getItem(favoritosKey))}`); // Ver lista actual de favoritos
+            mostrarMensaje("Libro agregado a favoritos");
         }
     };
     
     return (
-        <div className="libroListaLibros-book-container">
-            <img src={imageSrc} alt={titulo} className="libroListaLibros-book-image" />
-            <div className="libroListaLibros-book-details">
-                <div className="libroListaLibros-book-header">
-                    <div>
-                        <h3 className="libroListaLibros-book-title">{titulo}</h3>
-                        <p className="libroListaLibros-book-author">{autor}</p>
+            <div className="libroListaLibros-book-container">
+                {mensaje && <p className="libroListaLibros-mensaje-general">{mensaje}</p>}
+                <img src={imageSrc} alt={titulo} className="libroListaLibros-book-image" />
+                <div className="libroListaLibros-book-details">
+                    <div className="libroListaLibros-book-header">
+                        <div className="libroListaLibros-title-container">
+                        <h3
+                        className="libroListaLibros-book-title"
+                        onClick={() => manejarLibros(isbn)} // Acción al hacer clic
+                    >
+                        {titulo}
+                    </h3>
+                            <button className="libroListaLibros-star-button" onClick={() => manejarFavorito(isbn)}>
+                                <img src={Estrella} alt="Estrella" className="libroListaLibros-star-icon" />
+                            </button>
+                        </div>
+                        <div className="libroListaLibros-price-button-container">
+                            <span className="libroListaLibros-book-price">${precio}</span>
+                            <button className="libroListaLibros-cart-button" onClick={() => manejarAgregarACarrito(isbn)}>
+                                <img className="libroListaLibros-img-carrito" src={Carrito} alt="Carrito" />
+                            </button>
+                        </div>
                     </div>
-                    <span className="libroListaLibros-book-price">${precio}</span>
-                    <button className="libroListaLibros-cart-button" onClick={() => manejarAgregarACarrito(isbn)}>
-                        <img className="libroListaLibros-img-carrito" src={Carrito} alt="Carrito" />
-                    </button>
+                    <p className="libroListaLibros-book-author">{autor}</p>
+                    <h4 className="libroListaLibros-synopsis-title">Sinopsis</h4>
+                    <p className="libroListaLibros-synopsis-text">{sinopsis}</p>
                 </div>
-                <h4 className="libroListaLibros-synopsis-title">Sinopsis</h4>
-                <p className="libroListaLibros-synopsis-text">{sinopsis}</p>
             </div>
-        </div>
     );
 };
 

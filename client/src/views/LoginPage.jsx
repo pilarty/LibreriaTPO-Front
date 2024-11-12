@@ -56,7 +56,7 @@ const LoginPage = () => {
 
   return (
     <body className='login-fondo'>
-    <div classname="login-container">
+    <div className="login-container">
       <img src={logo} alt="Logo de The Golden Feather" className="login-logo" />
       <div className='login-h1'>
         Bienvenido de nuevo a <br />

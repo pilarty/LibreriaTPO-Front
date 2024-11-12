@@ -7,11 +7,15 @@ import Hamburguesa from '../assets/hamburguesa.png';
 import { useNavigate } from 'react-router-dom';
 import { useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux"
+import { getLibroByIsbn } from '../Redux/librosSlice';
+import { createProductoCarrito } from '../Redux/productoCarritoSlice';
 
 const LibroSolo = () => {
 
     const {isbn } = useParams();
     //const isbn = 1005;
+    const dispatch = useDispatch();
     const [menuVisible, setMenuVisible] = useState(false);
     const [cantidad, setCantidad] = useState(1); // Estado para la cantidad seleccionada
     const navigate = useNavigate();
@@ -37,7 +41,7 @@ const LibroSolo = () => {
     const emailUsuario = sessionStorage.getItem('mail');
  
 
-    const [post, setPost] = useState([]);
+    //const [libro, setlibro] = useState([]);
     //const [isbn, setisbn] = useState([]);
 
     const manejarAgregarACarrito = (isbn, cantidad) => {
@@ -49,46 +53,36 @@ const LibroSolo = () => {
                 isbn: isbn,
                 carrito_mail: emailUsuario
             };
-   
-            fetch(`http://localhost:4002/productosCarrito`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(requestBody)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("No se pudo agregar el producto al carrito");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Producto agregado al carrito:", data);
-                alert("Producto agregado al carrito");
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("No se pudo agregar el producto al carrito. Intente de nuevo.");
-            });
+
+            dispatch(createProductoCarrito(requestBody))
+                .then((response) => {
+                    if (response.error) {
+                        throw new Error("No se pudo agregar el producto al carrito");
+                    }
+                    console.log("Producto agregado al carrito:", response.payload);
+                    alert("Producto agregado al carrito");
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("No se pudo agregar el producto al carrito. Intente de nuevo.");
+                });
         }
     };
 
-    
 
-    useEffect(() => {
-      fetch(`http://localhost:4002/libros/${isbn}`)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data)
-          setPost(data);
-        })
-        .catch((error) => {
-          console.error("Error al obtener los datos: ", error)
-        })
-    }, [isbn]);
 
-    const imageSrc = post.image ? `data:image/jpeg;base64,${post.image}` : 'default-image-path.jpg';
+  const {items: items, loading, error, libro} = useSelector((state)=> state.libros)
+  console.log(libro)
+
+  useEffect(()=>{
+    dispatch(getLibroByIsbn(isbn))
+  }, [dispatch, isbn])
+
+  if (loading || libro === null) return <p>Cargando publicacion...</p>;
+  if (error) return <p>Errro al cargar la publicacion: {error}</p>
+
+
+    const imageSrc = libro.image ? `data:image/jpeg;base64,${libro.image}` : 'default-image-path.jpg';
 
 
     return (
@@ -113,22 +107,22 @@ const LibroSolo = () => {
             </div>
 
             {/* Tarjeta del libro */}
-            <div className="libro-container">
+            <div className="libroSolo-container">
                 {/* Imagen y Título */}
-                <div className="libro-imagen-seccion">
-                    <div className="libro-imagen-placeholder">
+                <div className="libroSolo-imagen-seccion">
+                    <div className="libroSolo-imagen-placeholder">
                         <img src={imageSrc} alt="Imagen del Libro" />
                     </div>
-                    <h2 className="titulo-libro">{post.titulo}</h2>
+                    <h2 className="titulo-libroSolo">{libro.titulo}</h2>
 
-                    <div className="precio-cantidad">
-                        <p className="precio">${post.precio}</p>
+                    <div className="LibroSolo-precio-cantidad">
+                        <p className="LibroSolo-precio">${libro.precio}</p>
 
                     {/* Selector de cantidad */}
 
-                <div className="selector-cantidad">
-                <label htmlFor="cantidad" className="cantidad-label">Cantidad: </label>
-                <select id="cantidad" value={cantidad} onChange={manejarCambioCantidad}>
+                <div className="LibroSolo-selector-cantidad">
+                <label htmlFor="LibroSolo-cantidad" className="LibroSolo-cantidad-label">Cantidad: </label>
+                <select id="LibroSolo-cantidad" value={cantidad} onChange={manejarCambioCantidad}>
                 {[...Array(10).keys()].map((n) => (
                     <option key={n + 1} value={n + 1}>
                         {n + 1}
@@ -141,23 +135,24 @@ const LibroSolo = () => {
                 </div>
 
                 {/* Detalles del libro */}
-                <div className="libro-detalles">
-                    <div className="libro-info">
-                        <h3>{post.autor}</h3>
+                <div className="libroSolo-detalles">
+                    <div className="libroSolo-info">
+                    <h3>{libro.autor}</h3>
+                    <p className="LibroSolo-sinopsis-titulo">Sinopsis:</p>
                         <p>
-                            {post.descripcion}
+                            {libro.descripcion}
                         </p>
                         <p>
-                            <strong>Editorial:</strong> {post.editorial}<br />
-                            <strong>Edicion:</strong> {post.edicion}<br />
-                            <strong>Idioma:</strong> {post.idioma}<br />
-                            <strong>Páginas:</strong> {post.cantPaginas}<br />
-                            <strong>ISBN:</strong> {post.isbn}<br />
-                            <strong>Géneros:</strong> {post.genero} <br />
+                            <strong>Editorial:</strong> {libro.editorial}<br />
+                            <strong>Edicion:</strong> {libro.edicion}<br />
+                            <strong>Idioma:</strong> {libro.idioma}<br />
+                            <strong>Páginas:</strong> {libro.cantPaginas}<br />
+                            <strong>ISBN:</strong> {libro.isbn}<br />
+                            <strong>Géneros:</strong> {libro.genero} <br />
                         </p>
                     </div>
 
-                    <button className="boton-agregar" onClick={() => manejarAgregarACarrito(post.isbn, cantidad)}>
+                    <button className="LibroSolo-boton-agregar" onClick={() => manejarAgregarACarrito(libro.isbn, cantidad)}>
                         Agregar {cantidad} al carrito
                     </button>
                 </div>

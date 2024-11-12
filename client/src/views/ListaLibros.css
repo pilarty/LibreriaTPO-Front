@@ -26,18 +26,17 @@
 .listaLibros-title {
     font-family: var(--font-primary);
     color: var(--color-primary);
-    font-size: 7rem;
-    margin: 2rem 0 1rem 2rem;
+    font-size: 4rem;
+    margin: 4rem 0 1rem 2rem;
     padding-bottom: 0.5rem;
     text-align: left;
     font-weight: normal;
-    border-bottom: 1px solid var(--color-border);
 }
 
 .listaLibros-subtitle {
     font-family: var(--font-primary);
     color: gray; 
-    font-size: 4rem; 
+    font-size: 3rem; 
     margin: 0 0 1rem 2rem; 
     text-align: left;
     font-weight: normal;
@@ -48,13 +47,13 @@
     flex-direction: column; 
     align-items: flex-start; 
     gap: 1rem; 
-    width: 80%; 
+    width: 90%; 
     max-width: 100%;
     padding: 1rem; 
     border-radius: 0.5rem; 
     margin-top: 0rem; 
     position: relative;
-    top: 0.5rem;
+    top: 0rem;
     left: 0;
     flex-wrap: wrap;
 }
@@ -88,8 +87,13 @@
 
 .libroListaLibros-book-header {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.libroListaLibros-title-container {
+    display: flex; 
+    align-items: center;
 }
 
 .libroListaLibros-book-title {
@@ -98,7 +102,20 @@
     color: black;
     margin: 0;
     text-transform: uppercase;
-    font-family: var(--font-secondary);
+    cursor: pointer; 
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.libroListaLibros-book-title:hover {
+    color: #D1A246; 
+    text-shadow: 0 0px 1px rgba(0, 0, 0, 0.5);
+}
+
+.libroListaLibros-price-button-container {
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-end; 
+    margin-top: 0.5rem; 
 }
 
 .libroListaLibros-book-author {
@@ -107,35 +124,38 @@
     color: #287271;
     margin: 0;
     text-transform: uppercase;
-    font-family: var(--font-secondary);
 }
 
 .libroListaLibros-book-price {
     font-size: 2rem;
     font-weight: bold;
-    margin-left: 20rem;
+    margin-top: 0rem;
+    margin-right: 1rem;
     text-transform: uppercase;
-    font-family: var(--font-secondary);
 }
 
 .libroListaLibros-cart-button{
     background-color: #ffffff;
     padding: 0.3rem;
-    border-radius: 9999px;
+}
+.libroListaLibros-cart-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease; 
 }
 
 .libroListaLibros-synopsis-title {
     font-size: 3rem;
     color: #1A4146;
     font-weight: 600;
-    margin-top: 0rem;
+    margin-top: 1rem;
     text-align: left;
+    font-family: var(--font-primary);
 }
 
 .libroListaLibros-synopsis-text {
     font-size: 1.5rem;
     color: #6D6D6D;
-    margin-top: 0rem;
+    margin-top: -4rem;
     margin-bottom: 0;
     text-align: left;
 }
@@ -174,81 +194,37 @@
     font-weight: bold;
 }
 
-
-/*LO DE LA PARTE DE ARRIBA*/
-.header-2 {
-    display: flex;         
-    align-items: center;        
-    justify-content: flex-start; 
-    padding: 0.625rem;              
+.libroListaLibros-star-button {
+    background: transparent;
+    border: none; 
+    cursor: pointer; 
+    margin-left: 0.25rem; 
 }
 
-.logo {
-    position: absolute;
-    left: 1.29%;
-    top: 5.5vh;
-    width: 2.4%;
-    height: auto;
+.libroListaLibros-star-button:hover {
+    filter: brightness(1.2); 
+    transition: filter 0.3s ease; 
 }
 
-.subtitulo {
-    font-family: "Newsreader", serif;
-    font-weight: 500;
-    font-style: normal;
-    color: #D1A246;
-    position: absolute;
-    top: 0;
-    left: 2.5rem;
-    font-size: 3.125rem;
+.libroListaLibros-star-icon {
+    width: 2.5rem; 
+    height: auto; 
 }
 
-.boton-hamburguesa {
-    background-color: #ffffff;
-    position: absolute;
-    right: 15.625vw;
-    top: 3.25vh;
-    width: 4.375rem;
-    height: 4.375rem;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
+.libroListaLibros-mensaje-general {
+    color: black;
+    font-size: 1.5rem; 
+    background-color: #F8E9C8;
+    border-radius: 5px;
+    padding: 1rem; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease-in-out;
+    margin: 1rem auto; 
+    margin-right: 1rem;
+    text-align: center; 
+    max-width: 80%; 
+    width: fit-content; 
+    min-width: 200px; 
 }
 
-.img-hamburguesa {
-    width: 2rem;
-    height: auto;
-}
 
-.boton-usuario {
-    background-color: #ffffff;
-    position: absolute;
-    right: 9.375vw;
-    top: 3.25vh;
-    width: 4.375rem;
-    height: 4.375rem;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-}
-
-.img-usuario {
-    width: 4.375rem;
-    height: auto;
-}
-
-.boton-carrito {
-    background-color: #ffffff;
-    position: absolute;
-    right: 3.125vw;
-    top: 3.25vh;
-    width: 4.375rem;
-    height: 4.375rem;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-}
-
-.img-carrito {
-    width: 2.5rem;
-    height: auto;
-}
