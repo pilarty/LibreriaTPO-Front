@@ -1,0 +1,98 @@
+.cupones-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.cupones-container h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.cupon {
+    background-color: #ffffff;
+    padding: 30px;
+    margin-bottom: 20px;
+    max-width: 600px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+    /* Bordes redondeados hacia adentro con más curvatura */
+    border-radius: 15px; /* Un redondeo suave para las esquinas */
+    border: none; /* Eliminar el borde gris */
+    clip-path: inset(0 0 30px 0 round 20px); /* Aumento de la profundidad de la "U" */
+}
+
+/* Contenido del cupón */
+.cupon-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cupon-icono {
+    font-size: 2rem;
+    color: #666;
+    margin-right: 15px;
+}
+
+.cupon-info {
+    flex-grow: 1;
+}
+
+.cupon h3 {
+    font-size: 1.2rem;
+    color: #000;
+    margin: 0 0 5px;
+}
+
+.cupon p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Botón "Aplicar" */
+.Cupon-boton-aplicar {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: #06966f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.Cupon-boton-aplicar:hover {
+    background-color: #057a5b;
+}
+
+/* Efecto de perforación en los laterales */
+.cupon::before,
+.cupon::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 30px;
+    background-color: #f9f9f9;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.cupon::before {
+    left: -7px; /* Ubicación en el lado izquierdo */
+}
+
+.cupon::after {
+    right: -7px; /* Ubicación en el lado derecho */
+}
+
+
+
+
