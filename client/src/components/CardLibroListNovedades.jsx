@@ -70,7 +70,7 @@ const CardLibroListNovedades = () => {
 
     return (
        <Slider {...settings} className="homepage-lista-libros">
-              {posts.content.slice(Math.floor(posts.length / 2)).map((post) => (
+              {posts.content.filter((post) => post.novedad === true).map((post) => (
                 <div className="homepage-carrusel-item">
                 <button className="homepage-boton-libros" onClick={() => manejarLibros(post.isbn)}>
                   <CardLibro
