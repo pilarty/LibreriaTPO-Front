@@ -3,12 +3,36 @@
     background-color: #f9f9f9;
 }
 
-.cupones-container h2 {
-    font-size: 1.5rem;
-    color: #333;
+.cupones-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 20px;
 }
 
+.cupones-header h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+}
+
+.boton-agregar-cupon {
+    margin-left: 20px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: #06966f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton-agregar-cupon:hover {
+    background-color: #057a5b;
+}
+
+/* Resto del código CSS permanece igual */
 .cupon {
     background-color: #ffffff;
     padding: 30px;
@@ -19,14 +43,11 @@
     flex-direction: column;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-
-    /* Bordes redondeados hacia adentro con más curvatura */
-    border-radius: 15px; /* Un redondeo suave para las esquinas */
-    border: none; /* Eliminar el borde gris */
-    clip-path: inset(0 0 30px 0 round 20px); /* Aumento de la profundidad de la "U" */
+    border-radius: 15px;
+    border: none;
+    clip-path: inset(0 0 30px 0 round 20px);
 }
 
-/* Contenido del cupón */
 .cupon-content {
     display: flex;
     align-items: center;
@@ -55,7 +76,6 @@
     font-size: 0.9rem;
 }
 
-/* Botón "Aplicar" */
 .Cupon-boton-aplicar {
     padding: 8px 15px;
     font-size: 0.9rem;
@@ -71,13 +91,12 @@
     background-color: #057a5b;
 }
 
-/* Efecto de perforación en los laterales */
 .cupon::before,
 .cupon::after {
     content: '';
     position: absolute;
-    width: 15px;
-    height: 30px;
+    width: 20px; /* Tamaño de las perforaciones */
+    height: 40px;
     background-color: #f9f9f9;
     border-radius: 50%;
     top: 50%;
@@ -86,13 +105,66 @@
 }
 
 .cupon::before {
-    left: -7px; /* Ubicación en el lado izquierdo */
+    left: -10px;
 }
 
 .cupon::after {
-    right: -7px; /* Ubicación en el lado derecho */
+    right: -10px;
 }
 
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
 
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+.modal-content h2 {
+    margin-top: 0;
+}
 
+.modal-content label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.modal-content button {
+    padding: 8px 15px;
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #fff;
+    background-color: #06966f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #057a5b;
+}
