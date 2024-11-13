@@ -1,0 +1,192 @@
+.VerOrdenes-contenedor {
+    padding: 1.5rem;
+    background-color: white;
+    min-height: 100vh;
+}
+
+/* Cabecera */
+.VerOrdenes-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.VerOrdenes-titulo {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.VerOrdenes-botonNuevo {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.VerOrdenes-botonNuevo:hover {
+    background-color: #1d4ed8;
+}
+
+/* Estadísticas */
+.VerOrdenes-estadisticas {
+    margin-bottom: 1rem;
+}
+
+.VerOrdenes-contadores {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+/* Barra de herramientas */
+.VerOrdenes-herramientas {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.VerOrdenes-selectAcciones,
+.VerOrdenes-selectFechas,
+.VerOrdenes-filtroCliente select {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    background-color: white;
+    min-width: 150px;
+}
+
+.VerOrdenes-botonAplicar,
+.VerOrdenes-botonFiltrar {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.VerOrdenes-botonAplicar:hover,
+.VerOrdenes-botonFiltrar:hover {
+    background-color: #f3f4f6;
+}
+
+/* Paginación */
+.VerOrdenes-totalItems {
+    margin-left: auto;
+    color: #6b7280;
+}
+
+.VerOrdenes-paginacion {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.VerOrdenes-botonPagina {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.VerOrdenes-botonPagina:hover {
+    background-color: #f3f4f6;
+}
+
+/* Tabla */
+.VerOrdenes-tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.VerOrdenes-encabezadoTabla {
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.VerOrdenes-columna {
+    padding: 0.5rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+.VerOrdenes-fila {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.VerOrdenes-fila:hover {
+    background-color: #f9fafb;
+}
+
+.VerOrdenes-celda {
+    padding: 0.5rem;
+}
+
+.VerOrdenes-idCliente {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.VerOrdenes-idCliente:hover {
+    text-decoration: underline;
+}
+
+/* Estado etiqueta */
+.VerOrdenes-estadoEtiqueta {
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+}
+
+/* Información de envío */
+.VerOrdenes-infoEnvio {
+    line-height: 1.4;
+}
+
+.VerOrdenes-metodoEnvio {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* Acciones */
+.VerOrdenes-acciones {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.VerOrdenes-botonMas {
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.VerOrdenes-botonMas:hover {
+    background-color: #f3f4f6;
+}
+
+/* Checkboxes */
+.VerOrdenes-checkboxPrincipal,
+.VerOrdenes-checkboxOrden,
+.VerOrdenes-checkboxAccion {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
+
+.VerOrdenes-botonNuevo,
+.VerOrdenes-botonAplicar,
+.VerOrdenes-botonFiltrar,
+.VerOrdenes-botonPagina,
+.VerOrdenes-botonMas {
+    transition: all 0.2s ease-in-out;
+}
