@@ -36,12 +36,9 @@ const VerOrdenes = () => {
     <div className="VerOrdenes-contenedor">
       <div className="VerOrdenes-cabecera">
         <h1 className="VerOrdenes-titulo">Órdenes de Compra</h1>
-        <button className="VerOrdenes-botonNuevo">
-          Nueva Orden
-        </button>
+        
       </div>
 
-      
       <div className="VerOrdenes-estadisticas">
         <div className="VerOrdenes-contadores">
           <span>Todas (323)</span>
@@ -57,15 +54,11 @@ const VerOrdenes = () => {
       </div>
 
       <div className="VerOrdenes-herramientas">
-        <select className="VerOrdenes-selectAcciones">
-          <option>Acciones en masa</option>
-        </select>
-        <button className="VerOrdenes-botonAplicar">Aplicar</button>
+        
         <select className="VerOrdenes-selectFechas">
           <option>Todas las fechas</option>
         </select>
         <div className="VerOrdenes-filtroCliente">
-          <span>⚡</span>
           <select>
             <option>Filtrar por cliente</option>
           </select>
@@ -82,7 +75,6 @@ const VerOrdenes = () => {
         </div>
       </div>
 
-      {/* Tabla de órdenes */}
       <table className="VerOrdenes-tabla">
         <thead>
           <tr className="VerOrdenes-encabezadoTabla">
@@ -110,10 +102,10 @@ const VerOrdenes = () => {
                   </span>
                 </div>
               </td>
-              <td className="VerOrdenes-celda">{orden.fecha}</td>
+              <td className="VerOrdenes-celda">{/*{orden.fecha}*/} 13/11/2003</td>
               <td className="VerOrdenes-celda">
                 <span className="VerOrdenes-estadoEtiqueta">
-                  {orden.estado}
+                  {/*{orden.estado} */} En espera
                 </span>
               </td>
               <td className="VerOrdenes-celda">
@@ -126,10 +118,7 @@ const VerOrdenes = () => {
                 <span className="VerOrdenes-total">{orden.total}</span>
               </td>
               <td className="VerOrdenes-celda">
-                <div className="VerOrdenes-acciones">
-                  <button className="VerOrdenes-botonMas">⋮</button>
-                  <input type="checkbox" className="VerOrdenes-checkboxAccion" />
-                </div>
+                
               </td>
             </tr>
           ))}

@@ -17,21 +17,6 @@
     font-weight: 600;
 }
 
-.VerOrdenes-botonNuevo {
-    background-color: #2563eb;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.VerOrdenes-botonNuevo:hover {
-    background-color: #1d4ed8;
-}
-
-/* Estadísticas */
 .VerOrdenes-estadisticas {
     margin-bottom: 1rem;
 }
@@ -43,7 +28,6 @@
     color: #4b5563;
 }
 
-/* Barra de herramientas */
 .VerOrdenes-herramientas {
     display: flex;
     gap: 0.5rem;
@@ -52,7 +36,6 @@
     flex-wrap: wrap;
 }
 
-.VerOrdenes-selectAcciones,
 .VerOrdenes-selectFechas,
 .VerOrdenes-filtroCliente select {
     border: 1px solid #e5e7eb;
@@ -62,7 +45,6 @@
     min-width: 150px;
 }
 
-.VerOrdenes-botonAplicar,
 .VerOrdenes-botonFiltrar {
     border: 1px solid #e5e7eb;
     border-radius: 0.25rem;
@@ -71,12 +53,10 @@
     cursor: pointer;
 }
 
-.VerOrdenes-botonAplicar:hover,
 .VerOrdenes-botonFiltrar:hover {
     background-color: #f3f4f6;
 }
 
-/* Paginación */
 .VerOrdenes-totalItems {
     margin-left: auto;
     color: #6b7280;
@@ -157,36 +137,11 @@
     font-size: 0.875rem;
 }
 
-/* Acciones */
-.VerOrdenes-acciones {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.VerOrdenes-botonMas {
-    padding: 0.25rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-}
-
-.VerOrdenes-botonMas:hover {
-    background-color: #f3f4f6;
-}
-
 /* Checkboxes */
 .VerOrdenes-checkboxPrincipal,
-.VerOrdenes-checkboxOrden,
-.VerOrdenes-checkboxAccion {
+.VerOrdenes-checkboxOrden {
     width: 1rem;
     height: 1rem;
     cursor: pointer;
 }
 
-.VerOrdenes-botonNuevo,
-.VerOrdenes-botonAplicar,
-.VerOrdenes-botonFiltrar,
-.VerOrdenes-botonPagina,
-.VerOrdenes-botonMas {
-    transition: all 0.2s ease-in-out;
-}
