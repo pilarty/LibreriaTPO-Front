@@ -4,7 +4,6 @@
     min-height: 100vh;
 }
 
-/* Cabecera */
 .VerOrdenes-cabecera {
     display: flex;
     justify-content: space-between;
@@ -80,7 +79,6 @@
     background-color: #f3f4f6;
 }
 
-/* Tabla */
 .VerOrdenes-tabla {
     width: 100%;
     border-collapse: collapse;
@@ -118,7 +116,6 @@
     text-decoration: underline;
 }
 
-/* Estado etiqueta */
 .VerOrdenes-estadoEtiqueta {
     background-color: #fef3c7;
     color: #92400e;
@@ -127,17 +124,10 @@
     font-size: 0.875rem;
 }
 
-/* Información de envío */
 .VerOrdenes-infoEnvio {
     line-height: 1.4;
 }
 
-.VerOrdenes-metodoEnvio {
-    color: #6b7280;
-    font-size: 0.875rem;
-}
-
-/* Checkboxes */
 .VerOrdenes-checkboxPrincipal,
 .VerOrdenes-checkboxOrden {
     width: 1rem;

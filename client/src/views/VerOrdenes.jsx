@@ -1,36 +1,25 @@
-import React from 'react';
+
 import './VerOrdenes.css';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getOrdenes } from '../Redux/ordenesSlice';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const VerOrdenes = () => {
-  const ordenes = [
-    {
-      id: '#242',
-      cliente: 'Juan Pérez',
-      fecha: '11 Sep, 2023',
-      estado: 'En espera',
-      direccion: 'Calle Principal 123, Ciudad',
-      envio: 'vía Envío Express',
-      total: '€3.25'
-    },
-    {
-      id: '#212',
-      cliente: 'María García',
-      fecha: '6 Sep, 2023',
-      estado: 'En espera',
-      direccion: 'Avenida Central 456, Ciudad',
-      envio: 'vía Envío Express',
-      total: '€4.50'
-    },
-    {
-      id: '#108',
-      cliente: 'Carlos López',
-      fecha: '5 Sep, 2023',
-      estado: 'En espera',
-      direccion: 'Plaza Mayor 789, Ciudad',
-      envio: 'vía Envío Express',
-      total: '€5.63'
-    }
-  ];
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const handleNextPage = () => setCurrentPage((prev) => prev + 1);
+  const handlePrevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+
+  const dispatch = useDispatch();
+  const {items: items, loading, error} = useSelector((state) => state.ordenes);
+  
+  useEffect(() => {
+    dispatch(getOrdenes()); {/*{ page: currentPage } */}
+  }, [dispatch, currentPage]);
+  
+  if (loading || items.length === 0) return <LoadingSpinner></LoadingSpinner>;
+  if (error) return <p>Errro al cargar las ordenes: {error}</p>
 
   return (
     <div className="VerOrdenes-contenedor">
@@ -90,7 +79,7 @@ const VerOrdenes = () => {
           </tr>
         </thead>
         <tbody>
-          {ordenes.map((orden) => (
+          {items.content.map((orden) => (
             <tr key={orden.id} className="VerOrdenes-fila">
               <td className="VerOrdenes-celda">
                 <input type="checkbox" className="VerOrdenes-checkboxOrden" />
@@ -98,7 +87,7 @@ const VerOrdenes = () => {
               <td className="VerOrdenes-celda">
                 <div className="VerOrdenes-infoOrden">
                   <span className="VerOrdenes-idCliente">
-                    {orden.id} {orden.cliente}
+                    #{orden.id} {orden.usuario.nombre} {orden.usuario.apellido}
                   </span>
                 </div>
               </td>
@@ -110,12 +99,11 @@ const VerOrdenes = () => {
               </td>
               <td className="VerOrdenes-celda">
                 <div className="VerOrdenes-infoEnvio">
-                  <div className="VerOrdenes-direccion">{orden.direccion}</div>
-                  <div className="VerOrdenes-metodoEnvio">{orden.envio}</div>
+                  <div className="VerOrdenes-direccion">{orden.usuario.direccion}</div>
                 </div>
               </td>
               <td className="VerOrdenes-celda">
-                <span className="VerOrdenes-total">{orden.total}</span>
+                <span className="VerOrdenes-total">{orden.totalConDescuento}</span>
               </td>
               <td className="VerOrdenes-celda">
                 
