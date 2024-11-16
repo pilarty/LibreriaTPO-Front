@@ -1,4 +1,3 @@
-
 import './VerOrdenes.css';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,20 +5,38 @@ import { getOrdenes } from '../Redux/ordenesSlice';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const VerOrdenes = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const handleNextPage = () => setCurrentPage((prev) => prev + 1);
-  const handlePrevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+  const [currentPage, setCurrentPage] = useState(0);
+  const [pageSize] = useState(10);
 
   const dispatch = useDispatch();
-  const {items: items, loading, error} = useSelector((state) => state.ordenes);
+  const { items, loading, error } = useSelector((state) => state.ordenes);
   
   useEffect(() => {
-    dispatch(getOrdenes()); {/*{ page: currentPage } */}
-  }, [dispatch, currentPage]);
+    dispatch(getOrdenes({ page: currentPage, size: pageSize }));
+  }, [dispatch, currentPage, pageSize]);
+
+  const handleNextPage = () => {
+    if (!items.last) {
+      setCurrentPage(prev => prev + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (!items.first) {
+      setCurrentPage(prev => prev - 1);
+    }
+  };
+
+  const handleFirstPage = () => {
+    setCurrentPage(0);
+  };
+
+  const handleLastPage = () => {
+    setCurrentPage(items.totalPages - 1);
+  };
   
-  if (loading || items.length === 0) return <LoadingSpinner></LoadingSpinner>;
-  if (error) return <p>Errro al cargar las ordenes: {error}</p>
+  if (loading || !items.content) return <LoadingSpinner />;
+  if (error) return <p>Error al cargar las ordenes: {error}</p>;
 
   return (
     <div className="VerOrdenes-contenedor">
@@ -30,7 +47,7 @@ const VerOrdenes = () => {
 
       <div className="VerOrdenes-estadisticas">
         <div className="VerOrdenes-contadores">
-          <span>Todas (323)</span>
+          <span>Todas ({items.totalElements})</span>
           <span>|</span>
           <span>En Proceso (41)</span>
           <span>|</span>
@@ -56,11 +73,35 @@ const VerOrdenes = () => {
         
         <span className="VerOrdenes-totalItems">323 items</span>
         <div className="VerOrdenes-paginacion">
-          <button className="VerOrdenes-botonPagina">⟪</button>
-          <button className="VerOrdenes-botonPagina">←</button>
-          <span>17 de 17</span>
-          <button className="VerOrdenes-botonPagina">→</button>
-          <button className="VerOrdenes-botonPagina">⟫</button>
+          <button 
+            className="VerOrdenes-botonPagina" 
+            onClick={handleFirstPage}
+            disabled={items.first}
+          >
+            ⟪
+          </button>
+          <button 
+            className="VerOrdenes-botonPagina"
+            onClick={handlePrevPage}
+            disabled={items.first}
+          >
+            ←
+          </button>
+          <span>{items.number + 1} de {items.totalPages}</span>
+          <button 
+            className="VerOrdenes-botonPagina"
+            onClick={handleNextPage}
+            disabled={items.last}
+          >
+            →
+          </button>
+          <button 
+            className="VerOrdenes-botonPagina"
+            onClick={handleLastPage}
+            disabled={items.last}
+          >
+            ⟫
+          </button>
         </div>
       </div>
 
