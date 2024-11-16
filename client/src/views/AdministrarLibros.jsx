@@ -6,6 +6,7 @@ import Carrito from '../assets/Carrito.png'
 import Hamburguesa from '../assets/hamburguesa.png'
 import MenuDesplegable from "../components/MenuDesplegable";
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const AdministrarLibros = () => {
 
@@ -48,3 +49,5 @@ const AdministrarLibros = () => {
         </div>
     );
 };
+
+export default AdministrarLibros
