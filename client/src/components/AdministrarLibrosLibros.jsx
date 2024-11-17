@@ -21,28 +21,31 @@ const AdministrarLibrosLibros = ({ isbn, titulo, autor, precio, image, stock }) 
             <div className="AdministrarLibros-book-details">
                 <div className="AdministrarLibros-book-header">
                     <div className="AdministrarLibros-title-container">
-                        <h3 className="AdministrarLibros-book-title" onClick={() => manejarLibros(isbn)}>
+                        <h3 className="AdministrarLibros-book-title">
                             {titulo}
                         </h3>
                     </div>
-                    <div>
-                        <div className="AdministrarLibros-stock-controls">
-                            <button onClick={() => reducirStock(isbn)} className="AdministrarLibros-stock-button">-</button>
-                            <span className="AdministrarLibros-stock-display">{stock}</span>
-                            <button onClick={() => aumentarStock(isbn)} className="AdministrarLibros-stock-button">+</button>
-                        </div>
-                        <button onClick={() => editarLibro(isbn)} className="AdministrarLibros-edit-button">
-                            <img className="AdministrarLibros-img-lapiz" src={lapiz_solo} alt="lapiz" />
-                        </button>
-                        <button onClick={() => eliminarLibro(isbn)} className="AdministrarLibros-delete-button">
-                            <img className="AdministrarLibros-img-lapiz" src={basura} alt="basura" />
-                        </button>
-                    </div>
-                    
                 </div>
                 <p className="AdministrarLibros-book-author">{autor}</p>
                 <div className="AdministrarLibros-price-button-container">
                     <span className="AdministrarLibros-book-price">${precio}</span>
+                </div>
+            </div>
+            <div className="AdministrarLibros-botones-contenedor">
+                <div className='AdministrarLibros-botones-1'>
+                    <div className="AdministrarLibros-stock-controls">
+                        <button onClick={() => reducirStock(isbn)} className="AdministrarLibros-stock-button">-</button>
+                        <span className="AdministrarLibros-stock-display">{stock}</span>
+                        <button onClick={() => aumentarStock(isbn)} className="AdministrarLibros-stock-button">+</button>
+                    </div>
+                    <button onClick={() => eliminarLibro(isbn)} className="AdministrarLibros-delete-button">
+                        <img className="AdministrarLibros-img-lapiz" src={basura} alt="basura" />
+                    </button>
+                </div>
+                <div className='AdministrarLibros-botones-2'>
+                    <button onClick={() => editarLibro(isbn)} className="AdministrarLibros-edit-button">
+                        <img className="AdministrarLibros-img-lapiz" src={lapiz_solo} alt="lapiz" />
+                    </button>
                 </div>
             </div>
         </div>
