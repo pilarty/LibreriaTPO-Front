@@ -1,0 +1,229 @@
+
+.AdministrarLibros-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 0;
+}
+
+.AdministrarLibros-title {
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    font-size: 4rem;
+    margin: 4rem 0 1rem 2rem;
+    padding-bottom: 0.5rem;
+    text-align: left;
+    font-weight: normal;
+}
+
+.AdministrarLibros-book-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 1rem;
+    background-color: #FAFAF5;
+    border: 1px solid #c7c3c3;
+    border-radius: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 1600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.AdministrarLibros-subtitle {
+    font-family: var(--font-primary);
+    color: gray; 
+    font-size: 3rem; 
+    margin: 0 0 1rem 2rem; 
+    text-align: left;
+    font-weight: normal;
+}
+
+.AdministrarLibros-container {
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 1rem; 
+    width: 90%; 
+    max-width: 100%;
+    padding: 1rem; 
+    border-radius: 0.5rem; 
+    margin-top: 7rem; 
+    position: relative;
+    top: 0rem;
+    left: 0;
+    flex-wrap: wrap;
+}
+
+.AdministrarLibros-LibrosContainer {
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 1rem; 
+    width: 90%; 
+    max-width: 100%;
+    padding: 1rem; 
+    border-radius: 0.5rem; 
+    position: relative;
+    top: 0rem;
+    left: 0;
+    flex-wrap: wrap;
+    margin-left: 3rem;
+}
+
+.AdministrarLibros-book-image {
+    width: 12rem;  
+    height: 18rem; 
+    border-radius: 1.5rem;
+    object-fit: cover;
+}
+
+.AdministrarLibros-book-details {
+    flex-grow: 1;
+    margin-left: 1.5rem;
+    text-align: left;
+}
+
+.AdministrarLibros-book-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.AdministrarLibros-title-container {
+    display: flex; 
+    align-items: center;
+}
+
+.AdministrarLibros-book-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+    margin: 0;
+    text-transform: uppercase;
+    cursor: pointer; 
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.AdministrarLibros-book-title:hover {
+    color: #D1A246; 
+    text-shadow: 0 0px 1px rgba(0, 0, 0, 0.5);
+}
+
+.AdministrarLibros-price-button-container {
+    display: flex; 
+    align-items: center; 
+    justify-content: flex; 
+    margin-top: 0.5rem; 
+}
+
+.AdministrarLibros-book-author {
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #287271;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.AdministrarLibros-book-price {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 0rem;
+    margin-right: 1rem;
+    text-transform: uppercase;
+}
+
+.AdministrarLibros-cart-button{
+    background-color: #ffffff;
+    padding: 0.3rem;
+}
+.AdministrarLibros-cart-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease; 
+}
+
+.AdministrarLibros-synopsis-title {
+    font-size: 3rem;
+    color: #1A4146;
+    font-weight: 600;
+    margin-top: 1rem;
+    text-align: left;
+    font-family: var(--font-primary);
+}
+
+.AdministrarLibros-synopsis-text {
+    font-size: 1.5rem;
+    color: #6D6D6D;
+    margin-top: -4rem;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.AdministrarLibros-img-carrito {
+    width: 2.5rem;
+    height: auto;
+}
+
+.AdministrarLibros-paginacion-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+.AdministrarLibros-paginacion-container button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.AdministrarLibros-paginacion-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.AdministrarLibros-paginacion-container span {
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.AdministrarLibros-star-button {
+    background: transparent;
+    border: none; 
+    cursor: pointer; 
+    margin-left: 0.25rem; 
+}
+
+.AdministrarLibros-star-button:hover {
+    filter: brightness(1.2); 
+    transition: filter 0.3s ease; 
+}
+
+.AdministrarLibros-star-icon {
+    width: 2.5rem; 
+    height: auto; 
+}
+
+.AdministrarLibros-mensaje-general {
+    color: black;
+    font-size: 1.5rem; 
+    background-color: #F8E9C8;
+    border-radius: 5px;
+    padding: 1rem; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease-in-out;
+    margin: 1rem auto; 
+    margin-right: 1rem;
+    text-align: center; 
+    max-width: 80%; 
+    width: fit-content; 
+    min-width: 200px; 
+}
+
+
+

@@ -74,7 +74,7 @@ return (
           <Link to="/publicarLibro">Publicar Libro</Link>
         </li>
         <li>
-          <Link to="/administrarLibros">Administrar Libros</Link>
+          <Link to="/AdministrarLibros">Administrar Libros</Link>
         </li>
         <li>
           <Link to="/verOrdenes">Ver Ordenes</Link>
