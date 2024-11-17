@@ -3,11 +3,13 @@ import "../views/AdministrarLibros.css";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import lapiz from "../assets/lapiz.png"
+import lapiz_solo from "../assets/lapiz_solo.png"
+import basura from "../assets/basura.png"
 
-const AdministrarLibrosLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
+const AdministrarLibrosLibros = ({ isbn, titulo, autor, precio, image, stock }) => {
     const navigate = useNavigate();
     const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
-    const [mensaje, setMensaje] = useState('');
 
     const manejarLibros = (isbn) => {
         navigate(`/Libro/${isbn}`);
@@ -22,6 +24,19 @@ const AdministrarLibrosLibros = ({ isbn, titulo, autor, precio, sinopsis, image 
                         <h3 className="AdministrarLibros-book-title" onClick={() => manejarLibros(isbn)}>
                             {titulo}
                         </h3>
+                    </div>
+                    <div>
+                        <div className="AdministrarLibros-stock-controls">
+                            <button onClick={() => reducirStock(isbn)} className="AdministrarLibros-stock-button">-</button>
+                            <span className="AdministrarLibros-stock-display">{stock}</span>
+                            <button onClick={() => aumentarStock(isbn)} className="AdministrarLibros-stock-button">+</button>
+                        </div>
+                        <button onClick={() => editarLibro(isbn)} className="AdministrarLibros-edit-button">
+                            <img className="AdministrarLibros-img-lapiz" src={lapiz_solo} alt="lapiz" />
+                        </button>
+                        <button onClick={() => eliminarLibro(isbn)} className="AdministrarLibros-delete-button">
+                            <img className="AdministrarLibros-img-lapiz" src={basura} alt="basura" />
+                        </button>
                     </div>
                     
                 </div>

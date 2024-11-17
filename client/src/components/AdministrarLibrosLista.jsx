@@ -23,7 +23,7 @@ const AdministrarLibrosLista = ({ libros, loading }) => {
                         titulo={libro.titulo}
                         autor={libro.autor}
                         precio={libro.precio}
-                        sinopsis={libro.descripcion} 
+                        stock={libro.stock} 
                         image={libro.image} 
                     />
                 ))}
