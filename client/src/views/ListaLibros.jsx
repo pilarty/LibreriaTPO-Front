@@ -42,7 +42,7 @@ const ListaLibros = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:4002/libros?page=${page}&size=10`)
+        fetch(`http://localhost:4002/libros?page=${page}&size=5`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
