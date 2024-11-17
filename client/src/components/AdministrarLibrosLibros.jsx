@@ -6,14 +6,22 @@ import { useDispatch } from 'react-redux';
 import lapiz from "../assets/lapiz.png"
 import lapiz_solo from "../assets/lapiz_solo.png"
 import basura from "../assets/basura.png"
+import { deleteLibro } from '../Redux/librosSlice';
+
 
 const AdministrarLibrosLibros = ({ isbn, titulo, autor, precio, image, stock }) => {
     const navigate = useNavigate();
     const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
 
-    const manejarLibros = (isbn) => {
-        navigate(`/Libro/${isbn}`);
-    }
+    const dispatch = useDispatch()
+
+    const eliminarLibro = () =>{
+        dispatch(deleteLibro(isbn))
+    } 
+
+    const editarLibro = () =>{}
+    const reducirStock = () =>{}
+    const aumentarStock = () =>{}
     
     return (
         <div className="AdministrarLibros-book-container">
@@ -34,16 +42,16 @@ const AdministrarLibrosLibros = ({ isbn, titulo, autor, precio, image, stock }) 
             <div className="AdministrarLibros-botones-contenedor">
                 <div className='AdministrarLibros-botones-1'>
                     <div className="AdministrarLibros-stock-controls">
-                        <button onClick={() => reducirStock(isbn)} className="AdministrarLibros-stock-button">-</button>
+                        <button onClick={reducirStock} className="AdministrarLibros-stock-button">-</button>
                         <span className="AdministrarLibros-stock-display">{stock}</span>
-                        <button onClick={() => aumentarStock(isbn)} className="AdministrarLibros-stock-button">+</button>
+                        <button onClick={aumentarStock} className="AdministrarLibros-stock-button">+</button>
                     </div>
-                    <button onClick={() => eliminarLibro(isbn)} className="AdministrarLibros-delete-button">
+                    <button onClick={eliminarLibro} className="AdministrarLibros-delete-button">
                         <img className="AdministrarLibros-img-lapiz" src={basura} alt="basura" />
                     </button>
                 </div>
                 <div className='AdministrarLibros-botones-2'>
-                    <button onClick={() => editarLibro(isbn)} className="AdministrarLibros-edit-button">
+                    <button onClick={editarLibro} className="AdministrarLibros-edit-button">
                         <img className="AdministrarLibros-img-lapiz" src={lapiz_solo} alt="lapiz" />
                     </button>
                 </div>

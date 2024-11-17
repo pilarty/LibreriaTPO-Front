@@ -103,7 +103,10 @@ const librosSlice = createSlice({
           })
           .addCase(deleteLibro.fulfilled, (state, action) => {
             state.loading = false;
-            state.items = state.items.filter(libro => libro.isbn !== action.payload); 
+            const index = state.items.findIndex(libro => libro.isbn === action.payload);
+            if (index !== -1) {
+              state.items.splice(index, 1);
+            } 
           })
           .addCase(deleteLibro.rejected, (state, action) => {
             state.loading = false;
