@@ -17,6 +17,9 @@ const AdministrarLibrosLibros = ({ isbn, titulo, autor, precio, image, stock }) 
 
     const eliminarLibro = () =>{
         dispatch(deleteLibro(isbn))
+        .then(() => {
+            alert(`Libro con ISBN ${isbn} eliminado correctamente.`);
+        })
     } 
 
     const editarLibro = () =>{}

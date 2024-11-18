@@ -22,8 +22,12 @@ export const putLibro = createAsyncThunk("libros/putLibro", async ({ isbn, updat
 });
 
 export const deleteLibro = createAsyncThunk("libros/deleteLibro", async (isbn) => {
-  await axios.delete(`http://localhost:4002/libros/${isbn}`);
-  return isbn;
+  try {
+      await axios.delete(`http://localhost:4002/libros/${isbn}`);
+      return isbn;
+  } catch (error) {
+      throw new Error("Error al eliminar el libro");
+  }
 });
 
 const librosSlice = createSlice({
@@ -103,10 +107,12 @@ const librosSlice = createSlice({
           })
           .addCase(deleteLibro.fulfilled, (state, action) => {
             state.loading = false;
-            const index = state.items.findIndex(libro => libro.isbn === action.payload);
+            const index = state.items.content.findIndex(
+                (libro) => libro.isbn === action.payload
+            );
             if (index !== -1) {
-              state.items.splice(index, 1);
-            } 
+                state.items.content.splice(index, 1);
+            }
           })
           .addCase(deleteLibro.rejected, (state, action) => {
             state.loading = false;
