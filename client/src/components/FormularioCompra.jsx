@@ -7,6 +7,7 @@ import {useDispatch} from 'react-redux';
 
 
 const FormularioCompra = () => {
+    const dispatch = useDispatch();
     const [formulario, setFormulario] = useState({
         nombre: '',
         apellido: '',
@@ -16,7 +17,8 @@ const FormularioCompra = () => {
         medioPago: '',
         numeroTarjeta: '',
         numeroSeguridad: '',
-        fechaVencimiento: ''
+        fechaVencimiento: '',
+        giftCard: ''
     });
  
     const [compraRealizada, setCompraRealizada] = useState(false); // Nuevo estado para el popup
@@ -26,8 +28,17 @@ const FormularioCompra = () => {
             ...formulario,
             [e.target.name]: e.target.value
         });
-        obtenerGift()
     };
+    const handleChangeGift = (e) => {
+        setFormulario({
+          ...formulario,
+          [e.target.name]: e.target.value 
+        });
+      
+        obtenerGift(); // Llamada a la función para obtener el valor
+      };
+      
+
     const [newOrden, setNewOrden] = useState(null)
 
     const handleRealizarCompra = () => {
@@ -48,17 +59,29 @@ const FormularioCompra = () => {
     console.log(posts)
     */
 
-    const obtenerGift = () => { 
-        fetch(`http://localhost:4002/giftcards/byCodigo/${formulario.giftcard}`)
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data)
-            setPost(data);
-          })
-          .catch((error) => {
-            console.error("Error al ingresar la GiftCard: ", error)
-          })
-      };
+    const obtenerGift = () => {
+        if (!formulario.giftCard) {  // Asegúrate de usar giftCard con "C" mayúscula
+            console.error("El campo Gift Card está vacío");
+            return;
+        }
+    
+        fetch(`http://localhost:4002/giftcards/byCodigo/${formulario.giftCard}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                // setPost(data); // Descomentar si `setPost` está definido y es necesario
+            })
+            .catch((error) => {
+                console.error("Error al ingresar la GiftCard: ", error);
+            });
+    };
+    
+    
 
     return (
         <div className='Compra-seccion-formulario'>
@@ -122,10 +145,10 @@ const FormularioCompra = () => {
                 <div className='Compra-form-group'>
                     <input
                         type="text"
-                        id="giftCard"
-                        placeholder="Gift Card"
-                        value={formulario.gifcard}
-                        onChange={handleChange}
+                        name="giftCard"  // El nombre debe coincidir con el nombre de la propiedad en el estado
+                        value={formulario.giftCard || ""}  // Vincula el valor al estado
+                        onChange={handleChangeGift}  // Llama a la función handleChangeGift para actualizar el estado
+                        placeholder="Ingrese el código de la Gift Card"
                     /> 
                     
                 </div>
