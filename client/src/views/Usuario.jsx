@@ -19,8 +19,6 @@ const Usuario = () => {
   const [contraseña, setContraseña] = useState('');
 
   const mail = sessionStorage.getItem('mail');
-
- 
   const usuario = useSelector(state => state.usuarios.usuario);
   const loading = useSelector(state => state.usuarios.loading);
 
@@ -31,14 +29,14 @@ const Usuario = () => {
     }
   }, [mail, navigate]);
 
-  // obtiene datos del usuario 
+  // Obtener datos del usuario
   useEffect(() => {
     if (mail) {
       dispatch(getUsuario(mail));
     }
   }, [dispatch, mail]);
 
-  //estados locales con los datos del usuario
+  // Sincronizar datos del usuario con los estados locales
   useEffect(() => {
     if (usuario) {
       setNombre(usuario.nombre || '');
@@ -48,42 +46,95 @@ const Usuario = () => {
     }
   }, [usuario]);
 
-
+  // Validar solo números en el código postal
   const handleCpChange = (e) => {
     const value = e.target.value;
-    if (/^\d*$/.test(value)) { 
+    if (/^\d*$/.test(value)) {
       setCp(value);
     }
   };
 
-  // Habilitar modo edición
-  const handleEditClick = () => {
-    setIsEditing(true);
+  // Función reutilizable para autenticar al usuario
+  const authenticateUser = async (mail, contraseña) => {
+    try {
+      const response = await fetch('http://localhost:4002/api/v1/auth/authenticate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ mail, contraseña }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Contraseña incorrecta.');
+      }
+
+      const data = await response.json();
+      return data.access_token; // Devuelve el token si es válido
+    } catch (error) {
+      throw new Error('Error de autenticación. Verifica tu contraseña.');
+    }
   };
 
   // Guardar cambios del perfil
   const handleSave = async () => {
-    const updatedUsuario = {
-      ...usuario,
-      nombre,
-      apellido,
-      direccion,
-      cp: parseInt(cp) || 0,
-      contraseña: contraseña || usuario.contraseña,
-    };
+    if (!contraseña) {
+      alert('Por favor, ingresa tu contraseña para guardar los cambios.');
+      return;
+    }
 
-    await dispatch(putUsuario(updatedUsuario));
-    setIsEditing(false);
-    alert("Perfil actualizado exitosamente");
-    navigate('/');
+    try {
+      // Autenticar usuario
+      const token = await authenticateUser(mail, contraseña);
+
+      // Crear datos actualizados
+      const updatedUsuario = {
+        ...usuario,
+        nombre,
+        apellido,
+        direccion,
+        cp: parseInt(cp) || 0,
+      };
+
+      // Enviar cambios a la base de datos
+      const result = await dispatch(putUsuario(updatedUsuario)).unwrap();
+
+      if (result.success) {
+        alert('Perfil actualizado exitosamente.');
+        setIsEditing(false);
+        navigate('/');
+      } else {
+        throw new Error('Error al actualizar el perfil.');
+      }
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   // Eliminar cuenta
   const handleDeleteAccount = async () => {
+    if (!contraseña) {
+      alert('Por favor, ingresa tu contraseña para eliminar tu cuenta.');
+      return;
+    }
+
     if (window.confirm('¿Estás seguro de que deseas eliminar tu cuenta?')) {
-      await dispatch(deleteUsuario(usuario.id));
-      alert('Cuenta eliminada exitosamente');
-      navigate('/'); // Redirigir después de eliminar
+      try {
+        // Autenticar usuario
+        const token = await authenticateUser(mail, contraseña);
+
+        // Eliminar usuario
+        const result = await dispatch(deleteUsuario(usuario.id)).unwrap();
+
+        if (result.success) {
+          alert('Cuenta eliminada exitosamente.');
+          navigate('/LoginPage');
+        } else {
+          throw new Error('Error al eliminar la cuenta.');
+        }
+      } catch (error) {
+        alert(error.message);
+      }
     }
   };
 
@@ -101,7 +152,7 @@ const Usuario = () => {
 
       <div className="usuario-profile">
         <img src={userIMG} alt="Foto de perfil" className="usuario-logo" />
-        <h1 className="usuario-title">{'Hola ' + (usuario?.nombre || 'Usuario') + '!'}</h1>
+        <h1 className="usuario-title">{`Hola ${usuario?.nombre || 'Usuario'}!`}</h1>
       </div>
 
       <div className="usuario-form-wrapper">
@@ -144,13 +195,13 @@ const Usuario = () => {
               className="usuario-input"
               value={contraseña}
               onChange={(e) => setContraseña(e.target.value)}
-              placeholder="Nueva Contraseña"
+              placeholder="Contraseña actual"
             />
           )}
         </div>
 
         {!isEditing ? (
-          <button onClick={handleEditClick} className="usuario-saveButton">Editar</button>
+          <button onClick={() => setIsEditing(true)} className="usuario-saveButton">Editar</button>
         ) : (
           <div className="usuario-buttons">
             <button onClick={handleSave} className="usuario-saveButton">Guardar</button>
