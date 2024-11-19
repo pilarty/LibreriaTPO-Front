@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import {useDispatch, useSelector} from "react-redux"
+import { getUsuario } from "../Redux/usuariosSlice";
 import logo from '../assets/logo.png';
 import Usuario from '../assets/Usuario.png';
 import Carrito from '../assets/Carrito.png';
@@ -11,10 +13,12 @@ import "./Cupones.css";
 
 const Cupones = () => {
     const navigate = useNavigate();
+    const emailUsuario = sessionStorage.getItem('mail');
+    const dispatch = useDispatch();
 
     const [menuVisible, setMenuVisible] = useState(false);
-    const [esAdmin] = useState(true); // Esto puede venir de tu contexto o lógica de autenticación
-    const [mostrarModal, setMostrarModal] = useState(false); // Controla la visibilidad del modal
+    const [esAdmin, setEsAdmin] = useState(false);
+    const [mostrarModal, setMostrarModal] = useState(false); 
     const [nuevoCupon, setNuevoCupon] = useState({
         descuento: '',
         compraMinima: '',
@@ -45,6 +49,18 @@ const Cupones = () => {
       const { name, value } = e.target;
       setNuevoCupon({ ...nuevoCupon, [name]: value });
     };
+
+    useEffect(() => {
+        dispatch(getUsuario(emailUsuario))
+          .unwrap()
+          .then((data) => {
+            console.log(data);
+            setEsAdmin(data.role === "ADMIN");
+          })
+          .catch((error) => {
+            console.error("Error al obtener los datos del usuario: ", error);
+          });
+      }, [dispatch, emailUsuario]);
 
     const agregarCupon = () => {
       console.log("Cupon agregado:", nuevoCupon);

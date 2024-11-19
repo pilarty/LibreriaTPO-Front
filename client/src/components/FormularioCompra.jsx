@@ -2,6 +2,8 @@
 import "../views/Compra.css";
 import React, { useState } from "react";
 import { useEffect } from 'react';
+import {postOrdenes} from '../Redux/ordenesSlice';
+import {useDispatch} from 'react-redux';
 
 
 const FormularioCompra = () => {
@@ -26,8 +28,15 @@ const FormularioCompra = () => {
         });
         obtenerGift()
     };
+    const [newOrden, setNewOrden] = useState(null)
 
     const handleRealizarCompra = () => {
+        const ordenData = { 
+            mail: sessionStorage.getItem('mail'),
+            codigo: formulario.gifcard
+        }
+        setNewOrden(ordenData)
+        dispatch(postOrdenes(newOrden))
         setCompraRealizada(true); // Muestra el popup
     };
 
