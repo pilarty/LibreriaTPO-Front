@@ -20,11 +20,6 @@ const AdministrarLibrosLista = ({ libros, loading }) => {
                     <AdministrarLibrosLibros 
                         key={libro.isbn}
                         isbn={libro.isbn}
-                        titulo={libro.titulo}
-                        autor={libro.autor}
-                        precio={libro.precio}
-                        stock={libro.stock} 
-                        image={libro.image} 
                     />
                 ))}
             </div>

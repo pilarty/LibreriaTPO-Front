@@ -1,36 +1,43 @@
 import React from 'react';
 import "../views/AdministrarLibros.css";
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import lapiz from "../assets/lapiz.png"
 import lapiz_solo from "../assets/lapiz_solo.png"
 import basura from "../assets/basura.png"
 import { deleteLibro } from '../Redux/librosSlice';
+import { getLibroByIsbn } from '../Redux/librosSlice';
+import { putLibro } from '../Redux/librosSlice';
 import EliminarLibroConfirmacionPopUp from './EliminarLibroConfirmacionPopUp';
 import EliminarLibroNotificacionPopUp from './EliminarLibroNotificacionPopUp';
 
 
-const AdministrarLibrosLibros = ({ isbn, titulo, autor, precio, image, stock }) => {
+const AdministrarLibrosLibros = ({ isbn}) => {
     const navigate = useNavigate();
     const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
     const [mostrarNotificacion, setMostrarNotificacion] = useState(false);
-    const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
 
     const dispatch = useDispatch()
+    const libro = useSelector(state => state.libros.items.content.find((libro) => libro.isbn === isbn));
+
+    if (!libro) {
+        return <p>Cargando información del libro...</p>; // Placeholder mientras se cargan los datos
+      }
+
+    const {titulo, autor, precio, image, stock, cantPaginas, sinopsis, editorial, edicion, idioma, generoId,} = libro;
+
+    const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
 
     const eliminarLibro = () =>{
         setMostrarConfirmacion(true);
-        /*dispatch(deleteLibro(isbn))
-        .then(() => {
-            alert(`Libro con ISBN ${isbn} eliminado correctamente.`);
-        })*/
     } 
 
     const confirmarEliminacion = () => {
         setMostrarConfirmacion(false);
         dispatch(deleteLibro(isbn)).then(() => {
-            setMostrarNotificacion(true);
+            //setMostrarNotificacion(true);
+            alert(`Libro con ISBN ${isbn} eliminado correctamente.`);
         });
     };
 
@@ -39,8 +46,20 @@ const AdministrarLibrosLibros = ({ isbn, titulo, autor, precio, image, stock }) 
     };
 
     const editarLibro = () =>{}
-    const reducirStock = () =>{}
-    const aumentarStock = () =>{}
+
+    const reducirStock = () => {
+        if (stock > 1) {
+          const nuevoStock = stock - 1;
+          const updatedLibro = { ...libro, stock: nuevoStock };
+          dispatch(putLibro({ isbn, updatedLibro }));
+        }
+      };
+
+    const aumentarStock = () => {
+        const nuevoStock = stock + 1;
+        const updatedLibro = { ...libro, stock: nuevoStock };
+        dispatch(putLibro({ isbn, updatedLibro }));
+    }
     
     return (
         <div className="AdministrarLibros-book-container">

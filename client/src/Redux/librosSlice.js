@@ -90,7 +90,7 @@ const librosSlice = createSlice({
           })
           .addCase(putLibro.fulfilled, (state, action) => {
             state.loading = false;
-            const index = state.items.findIndex(libro => libro.isbn === action.payload.isbn);
+            const index = state.items.content.findIndex(libro => libro.isbn === action.payload.isbn);
             if (index !== -1) {
               state.items[index] = action.payload;
             }

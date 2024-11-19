@@ -5,9 +5,9 @@ const EliminarLibroConfirmacionPopUp = ({ mensaje, onConfirm, onCancel }) => {
     return (
         <div className="AdministrarLibros-popup-overlay">
             <div className="AdministrarLibros-popup-content">
-                <p>{mensaje}</p>
+                <p className='AdministrarLibros-popup-text'>{mensaje}</p>
                 <div className="AdministrarLibros-popup-buttons">
-                    <button onClick={onConfirm} className="AdministrarLibros-popup-button confirm">Confirmar</button>
+                    <button onClick={onConfirm} className="AdministrarLibros-popup-button confirm">Eliminar</button>
                     <button onClick={onCancel} className="AdministrarLibros-popup-button cancel">Cancelar</button>
                 </div>
             </div>

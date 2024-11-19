@@ -223,16 +223,21 @@
 }
 
 .AdministrarLibros-popup-button.confirm {
-    background-color: #28a745;
-    color: white;
-}
-
-.AdministrarLibros-popup-button.cancel {
     background-color: #dc3545;
     color: white;
 }
 
-.AdministrarLibros-popup-button.close {
-    background-color: #007bff;
+.AdministrarLibros-popup-button.cancel {
+    background-color: #287271;
     color: white;
+}
+
+.AdministrarLibros-popup-button.close {
+    background-color: #287271;
+    color: white;
+}
+
+.AdministrarLibros-popup-text{
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
 }
