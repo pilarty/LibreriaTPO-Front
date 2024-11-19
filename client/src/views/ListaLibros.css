@@ -194,6 +194,18 @@
     font-weight: bold;
 }
 
+.listaLibros-botonPagina {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.listaLibros-botonPagina:hover {
+    background-color: #f3f4f6;
+}
+
 .libroListaLibros-star-button {
     background: transparent;
     border: none; 

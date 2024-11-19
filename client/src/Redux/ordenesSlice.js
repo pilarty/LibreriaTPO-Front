@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getOrdenes = createAsyncThunk(
   "ordenes/getOrdenes",
-  async ({ page = 0, size = 10 }) => {
+  async ({ page, size }) => {
     const { data } = await axios.get(`http://localhost:4002/ordenes?page=${page}&size=${size}`);
     return data;
   }

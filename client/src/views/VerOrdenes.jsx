@@ -13,7 +13,7 @@ import MenuDesplegable from "../components/MenuDesplegable";
 
 const VerOrdenes = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(2);
   const navigate = useNavigate();
   const [menuVisible, setMenuVisible] = useState(false);
 

@@ -13,20 +13,15 @@ import MenuDesplegable from "../components/MenuDesplegable";
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const ListaLibros = () => {
-    const dispatch = useDispatch();
+    const [currentPage, setCurrentPage] = useState(0);
+    const [pageSize] = useState(6); //aca se cambia la cantidad de libros que se muestran
     const navigate = useNavigate();
-    const { generoId } = useParams();
-
-    const generoNombre = useSelector((state) => state.generos.genero?.nombre);
-    //const libros = useSelector((state) => state.libros.items);
-    //const loading = useSelector((state) => state.libros.loading);
-    //const totalPages = useSelector((state) => state.libros.totalPages); 
-
     const [menuVisible, setMenuVisible] = useState(false);
-    const [page, setPage] = useState(0);
-    const [libros, setLibros] = useState([]);
-    const [totalPages, setTotalPages] = useState(0);
-    const [loading, setLoading] = useState(true);
+
+    const { generoId } = useParams();
+    const dispatch = useDispatch();
+    
+    const generoNombre = useSelector((state) => state.generos.genero?.nombre);
 
     useEffect(() => {
         if (generoId) {
@@ -34,34 +29,16 @@ const ListaLibros = () => {
         }
     }, [generoId, dispatch]);
 
-    {/*
-    useEffect(() => {
-        dispatch(getLibros());
-    }, [page, dispatch]);
-    */}
+    const {items, loading, error} = useSelector((state => state.libros));
 
     useEffect(() => {
-        setLoading(true);
-        fetch(`http://localhost:4002/libros?page=${page}&size=5`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                const librosFiltrados = data.content.filter(libro => libro.genero === generoNombre);
-                console.log(librosFiltrados);
-                setLibros(librosFiltrados);
-                setTotalPages(data.totalPages);
-            })
-            .catch((error) => {
-                console.error("Error al obtener los libros: ", error);
-            })
-            .finally(() => {
-                setLoading(false); // Finaliza la carga
-            });
-    }, [page, generoNombre]);
+        dispatch(getLibros({ page: currentPage, size: pageSize }));
+    }, [dispatch, currentPage, pageSize]);
+
+    let librosFiltrados = [];
+    if (items.content && generoNombre) {
+        librosFiltrados = items.content.filter(libro => libro.genero === generoNombre);
+    }
 
     const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
@@ -76,16 +53,19 @@ const ListaLibros = () => {
     };
 
     const handleNextPage = () => {
-        if (page < totalPages - 1) {
-            setPage(prevPage => prevPage + 1);
+        if (!items.last) {
+        setCurrentPage(prev => prev + 1);
         }
     };
 
     const handlePrevPage = () => {
-        if (page > 0) {
-            setPage(prevPage => prevPage - 1);
+        if (!items.first) {
+        setCurrentPage(prev => prev - 1);
         }
-    };
+    }; 
+
+    if (loading || !items.content) return <LoadingSpinner />;
+    if (error) return <p>Error al cargar los libros: {error}</p>;
 
     return (
         <>
@@ -115,13 +95,25 @@ const ListaLibros = () => {
                 {loading ? (
                     <LoadingSpinner></LoadingSpinner>
                 ) : (
-                    <ListaLibrosListaLibros libros={libros} />
+                    <ListaLibrosListaLibros libros={librosFiltrados} />
                 )}
                 
                 <div className="listaLibros-paginacion-container">
-                    <button onClick={handlePrevPage} disabled={page === 0}>Anterior</button>
-                    <span>Página {page + 1} de {totalPages}</span>
-                    <button onClick={handleNextPage} disabled={page >= totalPages - 1}>Siguiente</button>
+                <button 
+                    className="listaLibros-botonPagina"
+                    onClick={handlePrevPage}
+                    disabled={items.first}
+                >
+                    ←
+                </button>
+                <span>{items.number + 1} de {items.totalPages}</span>
+                <button 
+                    className="listaLibros-botonPagina"
+                    onClick={handleNextPage}
+                    disabled={items.last}
+                >
+                    →
+                </button>
                 </div>
             </div>
         </>
