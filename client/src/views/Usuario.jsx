@@ -11,7 +11,6 @@ import LoadingSpinner from '../components/LoadingSpinner';
 
 const Usuario = () => {
   const navigate = useNavigate();
-  
   const [profile, setProfile] = useState({
     nombre_usuario: '',
     mail: '',
@@ -19,15 +18,17 @@ const Usuario = () => {
     nombre: '',
     apellido: '',
     direccion: '',
-    cp: 0, 
+    CP: 0,
   });
+  
+  // Initialize form state with empty values
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [direccion, setDireccion] = useState('');
   const [CP, setCp] = useState("");
   const [contraseña, setContraseña] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const dispatch = useDispatch() 
+  const dispatch = useDispatch();
 
   const mail = sessionStorage.getItem('mail');
 
@@ -37,52 +38,61 @@ const Usuario = () => {
     }
   }, [mail, navigate]);
 
-  // Fetch de datos del perfil previo a la edición
-  const {items: items, loading, error, usuario} = useSelector((state)=> state.usuarios)
-  console.log(usuario)
+  const {items: items, loading, error, usuario} = useSelector((state)=> state.usuarios);
 
-  useEffect(()=>{
+  // Fetch user data and populate form fields
+  useEffect(() => {
     dispatch(getUsuario(mail))
-    .unwrap()
-    .then(async (data) => {
-      setProfile(data);
-    })
-  }, [dispatch])
+      .unwrap()
+      .then((data) => {
+        setProfile(data);
+        // Populate form fields with existing data
+        setNombre(data.nombre || '');
+        setApellido(data.apellido || '');
+        setDireccion(data.direccion || '');
+        // Explicitly convert CP to string, handling 0 and null cases
+        setCp(data.CP ? data.CP.toString() : '');
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error);
+      });
+  }, [dispatch, mail]);
 
-  if (loading || usuario === null) return <LoadingSpinner></LoadingSpinner>;
-  if (error) return <p>Error al cargar el usuario: {error}</p>
+  if (loading || usuario === null) return <LoadingSpinner />;
+  if (error) return <p>Error al cargar el usuario: {error}</p>;
 
-  const handleCpChange = (e) => {
-    const value = e.target.value;
-    if (/^\d*$/.test(value)) {
-      setCp(value);
-    }
-  };
-//cambio en la pag para editar
   const handleEditClick = () => {
+    // When entering edit mode, populate fields with current values
+    setNombre(usuario.nombre || '');
+    setApellido(usuario.apellido || '');
+    setDireccion(usuario.direccion || '');
+    // Explicitly convert CP to string, handling 0 and null cases
+    setCp(usuario.CP ? usuario.CP.toString() : '');
     setIsEditing(true);
   };
-// put para editar los datoss
+
   const handleEditProfile = async () => {
-      const updateData = {
-        nombre: nombre,
-        apellido: apellido,
-        direccion: direccion,
-        cp: parseInt(CP, 10),
-      };
-      console.log(updateData)
-      try {
-        await dispatch(putUsuario({ id: usuario.id, updatedUser: updateData })).unwrap();
-        alert('Perfil actualizado exitosamente');
-        setProfile({ ...profile, cp: parseInt(cp) || 0 }); 
-        navigate('/');
-      } catch (error) {
-        alert('Hubo un error al actualizar el perfil. Inténtalo nuevamente.');
-        console.error('Error al actualizar el perfil:', error);
-      }
-    }
+    const updateData = {
+      nombre: nombre,
+      apellido: apellido,
+      direccion: direccion,
+      // Only convert to integer if CP has a value
+      cp: CP ? parseInt(CP, 10) : null,
+    };
     
-  // Eliminar Usuario
+    try {
+      await dispatch(putUsuario({ id: usuario.id, updatedUser: updateData })).unwrap();
+      alert('Perfil actualizado exitosamente');
+      setIsEditing(false); // Return to view mode
+      // Refresh user data after update
+      dispatch(getUsuario(mail));
+      navigate('/');
+    } catch (error) {
+      alert('Hubo un error al actualizar el perfil. Inténtalo nuevamente.');
+      console.error('Error al actualizar el perfil:', error);
+    }
+  };
+
   const handleDeleteAccount = () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar tu cuenta?')) {
       dispatch(deleteUsuario(usuario.id))
@@ -112,31 +122,50 @@ const Usuario = () => {
 
       <div className="usuario-form-wrapper">
         <div className="usuario-form">
-          <input type="text" 
-          className="usuario-input" 
-          value={nombre} onChange={(e) => setNombre(e.target.value)} 
-          placeholder="Nombre" />
+          <input 
+            type="text" 
+            className="usuario-input" 
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)} 
+            placeholder="Nombre"
+            disabled={!isEditing}
+          />
 
-          <input type="text" 
-          className="usuario-input" 
-          value={apellido} onChange={(e) => setApellido(e.target.value)} 
-          placeholder="Apellido" />
+          <input 
+            type="text" 
+            className="usuario-input" 
+            value={apellido}
+            onChange={(e) => setApellido(e.target.value)} 
+            placeholder="Apellido"
+            disabled={!isEditing}
+          />
 
-          <input type="text" 
-          className="usuario-input" 
-          value={direccion} onChange={(e) => setDireccion(e.target.value)} 
-          placeholder="Dirección" />
+          <input 
+            type="text" 
+            className="usuario-input" 
+            value={direccion}
+            onChange={(e) => setDireccion(e.target.value)} 
+            placeholder="Dirección"
+            disabled={!isEditing}
+          />
           
-          <input type="number" 
-          className="usuario-input" 
-          value={cp} onChange={handleCpChange} 
-          placeholder="Código Postal" />
-          
+          <input 
+            type="number" 
+            className="usuario-input" 
+            value={CP}
+            onChange={(e) => setCp(e.target.value)} 
+            placeholder="Código Postal"
+            disabled={!isEditing}
+          />
           {isEditing && (
-          <input type="password" 
-          className="usuario-input" 
-          value={contraseña} onChange={(e) => setContraseña(e.target.value)} 
-          placeholder="Contraseña" />
+          <input 
+            type="password" 
+            className="usuario-input" 
+            value={contraseña}
+            onChange={(e) => setContraseña(e.target.value)} 
+            placeholder="Contraseña"
+            disabled={!isEditing}
+          />
           )}
         </div>
 
