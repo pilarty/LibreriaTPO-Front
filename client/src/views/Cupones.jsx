@@ -73,58 +73,63 @@ const Cupones = () => {
             {menuVisible && <MenuDesplegable />}
 
             <div className="cupones-container">
-                <h2>Cupones de Libros</h2>
-                {esAdmin && (
-                        <button className="boton-agregar-cupon" onClick={abrirModal}>
-                            Agregar Nuevo Cupón
-                        </button>
-                    )}
+            <div className="cupones-header">
+        <h2>Cupones de Libros</h2>
+        {esAdmin && (
+            <button className="boton-agregar-cupon" onClick={abrirModal}>
+                Agregar Nuevo Cupón
+            </button>
+        )}
+    </div>
                 <div className="cupon">
-                    <div className="cupon-content">
-                        <div className="cupon-icono">📚</div>
-                        <div className="cupon-info">
-                            <h3>5% OFF en Libros de Ciencia</h3>
-                            <p>En productos seleccionados</p>
-                            <p>Compra mínima: $3000</p>
-                            <p>Tope: $5000</p>
-                        </div>
-                        <button className="Cupon-boton-aplicar">Aplicar</button>
-                        <div className="cupon-bottom-space"></div>
+        <div className="cupon-content">
+            <div className="cupon-icono">📚</div>
+            <div className="cupon-info">
+                <h3>5% OFF en Libros de Ciencia</h3>
+                <p>En productos seleccionados</p>
+                <p>Compra mínima: $3000</p>
+                <p>Tope: $5000</p>
+            </div>
+            <button className="Cupon-boton-aplicar">Aplicar</button>
+            <div className="cupon-bottom-space"></div>
                     </div>
                 </div>
             </div>
 
-            {/* Modal para agregar un cupón */}
             {mostrarModal && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <h2>Agregar Nuevo Cupón</h2>
-                        <label>Descuento:</label>
-                        <input
-                            type="text"
-                            name="descuento"
-                            value={nuevoCupon.descuento}
-                            onChange={manejarCambio}
-                        />
-                        <label>Compra Mínima:</label>
-                        <input
-                            type="text"
-                            name="compraMinima"
-                            value={nuevoCupon.compraMinima}
-                            onChange={manejarCambio}
-                        />
-                        <label>Tope de Compra:</label>
-                        <input
-                            type="text"
-                            name="topeCompra"
-                            value={nuevoCupon.topeCompra}
-                            onChange={manejarCambio}
-                        />
-                        <button onClick={agregarCupon}>Guardar</button>
-                        <button onClick={cerrarModal}>Cerrar</button>
-                    </div>
-                </div>
-            )}
+    <div className="modal">
+        <div className="modal-content">
+            <h2>Agregar Nuevo Cupón</h2>
+            <label>Descuento:</label>
+            <input
+                type="text"
+                name="descuento"
+                value={nuevoCupon.descuento}
+                onChange={manejarCambio}
+            />
+            <label>Compra Mínima:</label>
+            <input
+                type="text"
+                name="compraMinima"
+                value={nuevoCupon.compraMinima}
+                onChange={manejarCambio}
+            />
+            <label>Tope de Compra:</label>
+            <input
+                type="text"
+                name="topeCompra"
+                value={nuevoCupon.topeCompra}
+                onChange={manejarCambio}
+            />
+            {/* Contenedor para los botones */}
+            <div className="botones">
+                <button onClick={agregarCupon}>Guardar</button>
+                <button onClick={cerrarModal}>Cerrar</button>
+            </div>
+        </div>
+    </div>
+)}
+
         </div>
     );
 };
