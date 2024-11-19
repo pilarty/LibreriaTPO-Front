@@ -7,20 +7,36 @@ import lapiz from "../assets/lapiz.png"
 import lapiz_solo from "../assets/lapiz_solo.png"
 import basura from "../assets/basura.png"
 import { deleteLibro } from '../Redux/librosSlice';
+import EliminarLibroConfirmacionPopUp from './EliminarLibroConfirmacionPopUp';
+import EliminarLibroNotificacionPopUp from './EliminarLibroNotificacionPopUp';
 
 
 const AdministrarLibrosLibros = ({ isbn, titulo, autor, precio, image, stock }) => {
     const navigate = useNavigate();
+    const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
+    const [mostrarNotificacion, setMostrarNotificacion] = useState(false);
     const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
 
     const dispatch = useDispatch()
 
     const eliminarLibro = () =>{
-        dispatch(deleteLibro(isbn))
+        setMostrarConfirmacion(true);
+        /*dispatch(deleteLibro(isbn))
         .then(() => {
             alert(`Libro con ISBN ${isbn} eliminado correctamente.`);
-        })
+        })*/
     } 
+
+    const confirmarEliminacion = () => {
+        setMostrarConfirmacion(false);
+        dispatch(deleteLibro(isbn)).then(() => {
+            setMostrarNotificacion(true);
+        });
+    };
+
+    const cerrarNotificacion = () => {
+        setMostrarNotificacion(false);
+    };
 
     const editarLibro = () =>{}
     const reducirStock = () =>{}
@@ -52,6 +68,19 @@ const AdministrarLibrosLibros = ({ isbn, titulo, autor, precio, image, stock }) 
                     <button onClick={eliminarLibro} className="AdministrarLibros-delete-button">
                         <img className="AdministrarLibros-img-lapiz" src={basura} alt="basura" />
                     </button>
+                    {mostrarConfirmacion && (
+                        <EliminarLibroConfirmacionPopUp
+                            mensaje={`¿Estás seguro de que deseas eliminar el libro  ${titulo}?`}
+                            onConfirm={confirmarEliminacion}
+                            onCancel={() => setMostrarConfirmacion(false)}
+                        />
+                    )}
+                    {mostrarNotificacion && (
+                        <EliminarLibroNotificacionPopUp
+                            mensaje={`El libro ${titulo} fue eliminado correctamente.`}
+                            onClose={cerrarNotificacion}
+                        />
+                    )}
                 </div>
                 <div className='AdministrarLibros-botones-2'>
                     <button onClick={editarLibro} className="AdministrarLibros-edit-button">
