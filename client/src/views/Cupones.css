@@ -33,14 +33,14 @@
 }
 
 .cupon {
-    width: 25%; /* Mantén el tamaño que ya tienes */
+    width: 25%; 
     margin: 20px auto;
     padding: 16px;
     background-color: #f9f9f9; /* Fondo claro */
     border: 2px solid #e0e0e0; /* Borde del cupón */
-    border-radius: 0; /* Asegúrate de que no haya esquinas redondeadas */
+    border-radius: 0; 
     clip-path: none; /* Elimina cualquier recorte personalizado */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Mantén la sombra, si la necesitas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 
@@ -91,7 +91,7 @@
 .cupon::after {
     content: '';
     position: absolute;
-    width: 20px; /* Tamaño de las perforaciones */
+    width: 20px; 
     height: 40px;
     background-color: #f9f9f9;
     border-radius: 50%;

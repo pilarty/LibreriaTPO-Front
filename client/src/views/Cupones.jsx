@@ -49,6 +49,7 @@ const Cupones = () => {
       const { name, value } = e.target;
       setNuevoCupon({ ...nuevoCupon, [name]: value });
     };
+    
 
     useEffect(() => {
         dispatch(getUsuario(emailUsuario))
@@ -64,7 +65,7 @@ const Cupones = () => {
 
     const agregarCupon = () => {
       console.log("Cupon agregado:", nuevoCupon);
-      // Aquí puedes agregar la lógica para guardar el cupón en tu backend o estado global
+      
       cerrarModal();
     };
 

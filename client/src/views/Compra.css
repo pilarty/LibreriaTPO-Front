@@ -12,7 +12,7 @@
     background-color: #fff;
     padding: 1.5rem; /* Reduce el padding */
     border-radius: 8px;
-    box-shadow: none; /* Elimina la sombra (relieve) */
+    box-shadow: none; 
     box-sizing: border-box;
     display: flex;
     flex-direction: column; /* Alinea los elementos verticalmente */
@@ -43,13 +43,13 @@ label {
 .Compra-seccion-formulario select {
     width: 100%; /* Ajusta el ancho al 100% */
     padding: 0.75rem;
-    background-color: #ffffff; /* Fondo blanco */
-    border: 1px solid #ccc; /* Borde gris claro */
+    background-color: #ffffff; 
+    border: 1px solid #ccc; 
     border-radius: 4px;
     font-size: 1rem;
     font-family: "Newsreader", serif;
     color: #646363; /* Color de texto oscuro */
-    box-sizing: border-box; /* Asegura que el padding no desborde el ancho */
+    box-sizing: border-box; 
 }
 
 .Compra-seccion-formulario input::placeholder,
@@ -68,7 +68,7 @@ label {
 .Compra-seccion-formulario select {
     line-height: normal; /* Ajusta la altura de línea */
     vertical-align: middle; /* Alineación vertical al centro */
-    appearance: none; /* Elimina estilos predeterminados en todos los navegadores */
+    appearance: none; 
     background-image: none; /* Elimina el ícono de flecha predeterminado */
 }
 
@@ -157,8 +157,8 @@ label {
 }
 
 .Compra-list-libros li span:last-child::before {
-    content: "$"; /* Agrega el símbolo de dólar antes del precio */
-    margin-right: 3px; /* Espacio entre el símbolo de dólar y el precio */
+    content: "$"; 
+    margin-right: 3px; 
 }
 
 .popup-compra {
