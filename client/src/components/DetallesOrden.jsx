@@ -17,9 +17,7 @@ const DetallesOrden = () => {
             <div className="detallesOrden-empresa">
                 <h2>EMPRESA</h2>
                 <div className="detallesOrden-empresaInfo">
-                <div>[Mi Empresa]</div>
-                <div>[Domicilio]</div>
-                <div>[ID Fiscal]</div>
+                <div>The Golden Feather</div>
                 </div>
             </div>
             <div className="detallesOrden-numero">
@@ -32,7 +30,6 @@ const DetallesOrden = () => {
             <div className="detallesOrden-seccionTitulo">ENVIAR A:</div>
             <div className="detallesOrden-proveedor">
                 <div className="detallesOrden-proveedor-info">
-                <div className="detallesOrden-infoRow"><span>PROVEEDOR</span> La Real S.A</div>
                 <div className="detallesOrden-infoRow"><span>DOMICILIO</span> Rioja 398 -</div>
                 <div className="detallesOrden-infoRow"><span>CIUDAD</span> Palo Bajo</div>
                 <div className="detallesOrden-infoRow"><span>CONTACTO</span> Juan</div>
@@ -51,7 +48,7 @@ const DetallesOrden = () => {
                 <thead>
                 <tr>
                     <th>Nº</th>
-                    <th>ARTÍCULO</th>
+                    <th>LIBRO</th>
                     <th>CANTIDAD</th>
                     <th>PRECIO UNITARIO</th>
                     <th>PRECIO TOTAL</th>
@@ -84,8 +81,8 @@ const DetallesOrden = () => {
             </div>
 
             <div className="detallesOrden-total">
-            <div className="detallesOrden-totalRow"><span>SUB-TOTAL</span> $ 33,00</div>
-            <div className="detallesOrden-totalRow"><span>IVA 21%</span> $ 6,93</div>
+            <div className="detallesOrden-totalRow"><span>SUBTOTAL</span> $ 33,00</div>
+            <div className="detallesOrden-totalRow"><span>DESCUENTO</span> 15%</div>
             <div className="detallesOrden-totalFinal"><span>TOTAL</span> $ 39,93</div>
             </div>
 
