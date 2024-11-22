@@ -45,7 +45,9 @@ const AdministrarLibrosLibros = ({ isbn}) => {
         setMostrarNotificacion(false);
     };
 
-    const editarLibro = () =>{}
+    const editarLibro = () =>{
+        navigate(`/EditarLibro/${isbn}`);
+    }
 
     const reducirStock = () => {
         if (stock > 1) {

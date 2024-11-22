@@ -11,10 +11,13 @@ import { useState, useRef, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import { postImagen } from "../Redux/imagenesSlice";
 import { getIdByNombre } from "../Redux/generosSlice";
-import { createLibros } from "../Redux/librosSlice";
+import { getLibroByIsbn } from "../Redux/librosSlice";
+import { putLibro } from "../Redux/librosSlice";
+import { useParams } from 'react-router-dom';
 
 const PublicarLibro = () => {
 
+    const {isbn } = useParams();
     const navigate = useNavigate();
     const generosRef = useRef(null);
     const buttonGenerosRef = useRef(null);
@@ -89,9 +92,11 @@ const PublicarLibro = () => {
       }
         
       const dispatch = useDispatch()
-      const {items, loading, error} = useSelector((state)=> state.libros)
+      const {items, loading, error, libro} = useSelector((state)=> state.libros)
 
-      
+      useEffect(()=> {
+        dispatch(getLibroByIsbn(isbn))
+      }, [isbn, dispatch])
 
       useEffect(()=>{
         if (publicacionLista){
