@@ -15,7 +15,8 @@ const Navigation = () => {
         location.pathname === '/Cupones' ||
         /^\/ListaLibros\/\d+$/.test(location.pathname) || // Verifica si la ruta comienza con '/ListaLibros/' y sigue con un número
         /^\/Libro\/\d+$/.test(location.pathname) ||
-        location.pathname === '/verOrdenes'
+        location.pathname === '/verOrdenes'||
+        /^\/DetallesOrden\/\d+$/.test(location.pathname)
     ) {
         return null; // No renderiza nada en estas páginas
     }
@@ -58,6 +59,11 @@ const Navigation = () => {
                     <Link to="/publicarLibro">PublicarLibro</Link>
 
                 </li>
+                <li>
+                    <Link to="/DetallesOrden">DetallesOrden</Link>
+
+                </li>
+                
             </ul>
         </nav>
     )

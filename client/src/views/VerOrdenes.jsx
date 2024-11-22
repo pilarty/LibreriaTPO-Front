@@ -17,6 +17,10 @@ const VerOrdenes = () => {
   const navigate = useNavigate();
   const [menuVisible, setMenuVisible] = useState(false);
 
+  const manejarDetallesOrden = (id) => {
+    navigate(`/DetallesOrden/${id}`);
+}
+
   const dispatch = useDispatch();
   const { items, loading, error } = useSelector((state) => state.ordenes);
   
@@ -158,11 +162,15 @@ const VerOrdenes = () => {
             <tr key={orden.id} className="VerOrdenes-fila">
               
               <td className="VerOrdenes-celda">
-                <div className="VerOrdenes-infoOrden">
-                  <span className="VerOrdenes-idCliente">
-                    #{orden.id} {orden.usuario.nombre} {orden.usuario.apellido}
-                  </span>
-                </div>
+              <div className="VerOrdenes-infoOrden">
+              <span
+                className="VerOrdenes-idCliente"
+                onClick={() => manejarDetallesOrden(orden.id)}
+              >
+                #{orden.id} {orden.usuario.nombre} {orden.usuario.apellido}
+              </span>
+              </div>
+
               </td>
               <td className="VerOrdenes-celda">{/*{orden.fecha}*/} 13/11/2003</td>
               <td className="VerOrdenes-celda">
