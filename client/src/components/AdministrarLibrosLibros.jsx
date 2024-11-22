@@ -11,23 +11,22 @@ import { getLibroByIsbn } from '../Redux/librosSlice';
 import { putLibro } from '../Redux/librosSlice';
 import EliminarLibroConfirmacionPopUp from './EliminarLibroConfirmacionPopUp';
 import EliminarLibroNotificacionPopUp from './EliminarLibroNotificacionPopUp';
+import LoadingSpinner from './LoadingSpinner';
 
 
-const AdministrarLibrosLibros = ({ isbn}) => {
+const AdministrarLibrosLibros = ({ libro}) => {
     const navigate = useNavigate();
     const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
     const [mostrarNotificacion, setMostrarNotificacion] = useState(false);
 
     const dispatch = useDispatch()
-    const libro = useSelector(state => state.libros.items.content.find((libro) => libro.isbn === isbn));
+    //const libro = useSelector(state => state.libros.items.content.find((libro) => libro.isbn === isbn));
 
-    if (!libro) {
-        return <p>Cargando información del libro...</p>; // Placeholder mientras se cargan los datos
-      }
 
-    const {titulo, autor, precio, image, stock, cantPaginas, sinopsis, editorial, edicion, idioma, generoId,} = libro;
+    //const {titulo, autor, precio, image, stock, cantPaginas, sinopsis, editorial, edicion, idioma, generoId,} = libro;
+    const [stockActual, setStockActual] = useState(libro.stock)
 
-    const imageSrc = image ? `data:image/jpeg;base64,${image}` : 'default-image-path.jpg';
+    const imageSrc = libro.image ? `data:image/jpeg;base64,${libro.image}` : 'default-image-path.jpg';
 
     const eliminarLibro = () =>{
         setMostrarConfirmacion(true);
@@ -35,9 +34,9 @@ const AdministrarLibrosLibros = ({ isbn}) => {
 
     const confirmarEliminacion = () => {
         setMostrarConfirmacion(false);
-        dispatch(deleteLibro(isbn)).then(() => {
+        dispatch(deleteLibro(libro.isbn)).then(() => {
             //setMostrarNotificacion(true);
-            alert(`Libro con ISBN ${isbn} eliminado correctamente.`);
+            alert(`Libro con ISBN ${libro.isbn} eliminado correctamente.`);
         });
     };
 
@@ -46,44 +45,51 @@ const AdministrarLibrosLibros = ({ isbn}) => {
     };
 
     const editarLibro = () =>{
-        navigate(`/EditarLibro/${isbn}`);
+        navigate(`/EditarLibro/${libro.isbn}`);
     }
 
+    useEffect(() => {
+        setStockActual(libro.stock);
+    }, [libro.stock]);
+
+
     const reducirStock = () => {
-        if (stock > 1) {
-          const nuevoStock = stock - 1;
+        if (stockActual > 1) {
+          const nuevoStock = stockActual - 1;
           const updatedLibro = { ...libro, stock: nuevoStock };
-          dispatch(putLibro({ isbn, updatedLibro }));
+          setStockActual(nuevoStock)
+          dispatch(putLibro({ isbn: libro.isbn, updatedLibro }));
         }
       };
 
     const aumentarStock = () => {
-        const nuevoStock = stock + 1;
+        const nuevoStock = stockActual + 1;
         const updatedLibro = { ...libro, stock: nuevoStock };
-        dispatch(putLibro({ isbn, updatedLibro }));
+        setStockActual(nuevoStock)
+        dispatch(putLibro({ isbn: libro.isbn, updatedLibro }));
     }
     
     return (
         <div className="AdministrarLibros-book-container">
-            <img src={imageSrc} alt={titulo} className="AdministrarLibros-book-image" />
+            <img src={imageSrc} alt={libro.titulo} className="AdministrarLibros-book-image" />
             <div className="AdministrarLibros-book-details">
                 <div className="AdministrarLibros-book-header">
                     <div className="AdministrarLibros-title-container">
                         <h3 className="AdministrarLibros-book-title">
-                            {titulo}
+                            {libro.titulo}
                         </h3>
                     </div>
                 </div>
-                <p className="AdministrarLibros-book-author">{autor}</p>
+                <p className="AdministrarLibros-book-author">{libro.autor}</p>
                 <div className="AdministrarLibros-price-button-container">
-                    <span className="AdministrarLibros-book-price">${precio}</span>
+                    <span className="AdministrarLibros-book-price">${libro.precio}</span>
                 </div>
             </div>
             <div className="AdministrarLibros-botones-contenedor">
                 <div className='AdministrarLibros-botones-1'>
                     <div className="AdministrarLibros-stock-controls">
                         <button onClick={reducirStock} className="AdministrarLibros-stock-button">-</button>
-                        <span className="AdministrarLibros-stock-display">{stock}</span>
+                        <span className="AdministrarLibros-stock-display">{stockActual}</span>
                         <button onClick={aumentarStock} className="AdministrarLibros-stock-button">+</button>
                     </div>
                     <button onClick={eliminarLibro} className="AdministrarLibros-delete-button">
@@ -91,14 +97,14 @@ const AdministrarLibrosLibros = ({ isbn}) => {
                     </button>
                     {mostrarConfirmacion && (
                         <EliminarLibroConfirmacionPopUp
-                            mensaje={`¿Estás seguro de que deseas eliminar el libro  ${titulo}?`}
+                            mensaje={`¿Estás seguro de que deseas eliminar el libro  ${libro.titulo}?`}
                             onConfirm={confirmarEliminacion}
                             onCancel={() => setMostrarConfirmacion(false)}
                         />
                     )}
                     {mostrarNotificacion && (
                         <EliminarLibroNotificacionPopUp
-                            mensaje={`El libro ${titulo} fue eliminado correctamente.`}
+                            mensaje={`El libro ${libro.titulo} fue eliminado correctamente.`}
                             onClose={cerrarNotificacion}
                         />
                     )}

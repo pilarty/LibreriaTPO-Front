@@ -19,7 +19,7 @@ const AdministrarLibrosLista = ({ libros, loading }) => {
                     
                     <AdministrarLibrosLibros 
                         key={libro.isbn}
-                        isbn={libro.isbn}
+                        libro={libro}
                     />
                 ))}
             </div>
