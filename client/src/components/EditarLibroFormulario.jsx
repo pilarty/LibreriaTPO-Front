@@ -1,3 +1,4 @@
+
 import "./PublicarLibro.css";
 import "./App.css";
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,7 @@ import { getLibroByIsbn } from "../Redux/librosSlice";
 import { putLibro } from "../Redux/librosSlice";
 import { useParams } from 'react-router-dom';
 
-const EditarLibro = (curretTitulo, curretSinopsis, curretEditorial, curretEdicion, curretIdioma, curretPaginas, curretAutor, curretStock, curretPrecio, curretImagen) => {
+const EditarLibroFormulario = (curretTitulo, curretSinopsis, curretEditorial, curretEdicion, curretIdioma, curretPaginas, curretAutor, curretStock, curretPrecio, curretImagen) => {
 
     const {isbn } = useParams();
     const navigate = useNavigate();
@@ -270,4 +271,4 @@ const EditarLibro = (curretTitulo, curretSinopsis, curretEditorial, curretEdicio
       );
     };
 
-export default EditarLibro;
+export default EditarLibroFormulario;
