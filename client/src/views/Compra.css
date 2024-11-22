@@ -1,45 +1,3 @@
-#root {
-    width: 100%; 
-    max-width: 100%; 
-    margin: 0 auto; 
-}
-/*
-.logo {
-    position: absolute;
-    left: 1.29%;
-    top: 5.5vh;
-    width: 2.4%;
-    height: auto;
-}
-
-.header-2 {
-    display: flex;         
-    align-items: center;        
-    justify-content: flex-start; 
-    padding: 0.625rem;              
-}
-
-.subtitulo {
-    font-family: "Newsreader", serif;
-    font-weight: 500;
-    font-style: normal;
-    color: #D1A246;
-    position: absolute;
-    top: 0;
-    left: 2.5rem;
-    font-size: 3.125rem;
-}
-
-.img-usuario {
-    width: 4.375rem;
-    height: auto;
-}
-
-.img-hamburguesa {
-    width: 2rem;
-    height: auto;
-}
-
 /* Contenedor general del formulario */
 .compra-container {
     display: flex;
@@ -58,15 +16,15 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column; /* Alinea los elementos verticalmente */
-    gap: 3rem; /* Espacio entre los campos */
-    margin-right: 20px; /* Reducimos el margen entre el formulario y la lista de libros */
+    gap: 1rem; /* Espacio entre los campos */
+    margin-right: 20rem; /* Reducimos el margen entre el formulario y la lista de libros */
 }
 
 .Compra-seccion-formulario h1 {
     font-family: "Newsreader", serif;
     font-size: 1.5rem;
     color: #D1A246;
-    margin-top: 0rem; /* Aumenta el margen superior */
+    margin-top: 5rem; /* Aumenta el margen superior */
     margin-bottom: 0rem; /* Aumenta el margen inferior */
     text-align: left; /* Alineación del título a la izquierda */
 }
@@ -110,8 +68,6 @@ label {
 .Compra-seccion-formulario select {
     line-height: normal; /* Ajusta la altura de línea */
     vertical-align: middle; /* Alineación vertical al centro */
-    -webkit-appearance: none; /* Elimina estilos predeterminados en Webkit */
-    -moz-appearance: none; /* Elimina estilos predeterminados en Firefox */
     appearance: none; /* Elimina estilos predeterminados en todos los navegadores */
     background-image: none; /* Elimina el ícono de flecha predeterminado */
 }
@@ -156,7 +112,7 @@ label {
 }
 
 .boton-comprar button {
-    padding: 10px 40px;
+    padding: 10px 4px;
     background-color: #0e735f; /* Ajusta este color si es necesario */
     color: white;
     border: none;
@@ -175,7 +131,7 @@ label {
     padding: 0;
     display: grid; /*  Grid para crear dos columnas */
     grid-template-columns: 1fr 1fr; /* Dos columnas */
-    gap: 15px 1px; /* Espaciado entre las filas y columnas */
+    gap: 15px 10px; /* Espaciado entre las filas y columnas */
     width: 100%; 
     margin-bottom: 40px; /* Espacio entre las listas */
 }
