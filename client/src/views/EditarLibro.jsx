@@ -75,6 +75,7 @@ const EditarLibro = () => {
             currentImagen = {libro.image}
             currentNovedad = {libro.novedad}
             currentRecomendado = {libro.recomendado}
+            currentGenero = {libro.genero}
           ></EditarLibroFormulario>
         </div>
       );

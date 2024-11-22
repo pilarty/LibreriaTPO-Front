@@ -92,7 +92,7 @@ const librosSlice = createSlice({
             state.loading = false;
             const index = state.items.content.findIndex(libro => libro.isbn === action.payload.isbn);
             if (index !== -1) {
-              state.items[index] = action.payload;
+              state.items.content[index] = action.payload;
             }
           })
           .addCase(putLibro.rejected, (state, action) => {

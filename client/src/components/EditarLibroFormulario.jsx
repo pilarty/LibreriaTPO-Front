@@ -8,16 +8,15 @@ import {useDispatch, useSelector} from "react-redux"
 import { postImagen } from "../Redux/imagenesSlice";
 import { getIdByNombre } from "../Redux/generosSlice";
 import { putLibro } from "../Redux/librosSlice";
-import { useParams } from 'react-router-dom';
 
-const EditarLibroFormulario = ({currentISBN, currentTitulo, currentSinopsis, currentEditorial, currentEdicion, currentIdioma, currentPaginas, currentAutor, currentStock, currentPrecio, currentImagen, currentNovedad, currentRecomendado}) => {
+const EditarLibroFormulario = ({currentISBN, currentTitulo, currentSinopsis, currentEditorial, currentEdicion, currentIdioma, currentPaginas, currentAutor, currentStock, currentPrecio, currentImagen, currentNovedad, currentRecomendado, currentGenero}) => {
     const navigate = useNavigate();
     const generosRef = useRef(null);
     const buttonGenerosRef = useRef(null);
     const imagenRef = useRef(null);
     const [menuVisible, setMenuVisible] = useState(false);
     const [menuGenerosVisible, setMenuGenerosVisible] = useState(false);
-    const [generoSeleccionado, setGeneroSeleccionado] = useState("Genero...");
+    const [generoSeleccionado, setGeneroSeleccionado] = useState(currentGenero);
     const [titulop, setTitulo] = useState(currentTitulo)
     const [descripcionp, setDescripcion] = useState(currentSinopsis)
     const [editorialp, setEditorial] = useState(currentEditorial)
@@ -28,11 +27,12 @@ const EditarLibroFormulario = ({currentISBN, currentTitulo, currentSinopsis, cur
     const [autorp, setAutor] = useState(currentAutor);
     const [stockp, setStock] = useState(currentStock);
     const [preciop, setPrecio] = useState(currentPrecio);
-    const [imagenSeleccionada, setImagenSeleccionada] = useState(currentImagen);
+    const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
     const [publicacionLista, setPublicacionLista] = useState(false);
     const [libroNuevo, setLibroNuevo] = useState(null);
     const [esRecomendado, setEsRecomendado] = useState(currentRecomendado);
     const [esNovedad, setEsNovedad] = useState(currentNovedad);
+    const imageSrc = currentImagen ? `data:image/jpeg;base64,${currentImagen}` : 'default-image-path.jpg';
 
       const handleAutorChange = (e) => {          //Revisar
         const autores = e.target.value.split(',').map(autor => autor.trim());
@@ -55,7 +55,6 @@ const EditarLibroFormulario = ({currentISBN, currentTitulo, currentSinopsis, cur
           .unwrap()
           .then((data) => data);
         const libroData= {
-          isbn: isbnp,
           titulo: titulop,
           precio: preciop,
           cantPaginas: numPaginasp,
@@ -79,17 +78,19 @@ const EditarLibroFormulario = ({currentISBN, currentTitulo, currentSinopsis, cur
 
       useEffect(()=>{
         if (publicacionLista){
-          dispatch(createLibros(libroNuevo))
+          dispatch(putLibro({isbn: currentISBN, updatedLibro: libroNuevo}))
           .unwrap()
           .then(async (data) => {
             console.log("Libro creado:", data);
-            const formData = new FormData();
-            formData.append("name", titulop);
-            formData.append("isbn", isbnp);
-            formData.append("file", imagenSeleccionada);
-            await dispatch(postImagen(formData)).unwrap();
-            alert("Libro publicado exitosamente");
-            //navigate('/');
+            if (imagenSeleccionada !== null) {
+              const formData = new FormData();
+              formData.append("name", titulop);
+              formData.append("isbn", isbnp);
+              formData.append("file", imagenSeleccionada);
+              await dispatch(postImagen(formData)).unwrap();
+            }
+            alert("Libro actualizado exitosamente");
+            navigate('/AdministrarLibros');
           })
         setLibroNuevo(null)
         setPublicacionLista(false)
@@ -102,7 +103,7 @@ const EditarLibroFormulario = ({currentISBN, currentTitulo, currentSinopsis, cur
         <div>
           <div className="PublicarLibro-contenedor">
             <div className="PublicarLibro-book-image" onClick={() => imagenRef.current.click()}> 
-              <img src={imagenSeleccionada ? URL.createObjectURL(imagenSeleccionada) : "ruta_a_la_imagen"} alt="imagen" />
+              <img src={imagenSeleccionada ? URL.createObjectURL(imagenSeleccionada) : imageSrc} alt="imagen" />
             </div>
             <input
               type="file"
