@@ -95,7 +95,9 @@ const Favoritos = () => {
                     <img className="img-carrito" src={Carrito} alt="Carrito" />
                 </button>
             </div>
-
+            {menuVisible && (
+                <MenuDesplegable></MenuDesplegable>
+             )}
             <div className="favoritos-container">
                 <h1>Mis Favoritos</h1>
                 {favoritos.length === 0 ? (
