@@ -1,10 +1,26 @@
 import '../views/VerOrdenes.css';
 import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getOrdenesById } from '../Redux/ordenesSlice';
+import { useState, useEffect } from 'react';
 
 const DetallesOrden = () => {
-
     const {id} = useParams();
 
+    const dispatch = useDispatch();
+    const { items, loading, error } = useSelector((state) => state.ordenes);
+
+    useEffect(() => {
+        dispatch(getOrdenesById(id));
+    }, [dispatch, id]);
+    
+    if (loading) {
+        return <p>Cargando...</p>;
+    }
+    
+    if (error) {
+        return <p>Error al obtener la orden: {error}</p>;
+    }
 
     return (
         <div className="detallesOrden-container">
@@ -21,8 +37,8 @@ const DetallesOrden = () => {
                 </div>
             </div>
             <div className="detallesOrden-numero">
-                <div className="detallesOrden-numeroOrden">Nº ORDEN <span>1</span></div>
-                <div className="detallesOrden-fecha">FECHA <span>5/1/2022</span></div>
+                <div className="detallesOrden-numeroOrden">Nº ORDEN <span>{items.id}</span></div>
+                <div className="detallesOrden-fecha">FECHA <span>{items.fecha}</span></div>
             </div>
             </div>
 

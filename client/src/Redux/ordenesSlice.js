@@ -25,6 +25,30 @@ export const getOrdenesByMail = createAsyncThunk(
   }
 );
 
+export const getOrdenesById = createAsyncThunk(
+  "ordenes/getOrdenesById",
+  async (id) => {
+    const {data} = await axios.get(`http://localhost:4002/ordenes/${id}`);
+    return data;
+  }
+);
+
+export const updateOrden = createAsyncThunk(
+  "ordenes/updateOrden",
+  async ({ id, estado }, { rejectWithValue }) => {
+      try {
+          const response = await axios.put(`http://localhost:4002/ordenes/${id}/estado`, {
+            estado
+          });
+          return { id, estado }; 
+      } catch (error) {
+          return rejectWithValue(
+              error.response?.data?.message || "Error al actualizar la orden"
+          );
+      }
+  }
+);
+
 const ordenesSlice = createSlice({
   name: "ordenes",
   initialState: {
@@ -105,7 +129,40 @@ const ordenesSlice = createSlice({
       .addCase(getOrdenesByMail.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+
+      //Get Orden by id
+      .addCase(getOrdenesById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getOrdenesById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = action.payload;
+      })
+      .addCase(getOrdenesById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+
+      //Get Orden by id
+      .addCase(updateOrden.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateOrden.fulfilled, (state, action) => {
+        const { id, estado } = action.payload;
+        const orden = state.ordenes.find((orden) => orden.id === id);
+        if (orden) {
+            orden.estado = estado;
+        }
+        state.loading = false;
+      })
+      .addCase(updateOrden.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
+
   },
 });
 
