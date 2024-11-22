@@ -6,41 +6,18 @@ import Usuario from '../assets/Usuario.png'
 import Carrito from '../assets/Carrito.png'
 import Hamburguesa from '../assets/hamburguesa.png'
 import MenuDesplegable from "../components/MenuDesplegable";
-import MenuDesplegableGeneros from "../components/MenuDesplegableGeneros";
 import { useState, useRef, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux"
-import { postImagen } from "../Redux/imagenesSlice";
-import { getIdByNombre } from "../Redux/generosSlice";
 import { getLibroByIsbn } from "../Redux/librosSlice";
-import { putLibro } from "../Redux/librosSlice";
 import { useParams } from 'react-router-dom';
+import EditarLibroFormulario from "../components/EditarLibroFormulario";
+import LoadingSpinner from '../components/LoadingSpinner';
 
-const EditarLibro = (curretTitulo, curretSinopsis, curretEditorial, curretEdicion, curretIdioma, curretPaginas, curretAutor, curretStock, curretPrecio, curretImagen) => {
+const EditarLibro = () => {
 
     const {isbn } = useParams();
     const navigate = useNavigate();
-    const generosRef = useRef(null);
-    const buttonGenerosRef = useRef(null);
-    const imagenRef = useRef(null);
     const [menuVisible, setMenuVisible] = useState(false);
-    const [menuGenerosVisible, setMenuGenerosVisible] = useState(false);
-    const [generoSeleccionado, setGeneroSeleccionado] = useState("Genero...");
-    const [titulop, setTitulo] = useState(curretTitulo)
-    const [descripcionp, setDescripcion] = useState(curretSinopsis)
-    const [editorialp, setEditorial] = useState(curretEditorial)
-    const [edicionp, setEdicion] = useState(curretEdicion)
-    const [idiomap, setIdioma] = useState(curretIdioma)
-    const [numPaginasp, setNumPaginas] = useState(curretPaginas);
-    const [isbnp, setIsbn] = useState(useParams());
-    const [autorp, setAutor] = useState(curretAutor);
-    const [stockp, setStock] = useState(curretStock);
-    const [preciop, setPrecio] = useState(curretPrecio);
-    const [posts, setPost] = useState([]);
-    const [imagenSeleccionada, setImagenSeleccionada] = useState(curretImagen);
-    const [publicacionLista, setPublicacionLista] = useState(false);
-    const [libroNuevo, setLibroNuevo] = useState(null);
-    const [esRecomendado, setEsRecomendado] = useState(false);
-    const [esNovedad, setEsNovedad] = useState(false);
 
     const manejarUsuario = () => {
         navigate("/Usuario");
@@ -48,71 +25,20 @@ const EditarLibro = (curretTitulo, curretSinopsis, curretEditorial, curretEdicio
       const manejarCarrito = () => {
         navigate("/Carrito");
       }
-      const manejarGeneros = () => {
-        setMenuGenerosVisible(!menuGenerosVisible);
-      }
+
       const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
-      }
-
-      const handleAutorChange = (e) => {          //Revisar
-        const autores = e.target.value.split(',').map(autor => autor.trim());
-        setAutor(autores);
-      };
-
-      const handleImagenChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setImagenSeleccionada(file);
-        }
-      };
-
-      const manejarPublicar = async () => {
-        const generoIdp = await dispatch(getIdByNombre(generoSeleccionado))
-          .unwrap()
-          .then((data) => data);
-        const libroData= {
-          isbn: isbnp,
-          titulo: titulop,
-          precio: preciop,
-          cantPaginas: numPaginasp,
-          descripcion: descripcionp,
-          stock: stockp,
-          editorial: editorialp,
-          edicion: edicionp,
-          idioma: idiomap,
-          generoId: generoIdp,
-          autor: autorp,
-          recomendado: esRecomendado,
-          novedad: esNovedad
-        }
-        setLibroNuevo(libroData)
-        setPublicacionLista(true)
-        console.log(libroNuevo)
       }
         
       const dispatch = useDispatch()
       const {items, loading, error, libro} = useSelector((state)=> state.libros)
+      console.log(libro)
 
       useEffect(()=>{
-        if (publicacionLista){
-          dispatch(createLibros(libroNuevo))
-          .unwrap()
-          .then(async (data) => {
-            console.log("Libro creado:", data);
-            const formData = new FormData();
-            formData.append("name", titulop);
-            formData.append("isbn", isbnp);
-            formData.append("file", imagenSeleccionada);
-            await dispatch(postImagen(formData)).unwrap();
-            alert("Libro publicado exitosamente");
-            //navigate('/');
-          })
-        setLibroNuevo(null)
-        setPublicacionLista(false)
-        }
-      }, [publicacionLista, dispatch])
+        dispatch(getLibroByIsbn(isbn))
+      }, [dispatch, isbn])
 
+      if (loading || libro === null) return <LoadingSpinner></LoadingSpinner>;
       if (error) return <p>Error al cargar las publicaciones: {error}</p>
 
       return (
@@ -134,138 +60,22 @@ const EditarLibro = (curretTitulo, curretSinopsis, curretEditorial, curretEdicio
           </div>
     
           {menuVisible && <MenuDesplegable></MenuDesplegable>}
-    
-          <div className="PublicarLibro-contenedor">
-            <div className="PublicarLibro-book-image" onClick={() => imagenRef.current.click()}> 
-              <img src={imagenSeleccionada ? URL.createObjectURL(imagenSeleccionada) : "ruta_a_la_imagen"} alt="imagen" />
-            </div>
-            <input
-              type="file"
-              className="PublicarLibro-input-field"
-              accept="image/*"
-              onChange={handleImagenChange}
-              ref={imagenRef} 
-              style={{ display: 'none' }}
-            />
-    
-            <div className="PublicarLibro-book-detalles">
-              <label className="PublicarLibro-label">Título:</label>
-              <input
-                type="text"
-                className="PublicarLibro-input-field"
-                placeholder="Título..."
-                value={titulop}
-                onChange={(e) => setTitulo(e.target.value)}
-              />
-              <label className="PublicarLibro-label">Sinopsis:</label>
-              <textarea
-                className="PublicarLibro-textarea-field"
-                placeholder="Sinopsis..."
-                value={descripcionp}
-                onChange={(e) => setDescripcion(e.target.value)}
-              />
-              <label className="PublicarLibro-label">Editorial:</label>
-              <input
-                type="text"
-                className="PublicarLibro-input-field"
-                placeholder="Editorial..."
-                value={editorialp}
-                onChange={(e) => setEditorial(e.target.value)}
-              />
-              <label className="PublicarLibro-label">Edición:</label>
-              <input
-                type="number"
-                className="PublicarLibro-input-field"
-                placeholder="Edición..."
-                value={edicionp}
-                onChange={(e) => setEdicion(e.target.value)}
-              />
-              <label className="PublicarLibro-label">Idioma:</label>
-              <input
-                type="text"
-                className="PublicarLibro-input-field"
-                placeholder="Idioma..."
-                value={idiomap}
-                onChange={(e) => setIdioma(e.target.value)}
-              />
-              <label className="PublicarLibro-label">N° páginas:</label>
-              <input
-                type="number"
-                className="PublicarLibro-input-field"
-                placeholder="N° páginas..."
-                value={numPaginasp}
-                onChange={(e) => setNumPaginas(e.target.value)}
-              />
-              <label className="PublicarLibro-label">ISBN:</label>
-              <input
-                type="text"
-                className="PublicarLibro-input-field"
-                placeholder="ISBN..."
-                value={isbnp}
-                onChange={(e) => setIsbn(e.target.value)}
-              />
-              <label className="PublicarLibro-label">Género:</label>
-              <button
-                className="PublicarLibro-generos-field"
-                onClick={manejarGeneros}
-                ref={buttonGenerosRef}
-              >
-                {generoSeleccionado}
-                <span className="PublicarLibro-arrow">▼</span>
-              </button>
-              <label className="PublicarLibro-label">Autor(es):</label>
-              <input
-                type="text"
-                className="PublicarLibro-input-field"
-                placeholder="Autor..."
-                value={autorp.join(', ')}
-                onChange={handleAutorChange}
-              />
-              <label className="PublicarLibro-label">Stock:</label>
-              <input
-                type="number"
-                className="PublicarLibro-input-field"
-                placeholder="Stock..."
-                value={stockp}
-                onChange={(e) => setStock(e.target.value)}
-              />
-              <label className="PublicarLibro-label">Precio:</label>
-              <input
-                type="number"
-                className="PublicarLibro-input-field book-precio"
-                placeholder="Precio..."
-                value={preciop}
-                onChange={(e) => setPrecio(e.target.value)}
-              />
-              <div className="PublicarLibro-checkboxes">
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={esRecomendado}
-                        onChange={(e) => setEsRecomendado(e.target.checked)}
-                    />
-                    Recomendado
-                </label>
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={esNovedad}
-                        onChange={(e) => setEsNovedad(e.target.checked)}
-                    />
-                    Novedad
-                </label>
-              </div>
-              <button className="PublicarLibro-boton-publicar" onClick={manejarPublicar}>
-                Publicar
-              </button>
-            </div>
-          </div>
-    
-          {menuGenerosVisible && (
-            <div ref={generosRef}>
-              <MenuDesplegableGeneros onGeneroSeleccionado={setGeneroSeleccionado} />
-            </div>
-          )}
+          <EditarLibroFormulario
+            key = {libro.isbn}
+            currentISBN = {libro.isbn}
+            currentTitulo = {libro.titulo}
+            currentSinopsis = {libro.descripcion}
+            currentEditorial = {libro.editorial}
+            currentEdicion = {libro.edicion}
+            currentIdioma = {libro.idioma}
+            currentPaginas = {libro.cantPaginas}
+            currentAutor = {libro.autor}
+            currentStock = {libro.stock}
+            currentPrecio = {libro.precio}
+            currentImagen = {libro.image}
+            currentNovedad = {libro.novedad}
+            currentRecomendado = {libro.recomendado}
+          ></EditarLibroFormulario>
         </div>
       );
     };

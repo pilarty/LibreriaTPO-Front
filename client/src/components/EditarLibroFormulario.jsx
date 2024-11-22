@@ -1,24 +1,16 @@
 
-import "./PublicarLibro.css";
-import "./App.css";
+import "../views/PublicarLibro.css";
+import "../views/App.css";
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png'
-import Usuario from '../assets/Usuario.png'
-import Carrito from '../assets/Carrito.png'
-import Hamburguesa from '../assets/hamburguesa.png'
-import MenuDesplegable from "../components/MenuDesplegable";
 import MenuDesplegableGeneros from "../components/MenuDesplegableGeneros";
 import { useState, useRef, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import { postImagen } from "../Redux/imagenesSlice";
 import { getIdByNombre } from "../Redux/generosSlice";
-import { getLibroByIsbn } from "../Redux/librosSlice";
 import { putLibro } from "../Redux/librosSlice";
 import { useParams } from 'react-router-dom';
 
-const EditarLibroFormulario = (curretTitulo, curretSinopsis, curretEditorial, curretEdicion, curretIdioma, curretPaginas, curretAutor, curretStock, curretPrecio, curretImagen) => {
-
-    const {isbn } = useParams();
+const EditarLibroFormulario = ({currentISBN, currentTitulo, currentSinopsis, currentEditorial, currentEdicion, currentIdioma, currentPaginas, currentAutor, currentStock, currentPrecio, currentImagen, currentNovedad, currentRecomendado}) => {
     const navigate = useNavigate();
     const generosRef = useRef(null);
     const buttonGenerosRef = useRef(null);
@@ -26,35 +18,21 @@ const EditarLibroFormulario = (curretTitulo, curretSinopsis, curretEditorial, cu
     const [menuVisible, setMenuVisible] = useState(false);
     const [menuGenerosVisible, setMenuGenerosVisible] = useState(false);
     const [generoSeleccionado, setGeneroSeleccionado] = useState("Genero...");
-    const [titulop, setTitulo] = useState(curretTitulo)
-    const [descripcionp, setDescripcion] = useState(curretSinopsis)
-    const [editorialp, setEditorial] = useState(curretEditorial)
-    const [edicionp, setEdicion] = useState(curretEdicion)
-    const [idiomap, setIdioma] = useState(curretIdioma)
-    const [numPaginasp, setNumPaginas] = useState(curretPaginas);
-    const [isbnp, setIsbn] = useState(useParams());
-    const [autorp, setAutor] = useState(curretAutor);
-    const [stockp, setStock] = useState(curretStock);
-    const [preciop, setPrecio] = useState(curretPrecio);
-    const [posts, setPost] = useState([]);
-    const [imagenSeleccionada, setImagenSeleccionada] = useState(curretImagen);
+    const [titulop, setTitulo] = useState(currentTitulo)
+    const [descripcionp, setDescripcion] = useState(currentSinopsis)
+    const [editorialp, setEditorial] = useState(currentEditorial)
+    const [edicionp, setEdicion] = useState(currentEdicion)
+    const [idiomap, setIdioma] = useState(currentIdioma)
+    const [numPaginasp, setNumPaginas] = useState(currentPaginas);
+    const [isbnp, setIsbn] = useState(currentISBN);
+    const [autorp, setAutor] = useState(currentAutor);
+    const [stockp, setStock] = useState(currentStock);
+    const [preciop, setPrecio] = useState(currentPrecio);
+    const [imagenSeleccionada, setImagenSeleccionada] = useState(currentImagen);
     const [publicacionLista, setPublicacionLista] = useState(false);
     const [libroNuevo, setLibroNuevo] = useState(null);
-    const [esRecomendado, setEsRecomendado] = useState(false);
-    const [esNovedad, setEsNovedad] = useState(false);
-
-    const manejarUsuario = () => {
-        navigate("/Usuario");
-      }
-      const manejarCarrito = () => {
-        navigate("/Carrito");
-      }
-      const manejarGeneros = () => {
-        setMenuGenerosVisible(!menuGenerosVisible);
-      }
-      const manejarHamburguesa = () => {
-        setMenuVisible(!menuVisible);
-      }
+    const [esRecomendado, setEsRecomendado] = useState(currentRecomendado);
+    const [esNovedad, setEsNovedad] = useState(currentNovedad);
 
       const handleAutorChange = (e) => {          //Revisar
         const autores = e.target.value.split(',').map(autor => autor.trim());
@@ -67,6 +45,10 @@ const EditarLibroFormulario = (curretTitulo, curretSinopsis, curretEditorial, cu
             setImagenSeleccionada(file);
         }
       };
+
+      const manejarGeneros = () => {
+        setMenuGenerosVisible(!menuGenerosVisible);
+      }
 
       const manejarPublicar = async () => {
         const generoIdp = await dispatch(getIdByNombre(generoSeleccionado))
@@ -118,24 +100,6 @@ const EditarLibroFormulario = (curretTitulo, curretSinopsis, curretEditorial, cu
 
       return (
         <div>
-          <div className="header-2">
-            <a href="/" className="boton-inicio">
-              <img className="logo" src={logo} alt="Logo" />
-              <span className="subtitulo">The Golden Feather</span>
-            </a>
-            <button className="boton-hamburguesa" onClick={manejarHamburguesa}>
-              <img className="img-hamburguesa" src={Hamburguesa} alt="Hamburguesa" />
-            </button>
-            <button className="boton-usuario" onClick={manejarUsuario}>
-              <img className="img-usuario" src={Usuario} alt="Usuario" />
-            </button>
-            <button className="boton-carrito" onClick={manejarCarrito}>
-              <img className="img-carrito" src={Carrito} alt="Carrito" />
-            </button>
-          </div>
-    
-          {menuVisible && <MenuDesplegable></MenuDesplegable>}
-    
           <div className="PublicarLibro-contenedor">
             <div className="PublicarLibro-book-image" onClick={() => imagenRef.current.click()}> 
               <img src={imagenSeleccionada ? URL.createObjectURL(imagenSeleccionada) : "ruta_a_la_imagen"} alt="imagen" />
