@@ -1,6 +1,11 @@
 import '../views/VerOrdenes.css';
+import { useParams } from 'react-router-dom';
 
 const DetallesOrden = () => {
+
+    const {id} = useParams();
+
+
     return (
         <div className="detallesOrden-container">
         <div className="detallesOrden-paper">
