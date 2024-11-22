@@ -9,37 +9,44 @@ import { useDispatch, useSelector } from "react-redux";
 //import { getFavoritos } from '../Redux/favoritosSlice'; 
 //import { removeFavorito } from '../Redux/favoritosSlice'; 
 import LoadingSpinner from '../components/LoadingSpinner';
+import MenuDesplegable from "../components/MenuDesplegable";
+import { getLibros } from '../Redux/librosSlice';
 
 const Favoritos = () => {
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [menuVisible, setMenuVisible] = useState(false);
 
-    // Obtener favoritos del estado de Redux
-    const { favoritos, loading, error } = useSelector((state) => state.favoritos);
-
     const emailUsuario = sessionStorage.getItem('mail');
 
+    const favoritosKey = `favoritos_${emailUsuario}`;
+    const favoritos = JSON.parse(localStorage.getItem(favoritosKey)) || [];
+    console.log(favoritos)
+
+    const {items: items, loading, error, libro} = useSelector((state)=> state.libros)
+    console.log(items)
+
+  
+    useEffect(() => {
+        dispatch(getLibros());
+    }, [dispatch]);
+  
+    if (loading || items === items.length === 0) return <LoadingSpinner></LoadingSpinner>;
+    if (error) return <p>Errro al carrgar las publicaciones: {error}</p>
+
+    const librosFavoritos = items.content.filter((libro) => favoritos.includes(libro.isbn));
+
+    /*
     useEffect(() => {
         if (emailUsuario) {
             dispatch(getFavoritos(emailUsuario)); 
         } else {
             navigate('/LoginPage'); // Redirigir al login si no está autenticado
         }
-    }, [dispatch, emailUsuario, navigate]);
+    }, [dispatch, emailUsuario, navigate]);*/
 
-    const manejarHamburguesa = () => {
-        setMenuVisible(!menuVisible);
-    };
-
-    const manejarUsuario = () => {
-        navigate('/Usuario');
-    };
-
-    const manejarCarrito = () => {
-        navigate('/Carrito');
-    };
-
+    /*
     const manejarEliminarFavorito = (isbn) => {
         dispatch(removeFavorito({ email: emailUsuario, isbn }))
             .then((response) => {
@@ -55,7 +62,19 @@ const Favoritos = () => {
     };
 
     if (loading) return <LoadingSpinner />;
-    if (error) return <p>Error al cargar los favoritos: {error}</p>;
+    if (error) return <p>Error al cargar los favoritos: {error}</p>;*/
+
+    const manejarHamburguesa = () => {
+        setMenuVisible(!menuVisible);
+    };
+
+    const manejarUsuario = () => {
+        navigate('/Usuario');
+    };
+
+    const manejarCarrito = () => {
+        navigate('/Carrito');
+    };
 
     return (
         <div>
@@ -83,7 +102,7 @@ const Favoritos = () => {
                     <p>No tienes libros en favoritos</p>
                 ) : (
                     <div className="favoritos-lista">
-                        {favoritos.map((libro) => (
+                        {librosFavoritos.map((libro) => (
                             <div key={libro.isbn} className="favorito-item">
                                 <img
                                     className="favorito-imagen"

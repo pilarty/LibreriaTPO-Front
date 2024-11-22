@@ -59,7 +59,7 @@ return (
         <Link to="/giftcards">GiftCards</Link>
       </li>
       <li>
-        <Link to="/favoritos">Favoritos</Link>
+        <Link to="/Favs">Favoritos</Link>
       </li>
       <li>
         <a onClick={handleLogout} className="cerrar-link">

@@ -1,4 +1,4 @@
-body {
+/*body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -35,7 +35,7 @@ body {
 .img-hamburguesa, .img-usuario, .img-carrito {
     width: 30px;
     height: 30px;
-}
+}*/
 
 .favoritos-container {
     max-width: 1200px;
