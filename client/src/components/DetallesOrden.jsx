@@ -3,30 +3,36 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOrdenesById } from '../Redux/ordenesSlice';
 import { useState, useEffect } from 'react';
+import {getUsuarioById} from '../Redux/usuariosSlice';
 
 const DetallesOrden = () => {
     const {id} = useParams();
 
     const dispatch = useDispatch();
-    const { items, loading, error } = useSelector((state) => state.ordenes);
+    const { items, loading: ordenesLoading, error: ordenesError } = useSelector((state) => state.ordenes);
+    const { usuario, loading: usuarioLoading, error: usuarioError } = useSelector((state) => state.usuarios);
 
     useEffect(() => {
         dispatch(getOrdenesById(id));
     }, [dispatch, id]);
+
+    useEffect(() => {
+        if (items && items.usuario && items.usuario.id) {  
+            dispatch(getUsuarioById(items.usuario.id));
+        }
+    }, [dispatch, items]);
     
-    if (loading) {
+    if (ordenesLoading || usuarioLoading) {
         return <p>Cargando...</p>;
     }
-    
-    if (error) {
-        return <p>Error al obtener la orden: {error}</p>;
-    }
 
+    if (ordenesError || usuarioError) {
+        return <p>Error: {ordenesError || usuarioError}</p>;
+    }
     let productos = [];
     if (items.productosComprados) {
         try {
             productos = JSON.parse(items.productosComprados);
-            console.log("Productos comprados parseados:", productos);
         } catch (e) {
             console.error("Error al parsear productosComprados:", e);
         }
@@ -56,16 +62,18 @@ const DetallesOrden = () => {
             <div className="detallesOrden-seccionTitulo">ENVIAR A:</div>
             <div className="detallesOrden-proveedor">
                 <div className="detallesOrden-proveedor-info">
-                <div className="detallesOrden-infoRow"><span>DOMICILIO</span> Rioja 398 -</div>
-                <div className="detallesOrden-infoRow"><span>CIUDAD</span> Palo Bajo</div>
-                <div className="detallesOrden-infoRow"><span>CONTACTO</span> Juan</div>
-                <div className="detallesOrden-infoRow"><span>TELÉFONO</span> 333-5212</div>
+                <div className="detallesOrden-infoRow"><span>DOMICILIO</span> {usuario.direccion.split(",")[0].trim()}</div>
+                <div className="detallesOrden-infoRow"><span>CIUDAD</span> {usuario.direccion.split(",")[1]?.trim()}</div>
+                <div className="detallesOrden-infoRow"><span>NOMBRE</span> {usuario.nombre} {usuario.apellido}</div>
+                <div className="detallesOrden-infoRow"><span>MAIL</span> {usuario.mail}</div>
                 </div>
+                {/* 
                 <div className="detallesOrden-entrega">
                 <div className="detallesOrden-infoRow"><span>ENTREGA</span> Envío a domicilio</div>
                 <div className="detallesOrden-infoRow"><span>PLAZO</span> 15 días</div>
                 <div className="detallesOrden-infoRow"><span>PAGO</span> Transferencia bancaria</div>
                 </div>
+                */}
             </div>
             </div>
 
