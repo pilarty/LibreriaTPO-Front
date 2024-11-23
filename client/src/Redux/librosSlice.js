@@ -47,6 +47,24 @@ export const deleteLibro = createAsyncThunk("libros/deleteLibro", async (isbn) =
   return isbn;
 });
 
+export const getLibrosByGeneroId = createAsyncThunk(
+  "libros/getLibrosByGeneroId",
+  async ({ generoId, page = 0, size = 10 }) => {
+    let url;
+    if (page || size) {
+      // Si se proporcionan page o size:
+      url = `http://localhost:4002/libros/generoId/${generoId}?page=${page}&size=${size}`;
+    } else {
+      // Si no se proporcionan parámetros:
+      url = `http://localhost:4002/libros/generoId/${generoId}`;
+    }
+    
+    const { data } = await axios(url);
+    return data;
+  }
+);
+
+
 const librosSlice = createSlice({
     name: "libros",
     initialState: {
@@ -156,7 +174,21 @@ const librosSlice = createSlice({
           .addCase(deleteLibro.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message;
-          });
+          })
+
+          //GET LIBROS BY GENERO ID
+        .addCase(getLibrosByGeneroId.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(getLibrosByGeneroId.fulfilled, (state, action) => {
+          state.loading = false;
+          state.items = action.payload;
+        })
+        .addCase(getLibrosByGeneroId.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.error.message;
+        });
     }
 });
 

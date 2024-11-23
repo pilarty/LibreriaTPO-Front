@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGeneroById } from '../Redux/generosSlice';
-import { getLibros } from '../Redux/librosSlice';
+import { getLibrosByGeneroId } from '../Redux/librosSlice';
 import ListaLibrosListaLibros from '../components/ListaLibrosListaLibros';
 import './ListaLibros.css';
 import logo from '../assets/logo.png';
@@ -24,21 +24,23 @@ const ListaLibros = () => {
     const generoNombre = useSelector((state) => state.generos.genero?.nombre);
 
     useEffect(() => {
-        if (generoId) {
-            dispatch(getGeneroById(generoId));
-        }
-    }, [generoId, dispatch]);
+        // Restablecer la página al cambiar el generoId
+        setCurrentPage(0);
+        dispatch(getLibrosByGeneroId({ generoId, page: 0, size: pageSize }));
+    }, [generoId, dispatch, pageSize]);
 
     const {items, loading, error} = useSelector((state => state.libros));
 
     useEffect(() => {
-        dispatch(getLibros({ page: currentPage, size: pageSize }));
-    }, [dispatch, currentPage, pageSize]);
+        dispatch(getLibrosByGeneroId({ generoId, page: currentPage, size: pageSize }));
+    }, [dispatch, generoId, currentPage, pageSize]);
 
+    {/*
     let librosFiltrados = [];
     if (items.content && generoNombre) {
         librosFiltrados = items.content.filter(libro => libro.genero === generoNombre);
     }
+    */}
 
     const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
@@ -95,7 +97,7 @@ const ListaLibros = () => {
                 {loading ? (
                     <LoadingSpinner></LoadingSpinner>
                 ) : (
-                    <ListaLibrosListaLibros libros={librosFiltrados} />
+                    <ListaLibrosListaLibros libros={items.content} />
                 )}
                 
                 <div className="listaLibros-paginacion-container">
