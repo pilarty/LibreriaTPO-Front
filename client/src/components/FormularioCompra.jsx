@@ -1,8 +1,9 @@
 
 import "../views/Compra.css";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postOrdenes } from "../Redux/ordenesSlice";
+import { getByIdGiftCard } from "../Redux/giftCardSlice";
 
 const FormularioCompra = () => {
   const dispatch = useDispatch();
@@ -32,23 +33,15 @@ const FormularioCompra = () => {
     });
   };
 
+  const gift = useSelector((state)=> state.giftcard.giftCard);
   // Obtener GiftCard y manejar errores
   const obtenerGift = async () => {
     if (!formulario.giftCard) {
       console.error("El campo Gift Card está vacío");
       return;
     }
+    dispatch( getByIdGiftCard(formulario.giftCard))
 
-    try {
-      const response = await fetch(`http://localhost:4002/giftcards/byCodigo/${formulario.giftCard}`);
-      if (!response.ok) {
-        throw new Error(`Error ${response.status}: ${response.statusText}`);
-      }
-      const data = await response.json();
-      console.log("Datos de la GiftCard:", data);
-    } catch (error) {
-      console.error("Error al ingresar la GiftCard:", error);
-    }
   };
 
   const handleChangeGift = (e) => {

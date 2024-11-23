@@ -13,7 +13,7 @@ export const getAllGiftCards = createAsyncThunk(
 export const getByIdGiftCard = createAsyncThunk(
   "giftCard/getByIdGiftCard",
   async (id) => {
-    const { data } = await axios.get(`http://localhost:4002/giftcards/${id}`);
+    const { data } = await axios.get(`http://localhost:4002/giftcards/byCodigo/${id}`);
     return data;
   }
 );
