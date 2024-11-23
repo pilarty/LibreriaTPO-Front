@@ -1,68 +1,45 @@
 import React, { useState, useEffect } from "react";
 import "./Favoritos.css";
 import logo from '../assets/logo.png';
+import Estrella from '../assets/Estrella.png';
 import Usuario from '../assets/Usuario.png';
 import Carrito from '../assets/Carrito.png';
 import Hamburguesa from '../assets/hamburguesa.png';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-//import { getFavoritos } from '../Redux/favoritosSlice'; 
-//import { removeFavorito } from '../Redux/favoritosSlice'; 
 import LoadingSpinner from '../components/LoadingSpinner';
 import MenuDesplegable from "../components/MenuDesplegable";
 import { getLibros } from '../Redux/librosSlice';
 
 const Favoritos = () => {
-    
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [menuVisible, setMenuVisible] = useState(false);
 
     const emailUsuario = sessionStorage.getItem('mail');
 
+    // Favoritos guardados en localStorage
     const favoritosKey = `favoritos_${emailUsuario}`;
     const favoritos = JSON.parse(localStorage.getItem(favoritosKey)) || [];
-    console.log(favoritos)
 
-    const {items: items, loading, error, libro} = useSelector((state)=> state.libros)
-    console.log(items)
+    const { items: libros, loading, error } = useSelector((state) => state.libros);
 
-  
     useEffect(() => {
-        dispatch(getLibros());
+        dispatch(getLibros()); // Cargar todos los libros desde el backend
     }, [dispatch]);
-  
-    if (loading || items === items.length === 0) return <LoadingSpinner></LoadingSpinner>;
-    if (error) return <p>Errro al carrgar las publicaciones: {error}</p>
 
-    const librosFavoritos = items.content.filter((libro) => favoritos.includes(libro.isbn));
+    if (loading || !libros.content) return <LoadingSpinner />;
+    if (error) return <p>Error al cargar los libros: {error}</p>;
 
-    /*
-    useEffect(() => {
-        if (emailUsuario) {
-            dispatch(getFavoritos(emailUsuario)); 
-        } else {
-            navigate('/LoginPage'); // Redirigir al login si no está autenticado
-        }
-    }, [dispatch, emailUsuario, navigate]);*/
+    // Filtrar libros que están marcados como favoritos
+    const librosFavoritos = libros.content.filter((libro) => favoritos.includes(libro.isbn));
 
-    /*
+    // Manejar eliminación de un favorito
     const manejarEliminarFavorito = (isbn) => {
-        dispatch(removeFavorito({ email: emailUsuario, isbn }))
-            .then((response) => {
-                if (response.error) {
-                    throw new Error("No se pudo eliminar el favorito");
-                }
-                alert("Libro eliminado de favoritos");
-            })
-            .catch((error) => {
-                console.error("Error al eliminar favorito:", error);
-                alert("Hubo un error al intentar eliminar el libro de favoritos");
-            });
+        const nuevosFavoritos = favoritos.filter((favoritoIsbn) => favoritoIsbn !== isbn);
+        localStorage.setItem(favoritosKey, JSON.stringify(nuevosFavoritos));
+        navigate(0); // Recargar la página para reflejar cambios
     };
-
-    if (loading) return <LoadingSpinner />;
-    if (error) return <p>Error al cargar los favoritos: {error}</p>;*/
 
     const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
@@ -86,20 +63,19 @@ const Favoritos = () => {
                 <button className="boton-hamburguesa" onClick={manejarHamburguesa}>
                     <img className="img-hamburguesa" src={Hamburguesa} alt="Menú" />
                 </button>
-
                 <button className="boton-usuario" onClick={manejarUsuario}>
                     <img className="img-usuario" src={Usuario} alt="Usuario" />
                 </button>
-
                 <button className="boton-carrito" onClick={manejarCarrito}>
                     <img className="img-carrito" src={Carrito} alt="Carrito" />
                 </button>
             </div>
-            {menuVisible && (
-                <MenuDesplegable></MenuDesplegable>
-             )}
+            {menuVisible && <MenuDesplegable />}
+
             <div className="favoritos-container">
-                <h1>Mis Favoritos</h1>
+            <h1 className="favoritosTitulo">
+                Mis Favoritos <img src={Estrella} className="favoritosEstrella" />
+            </h1>
                 {favoritos.length === 0 ? (
                     <p>No tienes libros en favoritos</p>
                 ) : (
@@ -108,7 +84,7 @@ const Favoritos = () => {
                             <div key={libro.isbn} className="favorito-item">
                                 <img
                                     className="favorito-imagen"
-                                    src={libro.image ? `data:image/jpeg;base64,${libro.image}` : 'default-image-path.jpg'}
+                                    src={libro.image ? `http://localhost:4002/images?id=${libro.image}` : '\assets\imageError.png'}
                                     alt={libro.titulo}
                                 />
                                 <div className="favorito-detalles">
