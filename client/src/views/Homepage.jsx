@@ -78,7 +78,7 @@ const Homepage = () => {
             <CardLibroListNovedades></CardLibroListNovedades>
           </div>
           <div className="homepage-header-4">
-          <Link className="homepage-text-vermas" to="/Libros">Ver más</Link>
+          <Link className="homepage-text-vermas" to="/Novedades">Ver más</Link>
           </div>
         </div>
       );

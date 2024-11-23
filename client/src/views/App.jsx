@@ -19,6 +19,7 @@ import AdministrarLibros from "./AdministrarLibros"
 import EditarLibro from "./EditarLibro"
 import Busqueda from "./Busqueda"
 import Recomendados from "./Recomendados"
+import Novedades from "./Novedades"
 
 const App = ()=>{
 
@@ -41,6 +42,7 @@ const App = ()=>{
         <Route path='/EditarLibro/:isbn' element={<EditarLibro />} />
         <Route path='/Busqueda/:text' element={<Busqueda />} />
         <Route path='/Recomendados' element={<Recomendados/>}/>
+        <Route path='/Novedades' element={<Novedades/>}/>
       </Routes>
     
     </>
