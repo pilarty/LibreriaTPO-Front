@@ -15,6 +15,8 @@ import Usuario from './Usuario'
 import PublicarLibro from './PublicarLibro'
 import LoginPage from './LoginPage'
 import Cupones from './Cupones'
+import VerOrdenes from './VerOrdenes'
+import DetallesOrden from '../components/DetallesOrden'
 
 const App = ()=>{
 
@@ -34,6 +36,8 @@ const App = ()=>{
         <Route path='/publicarLibro' element={<PublicarLibro/>}/>
         <Route path='/LoginPage' element={<LoginPage/>}/>
         <Route path='/Cupones' element={<Cupones/>}/>
+        <Route path='/VerOrdenes' element={<VerOrdenes/>}/>
+        <Route path='/DetallesOrden/:id' element={<DetallesOrden/>}/>
       </Routes>
     
     </>

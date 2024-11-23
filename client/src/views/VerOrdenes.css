@@ -1,0 +1,379 @@
+:root {
+    --color-primary: #D1A246;
+    --color-secondary: #297272;
+    --color-secondary-hover: #1a4146;
+    --color-border: #ccc;
+    --font-primary: "Newsreader", serif;
+    --font-secondary: "Inter", serif;
+}
+
+.VerOrdenes-contenedor {
+    padding: 6rem;
+    background-color: white;
+    min-height: 100vh;
+    width: 80%;
+}
+
+.VerOrdenes-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.VerOrdenes-titulo {
+    font-size: 4rem;
+    font-weight: 500;
+    font-family: var(--font-primary);
+    color: var(--color-primary)
+}
+
+.VerOrdenes-estadisticas {
+    margin-bottom: 1rem;
+}
+
+.VerOrdenes-contadores {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    color: #4b5563;
+}
+
+.VerOrdenes-herramientas {
+    display: flex;
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+}
+
+.VerOrdenes-selectFechas,
+.VerOrdenes-filtroCliente select {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    background-color: white;
+    min-width: 150px;
+    font-size: 1.5rem;
+}
+
+.VerOrdenes-botonFiltrar {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.VerOrdenes-botonFiltrar:hover {
+    background-color: #f3f4f6;
+}
+
+.VerOrdenes-totalItems {
+    margin-left: auto;
+    color: #6b7280;
+}
+
+.VerOrdenes-paginacion {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.VerOrdenes-botonPagina {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.VerOrdenes-botonPagina:hover {
+    background-color: #f3f4f6;
+}
+
+.VerOrdenes-tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.VerOrdenes-encabezadoTabla {
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.VerOrdenes-columna {
+    padding: 0.5rem;
+    color: #374151;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.VerOrdenes-fila {
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 1.75rem;
+}
+
+.VerOrdenes-fila:hover {
+    background-color: #f9fafb;
+}
+
+.VerOrdenes-celda {
+    padding: 0.8rem;
+}
+
+.VerOrdenes-idCliente {
+    color: #2563eb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.VerOrdenes-idCliente:hover {
+    text-decoration: underline;
+}
+
+.VerOrdenes-estadoEtiqueta {
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.VerOrdenes-infoOrden {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.VerOrdenes-total {
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.VerOrdenes-filtroCliente {
+    display: flex;
+    align-items: center;
+}
+
+.detallesOrden-container {
+    max-width: 62.5rem;
+    margin: 2.5rem auto;
+    padding: 1.25rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    min-height: 80vh;
+}
+  
+.detallesOrden-paper {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.9375rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+  
+.detallesOrden-headerBand {
+    background: linear-gradient(135deg, #297272, #297272);
+    padding: 1.25rem;
+    margin-bottom: 1.875rem;
+}
+  
+.detallesOrden-titulo {
+    color: white;
+    text-align: center;
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 0.125rem;
+    text-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
+}
+  
+.detallesOrden-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.875rem;
+    margin-bottom: 1.875rem;
+}
+  
+.detallesOrden-empresa h2 {
+    color: #297272;
+    font-size: 1.5rem;
+    margin-bottom: 0.625rem;
+}
+  
+.detallesOrden-empresaInfo {
+    font-size: 1.5rem;
+    color: #666;
+    line-height: 1.6;
+}
+  
+.detallesOrden-numero {
+    font-size: 1.5rem;
+    text-align: right;
+    background: #f8f9fa;
+    padding: 0.9375rem;
+    border-radius: 0.375rem;
+    border: 0.0625rem solid #eee;
+}
+  
+.detallesOrden-numeroOrden, 
+.detallesOrden-fecha {
+    margin: 0.3125rem 0;
+    color: #333;
+}
+  
+.detallesOrden-numeroOrden span, 
+.detallesOrden-fecha span {
+    font-weight: bold;
+    color: #297272;
+    margin-left: 0.625rem;
+}
+  
+.detallesOrden-enviar {
+    font-size: 1.5rem;
+    background-color: #f8f9fa;
+    margin: 0 1.875rem 1.875rem;
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+  
+.detallesOrden-seccionTitulo {
+    background-color: #297272;
+    color: white;
+    padding: 0.625rem 1.25rem;
+    font-weight: bold;
+}
+  
+.detallesOrden-proveedor {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.25rem;
+}
+  
+.detallesOrden-infoRow {
+    margin: 0.5rem 0;
+    color: #444;
+}
+  
+.detallesOrden-infoRow span {
+    font-weight: 600;
+    color: #297272;
+    margin-right: 0.625rem;
+    min-width: 6.25rem;
+    display: inline-block;
+}
+  
+.detallesOrden-tablaContainer {
+    font-size: 1.25rem;
+    margin: 0 1.875rem 1.875rem;
+    overflow-x: auto;
+}
+  
+.detallesOrden-tabla {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0.375rem;
+    overflow: hidden;
+    box-shadow: 0 0 0 0.0625rem #eee;
+}
+  
+.detallesOrden-tabla th {
+    background-color: #f8f9fa;
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: #297272;
+    border-bottom: 0.125rem solid #297272;
+}
+  
+.detallesOrden-tabla td {
+    padding: 0.75rem;
+    border-bottom: 0.0625rem solid #eee;
+    color: #444;
+}
+  
+.detallesOrden-tabla tr:last-child td {
+    border-bottom: none;
+}
+  
+.detallesOrden-tabla tr:hover {
+    background-color: #f8f9fa;
+}
+  
+.detallesOrden-total {
+    font-size: 1.25rem;
+    background-color: #f8f9fa;
+    padding: 1.25rem 1.875rem;
+    text-align: right;
+    border-top: 0.0625rem solid #eee;
+}
+  
+.detallesOrden-totalRow {
+    margin: 0.3125rem 0;
+    color: #666;
+}
+  
+.detallesOrden-totalRow span,
+.detallesOrden-totalFinal span {
+    font-weight: 600;
+    margin-right: 1.25rem;
+    min-width: 6.25rem;
+    display: inline-block;
+}
+  
+.detallesOrden-totalFinal {
+    margin-top: 0.625rem;
+    padding-top: 0.625rem;
+    border-top: 0.125rem solid #297272;
+    font-size: 1.7rem;
+    color: #297272;
+    font-weight: bold;
+}
+  
+.detallesOrden-firmas {
+    display: flex;
+    justify-content: space-between;
+    padding: 2.5rem 6.25rem;
+    margin-top: 1.875rem;
+}
+  
+.detallesOrden-firma {
+    text-align: center;
+    min-width: 12.5rem;
+}
+  
+.detallesOrden-linea {
+    border-top: 0.125rem solid #ddd;
+    margin-bottom: 0.5rem;
+}
+  
+.detallesOrden-firma span {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.detallesOrden-back {
+    margin: 0.2rem 0;
+}
+
+.detallesOrden-backButton {
+    background: none;
+    border: none;
+    color: #007BFF;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.detallesOrden-backButton:hover {
+    text-decoration: underline;
+}
+
+.VerOrdenes-estadoSelect option {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.25rem;
+    cursor: pointer;
+}

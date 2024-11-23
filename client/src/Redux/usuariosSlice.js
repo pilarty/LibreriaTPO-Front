@@ -21,6 +21,11 @@ export const deleteUsuario = createAsyncThunk("usuarios/deleteUsuario", async (i
   return id;
 });
 
+export const getUsuarioById = createAsyncThunk("usuarios/getUsuarioById", async (id) => {
+  const { data } = await axios.get(`http://localhost:4002/usuarios/${id}`);
+    return data;
+  });
+
 const usuarioSlice = createSlice({
   name: "usuarios",
   initialState: {
@@ -40,7 +45,7 @@ const usuarioSlice = createSlice({
       .addCase(getAllUsuarios.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload; 
-         })
+        })
       .addCase(getAllUsuarios.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
@@ -54,7 +59,7 @@ const usuarioSlice = createSlice({
       .addCase(getUsuario.fulfilled, (state, action) => {
         state.loading = false;
         state.usuario = action.payload; 
-         })
+        })
       .addCase(getUsuario.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
@@ -89,7 +94,23 @@ const usuarioSlice = createSlice({
       .addCase(deleteUsuario.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      });
+      })
+
+       //getUsuarioById
+      .addCase(getUsuarioById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        })
+      .addCase(getUsuarioById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.usuario = action.payload; 
+        })
+      .addCase(getUsuarioById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+        });
+
+
   },
 });
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGeneroById } from '../Redux/generosSlice';
+import { getLibrosByGeneroId } from '../Redux/librosSlice';
 import ListaLibrosListaLibros from '../components/ListaLibrosListaLibros';
 import './ListaLibros.css';
 import logo from '../assets/logo.png';
@@ -11,56 +13,32 @@ import MenuDesplegable from "../components/MenuDesplegable";
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const ListaLibros = () => {
+    const [currentPage, setCurrentPage] = useState(0);
+    const [pageSize] = useState(6); //aca se cambia la cantidad de libros que se muestran
     const navigate = useNavigate();
-    const { generoId } = useParams();
-    const [generoNombre, setGeneroNombre] = useState(null);
-    const [libros, setLibros] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [menuVisible, setMenuVisible] = useState(false);
-    const [page, setPage] = useState(0);
-    const [totalPages, setTotalPages] = useState(0);
+
+    const { generoId } = useParams();
+    const dispatch = useDispatch();
+    
+    const generoNombre = useSelector((state) => state.generos.genero?.nombre);
 
     useEffect(() => {
-        if (!generoId) return;
-
-        // Obtener el nombre del género
-        fetch(`http://localhost:4002/generos/${generoId}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                setGeneroNombre(data.nombre);
-            })
-            .catch((error) => {
-                console.error("Error al obtener el género: ", error);
-            });
-    }, [generoId]);
+        if (generoId) {
+            dispatch(getGeneroById(generoId));
+        }
+    }, [generoId, dispatch]);
 
     useEffect(() => {
-        setLoading(true);
-        fetch(`http://localhost:4002/libros?page=${page}&size=10`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                const librosFiltrados = data.content.filter(libro => libro.genero === generoNombre);
-                console.log(librosFiltrados);
-                setLibros(librosFiltrados);
-                setTotalPages(data.totalPages);
-            })
-            .catch((error) => {
-                console.error("Error al obtener los libros: ", error);
-            })
-            .finally(() => {
-                setLoading(false); // Finaliza la carga
-            });
-    }, [page, generoNombre]); {/*le tengo que poner tambien generoId?*/}
+        setCurrentPage(0);
+        dispatch(getLibrosByGeneroId({ generoId, page: 0, size: pageSize }));
+    }, [generoId, dispatch, pageSize]);
+
+    const {items, loading, error} = useSelector((state => state.libros));
+
+    useEffect(() => {
+        dispatch(getLibrosByGeneroId({ generoId, page: currentPage, size: pageSize }));
+    }, [dispatch, generoId, currentPage, pageSize]);
 
     const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
@@ -75,22 +53,27 @@ const ListaLibros = () => {
     };
 
     const handleNextPage = () => {
-        if (page < totalPages - 1) {
-            setPage(prevPage => prevPage + 1);
+        if (!items.last) {
+        setCurrentPage(prev => prev + 1);
         }
     };
 
     const handlePrevPage = () => {
-        if (page > 0) {
-            setPage(prevPage => prevPage - 1);
+        if (!items.first) {
+        setCurrentPage(prev => prev - 1);
         }
-    };
+    }; 
+
+    if (loading || !items.content) return <LoadingSpinner />;
+    if (error) return <p>Error al cargar los libros: {error}</p>;
 
     return (
         <>
             <div className="header-2">
-                <img className="logo" src={logo} alt="Logo" />
-                <span className="subtitulo">The Golden Feather</span>
+                <a href="/" className="boton-inicio">
+                    <img className="logo" src={logo} alt="Logo" />
+                    <span className="subtitulo">The Golden Feather</span>
+                </a>
                 <button className="boton-hamburguesa" onClick={manejarHamburguesa}>
                     <img className="img-hamburguesa" src={Hamburguesa} alt="Hamburguesa" />
                 </button>
@@ -105,24 +88,45 @@ const ListaLibros = () => {
             {menuVisible && <MenuDesplegable />}
 
             <div className="listaLibros-container">
-                <div className="listaLibros-title-container">
-                    <h1 className="listaLibros-title">{generoNombre}</h1>
-                    <h2 className="listaLibros-subtitle">Nuestras recomendaciones de {generoNombre}</h2>
-                    <h2 className="listaLibros-subtitle">Libros del género {generoNombre}</h2>
-                </div>
-                <hr />
-                {loading ? (
-                    <LoadingSpinner></LoadingSpinner>
-                ) : (
-                    <ListaLibrosListaLibros libros={libros} />
+            <div className="listaLibros-title-container">
+                <h1 className="listaLibros-title">{generoNombre}</h1>
+                {items.content.filter(libro => libro.recomendado).length > 0 && (
+                <h2 className="listaLibros-subtitle">Nuestras recomendaciones de {generoNombre}</h2>
                 )}
-                
-                <div className="listaLibros-paginacion-container">
-                    <button onClick={handlePrevPage} disabled={page === 0}>Anterior</button>
-                    <span>Página {page + 1} de {totalPages}</span>
-                    <button onClick={handleNextPage} disabled={page >= totalPages - 1}>Siguiente</button>
-                </div>
             </div>
+            <hr />
+            {loading ? (
+                <LoadingSpinner />
+            ) : (
+                <>
+                    {items.content.filter(libro => libro.recomendado).length > 0 && (
+                <ListaLibrosListaLibros libros={items.content.filter(libro => libro.recomendado)} />
+            )}
+
+                    <h2 className="listaLibros-subtitle">Libros del género {generoNombre}</h2>
+                    <ListaLibrosListaLibros libros={items.content.filter(libro => !libro.recomendado)} />
+                </>
+            )}
+
+            <div className="listaLibros-paginacion-container">
+                <button 
+                    className="listaLibros-botonPagina"
+                    onClick={handlePrevPage}
+                    disabled={items.first}
+                >
+                    ←
+                </button>
+                <span>{items.number + 1} de {items.totalPages}</span>
+                <button 
+                    className="listaLibros-botonPagina"
+                    onClick={handleNextPage}
+                    disabled={items.last}
+                >
+                    →
+                </button>
+            </div>
+        </div>
+
         </>
     );
 };

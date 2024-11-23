@@ -41,7 +41,7 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
                     mostrarMensaje("Producto agregado al carrito");
                 })
                 .catch(() => {
-                    mostrarMensaje("No se pudo agregar el producto al carrito. Intente de nuevo.");
+                    mostrarMensaje("No se pudo agregar el producto al carrito.");
                 });
         }
     };
