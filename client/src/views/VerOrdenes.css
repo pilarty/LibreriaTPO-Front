@@ -126,6 +126,7 @@
 .VerOrdenes-idCliente {
     color: #2563eb;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .VerOrdenes-idCliente:hover {
@@ -140,19 +141,10 @@
     font-size: 1.75rem;
 }
 
-.VerOrdenes-infoEnvio {
-    line-height: 1.4;
-}
-
 .VerOrdenes-infoOrden {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-}
-
-.VerOrdenes-direccion {
-    font-size: 0.875rem;
-    color: #6b7280;
 }
 
 .VerOrdenes-total {
@@ -359,4 +351,20 @@
 .detallesOrden-firma span {
     color: #666;
     font-size: 0.9rem;
+}
+
+.detallesOrden-back {
+    margin: 0.2rem 0;
+}
+
+.detallesOrden-backButton {
+    background: none;
+    border: none;
+    color: #007BFF;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.detallesOrden-backButton:hover {
+    text-decoration: underline;
 }

@@ -1,5 +1,5 @@
 import '../views/VerOrdenes.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOrdenesById } from '../Redux/ordenesSlice';
 import { useState, useEffect } from 'react';
@@ -7,7 +7,7 @@ import {getUsuarioById} from '../Redux/usuariosSlice';
 
 const DetallesOrden = () => {
     const {id} = useParams();
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { items, loading: ordenesLoading, error: ordenesError } = useSelector((state) => state.ordenes);
     const { usuario, loading: usuarioLoading, error: usuarioError } = useSelector((state) => state.usuarios);
@@ -40,6 +40,7 @@ const DetallesOrden = () => {
 
     return (
         <div className="detallesOrden-container">
+
         <div className="detallesOrden-paper">
             <div className="detallesOrden-headerBand">
             <h1 className="detallesOrden-titulo">ORDEN DE COMPRA</h1>
@@ -54,7 +55,7 @@ const DetallesOrden = () => {
             </div>
             <div className="detallesOrden-numero">
                 <div className="detallesOrden-numeroOrden">Nº ORDEN <span>{items.id}</span></div>
-                <div className="detallesOrden-fecha">FECHA <span>{items.fecha}</span></div>
+                <div className="detallesOrden-fecha">FECHA <span>{items.fecha.split("-").reverse().join("/")}</span></div>
             </div>
             </div>
 
@@ -127,6 +128,12 @@ const DetallesOrden = () => {
             </div>
             </div>
         </div>
+        
+        <div className="detallesOrden-back">
+                <button className="detallesOrden-backButton" onClick={() => navigate(-1)}>
+                    ← Volver
+                </button>
+            </div>
         </div>
     );
     };

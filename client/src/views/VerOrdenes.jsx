@@ -172,19 +172,15 @@ const VerOrdenes = () => {
               </div>
 
               </td>
-              <td className="VerOrdenes-celda">{/*{orden.fecha}*/} 13/11/2003</td>
+              <td className="VerOrdenes-celda"> {orden.fecha.split("-").reverse().join("/")} </td>
               <td className="VerOrdenes-celda">
                 <span className="VerOrdenes-estadoEtiqueta">
-                  {/*{orden.estado} */} En espera
+                  {orden.estado} 
                 </span>
               </td>
+              <td className="VerOrdenes-celda">{orden.usuario.direccion}</td>
               <td className="VerOrdenes-celda">
-                <div className="VerOrdenes-infoEnvio">
-                  <div className="VerOrdenes-direccion">{orden.usuario.direccion}</div>
-                </div>
-              </td>
-              <td className="VerOrdenes-celda">
-                <span className="VerOrdenes-total">{orden.totalConDescuento}</span>
+                <span className="VerOrdenes-total">${orden.totalConDescuento}</span>
               </td>
               <td className="VerOrdenes-celda">
                 
