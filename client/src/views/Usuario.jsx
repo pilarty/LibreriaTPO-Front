@@ -17,6 +17,7 @@ const Usuario = () => {
   const [direccion, setDireccion] = useState('');
   const [cp, setCp] = useState('');
   const [contraseña, setContraseña] = useState('');
+  const [error, setError] = useState('');
 
   const mail = sessionStorage.getItem('mail');
   const usuario = useSelector(state => state.usuarios.usuario);
@@ -43,6 +44,7 @@ const Usuario = () => {
       setApellido(usuario.apellido || '');
       setDireccion(usuario.direccion || '');
       setCp(usuario.cp ? usuario.cp.toString() : '');
+      console.log('Valor de la contraseña antes de enviar:', contraseña);
     }
   }, [usuario]);
 
@@ -54,8 +56,10 @@ const Usuario = () => {
     }
   };
 
-  // Función reutilizable para autenticar al usuario
-  const authenticateUser = async (mail, contraseña) => {
+  // Función para autenticar al usuario
+
+  const authenticateUser = async () => {
+    setError('');
     try {
       const response = await fetch('http://localhost:4002/api/v1/auth/authenticate', {
         method: 'POST',
@@ -66,13 +70,14 @@ const Usuario = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Contraseña incorrecta.');
+        throw new Error('La contraseña ingresada es incorrecta.');
       }
 
       const data = await response.json();
       return data.access_token; // Devuelve el token si es válido
     } catch (error) {
-      throw new Error('Error de autenticación. Verifica tu contraseña.');
+      setError(error.message);
+      throw new Error('Error al autenticar la contraseña.');
     }
   };
 
@@ -85,7 +90,7 @@ const Usuario = () => {
 
     try {
       // Autenticar usuario
-      const token = await authenticateUser(mail, contraseña);
+      await authenticateUser();
 
       // Crear datos actualizados
       const updatedUsuario = {
@@ -94,7 +99,10 @@ const Usuario = () => {
         apellido,
         direccion,
         cp: parseInt(cp) || 0,
+        contraseña,
       };
+      console.log("Datos enviados al backend:", updatedUsuario);
+
 
       // Enviar cambios a la base de datos
       const result = await dispatch(putUsuario(updatedUsuario)).unwrap();
@@ -121,7 +129,7 @@ const Usuario = () => {
     if (window.confirm('¿Estás seguro de que deseas eliminar tu cuenta?')) {
       try {
         // Autenticar usuario
-        const token = await authenticateUser(mail, contraseña);
+        await authenticateUser();
 
         // Eliminar usuario
         const result = await dispatch(deleteUsuario(usuario.id)).unwrap();
@@ -209,6 +217,7 @@ const Usuario = () => {
           </div>
         )}
       </div>
+      {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
     </div>
   );
 };
