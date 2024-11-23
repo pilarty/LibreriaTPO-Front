@@ -24,7 +24,12 @@ const ListaLibros = () => {
     const generoNombre = useSelector((state) => state.generos.genero?.nombre);
 
     useEffect(() => {
-        // Restablecer la página al cambiar el generoId
+        if (generoId) {
+            dispatch(getGeneroById(generoId));
+        }
+    }, [generoId, dispatch]);
+
+    useEffect(() => {
         setCurrentPage(0);
         dispatch(getLibrosByGeneroId({ generoId, page: 0, size: pageSize }));
     }, [generoId, dispatch, pageSize]);
@@ -34,13 +39,6 @@ const ListaLibros = () => {
     useEffect(() => {
         dispatch(getLibrosByGeneroId({ generoId, page: currentPage, size: pageSize }));
     }, [dispatch, generoId, currentPage, pageSize]);
-
-    {/*
-    let librosFiltrados = [];
-    if (items.content && generoNombre) {
-        librosFiltrados = items.content.filter(libro => libro.genero === generoNombre);
-    }
-    */}
 
     const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
@@ -88,19 +86,27 @@ const ListaLibros = () => {
             {menuVisible && <MenuDesplegable />}
 
             <div className="listaLibros-container">
-                <div className="listaLibros-title-container">
-                    <h1 className="listaLibros-title">{generoNombre}</h1>
-                    <h2 className="listaLibros-subtitle">Nuestras recomendaciones de {generoNombre}</h2>
-                    <h2 className="listaLibros-subtitle">Libros del género {generoNombre}</h2>
-                </div>
-                <hr />
-                {loading ? (
-                    <LoadingSpinner></LoadingSpinner>
-                ) : (
-                    <ListaLibrosListaLibros libros={items.content} />
+            <div className="listaLibros-title-container">
+                <h1 className="listaLibros-title">{generoNombre}</h1>
+                {items.content.filter(libro => libro.recomendado).length > 0 && (
+                <h2 className="listaLibros-subtitle">Nuestras recomendaciones de {generoNombre}</h2>
                 )}
-                
-                <div className="listaLibros-paginacion-container">
+            </div>
+            <hr />
+            {loading ? (
+                <LoadingSpinner />
+            ) : (
+                <>
+                    {items.content.filter(libro => libro.recomendado).length > 0 && (
+                <ListaLibrosListaLibros libros={items.content.filter(libro => libro.recomendado)} />
+            )}
+
+                    <h2 className="listaLibros-subtitle">Libros del género {generoNombre}</h2>
+                    <ListaLibrosListaLibros libros={items.content.filter(libro => !libro.recomendado)} />
+                </>
+            )}
+
+            <div className="listaLibros-paginacion-container">
                 <button 
                     className="listaLibros-botonPagina"
                     onClick={handlePrevPage}
@@ -116,8 +122,9 @@ const ListaLibros = () => {
                 >
                     →
                 </button>
-                </div>
             </div>
+        </div>
+
         </>
     );
 };
