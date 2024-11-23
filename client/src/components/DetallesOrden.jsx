@@ -22,6 +22,16 @@ const DetallesOrden = () => {
         return <p>Error al obtener la orden: {error}</p>;
     }
 
+    let productos = [];
+    if (items.productosComprados) {
+        try {
+            productos = JSON.parse(items.productosComprados);
+            console.log("Productos comprados parseados:", productos);
+        } catch (e) {
+            console.error("Error al parsear productosComprados:", e);
+        }
+    }
+
     return (
         <div className="detallesOrden-container">
         <div className="detallesOrden-paper">
@@ -62,44 +72,40 @@ const DetallesOrden = () => {
             <div className="detallesOrden-tablaContainer">
             <table className="detallesOrden-tabla">
                 <thead>
-                <tr>
-                    <th>Nº</th>
-                    <th>LIBRO</th>
-                    <th>CANTIDAD</th>
-                    <th>PRECIO UNITARIO</th>
-                    <th>PRECIO TOTAL</th>
-                </tr>
+                    <tr>
+                        <th>Nº</th>
+                        <th>LIBRO</th>
+                        <th>CANTIDAD</th>
+                        <th>PRECIO UNITARIO</th>
+                        <th>PRECIO TOTAL</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Cable de red</td>
-                    <td>2</td>
-                    <td>$ 12,00</td>
-                    <td>$ 24,00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Extensión</td>
-                    <td>1</td>
-                    <td>$ 5,00</td>
-                    <td>$ 5,00</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Triple</td>
-                    <td>1</td>
-                    <td>$ 4,00</td>
-                    <td>$ 4,00</td>
-                </tr>
-                </tbody>
+                {productos.length > 0 && (
+                    productos.map((producto, index) => (
+                        <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{producto.titulo}</td>
+                            <td>{producto.cantidad}</td>
+                            <td>$ {producto.precioUnitario.toFixed(2)}</td>
+                            <td>$ {(producto.precioUnitario * producto.cantidad).toFixed(2)}</td>
+                        </tr>
+                    ))
+                )}
+
+                {productos.length === 0 && (
+                    <tr>
+                        <td colSpan="5">No se encontraron productos en la orden.</td>
+                    </tr>
+                )}
+            </tbody>
             </table>
-            </div>
+        </div>
 
             <div className="detallesOrden-total">
-            <div className="detallesOrden-totalRow"><span>SUBTOTAL</span> $ 33,00</div>
-            <div className="detallesOrden-totalRow"><span>DESCUENTO</span> 15%</div>
-            <div className="detallesOrden-totalFinal"><span>TOTAL</span> $ 39,93</div>
+            <div className="detallesOrden-totalRow"><span>SUBTOTAL</span> ${items.totalSinDescuento}</div>
+            <div className="detallesOrden-totalRow"><span>DESCUENTO</span> {items.descuento * 100}%</div>
+            <div className="detallesOrden-totalFinal"><span>TOTAL</span> ${items.totalConDescuento}</div>
             </div>
 
             <div className="detallesOrden-firmas">
