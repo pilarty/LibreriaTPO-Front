@@ -82,7 +82,28 @@ const Usuario = () => {
   };
 
   // Guardar cambios del perfil
-  const handleSave = async () => {
+
+ // Editar usuario
+ const handleEditProfile = async () => {
+  const updateData = {
+    nombre: nombre,
+    apellido: apellido,
+    direccion: direccion,
+    cp: parseInt(CP, 10),
+  };
+  console.log(updateData)
+  try {
+    await dispatch(putUsuario({ id: usuario.id, updatedUser: updateData })).unwrap();
+    alert('Perfil actualizado exitosamente');
+    setIsEditing(false);
+    navigate('/');
+  } catch (error) {
+    alert('Hubo un error al actualizar el perfil. Inténtalo nuevamente.');
+    console.error('Error al actualizar el perfil:', error);
+  }
+}
+
+  /*const handleSave = async () => {
     if (!contraseña) {
       alert('Por favor, ingresa tu contraseña para guardar los cambios.');
       return;
@@ -117,7 +138,7 @@ const Usuario = () => {
     } catch (error) {
       alert(error.message);
     }
-  };
+  }; */
 
   // Eliminar cuenta
   const handleDeleteAccount = async () => {
@@ -212,7 +233,7 @@ const Usuario = () => {
           <button onClick={() => setIsEditing(true)} className="usuario-saveButton">Editar</button>
         ) : (
           <div className="usuario-buttons">
-            <button onClick={handleSave} className="usuario-saveButton">Guardar</button>
+            <button onClick={handleEditProfile} className="usuario-saveButton">Guardar</button>
             <button onClick={handleDeleteAccount} className="usuario-deleteButton">Eliminar cuenta</button>
           </div>
         )}
