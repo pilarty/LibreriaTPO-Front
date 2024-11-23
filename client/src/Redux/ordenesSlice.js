@@ -34,18 +34,19 @@ export const getOrdenesById = createAsyncThunk(
 );
 
 export const updateOrden = createAsyncThunk(
-  "ordenes/updateOrden",
+  'ordenes/updateOrden',
   async ({ id, estado }, { rejectWithValue }) => {
-      try {
-          const response = await axios.put(`http://localhost:4002/ordenes/${id}/estado`, {
-            estado
-          });
-          return { id, estado }; 
-      } catch (error) {
-          return rejectWithValue(
-              error.response?.data?.message || "Error al actualizar la orden"
-          );
-      }
+    try {
+      const response = await fetch(`/api/ordenes/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ estado }),
+      });
+      if (!response.ok) throw new Error('Error al actualizar la orden');
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
   }
 );
 
@@ -145,7 +146,7 @@ const ordenesSlice = createSlice({
         state.error = action.error.message;
       })
 
-      //Get Orden by id
+      //updateOrden by id
       .addCase(updateOrden.pending, (state) => {
         state.loading = true;
         state.error = null;

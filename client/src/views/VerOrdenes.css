@@ -134,11 +134,13 @@
 }
 
 .VerOrdenes-estadoEtiqueta {
-    background-color: #fef3c7;
-    color: #92400e;
-    padding: 0.25rem 0.5rem;
+    padding: 0.75rem 1rem;
     border-radius: 0.25rem;
-    font-size: 1.75rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-align: center;
 }
 
 .VerOrdenes-infoOrden {
@@ -367,4 +369,11 @@
 
 .detallesOrden-backButton:hover {
     text-decoration: underline;
+}
+
+.VerOrdenes-estadoSelect option {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.25rem;
+    cursor: pointer;
 }

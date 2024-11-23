@@ -55,7 +55,7 @@ const DetallesOrden = () => {
             </div>
             <div className="detallesOrden-numero">
                 <div className="detallesOrden-numeroOrden">Nº ORDEN <span>{items.id}</span></div>
-                <div className="detallesOrden-fecha">FECHA <span>{items.fecha.split("-").reverse().join("/")}</span></div>
+                <div className="detallesOrden-fecha">FECHA <span>{items.fecha}</span></div>
             </div>
             </div>
 

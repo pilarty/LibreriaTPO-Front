@@ -2,6 +2,7 @@ import './VerOrdenes.css';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOrdenes } from '../Redux/ordenesSlice';
+import { updateOrden } from "../Redux/ordenesSlice";
 import LoadingSpinner from '../components/LoadingSpinner';
 import "./App.css";
 import { useNavigate } from 'react-router-dom';
@@ -59,6 +60,40 @@ const VerOrdenes = () => {
     setMenuVisible(!menuVisible);
   }
   
+  const [estado, setEstado] = useState(items.estado);
+
+  const manejarCambioEstado = (idOrden, nuevoEstado) => {
+    dispatch(updateOrden({ id: idOrden, estado: nuevoEstado }))
+        .unwrap()
+        .then(() => {
+            console.log(`Estado de la orden ${idOrden} actualizado a "${nuevoEstado}"`);
+        })
+        .catch((error) => {
+            console.error("Error al actualizar el estado:", error);
+            alert("No se pudo actualizar el estado. Por favor, inténtelo de nuevo.");
+        });
+};
+
+
+const obtenerEstilo = (estado) => {
+    switch (estado) {
+        case "En proceso":
+            return { backgroundColor: "#fef3c7", color: "#92400e" };
+        case "Completada":
+            return { backgroundColor: "#d1fae5", color: "#065f46" };
+        case "Cancelada":
+            return { backgroundColor: "#fee2e2", color: "#b91c1c" };
+        default:
+            return {};
+    }
+};
+
+  const opciones = [
+    { valor: "En proceso", estilo: { backgroundColor: "#fef3c7", color: "#92400e" } },
+    { valor: "Completada", estilo: { backgroundColor: "#d1fae5", color: "#065f46" } },
+    { valor: "Cancelada", estilo: { backgroundColor: "#fee2e2", color: "#b91c1c" } },
+  ];
+
   if (loading || !items.content) return <LoadingSpinner />;
   if (error) return <p>Error al cargar las ordenes: {error}</p>;
 
@@ -92,11 +127,11 @@ const VerOrdenes = () => {
         <div className="VerOrdenes-contadores">
           <span>Todas ({items.totalElements})</span>
           <span>|</span>
-          <span>En Proceso (41)</span>
+          <span>En Proceso ({items.content.filter((orden) => orden.estado === "En proceso").length})</span>
           <span>|</span>
-          <span>Completadas (43)</span>
+          <span>Completadas ({items.content.filter((orden) => orden.estado === "Completada").length})</span>
           <span>|</span>
-          <span>Canceladas (36)</span>
+          <span>Canceladas ({items.content.filter((orden) => orden.estado === "Cancelada")})</span>
         </div>
       </div>
 
@@ -174,9 +209,22 @@ const VerOrdenes = () => {
               </td>
               <td className="VerOrdenes-celda"> {orden.fecha.split("-").reverse().join("/")} </td>
               <td className="VerOrdenes-celda">
-                <span className="VerOrdenes-estadoEtiqueta">
-                  {orden.estado} 
-                </span>
+              <select
+                className="VerOrdenes-estadoEtiqueta VerOrdenes-estadoSelect"
+                value={orden.estado}
+                onChange={(e) => manejarCambioEstado(orden.id, e.target.value)}
+                style={obtenerEstilo(orden.estado)}
+            >
+                {opciones.map((opcion) => (
+                    <option
+                        key={opcion.valor}
+                        value={opcion.valor}
+                        style={opcion.estilo}
+                    >
+                        {opcion.valor}
+                    </option>
+                ))}
+            </select>
               </td>
               <td className="VerOrdenes-celda">{orden.usuario.direccion}</td>
               <td className="VerOrdenes-celda">
