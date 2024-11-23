@@ -1,9 +1,11 @@
+
 /* Contenedor general del formulario */
 .compra-container {
     display: flex;
     justify-content: space-between; /* Ajusta el espacio entre el formulario y la lista */
     align-items: flex-start; /* Alinea los elementos en la parte superior */
     padding: 20px;
+    gap: 2rem;
 }
 
 /* Ajuste del formulario */
@@ -17,7 +19,6 @@
     display: flex;
     flex-direction: column; /* Alinea los elementos verticalmente */
     gap: 1rem; /* Espacio entre los campos */
-    margin-right: 20rem; /* Reducimos el margen entre el formulario y la lista de libros */
 }
 
 .Compra-seccion-formulario h1 {

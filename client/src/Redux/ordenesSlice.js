@@ -56,7 +56,7 @@ const ordenesSlice = createSlice({
       })
       .addCase(postOrdenes.fulfilled, (state, action) => {
         state.loading = false;
-        state.items.push(action.payload); 
+        state.items = [action.payload]; 
       })
       .addCase(postOrdenes.rejected, (state, action) => {
         state.loading = false;
