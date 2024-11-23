@@ -11,6 +11,11 @@ export const getLibroByIsbn = createAsyncThunk("libros/getLibroByIsbn", async (i
   return data;
 });
 
+export const getLibrosByTitulo = createAsyncThunk("libros/getLibrosByTitulo", async (titulo) => {
+  const { data } = await axios.get(`http://localhost:4002/libros/titulo/${titulo}`);
+  return data;
+});
+
 export const createLibros = createAsyncThunk("libros/createLibros", async (newLibro) => {
     const { data } = await axios.post("http://localhost:4002/libros", newLibro);
     return data;
@@ -51,6 +56,20 @@ const librosSlice = createSlice({
             state.items = action.payload;
           })
           .addCase(getLibros.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+          })
+
+          //GET LIBROS BY TITULO
+          .addCase(getLibrosByTitulo.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+          })
+          .addCase(getLibrosByTitulo.fulfilled, (state, action) => {
+            state.loading = false;
+            state.items = action.payload;
+          })
+          .addCase(getLibrosByTitulo.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message;
           })

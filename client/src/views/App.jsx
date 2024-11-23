@@ -17,12 +17,12 @@ import LoginPage from './LoginPage'
 import Cupones from './Cupones'
 import AdministrarLibros from "./AdministrarLibros"
 import EditarLibro from "./EditarLibro"
+import Busqueda from "./Busqueda"
 
 const App = ()=>{
 
   return (
     <>
-      <Navigation />
       <Routes>
         <Route path='/' element={<Homepage/>}/>
         <Route path='/ListaLibros/:generoId' element={<ListaLibros />} />
@@ -38,6 +38,7 @@ const App = ()=>{
         <Route path='/Cupones' element={<Cupones/>}/>
         <Route path='/AdministrarLibros' element={<AdministrarLibros/>}/>
         <Route path='/EditarLibro/:isbn' element={<EditarLibro />} />
+        <Route path='/Busqueda/:text' element={<Busqueda />} />
       </Routes>
     
     </>
