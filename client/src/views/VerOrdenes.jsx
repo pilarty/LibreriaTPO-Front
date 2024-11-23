@@ -62,21 +62,25 @@ const VerOrdenes = () => {
 
   const manejarCambioEstado = (idOrden, nuevoEstado) => {
     console.log(idOrden);
-    dispatch(updateOrden({ id: idOrden, estado: nuevoEstado }));
+    dispatch(updateOrden({ id: idOrden, estado: nuevoEstado }))
+      .then(() => {
+        dispatch(getOrdenes({ page: currentPage, size: pageSize }));
+      })
   };
 
-const obtenerEstilo = (estado) => {
+  const obtenerEstilo = (estado) => {
     switch (estado) {
-        case "En proceso":
-            return { backgroundColor: "#fef3c7", color: "#92400e" };
-        case "Completada":
-            return { backgroundColor: "#d1fae5", color: "#065f46" };
-        case "Cancelada":
-            return { backgroundColor: "#fee2e2", color: "#b91c1c" };
-        default:
-            return {};
+      case "En proceso":
+        return { backgroundColor: "#fef3c7", color: "#92400e" };
+      case "Completada":
+        return { backgroundColor: "#d1fae5", color: "#065f46" };
+      case "Cancelada":
+        return { backgroundColor: "#fee2e2", color: "#b91c1c" };
+      default:
+        return { backgroundColor: "#f0f0f0", color: "#333" }; // Color de fondo por defecto
     }
-};
+  };
+  
 
   const opciones = [
     { valor: "En proceso", estilo: { backgroundColor: "#fef3c7", color: "#92400e" } },
