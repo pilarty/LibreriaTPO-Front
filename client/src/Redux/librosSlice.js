@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
+import axiosInstance from "./axiosInstance";
 import axios from "axios"
 
 export const getLibros = createAsyncThunk("libros/getLibros", async()=>{
@@ -17,18 +18,18 @@ export const getLibrosByTitulo = createAsyncThunk("libros/getLibrosByTitulo", as
 });
 
 export const createLibros = createAsyncThunk("libros/createLibros", async (newLibro) => {
-    const { data } = await axios.post("http://localhost:4002/libros", newLibro);
+    const { data } = await axiosInstance.post("http://localhost:4002/libros", newLibro);
     return data;
   });
 
 export const putLibro = createAsyncThunk("libros/putLibro", async ({ isbn, updatedLibro }) => {
-  const { data } = await axios.put(`http://localhost:4002/libros/${isbn}`, updatedLibro);
+  const { data } = await axiosInstance.put(`http://localhost:4002/libros/${isbn}`, updatedLibro);
   return data;
 });
 
 export const deleteLibro = createAsyncThunk("libros/deleteLibro", async (isbn) => {
   try {
-      await axios.delete(`http://localhost:4002/libros/${isbn}`);
+      await axiosInstance.delete(`http://localhost:4002/libros/${isbn}`);
       return isbn;
   } catch (error) {
       throw new Error("Error al eliminar el libro");
