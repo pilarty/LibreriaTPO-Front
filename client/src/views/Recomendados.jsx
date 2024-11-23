@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLibrosByTitulo } from '../Redux/librosSlice';
+import { getLibros } from '../Redux/librosSlice';
 import ListaLibrosListaLibros from '../components/ListaLibrosListaLibros';
 import './ListaLibros.css';
 import logo from '../assets/logo.png';
@@ -11,20 +11,22 @@ import Carrito from '../assets/Carrito.png';
 import MenuDesplegable from "../components/MenuDesplegable";
 import LoadingSpinner from '../components/LoadingSpinner';
 
-const Busqueda = () => {
+const Recomendados = () => {
     const navigate = useNavigate();
     const [menuVisible, setMenuVisible] = useState(false);
 
-    const { text } = useParams();
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
-        if (text) {
-            dispatch(getLibrosByTitulo(text));
-        }
-    }, [text, dispatch]);
+        dispatch(getLibros());
+    }, [dispatch]);
 
     const {items, loading, error} = useSelector((state => state.libros));
+
+    if (loading || !items.length === 0) return <LoadingSpinner />;
+    if (error) return <p>Error al cargar los libros: {error}</p>;
+
+    const LibrosRecomendados = items.content.filter(libro => libro.recomendado)
 
     const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
@@ -37,9 +39,6 @@ const Busqueda = () => {
     const manejarCarrito = () => {
         navigate("/Carrito");
     };
-
-    if (loading || !items.length === 0) return <LoadingSpinner />;
-    if (error) return <p>Error al cargar los libros: {error}</p>;
 
     return (
         <>
@@ -63,15 +62,15 @@ const Busqueda = () => {
 
             <div className="listaLibros-container">
                 <div className="listaLibros-title-container">
-                    <h1 className="listaLibros-subtitle" style={{ marginTop: '60px' }}>Busqueda para "{text}"</h1>
+                    <h1 className="listaLibros-subtitle" style={{ marginTop: '60px' }}>Nuestras recomendaciones</h1>
                 </div>
             <hr />
             {loading ? (
                 <LoadingSpinner />
             ) : (
                 <>
-                    {items.length > 0 && (
-                        <ListaLibrosListaLibros libros={items} />
+                    {LibrosRecomendados.length > 0 && (
+                        <ListaLibrosListaLibros libros={LibrosRecomendados} />
                     )}
                 </>
             )}
@@ -81,4 +80,4 @@ const Busqueda = () => {
     );
 };
 
-export default Busqueda;
+export default Recomendados;

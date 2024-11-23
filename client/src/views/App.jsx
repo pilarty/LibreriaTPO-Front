@@ -18,6 +18,7 @@ import Cupones from './Cupones'
 import AdministrarLibros from "./AdministrarLibros"
 import EditarLibro from "./EditarLibro"
 import Busqueda from "./Busqueda"
+import Recomendados from "./Recomendados"
 
 const App = ()=>{
 
@@ -39,6 +40,7 @@ const App = ()=>{
         <Route path='/AdministrarLibros' element={<AdministrarLibros/>}/>
         <Route path='/EditarLibro/:isbn' element={<EditarLibro />} />
         <Route path='/Busqueda/:text' element={<Busqueda />} />
+        <Route path='/Recomendados' element={<Recomendados/>}/>
       </Routes>
     
     </>

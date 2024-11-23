@@ -71,7 +71,7 @@ const Homepage = () => {
           <div className="homepage-subtitulo-2">Recomendados</div>
             <CardLibroList></CardLibroList>
           <div className="homepage-header-3">
-            <Link className="homepage-text-vermas" to="/Libros">Ver más</Link>
+            <Link className="homepage-text-vermas" to="/Recomendados">Ver más</Link>
           </div>
           <div className="homepage-subtitulo-3">Novedades</div>
           <div className="homepage-lista-libros-2">
