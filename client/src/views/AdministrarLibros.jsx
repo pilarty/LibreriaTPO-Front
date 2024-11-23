@@ -30,7 +30,9 @@ const AdministrarLibros = () => {
       setMenuVisible(!menuVisible);
     }
     const dispatch = useDispatch()
-    const {items: items, loading, error, libro} = useSelector((state)=> state.libros)
+    const items = useSelector((state) => state.libros.items.content);
+    const loading = useSelector((state) => state.libros.loading);
+    const error = useSelector((state) => state.libros.error);
     console.log(items)
   
     useEffect(()=>{
@@ -63,7 +65,7 @@ const AdministrarLibros = () => {
           )}
           <div className="AdministrarLibros-container">
               <h2 className="AdministrarLibros-subtitle">Administrar libros</h2>
-                  <AdministrarLibrosLista libros={items.content} />
+                  <AdministrarLibrosLista libros={items} />
           </div>
         </div>
     );

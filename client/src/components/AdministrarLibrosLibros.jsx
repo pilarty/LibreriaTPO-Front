@@ -22,10 +22,6 @@ const AdministrarLibrosLibros = ({ libro}) => {
     const dispatch = useDispatch()
     //const libro = useSelector(state => state.libros.items.content.find((libro) => libro.isbn === isbn));
 
-
-    //const {titulo, autor, precio, image, stock, cantPaginas, sinopsis, editorial, edicion, idioma, generoId,} = libro;
-    const [stockActual, setStockActual] = useState(libro.stock)
-
     const imageSrc = libro.image ? `data:image/jpeg;base64,${libro.image}` : 'default-image-path.jpg';
 
     const eliminarLibro = () =>{
@@ -48,26 +44,6 @@ const AdministrarLibrosLibros = ({ libro}) => {
         navigate(`/EditarLibro/${libro.isbn}`);
     }
 
-    useEffect(() => {
-        setStockActual(libro.stock);
-    }, [libro.stock]);
-
-
-    const reducirStock = () => {
-        if (stockActual > 1) {
-          const nuevoStock = stockActual - 1;
-          const updatedLibro = { ...libro, stock: nuevoStock };
-          setStockActual(nuevoStock)
-          dispatch(putLibro({ isbn: libro.isbn, updatedLibro }));
-        }
-      };
-
-    const aumentarStock = () => {
-        const nuevoStock = stockActual + 1;
-        const updatedLibro = { ...libro, stock: nuevoStock };
-        setStockActual(nuevoStock)
-        dispatch(putLibro({ isbn: libro.isbn, updatedLibro }));
-    }
     
     return (
         <div className="AdministrarLibros-book-container">
@@ -88,9 +64,8 @@ const AdministrarLibrosLibros = ({ libro}) => {
             <div className="AdministrarLibros-botones-contenedor">
                 <div className='AdministrarLibros-botones-1'>
                     <div className="AdministrarLibros-stock-controls">
-                        <button onClick={reducirStock} className="AdministrarLibros-stock-button">-</button>
-                        <span className="AdministrarLibros-stock-display">{stockActual}</span>
-                        <button onClick={aumentarStock} className="AdministrarLibros-stock-button">+</button>
+                        <span className="AdministrarLibros-stock-display">Stock: </span>
+                        <span className="AdministrarLibros-stock-display">{libro.stock}</span>
                     </div>
                     <button onClick={eliminarLibro} className="AdministrarLibros-delete-button">
                         <img className="AdministrarLibros-img-lapiz" src={basura} alt="basura" />

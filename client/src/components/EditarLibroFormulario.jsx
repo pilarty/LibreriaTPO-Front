@@ -115,6 +115,7 @@ const EditarLibroFormulario = ({currentISBN, currentTitulo, currentSinopsis, cur
             />
     
             <div className="PublicarLibro-book-detalles">
+              <label className="PublicarLibro-label">ISBN: {currentISBN}</label>
               <label className="PublicarLibro-label">Título:</label>
               <input
                 type="text"
@@ -161,14 +162,6 @@ const EditarLibroFormulario = ({currentISBN, currentTitulo, currentSinopsis, cur
                 placeholder="N° páginas..."
                 value={numPaginasp}
                 onChange={(e) => setNumPaginas(e.target.value)}
-              />
-              <label className="PublicarLibro-label">ISBN:</label>
-              <input
-                type="text"
-                className="PublicarLibro-input-field"
-                placeholder="ISBN..."
-                value={isbnp}
-                onChange={(e) => setIsbn(e.target.value)}
               />
               <label className="PublicarLibro-label">Género:</label>
               <button
