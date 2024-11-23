@@ -77,7 +77,7 @@ const VerOrdenes = () => {
       case "Cancelada":
         return { backgroundColor: "#fee2e2", color: "#b91c1c" };
       default:
-        return { backgroundColor: "#f0f0f0", color: "#333" }; // Color de fondo por defecto
+        return {};
     }
   };
   
