@@ -1,9 +1,11 @@
 
 import "../views/Compra.css";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { postOrdenes } from "../Redux/ordenesSlice";
-import { getByIdGiftCard } from "../Redux/giftCardSlice";
+import { useSelector} from "react-redux"
+import { putUsuario } from "../Redux/usuariosSlice";
+import { getUsuario } from "../Redux/usuariosSlice";
 
 const FormularioCompra = () => {
   const dispatch = useDispatch();
@@ -67,6 +69,25 @@ const FormularioCompra = () => {
     return "";
   };
 
+  //Obtener y editar los datos del usuario
+  const emailUsuario = sessionStorage.getItem('mail');
+  const {items: items, loading, error, usuario} = useSelector((state)=> state.usuarios)
+  console.log(usuario)
+
+  useEffect(()=>{
+    dispatch(getUsuario(emailUsuario))
+  }, [dispatch])
+
+  const editarUsuario = () => {
+    const updatedUser = {
+          nombre: usuario.nombre,
+          apellido: usuario.apellido, 
+          direccion: formulario.direccion, 
+          cp: parseInt(formulario.codigoPostal)}
+    dispatch(putUsuario({id: usuario.id, updatedUser: updatedUser}));
+  }
+
+
   // Manejar la acción de realizar compra
   const handleRealizarCompra = () => {
     const error = validarFormulario();
@@ -74,7 +95,7 @@ const FormularioCompra = () => {
       setErrorFormulario(error);
       return;
     }
-
+    editarUsuario();
     const ordenData = {
       mail: sessionStorage.getItem("mail"),
       codigo: formulario.giftCard,
