@@ -24,7 +24,7 @@ const VerOrdenes = () => {
 
   const dispatch = useDispatch();
   const { items, loading, error } = useSelector((state) => state.ordenes);
-  
+
   useEffect(() => {
     dispatch(getOrdenes({ page: currentPage, size: pageSize }));
   }, [dispatch, currentPage, pageSize]);
@@ -59,21 +59,11 @@ const VerOrdenes = () => {
   const manejarHamburguesa = () => {
     setMenuVisible(!menuVisible);
   }
-  
-  const [estado, setEstado] = useState(items.estado);
 
   const manejarCambioEstado = (idOrden, nuevoEstado) => {
-    dispatch(updateOrden({ id: idOrden, estado: nuevoEstado }))
-        .unwrap()
-        .then(() => {
-            console.log(`Estado de la orden ${idOrden} actualizado a "${nuevoEstado}"`);
-        })
-        .catch((error) => {
-            console.error("Error al actualizar el estado:", error);
-            alert("No se pudo actualizar el estado. Por favor, inténtelo de nuevo.");
-        });
-};
-
+    console.log(idOrden);
+    dispatch(updateOrden({ id: idOrden, estado: nuevoEstado }));
+  };
 
 const obtenerEstilo = (estado) => {
     switch (estado) {
@@ -212,6 +202,7 @@ const obtenerEstilo = (estado) => {
               <select
                 className="VerOrdenes-estadoEtiqueta VerOrdenes-estadoSelect"
                 value={orden.estado}
+                
                 onChange={(e) => manejarCambioEstado(orden.id, e.target.value)}
                 style={obtenerEstilo(orden.estado)}
             >

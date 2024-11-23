@@ -37,18 +37,17 @@ export const updateOrden = createAsyncThunk(
   'ordenes/updateOrden',
   async ({ id, estado }, { rejectWithValue }) => {
     try {
-      const response = await fetch(`/api/ordenes/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ estado }),
+      const response = await axios.put(`http://localhost:4002/ordenes/${id}/estado`, {
+        estado,
       });
-      if (!response.ok) throw new Error('Error al actualizar la orden');
-      return await response.json();
+      return { estado };
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue("Error al actualizar el estado");
     }
   }
 );
+
+
 
 const ordenesSlice = createSlice({
   name: "ordenes",
@@ -146,23 +145,29 @@ const ordenesSlice = createSlice({
         state.error = action.error.message;
       })
 
-      //updateOrden by id
+      // Update Orden by id
       .addCase(updateOrden.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(updateOrden.fulfilled, (state, action) => {
-        const { id, estado } = action.payload;
-        const orden = state.ordenes.find((orden) => orden.id === id);
+        state.loading = false;  // Cambiar el estado de loading
+      
+        const { id, estado } = action.payload;  // Obtener id y estado del payload
+      
+        // Buscar la orden en el arreglo 'content' dentro de 'items'
+        const orden = state.items.content.find((orden) => orden.id === id);
+        
+        // Si la orden se encuentra, actualizar su estado
         if (orden) {
-            orden.estado = estado;
+          orden.estado = estado;
         }
-        state.loading = false;
       })
       .addCase(updateOrden.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
+
 
   },
 });
