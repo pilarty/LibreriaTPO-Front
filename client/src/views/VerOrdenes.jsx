@@ -122,8 +122,8 @@ const VerOrdenes = () => {
 
       <div className="VerOrdenes-estadisticas">
         <div className="VerOrdenes-contadores">
-          <span>Todas ({items.totalElements})</span>
           {/*
+          <span>Todas ({items.totalElements})</span>
           <span>|</span>
           <span>En Proceso ({items.content.filter((orden) => orden.estado === "En proceso").length})</span>
           <span>|</span>
