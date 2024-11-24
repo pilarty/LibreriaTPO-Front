@@ -32,6 +32,11 @@ export const getLibroByIsbn = createAsyncThunk("libros/getLibroByIsbn", async (i
   return data;
 });
 
+export const getLibrosByTitulo = createAsyncThunk("libros/getLibrosByTitulo", async (titulo) => {
+  const { data } = await axios.get(`http://localhost:4002/libros/titulo/${titulo}`);
+  return data;
+});
+
 export const createLibros = createAsyncThunk("libros/createLibros", async (newLibro) => {
     const { data } = await axios.post("http://localhost:4002/libros", newLibro);
     return data;
@@ -43,8 +48,12 @@ export const putLibro = createAsyncThunk("libros/putLibro", async ({ isbn, updat
 });
 
 export const deleteLibro = createAsyncThunk("libros/deleteLibro", async (isbn) => {
-  await axios.delete(`http://localhost:4002/libros/${isbn}`);
-  return isbn;
+  try {
+      await axios.delete(`http://localhost:4002/libros/${isbn}`);
+      return isbn;
+  } catch (error) {
+      throw new Error("Error al eliminar el libro");
+  }
 });
 
 export const getLibrosByGeneroId = createAsyncThunk(
@@ -117,6 +126,20 @@ const librosSlice = createSlice({
             state.error = action.error.message;
           })
 
+          //GET LIBROS BY TITULO
+          .addCase(getLibrosByTitulo.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+          })
+          .addCase(getLibrosByTitulo.fulfilled, (state, action) => {
+            state.loading = false;
+            state.items = action.payload;
+          })
+          .addCase(getLibrosByTitulo.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message;
+          })
+
           // GET LIBRO BY ISBN
           .addCase(getLibroByIsbn.pending, (state) => {
             state.loading = true;
@@ -152,10 +175,12 @@ const librosSlice = createSlice({
           })
           .addCase(putLibro.fulfilled, (state, action) => {
             state.loading = false;
-            const index = state.items.findIndex(libro => libro.isbn === action.payload.isbn);
-            if (index !== -1) {
-              state.items[index] = action.payload;
-            }
+            state.items = {
+                ...state.items, // Copia las demás propiedades de items
+                content: state.items.content.map((libro) =>
+                    libro.isbn === action.payload.isbn ? action.payload : libro
+                ),
+            };
           })
           .addCase(putLibro.rejected, (state, action) => {
             state.loading = false;
@@ -169,7 +194,12 @@ const librosSlice = createSlice({
           })
           .addCase(deleteLibro.fulfilled, (state, action) => {
             state.loading = false;
-            state.items = state.items.filter(libro => libro.isbn !== action.payload); 
+            const index = state.items.content.findIndex(
+                (libro) => libro.isbn === action.payload
+            );
+            if (index !== -1) {
+                state.items.content.splice(index, 1);
+            }
           })
           .addCase(deleteLibro.rejected, (state, action) => {
             state.loading = false;

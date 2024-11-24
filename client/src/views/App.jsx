@@ -17,12 +17,16 @@ import LoginPage from './LoginPage'
 import Cupones from './Cupones'
 import VerOrdenes from './VerOrdenes'
 import DetallesOrden from '../components/DetallesOrden'
+import AdministrarLibros from "./AdministrarLibros"
+import EditarLibro from "./EditarLibro"
+import Busqueda from "./Busqueda"
+import Recomendados from "./Recomendados"
+import Novedades from "./Novedades"
 
 const App = ()=>{
 
   return (
     <>
-      <Navigation />
       <Routes>
         <Route path='/' element={<Homepage/>}/>
         <Route path='/ListaLibros/:generoId' element={<ListaLibros />} />
@@ -35,9 +39,14 @@ const App = ()=>{
         <Route path='/Usuario' element={<Usuario/>}/>
         <Route path='/publicarLibro' element={<PublicarLibro/>}/>
         <Route path='/LoginPage' element={<LoginPage/>}/>
-        <Route path='/Cupones' element={<Cupones/>}/>
+        <Route path='/Giftcard' element={<Cupones/>}/>
         <Route path='/VerOrdenes' element={<VerOrdenes/>}/>
         <Route path='/DetallesOrden/:id' element={<DetallesOrden/>}/>
+        <Route path='/AdministrarLibros' element={<AdministrarLibros/>}/>
+        <Route path='/EditarLibro/:isbn' element={<EditarLibro />} />
+        <Route path='/Busqueda/:text' element={<Busqueda />} />
+        <Route path='/Recomendados' element={<Recomendados/>}/>
+        <Route path='/Novedades' element={<Novedades/>}/>
       </Routes>
     
     </>

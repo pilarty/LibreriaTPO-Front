@@ -18,6 +18,7 @@ const Homepage = () => {
   const navigate = useNavigate();
 
   const [menuVisible, setMenuVisible] = useState(false);
+  const [busqueda, setBusqueda] = useState("")
 
   const manejarUsuario = () => {
     navigate("/Usuario");
@@ -31,7 +32,7 @@ const Homepage = () => {
   }
 
   const manejarBusqueda = () => {
-    navigate("/Libros"); 
+    navigate(`/Busqueda/${busqueda}`); 
   }
 
   
@@ -43,7 +44,11 @@ const Homepage = () => {
               <span className="subtitulo">The Golden Feather</span>
             </a>
             <div className="homepage-buscador-container">
-              <input className="homepage-buscador" type="text" placeholder="Buscar..." />
+              <input className="homepage-buscador"
+                type="text" 
+                placeholder="Buscar..." 
+                value = {busqueda}
+                onChange={(e) => setBusqueda(e.target.value)}/>
               <button className="homepage-boton-lupa" onClick={manejarBusqueda}>
                 <img className="homepage-img-lupa" src={lupa} alt="Buscar" />
               </button>
@@ -66,14 +71,14 @@ const Homepage = () => {
           <div className="homepage-subtitulo-2">Recomendados</div>
             <CardLibroList></CardLibroList>
           <div className="homepage-header-3">
-            <Link className="homepage-text-vermas" to="/Libros">Ver más</Link>
+            <Link className="homepage-text-vermas" to="/Recomendados">Ver más</Link>
           </div>
           <div className="homepage-subtitulo-3">Novedades</div>
           <div className="homepage-lista-libros-2">
             <CardLibroListNovedades></CardLibroListNovedades>
           </div>
           <div className="homepage-header-4">
-          <Link className="homepage-text-vermas" to="/Libros">Ver más</Link>
+          <Link className="homepage-text-vermas" to="/Novedades">Ver más</Link>
           </div>
         </div>
       );

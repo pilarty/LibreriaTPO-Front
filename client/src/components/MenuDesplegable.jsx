@@ -56,7 +56,7 @@ return (
     <ul className="menu-section">
       <h3>Otro</h3>
       <li>
-        <Link to="/giftcards">GiftCards</Link>
+        <Link to="/Giftcard">GiftCards</Link>
       </li>
       <li>
         <Link to="/Favs">Favoritos</Link>
@@ -74,7 +74,7 @@ return (
           <Link to="/publicarLibro">Publicar Libro</Link>
         </li>
         <li>
-          <Link to="/administrarLibros">Administrar Libros</Link>
+          <Link to="/AdministrarLibros">Administrar Libros</Link>
         </li>
         <li>
           <Link to="/verOrdenes">Ver Ordenes</Link>

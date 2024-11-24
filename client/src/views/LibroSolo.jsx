@@ -4,6 +4,7 @@ import logo from '../assets/logo.png';
 import Usuario from '../assets/Usuario.png';
 import Carrito from '../assets/Carrito.png';
 import Hamburguesa from '../assets/hamburguesa.png';
+import Estrella from '../assets/Estrella.png';
 import { useNavigate } from 'react-router-dom';
 import { useEffect} from 'react';
 import { useParams } from 'react-router-dom';
@@ -69,7 +70,27 @@ const LibroSolo = () => {
                 });
         }
     };
+    const manejarFavorito = (isbn) => {
+        if (!emailUsuario) {
+            navigate('/LoginPage'); 
+            return;
+        }
 
+        const favoritosKey = `favoritos_${emailUsuario}`;
+        const favoritosGuardados = JSON.parse(localStorage.getItem(favoritosKey)) || [];
+        
+        const yaEsFavorito = favoritosGuardados.includes(isbn);
+    
+        if (yaEsFavorito) {
+            mostrarMensaje("Este libro ya está en favoritos");
+        } else {
+            favoritosGuardados.push(isbn);
+            localStorage.setItem(favoritosKey, JSON.stringify(favoritosGuardados));
+            console.log(`Libro agregado a favoritos: ${isbn}`); // Log para verificar que se agregó
+            console.log(`Favoritos actuales: ${JSON.parse(localStorage.getItem(favoritosKey))}`); // Ver lista actual de favoritos
+            mostrarMensaje("Libro agregado a favoritos");
+        }
+    };
 
 
   const {items: items, loading, error, libro} = useSelector((state)=> state.libros)
@@ -106,61 +127,65 @@ const LibroSolo = () => {
                     <img className="img-carrito" src={Carrito} alt="Carrito" />
                 </button>
             </div>
+{/* Tarjeta del libro */}
+<div className="libroSolo-container">
+            {/* Imagen y Título */}
+            <div className="libroSolo-imagen-seccion">
+                <div className="libroSolo-imagen-placeholder">
+                    <img src={imageSrc} alt="Imagen del Libro" />
+                </div>
 
-            {/* Tarjeta del libro */}
-            <div className="libroSolo-container">
-                {/* Imagen y Título */}
-                <div className="libroSolo-imagen-seccion">
-                    <div className="libroSolo-imagen-placeholder">
-                        <img src={imageSrc} alt="Imagen del Libro" />
-                    </div>
-                    <h2 className="titulo-libroSolo">{libro.titulo}</h2>
+                <h2 className="titulo-libroSolo">{libro.titulo}</h2>
 
-                    <div className="LibroSolo-precio-cantidad">
-                        <p className="LibroSolo-precio">${libro.precio}</p>
+                <div className="LibroSolo-precio-cantidad">
+                    <p className="LibroSolo-precio">${libro.precio}</p>
 
                     {/* Selector de cantidad */}
-
-                <div className="LibroSolo-selector-cantidad">
-                <label htmlFor="LibroSolo-cantidad" className="LibroSolo-cantidad-label">Cantidad: </label>
-                <select id="LibroSolo-cantidad" value={cantidad} onChange={manejarCambioCantidad}>
-                {[...Array(10).keys()].map((n) => (
-                    <option key={n + 1} value={n + 1}>
-                        {n + 1}
-                    </option>
-                ))}
-                 </select>
-
+                    <div className="LibroSolo-selector-cantidad">
+                        <label htmlFor="LibroSolo-cantidad" className="LibroSolo-cantidad-label">Cantidad: </label>
+                        <select id="LibroSolo-cantidad" value={cantidad} onChange={manejarCambioCantidad}>
+                            {[...Array(10).keys()].map((n) => (
+                                <option key={n + 1} value={n + 1}>
+                                    {n + 1}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
-                </div>
-                </div>
+            </div>
 
-                {/* Detalles del libro */}
-                <div className="libroSolo-detalles">
-                    <div className="libroSolo-info">
+            {/* Detalles del libro */}
+            <div className="libroSolo-detalles">
+                <div className="libroSolo-info">
                     <h3>{libro.autor}</h3>
                     <p className="LibroSolo-sinopsis-titulo">Sinopsis:</p>
-                        <p>
-                            {libro.descripcion}
-                        </p>
-                        <p>
-                            <strong>Editorial:</strong> {libro.editorial}<br />
-                            <strong>Edicion:</strong> {libro.edicion}<br />
-                            <strong>Idioma:</strong> {libro.idioma}<br />
-                            <strong>Páginas:</strong> {libro.cantPaginas}<br />
-                            <strong>ISBN:</strong> {libro.isbn}<br />
-                            <strong>Géneros:</strong> {libro.genero} <br />
-                        </p>
-                    </div>
+                    <p>
+                        {libro.descripcion}
+                    </p>
+                    <p>
+                        <strong>Editorial:</strong> {libro.editorial}<br />
+                        <strong>Edición:</strong> {libro.edicion}<br />
+                        <strong>Idioma:</strong> {libro.idioma}<br />
+                        <strong>Páginas:</strong> {libro.cantPaginas}<br />
+                        <strong>ISBN:</strong> {libro.isbn}<br />
+                        <strong>Géneros:</strong> {libro.genero} <br />
+                    </p>
+                </div>
 
+                <div className="libroSolo-boton-star-container">
                     <button className="LibroSolo-boton-agregar" onClick={() => manejarAgregarACarrito(libro.isbn, cantidad)}>
                         Agregar {cantidad} al carrito
                     </button>
+
+                    {/* Botón de estrella al lado del botón "Agregar al carrito" */}
+                    <button className="libroListaLibros-star-button" onClick={() => manejarFavorito(libro.isbn)}>
+                        <img src={Estrella} alt="Estrella" className="libroListaLibros-star-icon" />
+                    </button>
                 </div>
             </div>
+        </div>
     </div>
-    
-    );
+  );
 };
 
 export default LibroSolo;

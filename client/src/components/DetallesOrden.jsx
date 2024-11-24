@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getOrdenesById } from '../Redux/ordenesSlice';
 import { useState, useEffect } from 'react';
 import {getUsuarioById} from '../Redux/usuariosSlice';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const DetallesOrden = () => {
     const {id} = useParams();
@@ -22,9 +23,7 @@ const DetallesOrden = () => {
         }
     }, [dispatch, items]);
     
-    if (ordenesLoading || usuarioLoading) {
-        return <p>Cargando...</p>;
-    }
+    if (ordenesLoading || usuarioLoading) return <LoadingSpinner />;
 
     if (ordenesError || usuarioError) {
         return <p>Error: {ordenesError || usuarioError}</p>;
@@ -114,7 +113,7 @@ const DetallesOrden = () => {
             <div className="detallesOrden-total">
             <div className="detallesOrden-totalRow"><span>SUBTOTAL</span> ${items.totalSinDescuento}</div>
             <div className="detallesOrden-totalRow"><span>DESCUENTO</span> {items.descuento * 100}%</div>
-            <div className="detallesOrden-totalFinal"><span>TOTAL</span> ${items.totalConDescuento}</div>
+            <div className="detallesOrden-totalFinal"><span>TOTAL</span> ${items.totalConDescuento?.toFixed(2)}</div>
             </div>
 
             <div className="detallesOrden-firmas">
