@@ -3,9 +3,10 @@
 .Compra-container {
     display: flex;
     justify-content: space-between; /* Ajusta el espacio entre el formulario y la lista */
-    align-items: flex-start; /* Alinea los elementos en la parte superior */
+    align-items: center; /* Alinea los elementos en la parte superior */
     padding: 20px;
     gap: 2rem;
+    
 }
 
 /* Ajuste del formulario */
@@ -19,14 +20,15 @@
     display: flex;
     flex-direction: column; /* Alinea los elementos verticalmente */
     gap: 1rem; /* Espacio entre los campos */
+    margin-top: 1rem;
 }
 
 .Compra-seccion-formulario h1 {
     font-family: "Newsreader", serif;
     font-size: 1.5rem;
     color: #D1A246;
-    margin-top: 5rem; /* Aumenta el margen superior */
-    margin-bottom: 0rem; /* Aumenta el margen inferior */
+    margin-top: 3rem; /* Aumenta el margen superior */
+    margin-bottom: 1rem; /* Aumenta el margen inferior */
     text-align: left; /* Alineación del título a la izquierda */
 }
 
@@ -97,7 +99,8 @@ label {
     width: 38%; /* Le damos más espacio a la lista de libros */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    margin-top: 0;
 }
 
 .Compra-totales {
