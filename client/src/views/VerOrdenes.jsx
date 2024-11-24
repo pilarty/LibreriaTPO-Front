@@ -60,6 +60,7 @@ const VerOrdenes = () => {
     setMenuVisible(!menuVisible);
   }
 
+  {/*
   const manejarCambioEstado = (idOrden, nuevoEstado) => {
     console.log(idOrden);
     dispatch(updateOrden({ id: idOrden, estado: nuevoEstado }))
@@ -68,6 +69,7 @@ const VerOrdenes = () => {
       })
   };
 
+  
   const obtenerEstilo = (estado) => {
     switch (estado) {
       case "En proceso":
@@ -87,6 +89,7 @@ const VerOrdenes = () => {
     { valor: "Completada", estilo: { backgroundColor: "#d1fae5", color: "#065f46" } },
     { valor: "Cancelada", estilo: { backgroundColor: "#fee2e2", color: "#b91c1c" } },
   ];
+  */}
 
   if (loading || !items.content) return <LoadingSpinner />;
   if (error) return <p>Error al cargar las ordenes: {error}</p>;
@@ -120,13 +123,15 @@ const VerOrdenes = () => {
       <div className="VerOrdenes-estadisticas">
         <div className="VerOrdenes-contadores">
           <span>Todas ({items.totalElements})</span>
+          {/*
           <span>|</span>
           <span>En Proceso ({items.content.filter((orden) => orden.estado === "En proceso").length})</span>
           <span>|</span>
           <span>Completadas ({items.content.filter((orden) => orden.estado === "Completada").length})</span>
           <span>|</span>
           <span>Canceladas ({items.content.filter((orden) => orden.estado === "Cancelada")})</span>
-        </div>
+          */}
+          </div>
       </div>
 
       <div className="VerOrdenes-herramientas">
@@ -181,7 +186,7 @@ const VerOrdenes = () => {
             
             <th className="VerOrdenes-columna">Orden</th>
             <th className="VerOrdenes-columna">Fecha</th>
-            <th className="VerOrdenes-columna">Estado</th>
+            {/*<th className="VerOrdenes-columna">Estado</th>*/}
             <th className="VerOrdenes-columna">Dirección de Envío</th>
             <th className="VerOrdenes-columna">Total</th>
           </tr>
@@ -202,6 +207,7 @@ const VerOrdenes = () => {
 
               </td>
               <td className="VerOrdenes-celda"> {orden.fecha.split("-").reverse().join("/")} </td>
+              {/* 
               <td className="VerOrdenes-celda">
               <select
                 className="VerOrdenes-estadoEtiqueta VerOrdenes-estadoSelect"
@@ -221,12 +227,10 @@ const VerOrdenes = () => {
                 ))}
             </select>
               </td>
+              */}
               <td className="VerOrdenes-celda">{orden.usuario.direccion}</td>
               <td className="VerOrdenes-celda">
-                <span className="VerOrdenes-total">${orden.totalConDescuento}</span>
-              </td>
-              <td className="VerOrdenes-celda">
-                
+                <span className="VerOrdenes-total">${orden.totalConDescuento?.toFixed(2)}</span>
               </td>
             </tr>
           ))}
