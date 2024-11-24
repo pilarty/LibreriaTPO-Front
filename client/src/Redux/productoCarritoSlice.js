@@ -1,12 +1,13 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import axios from "axios"
+import axiosInstance from "./axiosInstance";
 
 //CREATE
 export const createProductoCarrito = createAsyncThunk(
   "productosCarrito/createProductoCarrito",
   async (producto, { rejectWithValue }) => {
       try {
-          const response = await axios.post("http://localhost:4002/productosCarrito", {
+          const response = await axiosInstance.post("http://localhost:4002/productosCarrito", {
               cantidad: producto.cantidad,
               isbn: producto.isbn,
               carrito_mail: producto.carrito_mail,
@@ -21,7 +22,7 @@ export const createProductoCarrito = createAsyncThunk(
 //GET PRODUCTOS CARRITO BY MAIL
 export const getProductosCarrito = createAsyncThunk("productosCarrito/getProductosCarrito",
     async (emailUsuario) => {
-        const {data} = await axios(`http://localhost:4002/productosCarrito/${emailUsuario}/listaDeProductosCarritoByMail`);
+        const {data} = await axiosInstance(`http://localhost:4002/productosCarrito/${emailUsuario}/listaDeProductosCarritoByMail`);
         return data;
     });
 
@@ -29,7 +30,7 @@ export const getProductosCarrito = createAsyncThunk("productosCarrito/getProduct
 export const actualizarCantidadProducto = createAsyncThunk("productoCarrito/actualizarCantidadProducto",
     async ({ isbn, carrito_mail, cantidad }, { rejectWithValue }) => {
         try {
-            const response = await axios.put("http://localhost:4002/productosCarrito/ActualizarCantLibro", {
+            const response = await axiosInstance.put("http://localhost:4002/productosCarrito/ActualizarCantLibro", {
                 isbn,
                 carrito_mail,
                 cantidad,
@@ -45,7 +46,7 @@ export const actualizarCantidadProducto = createAsyncThunk("productoCarrito/actu
 export const eliminarProductoCarrito = createAsyncThunk("productoCarrito/eliminarProductoCarrito",
     async ({ isbn, carrito_mail }, { rejectWithValue }) => {
         try {
-            await axios.delete("http://localhost:4002/productosCarrito/EliminarprodCarrito", {
+            await axiosInstance.delete("http://localhost:4002/productosCarrito/EliminarprodCarrito", {
                 data: { isbn, carrito_mail }
             });
             return isbn;

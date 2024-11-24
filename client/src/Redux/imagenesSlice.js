@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 export const postImagen = createAsyncThunk(
     "imagenes/postImagen",
     async (imageData) => { 
-      const { data } = await axios.post("http://localhost:4002/images", imageData, {
+      const { data } = await axiosInstance.post("http://localhost:4002/images", imageData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -16,7 +17,7 @@ export const postImagen = createAsyncThunk(
 export const deleteImagen = createAsyncThunk(
   "imagenes/deleteImagen",
   async (imageId) => {
-    await axios.delete(`http://localhost:4002/images/${imageId}`);
+    await axiosInstance.delete(`http://localhost:4002/images/${imageId}`);
     return imageId; 
   }
 );

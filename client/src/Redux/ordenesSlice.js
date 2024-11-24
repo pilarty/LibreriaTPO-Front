@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 export const getOrdenes = createAsyncThunk(
   "ordenes/getOrdenes",
   async () => {
-    const { data } = await axios.get("http://localhost:4002/ordenes");
+    const { data } = await axiosInstance.get("http://localhost:4002/ordenes");
     return data;
   }
 );
@@ -12,7 +13,7 @@ export const getOrdenes = createAsyncThunk(
 export const postOrdenes = createAsyncThunk(
   "ordenes/postOrdenes",
   async (newOrder) => {
-    const { data } = await axios.post("http://localhost:4002/ordenes", newOrder);
+    const { data } = await axiosInstance.post("http://localhost:4002/ordenes", newOrder);
     return data;
   }
 );
@@ -20,7 +21,7 @@ export const postOrdenes = createAsyncThunk(
 export const getOrdenesByMail = createAsyncThunk(
   "ordenes/getOrdenesByMail",
   async (mail) => {
-    const { data } = await axios.get(`http://localhost:4002/ordenes/usuario${mail}`);
+    const { data } = await axiosInstance.get(`http://localhost:4002/ordenes/usuario${mail}`);
     return data;
   }
 );

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 export const getAllGeneros = createAsyncThunk("generos/getAllGeneros", async () => {
   const { data } = await axios.get("http://localhost:4002/generos");
@@ -17,17 +18,17 @@ export const getIdByNombre = createAsyncThunk("generos/getIdByNombre", async (no
 });
 
 export const createGenero = createAsyncThunk("generos/createGenero", async (newGenero) => {
-  const { data } = await axios.post("http://localhost:4002/generos", newGenero);
+  const { data } = await axiosInstance.post("http://localhost:4002/generos", newGenero);
   return data;
 });
 
 export const putGenero = createAsyncThunk("generos/putGenero", async ({ id, updatedGenero }) => {
-  const { data } = await axios.put(`http://localhost:4002/generos/${id}`, updatedGenero);
+  const { data } = await axiosInstance.put(`http://localhost:4002/generos/${id}`, updatedGenero);
   return data;
 });
 
 export const deleteGenero = createAsyncThunk("generos/deleteGenero", async (id) => {
-  await axios.delete(`http://localhost:4002/generos/${id}`);
+  await axiosInstance.delete(`http://localhost:4002/generos/${id}`);
   return id;
 });
 

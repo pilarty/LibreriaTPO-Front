@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 export const getCarrito = createAsyncThunk('carrito/getCarrito',
     async (emailUsuario) => {
-        const { data } = await axios(`http://localhost:4002/carritos/${emailUsuario}`);
+        const { data } = await axiosInstance(`http://localhost:4002/carritos/${emailUsuario}`);
         return data;
     });
 
