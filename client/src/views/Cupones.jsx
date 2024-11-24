@@ -15,6 +15,7 @@ const Cupones = () => {
     const navigate = useNavigate();
     const emailUsuario = sessionStorage.getItem('mail');
     const dispatch = useDispatch();
+    
 
     const [menuVisible, setMenuVisible] = useState(false);
     const [esAdmin, setEsAdmin] = useState(false);
@@ -49,6 +50,14 @@ const Cupones = () => {
       const { name, value } = e.target;
       setNuevoCupon({ ...nuevoCupon, [name]: value });
     };
+
+    useEffect (() => {
+        if (!emailUsuario){
+            navigate("/LoginPage");
+        } else {
+            dispatch(getAllGiftCards(emailUsuario));
+        }
+        }, [emailUsuario, navigate, dispatch]);
     
 
     useEffect(() => {
