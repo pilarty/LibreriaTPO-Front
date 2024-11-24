@@ -44,7 +44,7 @@ const Usuario = () => {
         setNombre(data.nombre || "");
         setApellido(data.apellido || "");
         setDireccion(data.direccion || "");
-        setCp(data.CP || "");
+        setCp(data.CP ? data.CP.toString() : "");
       });
   }, [dispatch, mail]);
 
@@ -73,7 +73,7 @@ const Usuario = () => {
         nombre: nombre,
         apellido: apellido,
         direccion: direccion,
-        cp: parseInt(CP, 10),
+        cp: CP ? parseInt(CP, 10) : null,
       };
 
       await dispatch(putUsuario({ id: usuario.id, updatedUser: updateData })).unwrap();
