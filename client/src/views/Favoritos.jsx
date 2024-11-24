@@ -20,7 +20,9 @@ const Favoritos = () => {
 
     // Favoritos guardados en localStorage
     const favoritosKey = `favoritos_${emailUsuario}`;
-    const favoritos = JSON.parse(localStorage.getItem(favoritosKey)) || [];
+    const [favoritos, setFavoritos] = useState(
+        JSON.parse(localStorage.getItem(favoritosKey)) || []
+    );
 
     const { items: libros, loading, error } = useSelector((state) => state.libros);
 
@@ -38,7 +40,8 @@ const Favoritos = () => {
     const manejarEliminarFavorito = (isbn) => {
         const nuevosFavoritos = favoritos.filter((favoritoIsbn) => favoritoIsbn !== isbn);
         localStorage.setItem(favoritosKey, JSON.stringify(nuevosFavoritos));
-        navigate(0); // Recargar la página para reflejar cambios
+        setFavoritos(nuevosFavoritos); // Actualizar el estado local
+        alert("El libro fue eliminado de tus favoritos");
     };
 
     const manejarHamburguesa = () => {
@@ -73,9 +76,9 @@ const Favoritos = () => {
             {menuVisible && <MenuDesplegable />}
 
             <div className="favoritos-container">
-            <h1 className="favoritosTitulo">
-                Mis Favoritos <img src={Estrella} className="favoritosEstrella" />
-            </h1>
+                <h1 className="favoritosTitulo">
+                    Mis Favoritos <img src={Estrella} className="favoritosEstrella" alt="Favoritos" />
+                </h1>
                 {favoritos.length === 0 ? (
                     <p>No tienes libros en favoritos</p>
                 ) : (
@@ -84,13 +87,13 @@ const Favoritos = () => {
                             <div key={libro.isbn} className="favorito-item">
                                 <img
                                     className="favorito-imagen"
-                                    src={libro.image ? `http://localhost:4002/images?id=${libro.image}` : '\assets\imageError.png'}
+                                    src={libro.image ? `data:image/jpeg;base64,${libro.image}` : '/assets/imageError.png'}
                                     alt={libro.titulo}
                                 />
                                 <div className="favorito-detalles">
                                     <h3>{libro.titulo}</h3>
-                                    <p>Autor: {libro.autor}</p>
-                                    <p>Precio: ${libro.precio}</p>
+                                    <p><strong>Autor:</strong> {libro.autor}</p>
+                                    <p><strong>Precio:</strong> ${libro.precio}</p>
                                     <button
                                         className="favorito-eliminar"
                                         onClick={() => manejarEliminarFavorito(libro.isbn)}
