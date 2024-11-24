@@ -43,7 +43,7 @@
     justify-content: center;
     max-width: 1200px;
     width: 100%;
-    padding-left: 300px; /* Espacio entre los cupones y el costado izquierdo */
+    padding-left: 600px; /* Espacio entre los cupones y el costado izquierdo */
     padding-right: 100px; /* Espacio entre los cupones y el costado derecho */
 }
 
