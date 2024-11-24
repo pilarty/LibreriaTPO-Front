@@ -37,7 +37,7 @@ const App = ()=>{
         <Route path='/Usuario' element={<Usuario/>}/>
         <Route path='/publicarLibro' element={<PublicarLibro/>}/>
         <Route path='/LoginPage' element={<LoginPage/>}/>
-        <Route path='/Cupones' element={<Cupones/>}/>
+        <Route path='/Giftcard' element={<Cupones/>}/>
         <Route path='/AdministrarLibros' element={<AdministrarLibros/>}/>
         <Route path='/EditarLibro/:isbn' element={<EditarLibro />} />
         <Route path='/Busqueda/:text' element={<Busqueda />} />
