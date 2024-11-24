@@ -119,10 +119,10 @@ const VerOrdenes = () => {
         <h1 className="VerOrdenes-titulo">Órdenes de Compra</h1>
         
       </div>
-
+      {/*
       <div className="VerOrdenes-estadisticas">
         <div className="VerOrdenes-contadores">
-          {/*
+          
           <span>Todas ({items.totalElements})</span>
           <span>|</span>
           <span>En Proceso ({items.content.filter((orden) => orden.estado === "En proceso").length})</span>
@@ -130,9 +130,10 @@ const VerOrdenes = () => {
           <span>Completadas ({items.content.filter((orden) => orden.estado === "Completada").length})</span>
           <span>|</span>
           <span>Canceladas ({items.content.filter((orden) => orden.estado === "Cancelada")})</span>
-          */}
+          
           </div>
       </div>
+      */}
 
       <div className="VerOrdenes-herramientas">
         
