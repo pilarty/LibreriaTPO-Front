@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import { getUsuario } from "../Redux/usuariosSlice";
+import { getAllGiftCards } from "../Redux/giftCardSlice";
 import logo from '../assets/logo.png';
 import Usuario from '../assets/Usuario.png';
 import Carrito from '../assets/Carrito.png';
