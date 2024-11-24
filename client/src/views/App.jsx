@@ -39,7 +39,7 @@ const App = ()=>{
         <Route path='/Usuario' element={<Usuario/>}/>
         <Route path='/publicarLibro' element={<PublicarLibro/>}/>
         <Route path='/LoginPage' element={<LoginPage/>}/>
-        <Route path='/Cupones' element={<Cupones/>}/>
+        <Route path='/Giftcard' element={<Cupones/>}/>
         <Route path='/VerOrdenes' element={<VerOrdenes/>}/>
         <Route path='/DetallesOrden/:id' element={<DetallesOrden/>}/>
         <Route path='/AdministrarLibros' element={<AdministrarLibros/>}/>

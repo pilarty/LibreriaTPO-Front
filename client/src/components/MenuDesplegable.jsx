@@ -56,7 +56,7 @@ return (
     <ul className="menu-section">
       <h3>Otro</h3>
       <li>
-        <Link to="/giftcards">GiftCards</Link>
+        <Link to="/Giftcard">GiftCards</Link>
       </li>
       <li>
         <Link to="/favoritos">Favoritos</Link>

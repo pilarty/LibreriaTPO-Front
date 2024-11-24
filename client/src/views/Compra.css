@@ -1,51 +1,12 @@
-#root {
-    width: 100%; 
-    max-width: 100%; 
-    margin: 0 auto; 
-}
-/*
-.logo {
-    position: absolute;
-    left: 1.29%;
-    top: 5.5vh;
-    width: 2.4%;
-    height: auto;
-}
-
-.header-2 {
-    display: flex;         
-    align-items: center;        
-    justify-content: flex-start; 
-    padding: 0.625rem;              
-}
-
-.subtitulo {
-    font-family: "Newsreader", serif;
-    font-weight: 500;
-    font-style: normal;
-    color: #D1A246;
-    position: absolute;
-    top: 0;
-    left: 2.5rem;
-    font-size: 3.125rem;
-}
-
-.img-usuario {
-    width: 4.375rem;
-    height: auto;
-}
-
-.img-hamburguesa {
-    width: 2rem;
-    height: auto;
-}
 
 /* Contenedor general del formulario */
-.compra-container {
+.Compra-container {
     display: flex;
     justify-content: space-between; /* Ajusta el espacio entre el formulario y la lista */
-    align-items: flex-start; /* Alinea los elementos en la parte superior */
+    align-items: center; /* Alinea los elementos en la parte superior */
     padding: 20px;
+    gap: 2rem;
+    
 }
 
 /* Ajuste del formulario */
@@ -54,20 +15,20 @@
     background-color: #fff;
     padding: 1.5rem; /* Reduce el padding */
     border-radius: 8px;
-    box-shadow: none; /* Elimina la sombra (relieve) */
+    box-shadow: none; 
     box-sizing: border-box;
     display: flex;
     flex-direction: column; /* Alinea los elementos verticalmente */
-    gap: 3rem; /* Espacio entre los campos */
-    margin-right: 20px; /* Reducimos el margen entre el formulario y la lista de libros */
+    gap: 1rem; /* Espacio entre los campos */
+    margin-top: 1rem;
 }
 
 .Compra-seccion-formulario h1 {
     font-family: "Newsreader", serif;
     font-size: 1.5rem;
     color: #D1A246;
-    margin-top: 0rem; /* Aumenta el margen superior */
-    margin-bottom: 0rem; /* Aumenta el margen inferior */
+    margin-top: 3rem; /* Aumenta el margen superior */
+    margin-bottom: 1rem; /* Aumenta el margen inferior */
     text-align: left; /* Alineación del título a la izquierda */
 }
 
@@ -85,13 +46,13 @@ label {
 .Compra-seccion-formulario select {
     width: 100%; /* Ajusta el ancho al 100% */
     padding: 0.75rem;
-    background-color: #ffffff; /* Fondo blanco */
-    border: 1px solid #ccc; /* Borde gris claro */
+    background-color: #ffffff; 
+    border: 1px solid #ccc; 
     border-radius: 4px;
     font-size: 1rem;
     font-family: "Newsreader", serif;
     color: #646363; /* Color de texto oscuro */
-    box-sizing: border-box; /* Asegura que el padding no desborde el ancho */
+    box-sizing: border-box; 
 }
 
 .Compra-seccion-formulario input::placeholder,
@@ -110,9 +71,7 @@ label {
 .Compra-seccion-formulario select {
     line-height: normal; /* Ajusta la altura de línea */
     vertical-align: middle; /* Alineación vertical al centro */
-    -webkit-appearance: none; /* Elimina estilos predeterminados en Webkit */
-    -moz-appearance: none; /* Elimina estilos predeterminados en Firefox */
-    appearance: none; /* Elimina estilos predeterminados en todos los navegadores */
+    appearance: none; 
     background-image: none; /* Elimina el ícono de flecha predeterminado */
 }
 
@@ -140,7 +99,8 @@ label {
     width: 38%; /* Le damos más espacio a la lista de libros */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    margin-top: 0;
 }
 
 .Compra-totales {
@@ -156,7 +116,7 @@ label {
 }
 
 .boton-comprar button {
-    padding: 10px 40px;
+    padding: 10px 4px;
     background-color: #0e735f; /* Ajusta este color si es necesario */
     color: white;
     border: none;
@@ -175,7 +135,7 @@ label {
     padding: 0;
     display: grid; /*  Grid para crear dos columnas */
     grid-template-columns: 1fr 1fr; /* Dos columnas */
-    gap: 15px 1px; /* Espaciado entre las filas y columnas */
+    gap: 15px 10px; /* Espaciado entre las filas y columnas */
     width: 100%; 
     margin-bottom: 40px; /* Espacio entre las listas */
 }
@@ -201,8 +161,8 @@ label {
 }
 
 .Compra-list-libros li span:last-child::before {
-    content: "$"; /* Agrega el símbolo de dólar antes del precio */
-    margin-right: 3px; /* Espacio entre el símbolo de dólar y el precio */
+    content: "$"; 
+    margin-right: 3px; 
 }
 
 .popup-compra {
