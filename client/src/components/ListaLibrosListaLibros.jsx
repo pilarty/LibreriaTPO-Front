@@ -1,16 +1,7 @@
 import React from 'react';
 import LibroListaLibros from "./LibroListaLibros";
-import LoadingSpinner from './LoadingSpinner';
 
-const ListaLibrosListaLibros = ({ libros, loading }) => {
-    
-    if (loading) {
-        return <div><LoadingSpinner></LoadingSpinner></div>;
-    }
-
-    if (libros.length === 0) {
-        return <div>No se encontraron libros.</div>;
-    }
+const ListaLibrosListaLibros = ({ libros}) => {
 
     return (
         <>

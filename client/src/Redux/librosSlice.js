@@ -1,10 +1,31 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import axios from "axios"
 
+export const getLibros = createAsyncThunk(
+  "libros/getLibros",
+  async (params = {}) => {
+    const { page = 0, size = 10 } = params;
+
+    let url;
+    if (page || size) {
+      // Si se proporcionan page o size:
+      url = `http://localhost:4002/libros?page=${page}&size=${size}`;
+    } else {
+      // Si no se proporcionan parámetros:
+      url = `http://localhost:4002/libros`;
+    }
+    
+    const { data } = await axios(url);
+    return data;
+  }
+);
+
+{/*
 export const getLibros = createAsyncThunk("libros/getLibros", async()=>{
     const {data} = await axios("http://localhost:4002/libros");
     return data;
 });
+ */}
 
 export const getLibroByIsbn = createAsyncThunk("libros/getLibroByIsbn", async (isbn) => {
   const { data } = await axios.get(`http://localhost:4002/libros/${isbn}`);
@@ -35,13 +56,58 @@ export const deleteLibro = createAsyncThunk("libros/deleteLibro", async (isbn) =
   }
 });
 
+export const getLibrosByGeneroId = createAsyncThunk(
+  "libros/getLibrosByGeneroId",
+  async ({ generoId, page = 0, size = 10 }) => {
+    let url;
+    if (page || size) {
+      // Si se proporcionan page o size:
+      url = `http://localhost:4002/libros/generoId/${generoId}?page=${page}&size=${size}`;
+    } else {
+      // Si no se proporcionan parámetros:
+      url = `http://localhost:4002/libros/generoId/${generoId}`;
+    }
+    
+    const { data } = await axios(url);
+    return data;
+  }
+);
+
+
 const librosSlice = createSlice({
     name: "libros",
     initialState: {
-        items: [],
-        loading: true,
-        error: null,
-        libro: null,
+      items: {
+        content: [],
+        pageable: {
+          pageNumber: 0,
+          pageSize: 10,
+          sort: {
+            empty: true,
+            sorted: false,
+            unsorted: true
+          },
+          offset: 0,
+          paged: true,
+          unpaged: false
+        },
+        last: true,
+        totalElements: 0,
+        totalPages: 0,
+        size: 10,
+        number: 0,
+        sort: {
+          empty: true,
+          sorted: false,
+          unsorted: true
+        },
+        first: true,
+        numberOfElements: 0,
+        empty: false
+      },
+      loading: false,
+      error: null,
+      libro: null,
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -138,7 +204,21 @@ const librosSlice = createSlice({
           .addCase(deleteLibro.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message;
-          });
+          })
+
+          //GET LIBROS BY GENERO ID
+        .addCase(getLibrosByGeneroId.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(getLibrosByGeneroId.fulfilled, (state, action) => {
+          state.loading = false;
+          state.items = action.payload;
+        })
+        .addCase(getLibrosByGeneroId.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.error.message;
+        });
     }
 });
 

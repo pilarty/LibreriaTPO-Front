@@ -56,24 +56,35 @@ const Usuario = () => {
     setIsEditing(true);
   };
 
-  // Editar usuario
   const handleEditProfile = async () => {
+    try {
+      const authResponse = await fetch('http://localhost:4002/api/v1/auth/authenticate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ mail, contraseña }),
+      });
+  
+      if (!authResponse.ok) {
+        throw new Error('La contraseña es incorrecta. No se pueden guardar los cambios.');
+      }
+  
       const updateData = {
         nombre: nombre,
         apellido: apellido,
         direccion: direccion,
         cp: parseInt(CP, 10),
       };
-      console.log(updateData)
-      try {
-        await dispatch(putUsuario({ id: usuario.id, updatedUser: updateData })).unwrap();
-        alert('Perfil actualizado exitosamente');
-        navigate('/');
-      } catch (error) {
-        alert('Hubo un error al actualizar el perfil. Inténtalo nuevamente.');
-        console.error('Error al actualizar el perfil:', error);
-      }
+  
+      await dispatch(putUsuario({ id: usuario.id, updatedUser: updateData })).unwrap();
+      alert('Perfil actualizado exitosamente');
+      navigate('/');
+    } catch (error) {
+      alert(error.message); 
+      console.error('Error al actualizar el perfil:', error);
     }
+  };
     
   // Eliminar Usuario
   const handleDeleteAccount = () => {
