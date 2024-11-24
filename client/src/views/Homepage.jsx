@@ -35,6 +35,9 @@ const Homepage = () => {
     navigate(`/Busqueda/${busqueda}`); 
   }
 
+  const token = sessionStorage.getItem("authToken"); 
+  console.log(token)
+
   
     return (
         <div>

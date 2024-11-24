@@ -147,6 +147,11 @@
   color: 'inherit'
 }
 
+.menu-div{
+  display: flex;
+}
 
-
+.second-column {
+  padding-top: 53px;
+}
 

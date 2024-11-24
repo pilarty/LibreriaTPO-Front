@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 export const getOrdenes = createAsyncThunk(
   "ordenes/getOrdenes",
   async ({ page, size }) => {
-    const { data } = await axios.get(`http://localhost:4002/ordenes?page=${page}&size=${size}`);
+    const { data } = await axiosInstance.get(`http://localhost:4002/ordenes?page=${page}&size=${size}`);
     return data;
   }
 );
@@ -12,7 +13,7 @@ export const getOrdenes = createAsyncThunk(
 export const postOrdenes = createAsyncThunk(
   "ordenes/postOrdenes",
   async (newOrder) => {
-    const { data } = await axios.post("http://localhost:4002/ordenes", newOrder);
+    const { data } = await axiosInstance.post("http://localhost:4002/ordenes", newOrder);
     return data;
   }
 );
@@ -20,7 +21,7 @@ export const postOrdenes = createAsyncThunk(
 export const getOrdenesByMail = createAsyncThunk(
   "ordenes/getOrdenesByMail",
   async (mail) => {
-    const { data } = await axios.get(`http://localhost:4002/ordenes/usuario${mail}`);
+    const { data } = await axiosInstance.get(`http://localhost:4002/ordenes/usuario${mail}`);
     return data;
   }
 );
@@ -28,7 +29,7 @@ export const getOrdenesByMail = createAsyncThunk(
 export const getOrdenesById = createAsyncThunk(
   "ordenes/getOrdenesById",
   async (id) => {
-    const {data} = await axios.get(`http://localhost:4002/ordenes/${id}`);
+    const {data} = await axiosInstance.get(`http://localhost:4002/ordenes/${id}`);
     return data;
   }
 );
@@ -37,7 +38,7 @@ export const updateOrden = createAsyncThunk(
   'ordenes/updateOrden',
   async ({ id, estado }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`http://localhost:4002/ordenes/${id}/estado`, {
+      const response = await axiosInstance.put(`http://localhost:4002/ordenes/${id}/estado`, {
         estado,
       });
       return { estado };

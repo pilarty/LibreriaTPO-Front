@@ -45,14 +45,35 @@ const MenuDesplegable = () => {
 
 return (
   <div className="menu-hamburguesa">
-    <ul className="menu-section">
-      <h3>Géneros</h3>
-      {posts.content.map((post) => (
-        <li key={post.id}>
-          <Link to={`/ListaLibros/${post.id}`}>{post.nombre}</Link>
-        </li>
-      ))}
-    </ul>
+      {posts.content.length <= 5 && (
+        <ul className="menu-section">
+          <h3>Géneros</h3>
+          {posts.content.map((post) => (
+            <li key={post.id}>
+              <Link to={`/ListaLibros/${post.id}`}>{post.nombre}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
+      {posts.content.length > 5 && (
+        <div className="menu-div">
+          <ul className="menu-section">
+            <h3>Géneros</h3>
+            {posts.content.slice(0, Math.ceil(posts.content.length / 2)).map((post) => (
+              <li key={post.id}>
+                <Link to={`/ListaLibros/${post.id}`}>{post.nombre}</Link>
+              </li>
+            ))}
+          </ul>
+          <ul className="menu-section second-column">
+              {posts.content.slice(Math.ceil(posts.content.length / 2)).map((post) => (
+                <li key={post.id}>
+                  <Link to={`/ListaLibros/${post.id}`}>{post.nombre}</Link>
+                </li>
+              ))}
+          </ul>
+        </div>
+        )}
     <ul className="menu-section">
       <h3>Otro</h3>
       <li>
@@ -74,7 +95,7 @@ return (
           <Link to="/publicarLibro">Publicar Libro</Link>
         </li>
         <li>
-          <Link to="/AdministrarLibros">Administrar Libros</Link>
+          <Link to="/administrarLibros">Administrar Libros</Link>
         </li>
         <li>
           <Link to="/verOrdenes">Ver Ordenes</Link>

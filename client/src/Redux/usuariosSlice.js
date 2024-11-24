@@ -1,23 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 export const getAllUsuarios = createAsyncThunk("usuarios/getAllUsuarios", async () => {
-  const { data } = await axios.get(`http://localhost:4002/usuarios`);
+  const { data } = await axiosInstance.get(`http://localhost:4002/usuarios`);
   return data;
 });
 
 export const getUsuario = createAsyncThunk("usuarios/getUsuario", async (mail) => {
-    const { data } = await axios.get(`http://localhost:4002/usuarios/mail/${mail}`);
+    const { data } = await axiosInstance.get(`http://localhost:4002/usuarios/mail/${mail}`);
     return data;
   });
 
 export const putUsuario = createAsyncThunk("usuarios/putUsuario", async ({id, updatedUser}) => {
-  const { data } = await axios.put(`http://localhost:4002/usuarios/${id}`, updatedUser);
+  const { data } = await axiosInstance.put(`http://localhost:4002/usuarios/${id}`, updatedUser);
   return data;
 });
 
 export const deleteUsuario = createAsyncThunk("usuarios/deleteUsuario", async (id) => {
-  await axios.delete(`http://localhost:4002/usuarios/${id}`);
+  await axiosInstance.delete(`http://localhost:4002/usuarios/${id}`);
   return id;
 });
 
