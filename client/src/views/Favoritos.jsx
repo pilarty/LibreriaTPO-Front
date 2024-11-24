@@ -45,6 +45,20 @@ const Favoritos = () => {
         alert("El libro fue eliminado de tus favoritos");
     };
 
+    // Manejar agregar al carrito o redirigir al login
+    const manejarAgregarCarrito = (libro) => {
+        if (!emailUsuario) {
+            alert("Debes iniciar sesión para agregar libros al carrito.");
+            navigate('/login');
+        } else {
+            const carritoKey = `carrito_${emailUsuario}`;
+            const carrito = JSON.parse(localStorage.getItem(carritoKey)) || [];
+            carrito.push(libro);
+            localStorage.setItem(carritoKey, JSON.stringify(carrito));
+            alert(`${libro.titulo} se agregó al carrito.`);
+        }
+    };
+
     const manejarHamburguesa = () => {
         setMenuVisible(!menuVisible);
     };
@@ -95,12 +109,20 @@ const Favoritos = () => {
                                     <h3>{libro.titulo}</h3>
                                     <p><strong>Autor:</strong> {libro.autor}</p>
                                     <p><strong>Precio:</strong> ${libro.precio}</p>
-                                    <button
-                                        className="favorito-eliminar"
-                                        onClick={() => manejarEliminarFavorito(libro.isbn)}
-                                    >
-                                        <img src={Basura} alt="Eliminar" className="favorito-basura-icon" />
-                                    </button>
+                                    <div className="favorito-botones">
+                                        <button
+                                            className="favorito-eliminar"
+                                            onClick={() => manejarEliminarFavorito(libro.isbn)}
+                                        >
+                                            <img src={Basura} alt="Eliminar" className="favorito-basura-icon" />
+                                        </button>
+                                        <button
+                                            className="favorito-agregar-carrito"
+                                            onClick={() => manejarAgregarCarrito(libro)}
+                                        >
+                                            <img src={Carrito} alt="Agregar al Carrito" />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         ))}

@@ -76,27 +76,46 @@
     margin: 8px 0;
 }
 
-.favorito-eliminar {
+.favorito-botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; /* Reduce el espacio entre botones */
+    margin-top: 10px;
+}
+
+.favorito-eliminar,
+.favorito-agregar-carrito {
     width: 32px;
     height: 32px;
-    background-color: #ff4d4d;
-    color: #fff;
+    background-color: #f5f5f5;
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px auto 0;
-    padding: 0;
+    transition: background-color 0.3s;
+}
+
+.favorito-eliminar {
+    background-color: #ff4d4d;
 }
 
 .favorito-eliminar:hover {
     background-color: #e60000;
 }
 
-.favorito-basura-icon {
+.favorito-agregar-carrito {
+    background-color: #3e413e;
+}
+
+.favorito-agregar-carrito:hover {
+    background-color: #3e413e;
+}
+
+.favorito-basura-icon,
+.favorito-carrito-icon {
     width: 16px;
     height: 16px;
     filter: brightness(0) invert(1);
