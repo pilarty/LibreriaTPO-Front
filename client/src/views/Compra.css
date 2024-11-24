@@ -1,6 +1,6 @@
 
 /* Contenedor general del formulario */
-.compra-container {
+.Compra-container {
     display: flex;
     justify-content: space-between; /* Ajusta el espacio entre el formulario y la lista */
     align-items: flex-start; /* Alinea los elementos en la parte superior */
