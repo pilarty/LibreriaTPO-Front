@@ -5,6 +5,7 @@ import Estrella from '../assets/Estrella.png';
 import Usuario from '../assets/Usuario.png';
 import Carrito from '../assets/Carrito.png';
 import Hamburguesa from '../assets/hamburguesa.png';
+import Basura from '../assets/Basura.png';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -98,7 +99,7 @@ const Favoritos = () => {
                                         className="favorito-eliminar"
                                         onClick={() => manejarEliminarFavorito(libro.isbn)}
                                     >
-                                        Eliminar de Favoritos
+                                        <img src={Basura} alt="Eliminar" className="favorito-basura-icon" />
                                     </button>
                                 </div>
                             </div>
