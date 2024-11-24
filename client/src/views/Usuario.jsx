@@ -156,6 +156,7 @@ const Usuario = () => {
               value={contraseña}
               onChange={(e) => setContraseña(e.target.value)}
               placeholder="Contraseña"
+              required
             />
           )}
         </div>
