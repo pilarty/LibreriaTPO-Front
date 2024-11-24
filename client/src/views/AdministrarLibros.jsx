@@ -14,7 +14,8 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import AdministrarLibrosLista from '../components/AdministrarLibrosLista';
 
 const AdministrarLibros = () => {
-
+    const [currentPage, setCurrentPage] = useState(0);
+    const [pageSize] = useState(6); //aca se cambia la cantidad de libros que se muestran
     const navigate = useNavigate();
     const [menuVisible, setMenuVisible] = useState(false);
     
@@ -30,17 +31,29 @@ const AdministrarLibros = () => {
       setMenuVisible(!menuVisible);
     }
     const dispatch = useDispatch()
-    const items = useSelector((state) => state.libros.items.content);
-    const loading = useSelector((state) => state.libros.loading);
-    const error = useSelector((state) => state.libros.error);
+    const { items, loading, error } = useSelector((state) => state.libros);
     console.log(items)
   
     useEffect(()=>{
-      dispatch(getLibros())
-    }, [dispatch])
+      dispatch(getLibros({page: currentPage, size: pageSize}));
+    }, [dispatch, currentPage, pageSize])
   
-    if (loading || items.length === 0) return <LoadingSpinner></LoadingSpinner>;
-    if (error) return <p>Errro al cargar las publicaciones: {error}</p>
+    const handleNextPage = () => {
+        if (!items.last) {
+        setCurrentPage(prev => prev + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (!items.first) {
+        setCurrentPage(prev => prev - 1);
+        }
+    }; 
+
+    if (loading) return <LoadingSpinner />; 
+if (error) return <p>Error al cargar las publicaciones: {error}</p>;
+if (items.length === 0) return <p>No se encontraron libros</p>;
+
 
     return (
         <div>
@@ -65,8 +78,26 @@ const AdministrarLibros = () => {
           )}
           <div className="AdministrarLibros-container">
               <h2 className="AdministrarLibros-subtitle">Administrar libros</h2>
-                  <AdministrarLibrosLista libros={items} />
+                  <AdministrarLibrosLista libros={items.content} />
           </div>
+
+          <div className="AdministrarLibros-paginacion-container">
+                <button 
+                    className="AdministrarLibros-botonPagina"
+                    onClick={handlePrevPage}
+                    disabled={items.first}
+                >
+                    ←
+                </button>
+                <span>{items.number + 1} de {items.totalPages}</span>
+                <button 
+                    className="AdministrarLibros-botonPagina"
+                    onClick={handleNextPage}
+                    disabled={items.last}
+                >
+                    →
+                </button>
+            </div>
         </div>
     );
 };
