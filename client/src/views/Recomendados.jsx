@@ -12,14 +12,16 @@ import MenuDesplegable from "../components/MenuDesplegable";
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const Recomendados = () => {
+    const [currentPage, setCurrentPage] = useState(0);
+    const [pageSize] = useState(6);
     const navigate = useNavigate();
     const [menuVisible, setMenuVisible] = useState(false);
 
     const dispatch = useDispatch();
     
-    useEffect(() => {
-        dispatch(getLibros());
-    }, [dispatch]);
+    useEffect(()=>{
+        dispatch(getLibros({page: currentPage, size: pageSize}));
+    }, [dispatch, currentPage, pageSize])
 
     const {items, loading, error} = useSelector((state => state.libros));
 
@@ -39,6 +41,18 @@ const Recomendados = () => {
     const manejarCarrito = () => {
         navigate("/Carrito");
     };
+
+    const handleNextPage = () => {
+        if (!items.last) {
+        setCurrentPage(prev => prev + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (!items.first) {
+        setCurrentPage(prev => prev - 1);
+        }
+    }; 
 
     return (
         <>
@@ -75,6 +89,24 @@ const Recomendados = () => {
                 </>
             )}
         </div>
+
+        <div className="listaLibros-paginacion-container">
+                <button 
+                    className="listaLibros-botonPagina"
+                    onClick={handlePrevPage}
+                    disabled={items.first}
+                >
+                    ←
+                </button>
+                <span>{items.number + 1} de {items.totalPages}</span>
+                <button 
+                    className="listaLibros-botonPagina"
+                    onClick={handleNextPage}
+                    disabled={items.last}
+                >
+                    →
+                </button>
+            </div>
 
         </>
     );

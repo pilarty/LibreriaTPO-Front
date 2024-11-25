@@ -241,3 +241,44 @@
     font-family: Arial, sans-serif;
     font-size: 1.2rem;
 }
+
+.AdministrarLibros-paginacion-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+.AdministrarLibros-paginacion-container button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.AdministrarLibros-paginacion-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.AdministrarLibros-paginacion-container span {
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.AdministrarLibros-botonPagina {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.25rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.AdministrarLibros-botonPagina:hover {
+    background-color: #f3f4f6;
+}

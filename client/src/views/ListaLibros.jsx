@@ -29,12 +29,11 @@ const ListaLibros = () => {
         }
     }, [generoId, dispatch]);
 
+    const { items, loading, error } = useSelector((state) => state.libros);
+
     useEffect(() => {
         setCurrentPage(0);
-        dispatch(getLibrosByGeneroId({ generoId, page: 0, size: pageSize }));
-    }, [generoId, dispatch, pageSize]);
-
-    const {items, loading, error} = useSelector((state => state.libros));
+    }, [generoId]);
 
     useEffect(() => {
         dispatch(getLibrosByGeneroId({ generoId, page: currentPage, size: pageSize }));
