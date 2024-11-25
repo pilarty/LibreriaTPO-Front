@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { createMail } from "../Redux/mailSlice";
+import {registerUser} from "../Redux/registerSlice";
 import './Registrarse.css';
 import logo from '../assets/logo.png';
 
 const Registrarse = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     id: '',
     nombre: '',
@@ -14,6 +18,10 @@ const Registrarse = () => {
     role:'USUARIO'
   });
   const [error, setError] = useState('');
+
+  const [registroIniciado, setRegistroIniciado] = useState(false);
+  const [codigo, setCodigo] = useState("");
+  const [codigoGenerado, setCodigoGenerado] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,27 +45,58 @@ const Registrarse = () => {
       return;
     }
   
-    try {
-      const response = await fetch('http://localhost:4002/api/v1/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
-        sessionStorage.setItem('authToken', data.access_token);
-        sessionStorage.setItem('mail', formData.mail); // Guardando el correo
+    handleRegistrarse();
 
+  };
+
+  const handleRegistrarse = () => {
+    enviarCodigoVerificacion();
+    setRegistroIniciado(true);
+  };
+
+  const enviarCodigoVerificacion = () => {
+    const codigo = generarCodigo(); 
+    setCodigoGenerado(codigo);
+
+    // Usa dispatch para enviar el correo
+    dispatch(
+      createMail({
+        mail: formData.mail,
+        subject: 'Código de verificación',
+        htmlBody: `<p>Tu código de verificación es: <strong>${codigo}</strong></p>`,
+      })
+    );
+  };
+
+  const generarCodigo = () => {
+    return Math.floor(1000 + Math.random() * 9000).toString(); // Genera un código de 4 dígitos
+  };
+
+  const handleVerificarCodigo = async () => {
+    if (codigo === codigoGenerado) {
+      try {
+        const resultAction = await dispatch(registerUser(formData));
   
-        // Redirigir al HomePage
-        navigate('/');
-      } else {
-        setError('Error al registrar el usuario. Verifica los datos.');
+        if (registerUser.fulfilled.match(resultAction)) {
+          sessionStorage.setItem('authToken', resultAction.payload.access_token);
+          sessionStorage.setItem('mail', formData.mail); 
+          navigate('/');
+        } else {
+          setError('Error al registrar el usuario. Verifica los datos.');
+        }
+      } catch (err) {
+        setError('Error al conectarse con el servidor.');
       }
-    } catch (err) {
-      setError('Error al conectarse con el servidor.');
+      alert('Código verificado con éxito');
+      setRegistroIniciado(false);
+      navigate('/'); 
+    } else {
+      alert('Código incorrecto');
     }
+  };
+
+  const handleCancelar = () => {
+    setRegistroIniciado(false); // Cierra el popup
   };
 
   return (
@@ -108,6 +147,24 @@ const Registrarse = () => {
         <p className="registrarse-login-link">
           ¿Ya tienes una cuenta? <Link to="/LoginPage">Iniciar Sesión</Link>
         </p>
+
+        {registroIniciado && (
+          <div className="popup-registro">
+            <div className="registro-popup-contenido">
+              <h2>Verificación de Registro</h2>
+              <p>Se ha enviado un código de verificación a tu correo. Por favor, ingrésalo a continuación:</p>
+              <input
+                type="text"
+                placeholder="Código de verificación"
+                value={codigo}
+                onChange={(e) => setCodigo(e.target.value)}
+              />
+              <button onClick={handleVerificarCodigo}>Verificar Código</button>
+              <button onClick={handleCancelar}>Cancelar</button>
+            </div>
+          </div>
+        )}
+
       </div>
     </body>
   );
