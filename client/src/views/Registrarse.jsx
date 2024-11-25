@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createMail } from "../Redux/mailSlice";
+import {registerUser} from "../Redux/registerSlice";
 import './Registrarse.css';
 import './Registrarse.css';
 import logo from '../assets/logo.png';
@@ -45,25 +46,8 @@ const Registrarse = () => {
       return;
     }
   
-    try {
-      const response = await fetch('http://localhost:4002/api/v1/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
-        sessionStorage.setItem('authToken', data.access_token);
-        sessionStorage.setItem('mail', formData.mail); // Guardando el correo
+    handleRegistrarse();
 
-        handleRegistrarse();
-      } else {
-        setError('Error al registrar el usuario. Verifica los datos.');
-      }
-    } catch (err) {
-      setError('Error al conectarse con el servidor.');
-    }
   };
 
   const handleRegistrarse = () => {
@@ -89,8 +73,21 @@ const Registrarse = () => {
     return Math.floor(1000 + Math.random() * 9000).toString(); // Genera un código de 4 dígitos
   };
 
-  const handleVerificarCodigo = () => {
+  const handleVerificarCodigo = async () => {
     if (codigo === codigoGenerado) {
+      try {
+        const resultAction = await dispatch(registerUser(formData));
+  
+        if (registerUser.fulfilled.match(resultAction)) {
+          sessionStorage.setItem('authToken', resultAction.payload.access_token);
+          sessionStorage.setItem('mail', formData.mail); 
+          navigate('/');
+        } else {
+          setError('Error al registrar el usuario. Verifica los datos.');
+        }
+      } catch (err) {
+        setError('Error al conectarse con el servidor.');
+      }
       alert('Código verificado con éxito');
       setRegistroIniciado(false);
       navigate('/'); 
