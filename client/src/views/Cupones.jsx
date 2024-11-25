@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from "react-redux"
 import { getUsuario } from "../Redux/usuariosSlice";
 import { getAllGiftCards } from "../Redux/giftCardSlice";
+import { postGiftCard } from "../Redux/giftCardSlice";
 import logo from '../assets/logo.png';
 import Usuario from '../assets/Usuario.png';
 import Carrito from '../assets/Carrito.png';
@@ -11,11 +12,16 @@ import MenuDesplegable from "../components/MenuDesplegable";
 import "./App.css";
 import React from "react";
 import "./Cupones.css";
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const Cupones = () => {
     const navigate = useNavigate();
     const emailUsuario = sessionStorage.getItem('mail');
     const dispatch = useDispatch();
+
+    const {items: items, loading, error, giftCard} = useSelector((state)=> state.giftcard)
+    console.log(items)
+    
     
 
     const [menuVisible, setMenuVisible] = useState(false);
@@ -23,8 +29,9 @@ const Cupones = () => {
     const [mostrarModal, setMostrarModal] = useState(false); 
     const [nuevoCupon, setNuevoCupon] = useState({
         descuento: '',
-        compraMinima: '',
-        topeCompra: ''
+        titulo: '',
+        descripcion: '',
+        codigo: ''
     });
 
     const manejarUsuario = () => {
@@ -52,11 +59,19 @@ const Cupones = () => {
       setNuevoCupon({ ...nuevoCupon, [name]: value });
     };
 
+    const aplicarGift = ( codigo ) => {
+        sessionStorage.setItem('codigo', codigo);
+        console.log(sessionStorage.getItem('codigo'));
+    };
+
+
+
+
     useEffect (() => {
         if (!emailUsuario){
             navigate("/LoginPage");
         } else {
-            dispatch(getAllGiftCards(emailUsuario));
+            dispatch(getAllGiftCards( ));
         }
         }, [emailUsuario, navigate, dispatch]);
     
@@ -74,12 +89,16 @@ const Cupones = () => {
       }, [dispatch, emailUsuario]);
 
     const agregarCupon = () => {
+        dispatch(postGiftCard(nuevoCupon))
       console.log("Cupon agregado:", nuevoCupon);
       
       cerrarModal();
     };
 
-    return ( 
+    if (loading || items.length === 0) return <LoadingSpinner></LoadingSpinner>;
+    if (error) return <p>Errro al acrgar las publicaciones: {error}</p>
+
+    return (
         <div>
             <div className="header-2">
                 <a href="/" className="boton-inicio">
@@ -96,69 +115,86 @@ const Cupones = () => {
                     <img className="img-carrito" src={Carrito} alt="Carrito" />
                 </button>
             </div>
-
+    
             {menuVisible && <MenuDesplegable />}
+    
+            {/* Título y botón para agregar cupones */}
+            <div className="cupones-header">
+                <h2>Cupones de Libros</h2>
+                {esAdmin && (
+                    <button className="boton-agregar-cupon" onClick={abrirModal}>
+                        Agregar Nuevo Cupón
+                    </button>
+                )}
+            </div>
+    
 
             <div className="cupones-container">
-            <div className="cupones-header">
-        <h2>Cupones de Libros</h2>
-        {esAdmin && (
-            <button className="boton-agregar-cupon" onClick={abrirModal}>
-                Agregar Nuevo Cupón
-            </button>
-        )}
-    </div>
-                <div className="cupon">
-        <div className="cupon-content">
-            <div className="cupon-icono">📚</div>
-            <div className="cupon-info">
-                <h3>5% OFF en Libros de Ciencia</h3>
-                <p>En productos seleccionados</p>
-                <p>Compra mínima: $3000</p>
-                <p>Tope: $5000</p>
+                {items.length > 0 ? (
+                    <div className="cupones-grid">
+                        {items.map((GiftCard) => (
+                            <div className="cupon" key={GiftCard.codigo}> {/* Asegúrate de tener una clave única */}
+                                <div className="cupon-content">
+                                    <div className="cupon-icono">📚</div>
+                                    <div className="cupon-info">
+                                        <h3>{GiftCard.titulo}</h3>
+                                        <p>{GiftCard.descripcion}</p>
+                                        <p>{GiftCard.codigo}</p>
+                                    </div>
+                                    <button onClick={aplicarGift(GiftCard.codigo)} className="Cupon-boton-aplicar">Aplicar</button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <p>No hay cupones disponibles.</p>
+                )}
             </div>
-            <button className="Cupon-boton-aplicar">Aplicar</button>
-            <div className="cupon-bottom-space"></div>
+    
+            {/* Modal */}
+            {mostrarModal && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h2>Agregar Nuevo Cupón</h2>
+                        <label>Descuento:</label>
+                        <input
+                            type="text"
+                            name="descuento"
+                            value={nuevoCupon.descuento}
+                            onChange={manejarCambio}
+                        />
+                        <label>Titulo del cupon:</label>
+                        <input
+                            type="text"
+                            name="titulo"
+                            value={nuevoCupon.titulo}
+                            onChange={manejarCambio}
+                        />
+                        <label>Descripcion del cupon:</label>
+                        <input
+                            type="text"
+                            name="descripcion"
+                            value={nuevoCupon.descripcion}
+                            onChange={manejarCambio}
+                        />
+                        <label>Codigo de Cupon:</label>
+                        <input
+                            type="text"
+                            name="codigo"
+                            value={nuevoCupon.codigo}
+                            onChange={manejarCambio}
+                        />
+                        <div className="botones">
+                            <button onClick={agregarCupon}>Guardar</button>
+                            <button onClick={cerrarModal}>Cerrar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            {mostrarModal && (
-    <div className="modal">
-        <div className="modal-content">
-            <h2>Agregar Nuevo Cupón</h2>
-            <label>Descuento:</label>
-            <input
-                type="text"
-                name="descuento"
-                value={nuevoCupon.descuento}
-                onChange={manejarCambio}
-            />
-            <label>Compra Mínima:</label>
-            <input
-                type="text"
-                name="compraMinima"
-                value={nuevoCupon.compraMinima}
-                onChange={manejarCambio}
-            />
-            <label>Tope de Compra:</label>
-            <input
-                type="text"
-                name="topeCompra"
-                value={nuevoCupon.topeCompra}
-                onChange={manejarCambio}
-            />
-            {/* Contenedor para los botones */}
-            <div className="botones">
-                <button onClick={agregarCupon}>Guardar</button>
-                <button onClick={cerrarModal}>Cerrar</button>
-            </div>
-        </div>
-    </div>
-)}
-
+            )}
         </div>
     );
+    
+    
 };
 
 export default Cupones;

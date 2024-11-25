@@ -1,6 +1,11 @@
 .cupones-container {
-    padding: 20px;
+    padding: 0 20px;
     background-color: #f9f9f9;
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en filas */
+    justify-content: space-between; /* Espacia uniformemente los elementos */
+    gap: 20px; 
+    margin-top: 20px;
 }
 
 .cupones-header {
@@ -8,6 +13,7 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+    padding: 0 20px;
 }
 
 .cupones-header h2 {
@@ -17,7 +23,6 @@
 }
 
 .boton-agregar-cupon {
-    margin: 0px;
     padding: 8px 12px;
     font-size: 0.9rem;
     color: #fff;
@@ -28,24 +33,40 @@
     transition: background-color 0.3s;
 }
 
+.cupones-container {
+    padding: 0 20px;
+}
+.cupones-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    padding-left: 600px; /* Espacio entre los cupones y el costado izquierdo */
+    padding-right: 100px; /* Espacio entre los cupones y el costado derecho */
+}
+
 .boton-agregar-cupon:hover {
     background-color: #057a5b;
 }
 
 .cupon {
-    width: 25%; 
-    margin: 20px auto;
+    width: calc(20% - 20px); /* Para tres cupones por fila */
+    margin-bottom: 8px;
     padding: 16px;
-    background-color: #f9f9f9; /* Fondo claro */
-    border: 2px solid #e0e0e0; /* Borde del cupón */
-    border-radius: 0; 
-    clip-path: none; /* Elimina cualquier recorte personalizado */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    background-color: #f9f9f9;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
 }
 
 
 .cupon-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
@@ -54,10 +75,12 @@
     font-size: 2rem;
     color: #666;
     margin-right: 15px;
+    margin-bottom: 10px;
 }
 
 .cupon-info {
     flex-grow: 1;
+    margin-bottom: 10px;
 }
 
 .cupon h3 {
@@ -122,16 +145,13 @@
 }
 
 .modal-content {
-    background-color: #fff;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px;
     padding: 30px;
     border-radius: 10px;
-    width: 500px;
-    max-width: 90%; 
-    margin-right: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .modal-content .botones {

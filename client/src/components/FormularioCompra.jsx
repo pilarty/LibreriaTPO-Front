@@ -27,6 +27,8 @@ const FormularioCompra = () => {
   const [compraRealizada, setCompraRealizada] = useState(false);
   const [errorFormulario, setErrorFormulario] = useState(""); // Estado para mensajes de error
 
+
+
   // Actualizar campos del formulario
   const handleChange = (e) => {
     setFormulario({
@@ -35,7 +37,7 @@ const FormularioCompra = () => {
     });
   };
 
-  const gift = useSelector((state)=> state.giftcard.giftCard);
+  
   // Obtener GiftCard y manejar errores
   const obtenerGift = async () => {
     if (!formulario.giftCard) {
@@ -73,6 +75,16 @@ const FormularioCompra = () => {
   const emailUsuario = sessionStorage.getItem('mail');
   const {items: items, loading, error, usuario} = useSelector((state)=> state.usuarios)
   console.log(usuario)
+
+  useEffect(() => {
+    const codigoGuardado = sessionStorage.getItem('codigo');
+    if (codigoGuardado) {
+      setFormulario((prevFormulario) => ({
+        ...prevFormulario, // Copia el estado anterior
+        giftCard: codigoGuardado, // Asigna el valor de giftCard
+      }));
+    }
+  }, []);
 
   useEffect(()=>{
     dispatch(getUsuario(emailUsuario))
