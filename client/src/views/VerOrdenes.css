@@ -110,6 +110,20 @@
     font-size: 2rem;
 }
 
+.VerOrdenes-encabezadoTabla .VerOrdenes-columna:not(:first-child) {
+    padding-left: 1rem; 
+}
+
+.VerOrdenes-encabezadoTabla .VerOrdenes-columna:not(:first-child) {
+    position: relative;
+    left: 6.5rem; 
+}
+
+.VerOrdenes-encabezadoTabla .VerOrdenes-columna:nth-child(3) {
+    position: relative;
+    left: 12.75rem; 
+}
+
 .VerOrdenes-fila {
     border-bottom: 1px solid #e5e7eb;
     font-size: 1.75rem;
@@ -121,6 +135,7 @@
 
 .VerOrdenes-celda {
     padding: 0.8rem;
+    
 }
 
 .VerOrdenes-idCliente {

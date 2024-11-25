@@ -214,7 +214,7 @@ const VerOrdenes = () => {
             <th className="VerOrdenes-columna">Orden</th>
             <th className="VerOrdenes-columna">Fecha</th>
             {/*<th className="VerOrdenes-columna">Estado</th>*/}
-            <th className="VerOrdenes-columna">Dirección de Envío</th>
+            <th className="VerOrdenes-columna">Dirección</th>
             <th className="VerOrdenes-columna">Total</th>
           </tr>
         </thead>
