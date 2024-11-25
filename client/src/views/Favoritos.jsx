@@ -16,7 +16,6 @@ const Favoritos = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [menuVisible, setMenuVisible] = useState(false);
-
     const emailUsuario = sessionStorage.getItem('mail');
 
     // Favoritos guardados en localStorage
@@ -28,8 +27,12 @@ const Favoritos = () => {
     const { items: libros, loading, error } = useSelector((state) => state.libros);
 
     useEffect(() => {
-        dispatch(getLibros()); // Cargar todos los libros desde el backend
-    }, [dispatch]);
+        if (!emailUsuario) {
+            navigate('/LoginPage'); 
+        } else {
+            dispatch(getLibros()); // Cargar todos los libros desde el backend
+        }
+    }, [emailUsuario, navigate, dispatch]);
 
     if (loading || !libros.content) return <LoadingSpinner />;
     if (error) return <p>Error al cargar los libros: {error}</p>;
