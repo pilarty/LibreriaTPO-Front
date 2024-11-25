@@ -23,7 +23,7 @@ export const deleteUsuario = createAsyncThunk("usuarios/deleteUsuario", async (i
 });
 
 export const getUsuarioById = createAsyncThunk("usuarios/getUsuarioById", async (id) => {
-  const { data } = await axios.get(`http://localhost:4002/usuarios/${id}`);
+  const { data } = await axiosInstance.get(`http://localhost:4002/usuarios/${id}`);
     return data;
   });
 
