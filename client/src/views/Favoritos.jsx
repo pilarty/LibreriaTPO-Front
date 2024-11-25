@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoadingSpinner from '../components/LoadingSpinner';
 import MenuDesplegable from "../components/MenuDesplegable";
 import { getLibros } from '../Redux/librosSlice';
+import { createProductoCarrito } from '../Redux/productoCarritoSlice';
 
 const Favoritos = () => {
     const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const Favoritos = () => {
         alert("El libro fue eliminado de tus favoritos");
     };
 
-    // Manejar agregar al carrito o redirigir al login
+    /* Manejar agregar al carrito o redirigir al login
     const manejarAgregarCarrito = (libro) => {
         if (!emailUsuario) {
             alert("Debes iniciar sesión para agregar libros al carrito.");
@@ -59,6 +60,30 @@ const Favoritos = () => {
             carrito.push(libro);
             localStorage.setItem(carritoKey, JSON.stringify(carrito));
             alert(`${libro.titulo} se agregó al carrito.`);
+        }
+    };*/
+    const manejarAgregarACarrito = (isbn, cantidad) => {
+        if (!emailUsuario) {
+            navigate('/LoginPage');
+        } else {
+            const requestBody = {
+                cantidad: cantidad,
+                isbn: isbn,
+                carrito_mail: emailUsuario
+            };
+
+            dispatch(createProductoCarrito(requestBody))
+                .then((response) => {
+                    if (response.error) {
+                        throw new Error("No se pudo agregar el producto al carrito");
+                    }
+                    console.log("Producto agregado al carrito:", response.payload);
+                    alert("Producto agregado al carrito");
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("No se pudo agregar el producto al carrito. Intente de nuevo.");
+                });
         }
     };
 
@@ -107,11 +132,12 @@ const Favoritos = () => {
                     <div className="favoritos-lista">
                         {librosFavoritos.map((libro) => (
                             <div key={libro.isbn} className="favorito-item">
-                                <button className="favoritos-boton-libros" onClick={() => manejarLibros(libro.isbn)}>
+                                
                                 <img
                                     className="favorito-imagen"
                                     src={libro.image ? `data:image/jpeg;base64,${libro.image}` : '/assets/imageError.png'}
                                     alt={libro.titulo}
+                                    onClick={() => manejarLibros(libro.isbn)}
                                 />
                                 <div className="favorito-detalles">
                                     <h3>{libro.titulo}</h3>
@@ -126,13 +152,13 @@ const Favoritos = () => {
                                         </button>
                                         <button
                                             className="favorito-agregar-carrito"
-                                            onClick={() => manejarAgregarCarrito(libro)}
+                                            onClick={() => manejarAgregarACarrito(libro.isbn, 1)}
                                         >
                                             <img src={Carrito} alt="Agregar al Carrito" />
                                         </button>
                                     </div>
                                 </div>
-                             </button>
+                             
                             </div>
                         ))}
                     </div>
