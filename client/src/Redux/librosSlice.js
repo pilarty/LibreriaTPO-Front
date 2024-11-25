@@ -5,7 +5,7 @@ import axios from "axios"
 export const getLibros = createAsyncThunk(
   "libros/getLibros",
   async (params = {}) => {
-    const { page = 0, size = 10 } = params;
+    const { page = 0, size} = params;
 
     let url;
     if (page || size) {
@@ -82,7 +82,7 @@ const librosSlice = createSlice({
         content: [],
         pageable: {
           pageNumber: 0,
-          pageSize: 10,
+          pageSize: null,
           sort: {
             empty: true,
             sorted: false,
@@ -95,7 +95,7 @@ const librosSlice = createSlice({
         last: true,
         totalElements: 0,
         totalPages: 0,
-        size: 10,
+        size: null,
         number: 0,
         sort: {
           empty: true,
