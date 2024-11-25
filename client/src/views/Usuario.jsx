@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Usuario.css';
-import logo from '../assets/logo.png';
 import userIMG from '../assets/userIMG.png';
 import {useDispatch, useSelector} from "react-redux"
 import { putUsuario, getUsuario, deleteUsuario } from "../Redux/usuariosSlice";
 import LoadingSpinner from '../components/LoadingSpinner';
+import MenuDesplegable from "../components/MenuDesplegable";
+import logo from '../assets/logo.png'
+import Carrito from '../assets/Carrito.png'
+import Hamburguesa from '../assets/hamburguesa.png'
 
 const Usuario = () => {
   const navigate = useNavigate();
@@ -25,6 +28,7 @@ const Usuario = () => {
   const [contraseña, setContraseña] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch();
+
 
   const mail = sessionStorage.getItem('mail');
 
@@ -102,10 +106,12 @@ const Usuario = () => {
 
   return (
     <div>
-      <header className="usuario-header">
-        <img src={logo} alt="Logo de The Golden Feather" className="usuario-logo-small" />
-        <span className="usuario-logo-text">The Golden Feather</span>
-      </header>
+        <div className="header-2">
+            <a href="/" className="boton-inicio">
+              <img className="logo" src={logo} alt="Logo" />
+              <span className="subtitulo">The Golden Feather</span>
+            </a>
+          </div>
 
       <div className="usuario-profile">
         <img src={userIMG} alt="Foto de perfil" className="usuario-logo" />
