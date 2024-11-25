@@ -100,15 +100,15 @@ const Registrarse = () => {
   };
 
   return (
-    <body className='registrarse-fondo'>  
-    <div class="registrse-conteiner">
+    <div className="registrarse-fondo">
+      <div className="registrarse-conteiner">
         <img src={logo} alt="Logo de The Golden Feather" className="registrarse-logo" />
-        <div className='registrarse-h1'> Bienvenido a The Golden Feather</div>
+        <div className="registrarse-h1">Bienvenido a The Golden Feather</div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form className='registrarse-form' onSubmit={handleSubmit}>
+        <form className="registrarse-form" onSubmit={handleSubmit}>
           <input
             type="text"
-            className='registrarse-input'
+            className="registrarse-input"
             name="nombre"
             value={formData.nombre}
             onChange={handleChange}
@@ -117,7 +117,7 @@ const Registrarse = () => {
           />
           <input
             type="text"
-            className='registrarse-input'
+            className="registrarse-input"
             name="apellido"
             value={formData.apellido}
             onChange={handleChange}
@@ -126,7 +126,7 @@ const Registrarse = () => {
           />
           <input
             type="email"
-            className='registrarse-input'
+            className="registrarse-input"
             name="mail"
             value={formData.mail}
             onChange={handleChange}
@@ -135,19 +135,19 @@ const Registrarse = () => {
           />
           <input
             type="password"
-            className='registrarse-input'
+            className="registrarse-input"
             name="contraseña"
             value={formData.contraseña}
             onChange={handleChange}
             placeholder="Contraseña"
             required
           />
-          <button className='registrarse-button' type="submit">Registrarse</button>
+          <button className="registrarse-button" type="submit">Registrarse</button>
         </form>
         <p className="registrarse-login-link">
           ¿Ya tienes una cuenta? <Link to="/LoginPage">Iniciar Sesión</Link>
         </p>
-
+  
         {registroIniciado && (
           <div className="popup-registro">
             <div className="registro-popup-contenido">
@@ -164,10 +164,10 @@ const Registrarse = () => {
             </div>
           </div>
         )}
-
       </div>
-    </body>
+    </div>
   );
+  
 };
 
 export default Registrarse;
