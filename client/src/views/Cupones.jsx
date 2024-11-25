@@ -59,6 +59,13 @@ const Cupones = () => {
       setNuevoCupon({ ...nuevoCupon, [name]: value });
     };
 
+    const aplicarGift = ( codigo ) => {
+        sessionStorage.setItem('codigo', codigo);
+        console.log(sessionStorage.getItem('codigo'));
+    };
+
+
+
 
     useEffect (() => {
         if (!emailUsuario){
@@ -121,7 +128,7 @@ const Cupones = () => {
                 )}
             </div>
     
-            {/* Contenedor de cupones - flex para que se alineen en filas */}
+
             <div className="cupones-container">
                 {items.length > 0 ? (
                     <div className="cupones-grid">
@@ -134,7 +141,7 @@ const Cupones = () => {
                                         <p>{GiftCard.descripcion}</p>
                                         <p>{GiftCard.codigo}</p>
                                     </div>
-                                    <button className="Cupon-boton-aplicar">Aplicar</button>
+                                    <button onClick={aplicarGift(GiftCard.codigo)} className="Cupon-boton-aplicar">Aplicar</button>
                                 </div>
                             </div>
                         ))}
