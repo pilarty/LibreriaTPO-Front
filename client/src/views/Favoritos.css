@@ -1,0 +1,122 @@
+.favoritos-container {
+    font-family: "Newsreader", serif;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.favoritos-container h1 {
+    text-align: center;
+    color: #D1A246;
+    margin-bottom: 30px;
+}
+
+.favoritosTitulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.favoritosEstrella {
+    width: 45px;
+    height: 45px;
+}
+
+.favoritos-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.favorito-item {
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.favorito-item:hover {
+    transform: scale(1.02);
+}
+
+.favorito-imagen {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.favorito-detalles {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.favorito-detalles h3 {
+    font-size: 1.3em;
+    margin: 10px 0;
+    color: #444;
+}
+
+.favorito-detalles p {
+    font-size: 1em;
+    color: #666;
+    margin: 8px 0;
+}
+
+.favorito-botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; /* Reduce el espacio entre botones */
+    margin-top: 10px;
+}
+
+.favorito-eliminar,
+.favorito-agregar-carrito {
+    width: 32px;
+    height: 32px;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.favorito-eliminar {
+    background-color: #ff4d4d;
+}
+
+.favorito-eliminar:hover {
+    background-color: #e60000;
+}
+
+.favorito-agregar-carrito {
+    background-color: #3e413e;
+}
+
+.favorito-agregar-carrito:hover {
+    background-color: #3e413e;
+}
+
+.favorito-basura-icon,
+.favorito-carrito-icon {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
+}
