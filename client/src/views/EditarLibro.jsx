@@ -32,7 +32,6 @@ const EditarLibro = () => {
         
       const dispatch = useDispatch()
       const {items, loading, error, libro} = useSelector((state)=> state.libros)
-      console.log(libro)
 
       useEffect(()=>{
         dispatch(getLibroByIsbn(isbn))
