@@ -16,7 +16,6 @@ const Favoritos = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [menuVisible, setMenuVisible] = useState(false);
-
     const emailUsuario = sessionStorage.getItem('mail');
 
     // Favoritos guardados en localStorage
@@ -28,8 +27,12 @@ const Favoritos = () => {
     const { items: libros, loading, error } = useSelector((state) => state.libros);
 
     useEffect(() => {
-        dispatch(getLibros()); // Cargar todos los libros desde el backend
-    }, [dispatch]);
+        if (!emailUsuario) {
+            navigate('/LoginPage'); 
+        } else {
+            dispatch(getLibros()); // Cargar todos los libros desde el backend
+        }
+    }, [emailUsuario, navigate, dispatch]);
 
     if (loading || !libros.content) return <LoadingSpinner />;
     if (error) return <p>Error al cargar los libros: {error}</p>;
@@ -71,6 +74,10 @@ const Favoritos = () => {
         navigate('/Carrito');
     };
 
+    const manejarLibros = (isbn) => {
+        navigate(`/Libro/${isbn}`);
+    };
+
     return (
         <div>
             <div className="header-2">
@@ -100,6 +107,7 @@ const Favoritos = () => {
                     <div className="favoritos-lista">
                         {librosFavoritos.map((libro) => (
                             <div key={libro.isbn} className="favorito-item">
+                                <button className="favoritos-boton-libros" onClick={() => manejarLibros(libro.isbn)}>
                                 <img
                                     className="favorito-imagen"
                                     src={libro.image ? `data:image/jpeg;base64,${libro.image}` : '/assets/imageError.png'}
@@ -124,6 +132,7 @@ const Favoritos = () => {
                                         </button>
                                     </div>
                                 </div>
+                             </button>
                             </div>
                         ))}
                     </div>

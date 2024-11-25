@@ -21,7 +21,6 @@ const CardLibroListNovedades = () => {
 
   const dispatch = useDispatch()
   const {items: posts, loading, error, libro} = useSelector((state)=> state.libros)
-  console.log(posts)
 
   useEffect(()=>{
     dispatch(getLibros())

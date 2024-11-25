@@ -36,7 +36,6 @@ const Homepage = () => {
   }
 
   const token = sessionStorage.getItem("authToken"); 
-  console.log(token)
 
   
     return (

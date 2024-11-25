@@ -1,17 +1,8 @@
 import React from 'react';
 import AdministrarLibrosLibros from "./AdministrarLibrosLibros";
-import LoadingSpinner from './LoadingSpinner';
 
-const AdministrarLibrosLista = ({ libros, loading }) => {
+const AdministrarLibrosLista = ({ libros }) => {
     
-    if (loading) {
-        return <div><LoadingSpinner></LoadingSpinner></div>;
-    }
-
-    if (libros.length === 0) {
-        return <div>No se encontraron libros.</div>;
-    }
-
     return (
         <>
         <div className='AdministrarLibros-LibrosContainer'>
