@@ -27,7 +27,6 @@ const MenuDesplegableGeneros = ({ onGeneroSeleccionado }) => {
 
     const dispatch = useDispatch();
     const { items: posts, loading, error } = useSelector((state) => state.generos);
-    console.log(posts)
     
     useEffect(() => {
       dispatch(getAllGeneros());

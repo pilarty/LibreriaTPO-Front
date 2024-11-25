@@ -16,13 +16,12 @@ const MenuDesplegable = () => {
   const dispatch = useDispatch();
   const { items: users, loadingUsers, errorUsers, usuario} = useSelector((state) => state.usuarios);
   const { items: posts, loading, error, genero } = useSelector((state) => state.generos);
-  console.log(posts)
+
 
   useEffect(() => {
     dispatch(getUsuario(emailUsuario))
       .unwrap()
       .then((data) => {
-        console.log(data);
         setEsAdmin(data.role === "ADMIN");
       })
       .catch((error) => {

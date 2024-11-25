@@ -83,13 +83,13 @@ const LibroSolo = () => {
         const yaEsFavorito = favoritosGuardados.includes(isbn);
     
         if (yaEsFavorito) {
-            mostrarMensaje("Este libro ya está en favoritos");
+            alert("Este libro ya está en favoritos");
         } else {
             favoritosGuardados.push(isbn);
             localStorage.setItem(favoritosKey, JSON.stringify(favoritosGuardados));
             console.log(`Libro agregado a favoritos: ${isbn}`); // Log para verificar que se agregó
             console.log(`Favoritos actuales: ${JSON.parse(localStorage.getItem(favoritosKey))}`); // Ver lista actual de favoritos
-            mostrarMensaje("Libro agregado a favoritos");
+            alert("Libro agregado a favoritos");
         }
     };
 

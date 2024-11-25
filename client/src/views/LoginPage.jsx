@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import logo from '../assets/logo.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { authenticateUser } from '../Redux/authSlice';
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [mail, setMail] = useState('');
   const [contraseña, setContraseña] = useState('');
   const [error, setError] = useState('');
+  const dispatch = useDispatch();
+  const {token, loading, error2} = useSelector((state => state.auth));
 
   const validateMail = (mail) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -24,31 +28,24 @@ const LoginPage = () => {
     }
 
     try {
-      // Solicitud POST para autenticar al usuario
-      const response = await fetch('http://localhost:4002/api/v1/auth/authenticate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'access_token'
-        },
-        body: JSON.stringify({ mail, contraseña }), // Enviar el mail y la contraseña al backend
-      });
-
-      if (!response.ok) {
-        // Si el backend responde con un error (ej. credenciales incorrectas)
-        throw new Error('Error al iniciar sesión.');
+      const credencial = {
+        mail: mail,
+        contraseña: contraseña
       }
+      const response = await dispatch(authenticateUser(credencial))
 
-      const data = await response.json();
-      sessionStorage.setItem('authToken', data.access_token);
-      sessionStorage.setItem('mail', mail); // Guardando el correo
-      
-      // asumiendo que el backend devuelve un token o mensaje de éxito
-      console.log('Inicio de sesión exitoso', data);
-
-      // redirige al usuario a la página principal
-      navigate('/');
-    } catch (error) {
+      if (!response.payload || response.error) {
+        setError('Error al iniciar sesión.');
+        return;
+      }
+      if (token && mail) {
+        sessionStorage.setItem('authToken', token);
+        sessionStorage.setItem('mail', mail);
+        navigate('/');
+      } else {
+        setError('Error al guardar los datos de autenticación.');
+      }
+    } catch (error){
       console.error('Error en el inicio de sesión:', error);
       setError('Error al iniciar sesión. Intenta nuevamente.');
     }
