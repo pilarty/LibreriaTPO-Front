@@ -5,6 +5,7 @@ import Usuario from '../assets/Usuario.png';
 import Carrito from '../assets/Carrito.png';
 import Hamburguesa from '../assets/hamburguesa.png';
 import Estrella from '../assets/Estrella.png';
+import MenuDesplegable from "../components/MenuDesplegable";
 import { useNavigate } from 'react-router-dom';
 import { useEffect} from 'react';
 import { useParams } from 'react-router-dom';
@@ -127,8 +128,11 @@ const LibroSolo = () => {
                     <img className="img-carrito" src={Carrito} alt="Carrito" />
                 </button>
             </div>
-{/* Tarjeta del libro */}
-<div className="libroSolo-container">
+
+            {menuVisible && <MenuDesplegable />}
+
+                {/* Tarjeta del libro */}
+                <div className="libroSolo-container">
             {/* Imagen y Título */}
             <div className="libroSolo-imagen-seccion">
                 <div className="libroSolo-imagen-placeholder">
