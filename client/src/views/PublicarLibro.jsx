@@ -104,6 +104,20 @@ const PublicarLibro = () => {
             await dispatch(postImagen(formData)).unwrap();
             alert("Libro publicado exitosamente");
             //navigate('/');
+            setGeneroSeleccionado("Genero...");
+            setTitulo("");
+            setDescripcion("");
+            setEditorial("");
+            setEdicion("");
+            setIdioma("");
+            setNumPaginas("");
+            setIsbn("");
+            setAutor("");
+            setStock("");
+            setPrecio("");
+            setImagenSeleccionada(null);
+            setEsRecomendado(false);
+            setEsNovedad(false);
           })
         setLibroNuevo(null)
         setPublicacionLista(false)
@@ -215,7 +229,7 @@ const PublicarLibro = () => {
                 type="text"
                 className="PublicarLibro-input-field"
                 placeholder="Autor..."
-                value={autorp.join(', ')}
+                value={autorp}
                 onChange={handleAutorChange}
               />
               <label className="PublicarLibro-label">Stock:</label>
