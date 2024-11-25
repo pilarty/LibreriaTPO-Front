@@ -20,7 +20,7 @@ const LibroListaLibros = ({ isbn, titulo, autor, precio, sinopsis, image }) => {
 
     const mostrarMensaje = (texto) => {
         setMensaje(texto);
-        setTimeout(() => setMensaje(''), 3000);
+        setTimeout(() => setMensaje(''), 1500);
     };
 
     const manejarAgregarACarrito = () => {
