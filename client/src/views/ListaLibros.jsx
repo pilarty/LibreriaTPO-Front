@@ -99,11 +99,11 @@ const ListaLibros = () => {
             ) : (
                 <>
                     {items.content.filter(libro => libro.recomendado).length > 0 && (
-                <ListaLibrosListaLibros libros={items.content.filter(libro => libro.recomendado)} />
+                <ListaLibrosListaLibros libros={items.content.filter(libro => libro.recomendado && libro.stock !== 0) } />
             )}
 
                     <h2 className="listaLibros-subtitle">Libros del género {generoNombre}</h2>
-                    <ListaLibrosListaLibros libros={items.content.filter(libro => !libro.recomendado)} />
+                    <ListaLibrosListaLibros libros={items.content.filter(libro => !libro.recomendado && libro.stock !== 0)} />
                 </>
             )}
 

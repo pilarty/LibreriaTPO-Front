@@ -68,7 +68,7 @@ const CardLibroList = () => {
 
     return (
        <Slider {...settings} className="homepage-lista-libros">
-              {items.content.filter((post) => post.recomendado === true).map((post) => (
+              {items.content.filter((post) => post.recomendado === true && post.stock !== 0).map((post) => (
                 <div className="homepage-carrusel-item">
                 <button className="homepage-boton-libros" onClick={() => manejarLibros(post.isbn)}>
                   <CardLibro
