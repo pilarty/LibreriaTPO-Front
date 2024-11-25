@@ -14,9 +14,12 @@ import MenuDesplegable from "../components/MenuDesplegable";
 
 const VerOrdenes = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageSize] = useState(2);
+  const [pageSize] = useState(10);
   const navigate = useNavigate();
   const [menuVisible, setMenuVisible] = useState(false);
+
+  const [clienteSeleccionado, setClienteSeleccionado] = useState(""); 
+  const [ordenesFiltradas, setOrdenesFiltradas] = useState([]);
 
   const manejarDetallesOrden = (id) => {
     navigate(`/DetallesOrden/${id}`);
@@ -28,6 +31,23 @@ const VerOrdenes = () => {
   useEffect(() => {
     dispatch(getOrdenes({ page: currentPage, size: pageSize }));
   }, [dispatch, currentPage, pageSize]);
+
+  useEffect(() => {
+    if (clienteSeleccionado) {
+      const filtradas = items.content.filter(
+        (orden) =>
+          `${orden.usuario.nombre} ${orden.usuario.apellido}` ===
+          clienteSeleccionado
+      );
+      setOrdenesFiltradas(filtradas);
+    } else {
+      setOrdenesFiltradas(items.content || []);
+    }
+  }, [clienteSeleccionado, items.content]);
+
+  const manejarFiltrado = (e) => {
+    setClienteSeleccionado(e.target.value);
+  };
 
   const handleNextPage = () => {
     if (!items.last) {
@@ -59,6 +79,7 @@ const VerOrdenes = () => {
   const manejarHamburguesa = () => {
     setMenuVisible(!menuVisible);
   }
+
 
   {/*
   const manejarCambioEstado = (idOrden, nuevoEstado) => {
@@ -135,19 +156,24 @@ const VerOrdenes = () => {
       </div>
       */}
 
-      <div className="VerOrdenes-herramientas">
-        
-        <select className="VerOrdenes-selectFechas">
-          <option>Todas las fechas</option>
-        </select>
-        <div className="VerOrdenes-filtroCliente">
-          <select>
-            <option>Filtrar por cliente</option>
-          </select>
-        </div>
-        <button className="VerOrdenes-botonFiltrar">Filtrar</button>
-        
-        <span className="VerOrdenes-totalItems">{items.totalElements} Ordenes</span>
+    <div className="VerOrdenes-herramientas">
+              <div className="VerOrdenes-filtroCliente">
+                <select
+                  value={clienteSeleccionado}
+                  onChange={manejarFiltrado}
+                  className="VerOrdenes-select"
+                >
+                  <option value="">Filtrar por cliente</option>
+                  {Array.from(new Set(items.content.map((orden) =>
+                    `${orden.usuario.nombre} ${orden.usuario.apellido}`
+                  ))).map((cliente, index) => (
+                    <option key={index} value={cliente}>
+                      {cliente}
+                    </option>
+                  ))}
+                </select>
+              </div>
+        <span className="VerOrdenes-totalItems">{ordenesFiltradas.length} Ordenes</span>
         <div className="VerOrdenes-paginacion">
           <button 
             className="VerOrdenes-botonPagina" 
@@ -193,7 +219,7 @@ const VerOrdenes = () => {
           </tr>
         </thead>
         <tbody>
-          {items.content.map((orden) => (
+          {ordenesFiltradas.map((orden) => (
             <tr key={orden.id} className="VerOrdenes-fila">
               
               <td className="VerOrdenes-celda">
