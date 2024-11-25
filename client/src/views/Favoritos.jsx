@@ -71,6 +71,10 @@ const Favoritos = () => {
         navigate('/Carrito');
     };
 
+    const manejarLibros = (isbn) => {
+        navigate(`/Libro/${isbn}`);
+    };
+
     return (
         <div>
             <div className="header-2">
@@ -100,6 +104,7 @@ const Favoritos = () => {
                     <div className="favoritos-lista">
                         {librosFavoritos.map((libro) => (
                             <div key={libro.isbn} className="favorito-item">
+                                <button className="favoritos-boton-libros" onClick={() => manejarLibros(libro.isbn)}>
                                 <img
                                     className="favorito-imagen"
                                     src={libro.image ? `data:image/jpeg;base64,${libro.image}` : '/assets/imageError.png'}
@@ -124,6 +129,7 @@ const Favoritos = () => {
                                         </button>
                                     </div>
                                 </div>
+                             </button>
                             </div>
                         ))}
                     </div>

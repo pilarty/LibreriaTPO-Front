@@ -6,7 +6,7 @@
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
 }
 
 .favoritos-container h1 {
@@ -52,9 +52,6 @@
     margin: 0 auto; 
 }
 
-.favorito-item:hover {
-    transform: scale(1.02);
-}
 
 .favorito-imagen {
     width: 100%;
@@ -132,3 +129,4 @@
     height: 16px;
     filter: brightness(0) invert(1);
 }
+
