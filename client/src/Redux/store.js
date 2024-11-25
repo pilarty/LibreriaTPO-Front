@@ -9,6 +9,7 @@ import authReducer from "./authSlice"
 import ordenesReducer from "./ordenesSlice"
 import imagenesReducer from "./imagenesSlice"
 import giftCardReducer from "./giftCardSlice"
+import enviarMailReducer from "./mailSlice"
 
 export const store = configureStore({
     reducer: {
@@ -22,6 +23,7 @@ export const store = configureStore({
         ordenes : ordenesReducer,
         imagenes : imagenesReducer,
         giftcard : giftCardReducer,
+        enviarMail : enviarMailReducer
     },
 })
 
