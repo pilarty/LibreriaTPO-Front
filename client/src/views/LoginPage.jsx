@@ -28,27 +28,31 @@ const LoginPage = () => {
     }
 
     try {
-      const credencial = {
-        mail: mail,
-        contraseña: contraseña
-      }
-      const response = await dispatch(authenticateUser(credencial))
+      // Solicitud POST para autenticar al usuario
+      const response = await fetch('http://localhost:4002/api/v1/auth/authenticate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'access_token'
+        },
+        body: JSON.stringify({ mail, contraseña }), // Enviar el mail y la contraseña al backend
+      });
+      if (!response.ok) {
+        // Si el backend responde con un error (ej. credenciales incorrectas)
+        throw new Error('Error al iniciar sesión.');}
 
-      if (!response.payload || response.error) {
-        setError('Error al iniciar sesión.');
-        return;
-      }
-      if (token && mail) {
-        sessionStorage.setItem('authToken', token);
-        sessionStorage.setItem('mail', mail);
+        const data = await response.json();
+        sessionStorage.setItem('authToken', data.access_token);
+        sessionStorage.setItem('mail', mail); // Guardando el correo
+        
+        // asumiendo que el backend devuelve un token o mensaje de éxito
+        console.log('Inicio de sesión exitoso', data);
+        // redirige al usuario a la página principal
         navigate('/');
-      } else {
-        setError('Error al guardar los datos de autenticación.');
+      } catch (error) {
+        console.error('Error en el inicio de sesión:', error);
+        setError('Error al iniciar sesión. Intenta nuevamente.');
       }
-    } catch (error){
-      console.error('Error en el inicio de sesión:', error);
-      setError('Error al iniciar sesión. Intenta nuevamente.');
-    }
   };
 
   return (
